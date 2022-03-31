@@ -1,0 +1,33 @@
+.ContainerMain{
+    width: 100%;
+    min-height: 90vh;
+    background-color: #0298BF80;
+    text-align: center;
+    h1{
+        padding-top: 4rem;
+       
+    }
+}
+
+.BooksSection{
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3rem;
+
+   & > *{
+       flex:1;
+      
+   }
+}
+
+@media screen and (max-width :798px) {
+    .first{
+        display: none;
+    }
+    .ContainerMain{
+        width: 100vw;
+    }
+    
+}

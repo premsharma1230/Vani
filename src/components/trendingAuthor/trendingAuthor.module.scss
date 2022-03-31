@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+.sectionMain {
+  min-height: 70vh;
+  width: 100%;
+  padding: 8rem 3rem 3rem 2rem;
+}
+
+.contentArea {
+  display: flex;
+  justify-content: center;
+
+  & > * {
+    flex: 1;
+  }
+}
+
+.bookImage {
+  img {
+    height: 530px;
+    width: 400px;
+  }
+}
+
+.authorDescription {
+  display: flex;
+ 
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 3.5rem;
+   margin-left: -5rem ;
+   
+  img {
+    width: 215px;
+    height: 285px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+  }
+  
+}
+
+.bookDescription {
+  padding-top: 3rem;
+  font-size: 1.4rem;
+  font-family: "Lora", serif;
+  font-weight: bold;
+  line-height: 40px;
+
+  h2 {
+    color: rgb(114, 113, 113);
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+  p {
+    color: #4e4e4e;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    line-height: 30px;
+    width: 72%;
+    text-align: justify;
+  }
+}
+
+@media screen and (max-width:798px) {
+  .contentArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .authorDescription{
+    padding-left: 5rem;
+  }
+
+  .bookDescription{
+    padding-left: 1rem;
+  }
+}

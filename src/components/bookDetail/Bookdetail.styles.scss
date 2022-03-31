@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+
+.bookWrapper{
+    
+    font-family: "Lora", serif;
+    display: flex;
+    text-align: right;
+  
+
+   h1{
+       padding-left: 5rem;
+       font-size: 2rem;
+       font-weight: bolder;
+
+   }
+
+   h2{
+      font-size: 1rem;
+      margin: 1rem 0rem;
+      color: #4E4E4E;
+   }
+   h6{
+       margin-bottom: 1rem;
+   }
+   p{
+       padding-left: 6rem;
+       font-size: 0.9rem;
+       margin-top: 2rem;
+       color: #4E4E4E;
+       line-height: 2rem;
+       margin-bottom: 2rem;
+   }
+
+   .contentWrapper{
+       margin-right: 2rem;
+   }
+}
+
+.bookWrapperReverse{
+    font-family: "Lora", serif;
+    display: flex;
+    flex-direction: row-reverse;
+    text-align: left;
+   
+    h1{
+        
+        font-size: 2rem;
+        width: 70%;
+        font-weight: bolder;
+ 
+    }
+ 
+    h2{
+       
+       font-size: 1rem;
+       margin: 1rem 0rem;
+       color: #4E4E4E;
+    }
+    h6{
+        margin-bottom: 1rem;
+    }
+    p{
+        padding-right: 6rem;
+        font-size: 0.9rem;
+        margin-top: 2rem;
+        color: #4E4E4E;
+        line-height: 2rem;
+        margin-bottom: 2rem;
+    }
+    .contentWrapper{
+        margin-left: 2rem;
+    }
+}
+
+.book-image-conatiner{
+    img{
+        width: 22rem ;
+        height: 32rem ;
+    }
+}
+
+@media screen and (max-width:798px) {
+    .bookWrapperReverse{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    
+}

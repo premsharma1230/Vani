@@ -1,0 +1,166 @@
+@import "../../styles/styleModules/mixins";
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+
+.FlexContainer {
+  @include flexDesign(row, flex-start, flex-start);
+  padding-bottom:2rem ;
+  padding-left: 5rem;
+  border-bottom: 2px solid #0298bf;
+  margin-bottom: 2rem;
+}
+
+.BookImageContainer {  
+  margin-right: 4rem;
+  img{
+    filter : drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.15));
+    width : 20rem;
+    height: 28rem;
+  }
+}
+.InfoContainer {
+  padding: 0rem 2rem;
+  font-family: "Lora", serif;
+  h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 2.4rem;
+    color: #333333;
+  }
+  h3 {
+    color: #333333;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  u {
+    color: #020056;
+  }
+
+  .Details {
+    margin-top: 1rem;
+    ul {
+      li {
+        color: #333333;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        margin-top: 10px;
+      }
+      list-style: none;
+      span {
+        font-weight: 400;
+      }
+      .isbn {
+        color: #020056;
+        font-weight: bolder;
+      }
+    }
+  }
+}
+
+.TitelArea {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #0298bf;
+  padding-bottom: 2rem;
+}
+.AreaPrice {
+  margin-top: 3rem;
+  @include flexDesign(row, center, space-between);
+}
+.counter {
+  margin-right: 2rem;
+
+  ul {
+    list-style: none;
+    @include flexDesign(row, center, center);
+    button {
+      font-size: 1rem;
+      padding: 0.35rem 0.5rem;
+      cursor: pointer;
+      color: white;
+      border: none;
+      outline: none;
+    }
+
+    .add {
+      background-color: #0298bf;
+    }
+    .remove {
+      background-color: #c4c4c4;
+    }
+  }
+}
+
+.quantity {
+  border-top: 0.117333px solid #00102c;
+  border-bottom: 0.117333px solid #00102c;
+  color: #ff3861;
+  padding: 0.2rem 0.6rem;
+  font-size: 1rem;
+}
+
+.price {
+  color: #0298bf;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  margin-right: 2rem;
+}
+.buttons {
+  @include flexDesign(row, center, space-between);
+
+  & > * {
+    margin-left: 10px;
+  }
+
+  & :last-child {
+     
+    background-color: white;
+    border: 1px solid #0298bf;
+
+    .cart {
+      background-color: white;
+      margin-right: 10px;
+      border: none;
+      color: #0298bf;
+    }
+  }
+
+  & :first-child {
+    background-color: #0298bf;
+  }
+  .buyNow {
+    color: white;
+  }
+  button {
+    padding: 0.6rem 1rem;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.buyNow{
+    display: flex;
+    align-items: center;
+     color: white;
+}
+
+.Lighntning{
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+.cartButton{
+    color: #0298bf;
+    display: flex;
+}
+
+.ImageCollection{
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ img{
+   width: 5rem;
+   margin-left: 20px;
+   height: 7rem
+   
+ }
+}

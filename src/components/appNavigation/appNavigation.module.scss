@@ -1,0 +1,145 @@
+@import "../../styles/styleModules/mixins";
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+
+.navigationContainer {
+  
+  margin-top :1rem;
+  font-family: "Lora", serif;
+  width: 50%;
+  color: black;
+  font-weight: bold;
+  font-size: 1.1rem;
+
+ 
+  ul {
+    @include flexDesign(row,center,space-around);
+    margin-right: 1rem;
+
+    
+
+    li {
+      list-style: none;
+      &:last-child{
+        display: none;
+      }
+       
+    }
+  }
+}
+
+.bullet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #e8b167;
+}
+
+.vani {
+  padding-top: 2rem;
+  margin: 0rem 0.8rem;
+  padding-left: 0.8rem;
+  background-color: #0298bf;
+  border-radius: 0px 0px 15px 15px;
+}
+
+.mainContainer {
+  width: 90%;
+   
+   
+  @include flexDesign(row,center,space-around);
+
+  & :first-child,
+  & :last-child {
+    margin-top: -1.5rem;
+  }
+}
+
+.iconArea {
+  margin-top: 1rem;
+  font-family: "Lora", serif;
+  width: 20%;
+   
+  color: black;
+  ul {
+    @include flexDesign(row,center,space-around);
+    li {
+      list-style: none;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.Banner {
+  padding-left: 3rem;
+  width: 25%;
+  margin-left: -2rem;
+  position: absolute;
+  top: 0;
+  left: 3%;
+}
+.navigationBar{
+  height: 5rem;
+}
+.responseIcon{
+  display:none;
+}
+
+
+.Navlinks{
+   a{
+     text-decoration: none;
+     color: black;
+     cursor: pointer;
+   }
+}
+@media screen and (max-width: 798px) {
+  .iconArea,
+  .navigationContainer {
+    display: none;
+  }
+  .responseIcon{
+    width: 25%;
+    font-size: 1.5rem;
+    display: block;
+    color: black;
+    ul{
+      @include flexDesign(row,center,space-around);
+    }
+    li{
+      list-style: none;
+    }
+  }
+
+  .Banner {
+    width: 10%;
+    margin-left:4rem;
+  }
+
+  .mainContainer {
+    .vani{
+      margin: 0rem 0.1rem;
+      img{
+        width : 50px;
+      }
+    }
+    .englishLogo {
+      img {
+        margin: 1rem;
+        width: 70px;
+        height: 39px;
+      }
+    }
+    & :first-child {
+      img {
+        margin: 1rem;
+        width: 42px;
+        height: 37px;
+      }
+    }
+  }
+
+  .navigationBar{
+    height: 3.6rem;
+  }
+}
+

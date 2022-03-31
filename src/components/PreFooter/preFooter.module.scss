@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.areaMain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    .ContentArea{
+
+        background-color: #0298BF;
+        border-radius: 10px;
+        padding: 3rem 2.5rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        h6{
+            font-family: "Lora", serif;
+            font-size: 1.2rem;
+            line-height: 24px;
+            margin-bottom: 2rem;
+            span{
+                font-family: sans-serif;
+            }
+        }
+
+        h3{
+            font-family: "Lora", serif;
+            font-size: 2.5rem;
+        }
+
+        .subs{
+            margin-right: 2rem;
+        }
+    }
+}
+
+.FormArea{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+    input{
+        border: none;
+        border-radius:5px ;
+        outline: none;
+        width: 30rem;
+        height: 4rem;
+        padding: 1.5rem 1rem;
+
+        & ::placeholder{
+            font-family: "Lora", serif;
+            color: #7B7B7B;
+            font-size: 1.5rem;
+        }
+
+    }
+
+    button{
+      border: none;
+      outline: none;
+      background-color: #0298BF;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      padding: 0.8rem 1.2rem;
+      
+      margin-left: -11.6rem;
+    }
+}
