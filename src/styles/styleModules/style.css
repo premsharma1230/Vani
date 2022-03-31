@@ -134,4 +134,18 @@ html {
 a {
   text-decoration: none;
 }
+
+.BookList_MainWrappe {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 262px 1fr;
+      grid-template-columns: 262px 1fr;
+  grid-gap: 1rem;
+  padding: 3rem 0 0;
+}
+
+.BookList_MainWrappe .Filter-Categories_Wrapper {
+  background: #f3f3f3;
+}
 /*# sourceMappingURL=style.css.map */

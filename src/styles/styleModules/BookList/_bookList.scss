@@ -1,0 +1,10 @@
+.BookList_MainWrappe {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 262px 1fr;
+  grid-gap: 1rem;
+  padding: 3rem 0 0;
+  .Filter-Categories_Wrapper {
+    background: #f3f3f3;
+  }
+}
