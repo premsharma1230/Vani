@@ -3,7 +3,7 @@ import Classes from "./trendingWriter.module.scss";
 import { AuthorList } from "../../api/api";
 export default function TrendingWriters() {
   
-    const [writers, setWriters] = useState({});
+    const [writers, setWriters] = useState([]);
 
     useEffect(() => {
       const loadData = () => {

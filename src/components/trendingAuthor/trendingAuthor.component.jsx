@@ -1,35 +1,46 @@
-import React from "react";
+import {React,useEffect,useState} from "react";
 import Classes from "./trendingAuthor.module.scss";
 import CustomeButton from "../customeButton/customeButton.component";
-import Book from "./book.png";
-
+import { TrendingAuthorAndBook } from "../../api/api"
 export default function TrendingAuthor() {
-  const author =
-    "https://i2.pickpik.com/photos/760/255/766/people-portrait-adult-men-preview.jpg";
+  const [otherData,setOtherData]=useState({})
+  const [listData, setData] = useState({});
+  useEffect(()=>{
+    const loadData=()=>{
+      TrendingAuthorAndBook().then(res=>{
+        const response = res;
+        setData(response.data);
+        setOtherData({
+          author:response.data.author_image,
+          bookImage:response.data.book_image,
+          bookTitle:response.data.book_details.title,
+          bookDetails:response.data.book_details.description,
+          author_name:response.data.author_details.name,
+          // stars:response.data.
+        });        
+      })
+    }
+    loadData();
+  },[]);
   return (
     <div className={Classes.sectionMain}>
       <div className={Classes.contentArea}>
         <div className={Classes.bookImage}>
-          <img src={Book} alt="book name" />
+          <img src={otherData.bookImage} alt="book name" />
         </div>
         <div className={Classes.bookDescription}>
-          <h1>The Psychology of Money</h1>
-          <h2>By Morgan Housel</h2>
-          <h6>Stars</h6>
+          <h1>{otherData.bookTitle}</h1>
+          <h2>by - {otherData.author_name}</h2>
+          {/* <h6>Stars</h6> */}
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna,
-            faucibus tempor mauris massa. Vestibulum, facilisis aliquam tellus
-            nunc, convallis ultrices eget velit. Auctor vitae aliquet nec et
-            elementum nullam purus. Dignissim semper in vulputate turpis massa.
-            Neque amet, fusce scelerisque a tellus tempus elementum augue et. Et
-            arcu est vestibulum accumsan sed dictumst eget.
+            {otherData.bookDetails}
           </p>
         </div>
         <div className={Classes.authorDescription}>
-          <img src={author} alt="author picture" />
+          <img src={otherData.author} alt="author picture" />
           <CustomeButton name={"LEARN ABOUT AUTHOR"} accent={true}/>
         </div>
       </div>
     </div>
   );
-}
+} 

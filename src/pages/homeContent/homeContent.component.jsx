@@ -7,6 +7,7 @@ import DigitalCatelog from "../../components/digitalCatelog/digitalCatelog.compo
 import PublicationBanner from "../../components/publicationBanner/PublicationBanner.component";
 import Prefooter from "../../components/PreFooter/preFooter.component";
 import AboutSection from "../../components/aboutSection/aboutSection.component";
+import {HomePageLogos} from "../../components/homeLogos/homePageLogos"
 export default function HomeContent({imageUrl}) {
   const backdrop =
      imageUrl;
@@ -34,6 +35,7 @@ export default function HomeContent({imageUrl}) {
         <DigitalCatelog />
         <PublicationBanner />
         <AboutSection />
+        {/* <HomePageLogos/> */}
         <div className={Classes.prefooter}>
         <Prefooter/>
         </div>
