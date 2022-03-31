@@ -1,6 +1,36 @@
-@mixin flexDesign($flexDirection,$alignItems,$justifyContent) {
-    display: flex;
-    flex-direction: $flexDirection;
-    align-items: $alignItems;
-    justify-content: $justifyContent;    
+@mixin flexDesign($flexDirection, $alignItems, $justifyContent) {
+  display: flex;
+  flex-direction: $flexDirection;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+// @mixin flex {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-wrap: wrap;
+// }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: ""; //"Poppins", sans-serif;
+  // font-family: 'Gotham Pro regular';
+}
+
+// .container {
+//   width: 90%;
+//   margin: 0 auto;
+// }
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
 }

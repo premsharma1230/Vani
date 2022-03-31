@@ -1,10 +1,11 @@
-import './styles/App.scss';
-import RouteSeperater from './routes';
+import "./styles/styleModules/style.css";
+
+import RouteSeperater from "./routes";
 
 function App() {
   return (
     <div>
-     <RouteSeperater/>
+      <RouteSeperater />
     </div>
   );
 }

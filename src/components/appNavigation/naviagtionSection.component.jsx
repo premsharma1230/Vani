@@ -1,5 +1,5 @@
 import React from "react";
-import Classes from "./appNavigation.module.scss";
+import Classes from "./_appNavigation.module.scss";
 import { Link } from "react-router-dom";
 export default function NavigationSection() {
   const linkarr = [

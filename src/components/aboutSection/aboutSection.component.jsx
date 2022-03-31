@@ -1,6 +1,6 @@
 import React from "react";
-import CustomeButton from '../customeButton/customeButton.component'
-import Classes from "./aboutSection.module.scss";
+import CustomeButton from "../customeButton/customeButton.component";
+import Classes from "./_aboutSection.module.scss";
 
 export default function AboutSection() {
   return (
@@ -28,7 +28,7 @@ export default function AboutSection() {
             <li>Lorem ipsum dolor sit amet consectetur.</li>
             <li>Lorem ipsum dolor sit amet.</li>
           </ul>
-          <CustomeButton name={'KNOW MORE'} accent={true} />
+          <CustomeButton name={"KNOW MORE"} accent={true} />
         </div>
       </div>
     </div>

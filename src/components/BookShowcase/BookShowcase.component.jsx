@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Classes from "./bookShowcase.module.scss";
+import Classes from "./_bookShowcase.module.scss";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { AiFillThunderbolt } from "react-icons/ai";
 
