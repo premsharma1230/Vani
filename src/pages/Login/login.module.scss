@@ -6,6 +6,7 @@
 .formContainer{
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .formMain{
     display: flex;
@@ -39,4 +40,19 @@
 }
 .SignupButton{
     margin-top: 34px;
+}
+.backForgotPassword{
+    display: flex;
+    justify-content: center;
+    margin-top: 27px;
+    height: 31px;
+    align-items: center;
+}
+.back{
+    border-right: 1px solid;
+    padding-right: 10px;
+    color: #0298BF;
+}
+.forgotPassword{
+    padding-left: 10px;
 }

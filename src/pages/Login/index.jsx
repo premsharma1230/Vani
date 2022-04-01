@@ -10,7 +10,6 @@ import { useForm, Controller } from "react-hook-form";
 const useStyles = makeStyles({
   root: {
     minWidth: 500,
-    height: 500,
     borderRadius: '26px',
   },
   bullet: {
@@ -105,6 +104,10 @@ export default function Login() {
                 />
               </div>
             </form>
+            <div className={Classes.backForgotPassword}>
+              <div className={Classes.back}>Back</div>
+              <div className={Classes.forgotPassword}>Forgot Password</div>
+            </div>
           </div>
         </CardContent>
       </Card>
