@@ -95,7 +95,7 @@ export default function Registeration() {
               className={`${classes.root} ${Classes.formMain}`}
             >
               <div>
-              <div>
+              <div className={Classes.passwordFieldMargin}>
                   <Controller
                     name="firstName"
                     control={control}
@@ -111,7 +111,7 @@ export default function Registeration() {
                     )}
                   />
                 </div>
-                <div>
+                <div className={Classes.passwordFieldMargin}>
                   <Controller
                     name="lastName"
                     control={control}
@@ -127,7 +127,7 @@ export default function Registeration() {
                     )}
                   />
                 </div>  
-                <div>
+                <div className={Classes.passwordFieldMargin}>
                   <Controller
                     name="email"
                     control={control}
