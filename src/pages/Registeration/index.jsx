@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Classes from "./login.module.scss";
+import Classes from "./registeration.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -30,27 +30,48 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-export default function Login() {
+export default function Registeration() {
   let navigate = useNavigate();
   const classes = useStyles();
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
-      username: "",
+      firstName: "",
+      lastName : "",
+      email : "",
       password: "",
+
     },
   });
   const onSubmit = (data) => {
-    const Body = {
-      email: data.username,
-      password: data.password,
-    }
-    axios({
-      method: 'post',
-      url: 'http://admin.vaniprakashan.in/auth/user/login/',
-      data: Body
-    }).then((e) => {
-      console.log(e, "login api")
-      navigate("/")
+    // const Body = {
+    //   email: data.email,
+    //   password: data.password,
+    //   provider : "",
+    //   first_name : data.firstName,
+    //   last_name : data.lastName
+    // }
+    // console.log(Body,"Body++++++++++++++++++++++++++")
+    // axios({
+    //   method: 'post',
+    //   url: 'http://admin.vaniprakashan.in/auth/user/register',
+    //   data: Body
+    // }).then((e) => {
+    //   console.log(e, "register api")
+    //   navigate("/Login")
+    // })
+
+    const formData = new FormData();
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("provider", "");
+    formData.append("first_name", data.firstName);
+    formData.append("last_name", data.lastName);
+  
+    axios.post("http://admin.vaniprakashan.in/auth/user/register", formData).then(res => {
+      console.log(res,"_____________________________________________________");
+      console.log(res.data,"----------------------------PPPPPPPPPP");
+    }).catch((error)=>{
+      console.log("error------------------------------",error)
     })
 
   }
@@ -65,7 +86,7 @@ export default function Login() {
               <img src={Close} alt="Close image" />
             </div>
             <div className={Classes.loginSubheader}>
-              Login
+              Sign up
             </div>
           </div>
           <div className={Classes.formContainer}>
@@ -74,16 +95,48 @@ export default function Login() {
               className={`${classes.root} ${Classes.formMain}`}
             >
               <div>
-                <div>
+              <div>
                   <Controller
-                    name="username"
+                    name="firstName"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
                       <TextField
                         {...field}
                         // id="outlined-basic"
-                        label="Enter your Email Address"
+                        label="First Name"
+                        variant="outlined"
+                        className={Classes.userField}
+                      />
+                    )}
+                  />
+                </div>
+                <div>
+                  <Controller
+                    name="lastName"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        // id="outlined-basic"
+                        label="Last Name"
+                        variant="outlined"
+                        className={Classes.userField}
+                      />
+                    )}
+                  />
+                </div>  
+                <div>
+                  <Controller
+                    name="email"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        // id="outlined-basic"
+                        label="Email Address"
                         variant="outlined"
                         className={Classes.userField}
                       />
@@ -99,7 +152,7 @@ export default function Login() {
                       <TextField
                         {...field}
                         // id="outlined-basic"
-                        label="Enter your Password"
+                        label="Password"
                         variant="outlined"
                         className={Classes.passwordField}
                       />
@@ -125,18 +178,21 @@ export default function Login() {
                       color="primary"
                       {...field}
                     >
-                      Login
+                      SIGN UP
                     </Button>
                   )}
                 />
               </div>
             </form>
-            <div className={Classes.forgotPassword}>Forgot Password</div>
             <div className={Classes.backForgotPassword}>
               <div className={Classes.back}>
                 <img src={FacebookPic} alt="logo image" />
+              </div>
+              <div className={Classes.back}>
                 <img src={GooglePic} alt="Close image" />
-                New User?
+              </div>
+              <div className={Classes.back}>
+                Sign In?
               </div>
             </div>
           </div>
