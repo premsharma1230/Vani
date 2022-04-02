@@ -7,10 +7,9 @@ import DigitalCatelog from "../../components/digitalCatelog/digitalCatelog.compo
 import PublicationBanner from "../../components/publicationBanner/PublicationBanner.component";
 import Prefooter from "../../components/PreFooter/preFooter.component";
 import AboutSection from "../../components/aboutSection/aboutSection.component";
-import {HomePageLogos} from "../../components/homeLogos/homePageLogos"
-export default function HomeContent({imageUrl}) {
-  const backdrop =
-     imageUrl;
+// import {HomePageLogos} from "../../components/homeLogos/homePageLogos"
+export default function HomeContent({ imageUrl }) {
+  const backdrop = imageUrl;
   return (
     <>
       <div className={Classes.Encpsulater}>
@@ -37,7 +36,7 @@ export default function HomeContent({imageUrl}) {
         <AboutSection />
         {/* <HomePageLogos/> */}
         <div className={Classes.prefooter}>
-        <Prefooter/>
+          <Prefooter />
         </div>
       </div>
     </>
