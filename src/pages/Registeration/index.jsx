@@ -67,11 +67,9 @@ export default function Registeration() {
     formData.append("first_name", data.firstName);
     formData.append("last_name", data.lastName);
   
-    axios.post("http://admin.vaniprakashan.in/auth/user/register", formData).then(res => {
-      console.log(res,"_____________________________________________________");
-      console.log(res.data,"----------------------------PPPPPPPPPP");
+    axios.post("http://admin.vaniprakashan.in/auth/user/register/", formData).then(res => {
+      navigate("/Login")
     }).catch((error)=>{
-      console.log("error------------------------------",error)
     })
 
   }
