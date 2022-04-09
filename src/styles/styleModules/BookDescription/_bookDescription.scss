@@ -1,0 +1,162 @@
+.Description_wrapper {
+  background: $white;
+  padding: 6rem 0 2rem;
+  .BookDescription_head {
+    width: 91%;
+    margin: 5rem auto 1rem;
+    .booklist_navigation {
+      @include booklist-Navigation;
+    }
+  }
+  .Description_Content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-gap: 2rem;
+    width: 91%;
+    margin: 0 auto;
+    border-bottom: 1px solid $skysolid;
+    .Description_Left {
+      figure img {
+        max-width: 100%;
+      }
+    }
+    .Description_Right {
+      .About_Book {
+        .About-book-title {
+          h2 {
+            color: $paraText;
+            font-size: 2.2em;
+            font-weight: 700;
+            line-height: 46px;
+            letter-spacing: 0.20000000298023224px;
+          }
+          h5 {
+            padding: 0.5rem 0;
+            font-size: 1.2;
+            font-weight: 700;
+            line-height: 23px;
+            color: $paraText;
+            letter-spacing: 0.20000000298023224px;
+          }
+        }
+        figcaption {
+          padding: 0.8rem 0;
+          border-top: 1px solid $skysolid;
+          border-bottom: 1px solid $skysolid;
+          p {
+            font-size: 0.89em;
+            color: #000;
+            font-weight: normal;
+            line-height: 18px;
+            letter-spacing: 0.20000000298023224px;
+          }
+        }
+      }
+      .About-book-detail {
+        padding: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+        grid-gap: 1rem;
+        > ul {
+          li {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(2, max-content);
+            grid-gap: 1rem;
+            padding: 0.3rem 0;
+            &:nth-child(1) {
+              strong {
+                color: $span;
+              }
+            }
+            span {
+              font-size: 0.89em;
+              font-weight: 500;
+              line-height: 18px;
+              letter-spacing: 0.20000000298023224px;
+              color: $heading;
+            }
+            strong {
+              font-size: 1em;
+              font-weight: 700;
+              line-height: 20px;
+              color: $strong;
+              letter-spacing: 0.20000000298023224px;
+            }
+          }
+        }
+      }
+      .description-Group-btn {
+        display: flex;
+        align-items: flex-end;
+        button {
+          width: 170px;
+          height: 44.54px;
+          background: #0298bf;
+          border-radius: 8px;
+          margin: 0.5rem;
+          display: inline-block;
+          outline: none;
+          border: none;
+          transition: $transition;
+          &:hover {
+            transition: $transition;
+            opacity: 0.9;
+          }
+          a {
+            display: grid;
+            grid-gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: repeat(2, max-content);
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 700;
+            line-height: 23px;
+            letter-spacing: 0px;
+            text-transform: capitalize;
+          }
+          &:nth-child(2) {
+            border: 1px solid $skysolid !important;
+            background: transparent !important;
+            a {
+              color: $skysolid !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .Otherbook_Wrapper {
+    width: 91%;
+    margin: 0 auto;
+    padding: 0rem 0 3rem;
+    .Otherbook-Heading {
+      padding: 1.5rem 0;
+      h2 {
+        padding: 0 0 0 1.5rem;
+        font-size: 1.5em;
+        text-transform: capitalize;
+        font-weight: 700;
+        line-height: 31px;
+        letter-spacing: 0.20000000298023224px;
+      }
+    }
+    .Grid_Carousel_wrp {
+      @include bookGrid;
+      .Grid-item {
+        a {
+          text-decoration: none;
+          &:visited {
+            color: currentColor;
+          }
+        }
+        figure {
+          height: 260px !important;
+        }
+      }
+    }
+  }
+}
+
+// \{[...Array(4).keys()].map(index => (

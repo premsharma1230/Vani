@@ -107,7 +107,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "";
+  font-family: "Lora";
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
 }
 
 html {
@@ -124,7 +129,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "";
+  font-family: "Lora";
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
 }
 
 html {
@@ -135,17 +145,710 @@ a {
   text-decoration: none;
 }
 
-.BookList_MainWrappe {
+.BookList_MainWrapper {
   width: 100%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 262px 1fr;
-      grid-template-columns: 262px 1fr;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   grid-gap: 1rem;
-  padding: 3rem 0 0;
+  padding: 5rem 0 0;
+  background: #ffffff;
 }
 
-.BookList_MainWrappe .Filter-Categories_Wrapper {
+.BookList_MainWrapper .Filter-Categories_Wrapper {
   background: #f3f3f3;
+  width: 262px;
+  padding: 5rem 0 0;
+}
+
+.BookList_MainWrapper .Filter-Categories_Wrapper .Category_Item1 .category-heading {
+  margin: 0 auto;
+  width: 75%;
+  padding: 1rem 0;
+}
+
+.BookList_MainWrapper .Filter-Categories_Wrapper .Category_Item1 .category-heading h4 {
+  font-family: Lora;
+  font-size: 1.4em;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0.43981480598449707px;
+  text-transform: capitalize;
+  color: #333333;
+}
+
+.BookList_MainWrapper .Filter-Categories_Wrapper .Category_Item1 .filter-catgry {
+  margin: 0 auto;
+  width: 75%;
+}
+
+.BookList_MainWrapper .Filter-Categories_Wrapper .Category_Item1 .filter-catgry li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.2rem 0;
+}
+
+.BookList_MainWrapper .Filter-Categories_Wrapper .Category_Item1 .filter-catgry li span input {
+  margin: 0.4rem 0 0px;
+}
+
+.BookList_MainWrapper .Filter-Categories_Wrapper .Category_Item1 .filter-catgry li p {
+  font-family: Lora;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0.43981480598449707px;
+  color: #4e4e4e;
+}
+
+.BookList_MainWrapper .Filter-Categories_Wrapper .PriceSlider_Wrp {
+  width: 50%;
+  margin: 2rem 0 0 1.3rem;
+}
+
+.BookList_MainWrapper .BookList_wrp {
+  width: 100%;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp {
+  padding: 4rem 0 1rem;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3rem 1rem;
+  grid-gap: 2rem;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figure {
+  text-align: center;
+  height: 300px;
+  overflow: hidden;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figure img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figcaption {
+  text-align: left;
+  padding: 0.2rem 1rem;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figcaption h3 {
+  font-size: 1.4em;
+  text-transform: capitalize;
+  line-height: 1.3;
+  letter-spacing: 0.3;
+  word-spacing: 0.3;
+  padding: 0.66rem 0;
+  font-family: Lora;
+  font-weight: 700;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figcaption h4 {
+  color: #fe4365;
+  font-size: 0.9em;
+  text-transform: capitalize;
+  font-weight: bold;
+  line-height: 1.3;
+  letter-spacing: 0.3;
+  word-spacing: 0.3;
+  color: #4e4e4e;
+  font-style: normal;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figcaption span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 0;
+  grid-gap: 0.5rem;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figcaption span .star-item {
+  color: #fe4365;
+  font-size: 0.89em;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figcaption strong {
+  font-family: Lora;
+  font-size: 1.4;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content figure {
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content figure:hover .Cart_shop_wrp {
+  display: block;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content figure img {
+  height: 100%;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content figure .Cart_shop_wrp {
+  display: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content figure .Cart_shop_wrp .cart-content {
+  width: 100%;
+  padding: 0.5rem;
+  background: #e5e5e5;
+  position: absolute;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-animation: cartanime 0.5s linear;
+          animation: cartanime 0.5s linear;
+}
+
+@-webkit-keyframes cartanime {
+  0% {
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    bottom: -60px;
+  }
+  100% {
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    bottom: 0px;
+  }
+}
+
+@keyframes cartanime {
+  0% {
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    bottom: -60px;
+  }
+  100% {
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    bottom: 0px;
+  }
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content figure .Cart_shop_wrp .cart-content span .short-item1 {
+  color: #4e4e4e;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.BookList_MainWrapper .booklist_navigation {
+  padding: 1rem 0 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.BookList_MainWrapper .booklist_navigation .BreadCumb, .BookList_MainWrapper .booklist_navigation .pagination_view, .BookList_MainWrapper .Description_wrapper .BookDescription_head .booklist_navigation .pagination_view, .Description_wrapper .BookDescription_head .BookList_MainWrapper .booklist_navigation .pagination_view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 0.5rem;
+}
+
+.BookList_MainWrapper .booklist_navigation .BreadCumb li, .BookList_MainWrapper .booklist_navigation .pagination_view li, .BookList_MainWrapper .Description_wrapper .BookDescription_head .booklist_navigation .pagination_view li, .Description_wrapper .BookDescription_head .BookList_MainWrapper .booklist_navigation .pagination_view li {
+  list-style-type: none;
+}
+
+.BookList_MainWrapper .booklist_navigation .BreadCumb li a, .BookList_MainWrapper .booklist_navigation .pagination_view li a, .BookList_MainWrapper .Description_wrapper .BookDescription_head .booklist_navigation .pagination_view li a, .Description_wrapper .BookDescription_head .BookList_MainWrapper .booklist_navigation .pagination_view li a {
+  text-decoration: underline;
+  text-transform: capitalize;
+  color: #333333;
+  font-family: Lora;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  -webkit-transition: "all .3s ease-in-out";
+  transition: "all .3s ease-in-out";
+  letter-spacing: 0.20000000298023224px;
+}
+
+.BookList_MainWrapper .booklist_navigation .BreadCumb li a:hover, .BookList_MainWrapper .booklist_navigation .pagination_view li a:hover {
+  -webkit-transition: "all .3s ease-in-out";
+  transition: "all .3s ease-in-out";
+  opacity: 0.78;
+}
+
+.BookList_MainWrapper .booklist_navigation .pagination_view {
+  grid-gap: 1rem;
+}
+
+.Pagination_wrp {
+  padding: 2rem 0 1rem;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Pagination_wrp .MuiPagination-ul .MuiPaginationItem-previousNext {
+  color: #fe4365 !important;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  height: 1rem !important;
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: #0298bf !important;
+}
+
+.Footer_Wrapper {
+  width: 100%;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  width: 100%;
+  -webkit-box-shadow: 0px -1px 11px 5px #00000017;
+          box-shadow: 0px -1px 11px 5px #00000017;
+  background: #ffffff;
+  font-family: "Lora";
+}
+
+.Footer_Wrapper .Footer_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 14rem;
+  padding: 1rem 0 1.5rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.Footer_Wrapper .Footer_Content .foot_item .Heading_wrp h2 {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.3;
+  word-spacing: 0.3;
+  color: #4e4e4e;
+  padding: 1rem 0 1.1rem 0;
+  font-weight: 500;
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul li {
+  padding: 0.5rem 0;
+  list-style-type: none;
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul li a {
+  text-decoration: none;
+  font-size: 0.89em;
+  letter-spacing: 0.3;
+  word-spacing: 0.3;
+  color: #4e4e4e;
+  font-weight: bold;
+  text-transform: capitalize;
+  line-height: 1.4;
+  display: block;
+  -webkit-transition: "all .3s ease-in-out";
+  transition: "all .3s ease-in-out";
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul li a:hover {
+  opacity: 0.9;
+  -webkit-transition: "all .3s ease-in-out";
+  transition: "all .3s ease-in-out";
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul .WhatsApp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 1rem;
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul .WhatsApp a > .fa-whatsapp {
+  color: #fe4365;
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul .Social_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (max-content)[4];
+      grid-template-columns: repeat(4, -webkit-max-content);
+      grid-template-columns: repeat(4, max-content);
+  grid-gap: 1rem;
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul .Social_Content li {
+  list-style-type: none;
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul .Social_Content li svg {
+  color: #fe4365;
+  font-size: 1.1em;
+}
+
+.Description_wrapper {
+  background: #ffffff;
+  padding: 6rem 0 2rem;
+}
+
+.Description_wrapper .BookDescription_head {
+  width: 91%;
+  margin: 5rem auto 1rem;
+}
+
+.Description_wrapper .BookDescription_head .booklist_navigation {
+  padding: 1rem 0 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Description_wrapper .BookDescription_head .booklist_navigation .BreadCumb, .Description_wrapper .BookDescription_head .booklist_navigation .pagination_view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 0.5rem;
+}
+
+.Description_wrapper .BookDescription_head .booklist_navigation .BreadCumb li, .Description_wrapper .BookDescription_head .booklist_navigation .pagination_view li {
+  list-style-type: none;
+}
+
+.Description_wrapper .BookDescription_head .booklist_navigation .BreadCumb li a, .Description_wrapper .BookDescription_head .booklist_navigation .pagination_view li a {
+  text-decoration: underline;
+  text-transform: capitalize;
+  color: #333333;
+  font-family: Lora;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  -webkit-transition: "all .3s ease-in-out";
+  transition: "all .3s ease-in-out";
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Description_wrapper .BookDescription_head .booklist_navigation .BreadCumb li a:hover, .Description_wrapper .BookDescription_head .booklist_navigation .pagination_view li a:hover {
+  -webkit-transition: "all .3s ease-in-out";
+  transition: "all .3s ease-in-out";
+  opacity: 0.78;
+}
+
+.Description_wrapper .BookDescription_head .booklist_navigation .pagination_view {
+  grid-gap: 1rem;
+}
+
+.Description_wrapper .Description_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 300px 1fr;
+      grid-template-columns: 300px 1fr;
+  grid-gap: 2rem;
+  width: 91%;
+  margin: 0 auto;
+  border-bottom: 1px solid #0298bf;
+}
+
+.Description_wrapper .Description_Content .Description_Left figure img {
+  max-width: 100%;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 {
+  color: #4e4e4e;
+  font-size: 2.2em;
+  font-weight: 700;
+  line-height: 46px;
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h5 {
+  padding: 0.5rem 0;
+  font-size: 1.2;
+  font-weight: 700;
+  line-height: 23px;
+  color: #4e4e4e;
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption {
+  padding: 0.8rem 0;
+  border-top: 1px solid #0298bf;
+  border-bottom: 1px solid #0298bf;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption p {
+  font-size: 0.89em;
+  color: #000;
+  font-weight: normal;
+  line-height: 18px;
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About-book-detail {
+  padding: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  grid-gap: 1rem;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About-book-detail > ul li {
+  list-style-type: none;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (max-content)[2];
+      grid-template-columns: repeat(2, -webkit-max-content);
+      grid-template-columns: repeat(2, max-content);
+  grid-gap: 1rem;
+  padding: 0.3rem 0;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About-book-detail > ul li:nth-child(1) strong {
+  color: #020056;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About-book-detail > ul li span {
+  font-size: 0.89em;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.20000000298023224px;
+  color: #333333;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About-book-detail > ul li strong {
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  color: #434242;
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn button {
+  width: 170px;
+  height: 44.54px;
+  background: #0298bf;
+  border-radius: 8px;
+  margin: 0.5rem;
+  display: inline-block;
+  outline: none;
+  border: none;
+  -webkit-transition: "all .3s ease-in-out";
+  transition: "all .3s ease-in-out";
+}
+
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn button:hover {
+  -webkit-transition: "all .3s ease-in-out";
+  transition: "all .3s ease-in-out";
+  opacity: 0.9;
+}
+
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn button a {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 1.5rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: (max-content)[2];
+      grid-template-columns: repeat(2, -webkit-max-content);
+      grid-template-columns: repeat(2, max-content);
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+}
+
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn button:nth-child(2) {
+  border: 1px solid #0298bf !important;
+  background: transparent !important;
+}
+
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn button:nth-child(2) a {
+  color: #0298bf !important;
+}
+
+.Description_wrapper .Otherbook_Wrapper {
+  width: 91%;
+  margin: 0 auto;
+  padding: 0rem 0 3rem;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Otherbook-Heading {
+  padding: 1.5rem 0;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Otherbook-Heading h2 {
+  padding: 0 0 0 1.5rem;
+  font-size: 1.5em;
+  text-transform: capitalize;
+  font-weight: 700;
+  line-height: 31px;
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3rem 1rem;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figure {
+  text-align: center;
+  height: 300px;
+  overflow: hidden;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figure img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figcaption {
+  text-align: left;
+  padding: 0.2rem 1rem;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figcaption h3 {
+  font-size: 1.4em;
+  text-transform: capitalize;
+  line-height: 1.3;
+  letter-spacing: 0.3;
+  word-spacing: 0.3;
+  padding: 0.66rem 0;
+  font-family: Lora;
+  font-weight: 700;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figcaption h4 {
+  color: #fe4365;
+  font-size: 0.9em;
+  text-transform: capitalize;
+  font-weight: bold;
+  line-height: 1.3;
+  letter-spacing: 0.3;
+  word-spacing: 0.3;
+  color: #4e4e4e;
+  font-style: normal;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figcaption span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 0;
+  grid-gap: 0.5rem;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figcaption span .star-item {
+  color: #fe4365;
+  font-size: 0.89em;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figcaption strong {
+  font-family: Lora;
+  font-size: 1.4;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item a {
+  text-decoration: none;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item a:visited {
+  color: currentColor;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figure {
+  height: 260px !important;
 }
 /*# sourceMappingURL=style.css.map */
