@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Registeration from "./pages/Registeration";
 import InstitutionalLogin from "./pages/InstitutionalLogin";
 import { Booklist } from "./pages/BookListing/Booklist";
+import { BookDescription } from "./pages/BookDescription/BookDescription";
 
 export default function RouteSeperater() {
   return (
@@ -21,6 +22,7 @@ export default function RouteSeperater() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/BookDetail" element={<BooksDetail />} />
             <Route path="/BookList" element={<Booklist />} />
+            <Route path="/BookDescription" element={<BookDescription />} />
           </Route>
         </Routes>
       </Router>

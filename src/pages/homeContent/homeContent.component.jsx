@@ -7,7 +7,8 @@ import DigitalCatelog from "../../components/digitalCatelog/digitalCatelog.compo
 import PublicationBanner from "../../components/publicationBanner/PublicationBanner.component";
 import Prefooter from "../../components/PreFooter/preFooter.component";
 import AboutSection from "../../components/aboutSection/aboutSection.component";
-// import {HomePageLogos} from "../../components/homeLogos/homePageLogos"
+import { Footer } from "../../pages/Footer/Footer";
+
 export default function HomeContent({ imageUrl }) {
   const backdrop = imageUrl;
   return (
@@ -38,6 +39,7 @@ export default function HomeContent({ imageUrl }) {
         <div className={Classes.prefooter}>
           <Prefooter />
         </div>
+        <Footer />
       </div>
     </>
   );
