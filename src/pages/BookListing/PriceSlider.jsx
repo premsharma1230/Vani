@@ -11,8 +11,8 @@ function calculateValue(value) {
 
 const minDistance = 10;
 
-export const PriceSlider = (props) => {
-  const [value1, setValue1] = useState([20, 70]);
+export const PriceSlider = props => {
+  const [value1, setValue1] = useState([100, 2000]);
   const [count, setCout] = useState([0, 200]);
 
   // const marks = [
@@ -27,7 +27,7 @@ export const PriceSlider = (props) => {
   // ];
 
   const handleChange1 = (event, newValue, activeThumb) => {
-    props.getPriceValue(newValue)
+    props.getPriceValue(newValue);
     if (!Array.isArray(newValue)) {
       return;
     }
@@ -50,11 +50,11 @@ export const PriceSlider = (props) => {
       <Slider
         getAriaLabel={() => "Minimum distance"}
         value={value1}
-        min={100}
-        max={2000}
+        min={0}
+        max={5000}
         onChange={handleChange1}
         valueLabelDisplay="auto"
-        // getAriaValueText={valuetext}
+        getAriaValueText={valuetext}
         disableSwap
         // marks={marks}
       />

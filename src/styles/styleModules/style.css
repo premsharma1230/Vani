@@ -241,6 +241,16 @@ a {
   max-width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figure img:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: scale(1.099);
+          transform: scale(1.099);
 }
 
 .BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figcaption {
@@ -408,14 +418,14 @@ a {
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  -webkit-transition: "all .3s ease-in-out";
-  transition: "all .3s ease-in-out";
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   letter-spacing: 0.20000000298023224px;
 }
 
 .BookList_MainWrapper .booklist_navigation .BreadCumb li a:hover, .BookList_MainWrapper .booklist_navigation .pagination_view li a:hover {
-  -webkit-transition: "all .3s ease-in-out";
-  transition: "all .3s ease-in-out";
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   opacity: 0.78;
 }
 
@@ -496,14 +506,14 @@ a {
   text-transform: capitalize;
   line-height: 1.4;
   display: block;
-  -webkit-transition: "all .3s ease-in-out";
-  transition: "all .3s ease-in-out";
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .Footer_Wrapper .Footer_Content .foot_item ul li a:hover {
   opacity: 0.9;
-  -webkit-transition: "all .3s ease-in-out";
-  transition: "all .3s ease-in-out";
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .Footer_Wrapper .Footer_Content .foot_item ul .WhatsApp {
@@ -533,6 +543,16 @@ a {
 .Footer_Wrapper .Footer_Content .foot_item ul .Social_Content li svg {
   color: #fe4365;
   font-size: 1.1em;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.Footer_Wrapper .Footer_Content .foot_item ul .Social_Content li svg:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: scale(1.099);
+          transform: scale(1.099);
 }
 
 .Description_wrapper {
@@ -585,14 +605,14 @@ a {
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  -webkit-transition: "all .3s ease-in-out";
-  transition: "all .3s ease-in-out";
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   letter-spacing: 0.20000000298023224px;
 }
 
 .Description_wrapper .BookDescription_head .booklist_navigation .BreadCumb li a:hover, .Description_wrapper .BookDescription_head .booklist_navigation .pagination_view li a:hover {
-  -webkit-transition: "all .3s ease-in-out";
-  transition: "all .3s ease-in-out";
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   opacity: 0.78;
 }
 
@@ -611,8 +631,47 @@ a {
   border-bottom: 1px solid #0298bf;
 }
 
-.Description_wrapper .Description_Content .Description_Left figure img {
+.Description_wrapper .Description_Content .Description_Left figure .img_Wrp {
+  -webkit-box-shadow: 0px 4px 40px 0px #00000026;
+          box-shadow: 0px 4px 40px 0px #00000026;
+  padding: 1rem 1rem 0.7rem;
+}
+
+.Description_wrapper .Description_Content .Description_Left figure .img_Wrp img {
   max-width: 100%;
+}
+
+.Description_wrapper .Description_Content .Description_Left figure .TypeProduct_wrp {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 2rem 0 1rem;
+}
+
+.Description_wrapper .Description_Content .Description_Left figure .TypeProduct_wrp li {
+  list-style-type: none;
+  overflow: hidden;
+}
+
+.Description_wrapper .Description_Content .Description_Left figure .TypeProduct_wrp li img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Description_wrapper .Description_Content .Description_Left figure .TypeProduct_wrp li img:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: scale(1.009);
+          transform: scale(1.009);
 }
 
 .Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 {
@@ -621,6 +680,35 @@ a {
   font-weight: 700;
   line-height: 46px;
   letter-spacing: 0.20000000298023224px;
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 span {
+  position: absolute;
+  right: 0;
+  background: #1db954;
+  height: 24px;
+  width: 84px;
+  border-radius: 4px;
+  font-family: Lora;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.20000000298023224px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  color: #fff;
 }
 
 .Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h5 {
@@ -635,7 +723,33 @@ a {
 .Description_wrapper .Description_Content .Description_Right .About_Book figcaption {
   padding: 0.8rem 0;
   border-top: 1px solid #0298bf;
-  border-bottom: 1px solid #0298bf;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .rating_Wrap {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (max-content)[2];
+      grid-template-columns: repeat(2, -webkit-max-content);
+      grid-template-columns: repeat(2, max-content);
+  grid-gap: 1rem;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .rating_Wrap .Star_Wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .rating_Wrap .Star_Wrp li {
+  list-style-type: none;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .rating_Wrap .Star_Wrp li .star {
+  color: #fe4365;
 }
 
 .Description_wrapper .Description_Content .Description_Right .About_Book figcaption p {
@@ -644,6 +758,67 @@ a {
   font-weight: normal;
   line-height: 18px;
   letter-spacing: 0.20000000298023224px;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (max-content)[2];
+      grid-template-columns: repeat(2, -webkit-max-content);
+      grid-template-columns: repeat(2, max-content);
+  grid-gap: 1rem;
+  padding: 1rem 0;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp .Format-content ul {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (max-content)[3];
+      grid-template-columns: repeat(3, -webkit-max-content);
+      grid-template-columns: repeat(3, max-content);
+  grid-gap: 1rem;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp .Format-content ul li {
+  list-style-type: none;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp .Format-content ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 1.1rem;
+  height: 36px;
+  width: 137px;
+  background: #c4c4c4;
+  color: #000;
+  translate: all 0.3s ease-in-out;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp .Format-content ul li a:hover {
+  translate: all 0.3s ease-in-out;
+  opacity: 0.7;
+  border-radius: 5px;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp .Format-content ul li a .ebook {
+  width: 19px;
+  height: 19px;
+  background: #000;
+  color: #fff;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp .Format-content ul li:nth-child(1) .active {
+  background: #0298bf;
+  color: #ffffff;
 }
 
 .Description_wrapper .Description_Content .Description_Right .About-book-detail {
@@ -688,16 +863,32 @@ a {
   letter-spacing: 0.20000000298023224px;
 }
 
-.Description_wrapper .Description_Content .Description_Right .description-Group-btn {
+.Description_wrapper .Description_Content .Description_Right .About-book-detail > ul li .genre-wrp {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  grid-gap: 1rem;
 }
 
-.Description_wrapper .Description_Content .Description_Right .description-Group-btn button {
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  grid-gap: 1rem;
+}
+
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn {
   width: 170px;
   height: 44.54px;
   background: #0298bf;
@@ -706,17 +897,17 @@ a {
   display: inline-block;
   outline: none;
   border: none;
-  -webkit-transition: "all .3s ease-in-out";
-  transition: "all .3s ease-in-out";
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.Description_wrapper .Description_Content .Description_Right .description-Group-btn button:hover {
-  -webkit-transition: "all .3s ease-in-out";
-  transition: "all .3s ease-in-out";
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   opacity: 0.9;
 }
 
-.Description_wrapper .Description_Content .Description_Right .description-Group-btn button a {
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn a {
   display: -ms-grid;
   display: grid;
   grid-gap: 1.5rem;
@@ -737,19 +928,132 @@ a {
   text-transform: capitalize;
 }
 
-.Description_wrapper .Description_Content .Description_Right .description-Group-btn button:nth-child(2) {
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn:nth-child(2) {
   border: 1px solid #0298bf !important;
   background: transparent !important;
 }
 
-.Description_wrapper .Description_Content .Description_Right .description-Group-btn button:nth-child(2) a {
+.Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn:nth-child(2) a {
   color: #0298bf !important;
+}
+
+.Description_wrapper .Description_Content .Coutner_Wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  grid-gap: 1.5rem;
+}
+
+.Description_wrapper .Description_Content .Coutner_Wrp .Counter_heading h3 {
+  font-family: Lora;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0.20000000298023224px;
+  color: #0298bf;
+}
+
+.Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number button {
+  height: 29.33333396911621px;
+  width: 29.33333396911621px;
+  border: 0.117333px solid #00102c09;
+  cursor: pointer;
+  color: #fff;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number button:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.78;
+}
+
+.Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .count_btn button {
+  background: #c4c4c4;
+}
+
+.Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .count_Increment button {
+  background: #0298bf;
+}
+
+.Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .Counter_print {
+  height: 29.33333396911621px;
+  width: 29.33333396911621px;
+  border: 0.117333px solid #00102c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  color: #fe4365;
+}
+
+.Description_wrapper .bookDes_Wrp {
+  margin: 1rem 0;
+}
+
+.Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content {
+  border-bottom: 1px solid #0298bf;
+  padding-bottom: 2rem;
+}
+
+.Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content h2 {
+  font-family: Lora;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  color: #020056;
+  padding: 1rem 0;
+}
+
+.Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content p {
+  color: #333;
+  font-family: Lora;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0px;
+  padding: 0.5rem 0;
 }
 
 .Description_wrapper .Otherbook_Wrapper {
   width: 91%;
   margin: 0 auto;
-  padding: 0rem 0 3rem;
+  padding: 0rem 0 1.4rem;
+  border-bottom: 1px solid #0298bf;
 }
 
 .Description_wrapper .Otherbook_Wrapper .Otherbook-Heading {
@@ -757,7 +1061,7 @@ a {
 }
 
 .Description_wrapper .Otherbook_Wrapper .Otherbook-Heading h2 {
-  padding: 0 0 0 1.5rem;
+  color: #020056;
   font-size: 1.5em;
   text-transform: capitalize;
   font-weight: 700;
@@ -783,6 +1087,16 @@ a {
   max-width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figure img:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: scale(1.099);
+          transform: scale(1.099);
 }
 
 .Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figcaption {
@@ -850,5 +1164,578 @@ a {
 
 .Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figure {
   height: 260px !important;
+}
+
+.Description_wrapper .Review_Wrapper {
+  margin: 2rem 0;
+}
+
+.Description_wrapper .Review_Wrapper .Review_heading {
+  padding: 1rem 0 2rem;
+}
+
+.Description_wrapper .Review_Wrapper .Review_heading h2 {
+  font-size: 1.5em;
+  text-transform: capitalize;
+  font-weight: 700;
+  line-height: 31px;
+  letter-spacing: 0.20000000298023224px;
+  color: #020056;
+}
+
+.Description_wrapper .Review_Wrapper .Review_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.Description_wrapper .Review_Wrapper .Review_Content .Review_client {
+  display: block;
+  list-style-type: none;
+}
+
+.Description_wrapper .Review_Wrapper .Review_Content .Review_client ul li {
+  list-style-type: none;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: max-content 1fr;
+      grid-template-columns: -webkit-max-content 1fr;
+      grid-template-columns: max-content 1fr;
+  grid-gap: 0.6rem;
+  margin: 0 0 2rem;
+}
+
+.Description_wrapper .Review_Wrapper .Review_Content .Review_client ul li .user-Avatar span .user1 {
+  color: #333;
+  font-size: 1em;
+}
+
+.Description_wrapper .Review_Wrapper .Review_Content .Review_client ul li .User_content h3 {
+  font-family: Lora;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #333;
+}
+
+.Description_wrapper .Review_Wrapper .Review_Content .Review_client ul li .User_content .Star_wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  grid-gap: 0.3rem;
+  padding: 0.4rem 0;
+}
+
+.Description_wrapper .Review_Wrapper .Review_Content .Review_client ul li .User_content .Star_wrp .star-item {
+  color: #fe4365;
+  font-size: 0.79em;
+}
+
+.Description_wrapper .Review_Wrapper .Review_Content .Review_client ul li .User_content p {
+  font-family: Lora;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+  word-break: break-all;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form {
+  margin: 0 0 0 auto;
+  width: 70%;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_heading h2 {
+  font-family: Lora;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form {
+  margin: 2rem 0 0;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px 1fr;
+      grid-template-columns: 100px 1fr;
+  grid-gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 label {
+  font-family: Lora;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  color: #4e4e4e;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 .Star_wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 0.5rem;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 .Star_wrp .star-item {
+  color: #fe4365;
+  font-size: 1.23em;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 input,
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 textarea {
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #4e4e4e;
+  border-radius: 5px;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 input:hover,
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 textarea:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-color: #000;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 .TextArea_wrp textarea {
+  height: 100px;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 #Submit {
+  height: 40px;
+  width: 100%;
+  border-radius: 0px;
+  background: #0298bf;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-family: "Lora";
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  border: 1px solid #0298bf;
+  text-align: center;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 #Submit:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.78;
+  border-radius: 100px;
+}
+
+.Author_Wrapper {
+  background: #ffffff;
+}
+
+.Author_Wrapper .AuthorBanner_Wrapper {
+  background: url("/src/assets/authBanner.png");
+  background-size: cover;
+  height: 500px;
+  border-radius: 0px 0px 16px 16px;
+  margin: 5rem 0 0;
+}
+
+.Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content {
+  width: 45%;
+  margin: 0rem 0 0 4rem;
+  padding: 5rem 0;
+}
+
+.Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+  font-family: "Lora";
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 77px;
+  letter-spacing: 0.20000000298023224px;
+  color: #0298bf;
+}
+
+.Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content p {
+  font-family: "Lora";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0.20000000298023224px;
+  color: #4e4e4e;
+  padding: 1rem 0;
+}
+
+.Author_Wrapper .Author_content {
+  padding: 3rem 0 0;
+}
+
+.Author_Wrapper .Author_content .Author_heading {
+  width: 100%;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.Author_Wrapper .Author_content .Author_heading h2 {
+  font-family: "Lora";
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 56px;
+  letter-spacing: 0.20000000298023224px;
+  color: #333333;
+  text-transform: capitalize;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3rem 1rem;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figure {
+  text-align: center;
+  height: 300px;
+  overflow: hidden;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figure img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figure img:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: scale(1.099);
+          transform: scale(1.099);
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption {
+  text-align: left;
+  padding: 0.2rem 1rem;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption h3 {
+  font-size: 1.4em;
+  text-transform: capitalize;
+  line-height: 1.3;
+  letter-spacing: 0.3;
+  word-spacing: 0.3;
+  padding: 0.66rem 0;
+  font-family: Lora;
+  font-weight: 700;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption h4 {
+  color: #fe4365;
+  font-size: 0.9em;
+  text-transform: capitalize;
+  font-weight: bold;
+  line-height: 1.3;
+  letter-spacing: 0.3;
+  word-spacing: 0.3;
+  color: #4e4e4e;
+  font-style: normal;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem 0;
+  grid-gap: 0.5rem;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption span .star-item {
+  color: #fe4365;
+  font-size: 0.89em;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption strong {
+  font-family: Lora;
+  font-size: 1.4;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content figure {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content figure:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-box-shadow: 4px 4px 11px 0px #0000006b;
+          box-shadow: 4px 4px 11px 0px #0000006b;
+}
+
+.Author_Wrapper .Pagination_wrp {
+  display: block !important;
+  padding: 2rem 0 5rem;
+}
+
+.Author_Wrapper .Pagination_wrp .Alphabetic-pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 0 2rem;
+}
+
+.Author_Wrapper .Pagination_wrp .Alphabetic-pagination li {
+  list-style-type: none;
+  height: 44px;
+  width: 44px;
+  border: 0.2px solid #000000;
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0.20000000298023224px;
+  margin: 1.5rem 0 2.5rem;
+  background: rgba(238, 238, 238, 0.468);
+  border-right: 0;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Author_Wrapper .Pagination_wrp .Alphabetic-pagination li:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.78;
+}
+
+.Author_Wrapper .Pagination_wrp .Alphabetic-pagination li:nth-child(1) {
+  background: #0298bf;
+  color: #ffffff;
+}
+
+.Author_Wrapper .Pagination_wrp .Alphabetic-pagination li:last-child {
+  border-right: 0.2px solid #000000;
+}
+
+.Author_Wrapper .Pagination_wrp .Pagination_Content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.AuthorDescription_Wrapper .Description_Content {
+  padding: 0 0 1rem;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Description_Left .img_Wrp {
+  padding: 0 !important;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Social_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (max-content)[4];
+      grid-template-columns: repeat(4, -webkit-max-content);
+      grid-template-columns: repeat(4, max-content);
+  grid-gap: 1rem;
+  padding: 2rem 0;
+  width: 50%;
+  margin: 0 auto;
+  grid-gap: 1.5rem;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Social_Content li {
+  list-style-type: none;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Social_Content li svg {
+  color: #fe4365;
+  font-size: 1.1em;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Social_Content li svg:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transform: scale(1.099);
+          transform: scale(1.099);
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp {
+  width: 100%;
+  margin: 0 auto;
+  width: 60%;
+  margin: 0;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form {
+  margin: 2rem 0 0;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px 1fr;
+      grid-template-columns: 100px 1fr;
+  grid-gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 label {
+  font-family: Lora;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  color: #4e4e4e;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 .Star_wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 0.5rem;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 .Star_wrp .star-item {
+  color: #fe4365;
+  font-size: 1.23em;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 input,
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 textarea {
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #4e4e4e;
+  border-radius: 5px;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 input:hover,
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 textarea:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-color: #000;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 .TextArea_wrp textarea {
+  height: 100px;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 #Submit {
+  height: 40px;
+  width: 100%;
+  border-radius: 0px;
+  background: #0298bf;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-family: "Lora";
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  border: 1px solid #0298bf;
+  text-align: center;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 #Submit:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.78;
+  border-radius: 100px;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form {
+  margin: 0;
+}
+
+.AuthorDescription_Wrapper .Description_Content .Social_Content li svg {
+  font-size: 1.6em;
+}
+
+.AuthorDescription_Wrapper .Author_Detail p {
+  padding: 1rem 0;
 }
 /*# sourceMappingURL=style.css.map */

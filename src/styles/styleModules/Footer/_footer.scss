@@ -55,16 +55,7 @@
           }
         }
         .Social_Content {
-          display: grid;
-          grid-template-columns: repeat(4, max-content);
-          grid-gap: 1rem;
-          li {
-            list-style-type: none;
-            svg {
-              color: $star;
-              font-size: 1.1em;
-            }
-          }
+          @include socialApp;
         }
       }
     }

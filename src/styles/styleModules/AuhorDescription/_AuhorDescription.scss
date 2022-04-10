@@ -1,0 +1,33 @@
+.AuthorDescription_Wrapper {
+  .Description_Content {
+    padding: 0 0 1rem;
+    .Description_Left {
+      .img_Wrp {
+        padding: 0 !important;
+      }
+    }
+    .Social_Content {
+      @include socialApp;
+      padding: 2rem 0;
+      width: 50%;
+      margin: 0 auto;
+      grid-gap: 1.5rem;
+    }
+    .Review_Form_Wrp {
+      @include FormStyle;
+      width: 60%;
+      margin: 0;
+      form {
+        margin: 0;
+      }
+    }
+    .Social_Content li svg {
+      font-size: 1.6em;
+    }
+  }
+  .Author_Detail {
+    p {
+      padding: 1rem 0;
+    }
+  }
+}
