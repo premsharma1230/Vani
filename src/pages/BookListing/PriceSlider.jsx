@@ -11,22 +11,23 @@ function calculateValue(value) {
 
 const minDistance = 10;
 
-export const PriceSlider = () => {
+export const PriceSlider = (props) => {
   const [value1, setValue1] = useState([20, 70]);
   const [count, setCout] = useState([0, 200]);
 
-  const marks = [
-    {
-      value: 0,
-      label: `₹ ${count[0]}`,
-    },
-    {
-      value: 100,
-      label: `₹ ${count[1]}`,
-    },
-  ];
+  // const marks = [
+  //   {
+  //     value: 0,
+  //     label: "100",
+  //   },
+  //   {
+  //     value: 100,
+  //     label: "2000",
+  //   },
+  // ];
 
   const handleChange1 = (event, newValue, activeThumb) => {
+    props.getPriceValue(newValue)
     if (!Array.isArray(newValue)) {
       return;
     }
@@ -49,11 +50,13 @@ export const PriceSlider = () => {
       <Slider
         getAriaLabel={() => "Minimum distance"}
         value={value1}
+        min={100}
+        max={2000}
         onChange={handleChange1}
         valueLabelDisplay="auto"
         // getAriaValueText={valuetext}
         disableSwap
-        marks={marks}
+        // marks={marks}
       />
     </Box>
   );

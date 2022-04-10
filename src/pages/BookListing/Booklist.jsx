@@ -1,25 +1,57 @@
-import React from "react";
+import * as React from 'react';
+import Checkbox from '@mui/material/Checkbox';
 import Pagination from "@mui/material/Pagination";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
+import { GetBookListWithFilters } from '../../api/api';
+
 
 export const Booklist = () => {
+  let navigate = useNavigate();
+  const [selectedGenre, setSelectedGenre] = React.useState([]);
+  const [selectedCategories, setSelectedCategories] = React.useState([]);
+  const [genreItems, setGenreItems] = React.useState([]);
+  const [categoriesItems, setCategoriesItems] = React.useState([]);
+  const [selectedMinPrice, setSelectedMinPrice] = React.useState(1);
+  const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
+  const [bookListFilterData, setBookListFilterData] = React.useState([])
   const Genre = [
-    { name: "horror" },
-    { name: "love" },
-    { name: "drama" },
-    { name: "suspense" },
-    { name: "comedy" },
-    { name: "thriller" },
+    { name: "horror", id: 1 },
+    { name: "love", id: 2 },
+    { name: "drama", id: 3 },
+    { name: "suspense", id: 4 },
+    { name: "comedy", id: 5 },
+    { name: "thriller", id: 6 }
   ];
   const categories = [
-    { name: "print" },
-    { name: "E book" },
-    { name: "Audio book" },
+    { name: "print", id: 1 },
+    { name: "E book", id: 2 },
+    { name: "Audio book", id: 3 }
   ];
+  React.useEffect(() => {
+    GetBookList()
+  }, [selectedCategories, selectedGenre, selectedMinPrice, selectedMaxPrice])
+  const GetBookList = () => {
+    const Categories = categoriesItems
+    const Genre = genreItems
+    const minPrices = selectedMinPrice
+    const maxPrices = selectedMaxPrice
+    GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then((e) => {
+      setBookListFilterData(e?.results)
+    })
+  }
+  const setPriceValue = (e) => {
+    console.log(e, "1111111111111111111111111111111111111111111111")
+    setSelectedMinPrice(e[0])
+    setSelectedMaxPrice(e[1])
+  }
+  const goToBookDetailsPage = (e) => {
+    sessionStorage.setItem("bookDetail", JSON.stringify(e))
+    navigate("/BookDescription");
+  }
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -37,8 +69,27 @@ export const Booklist = () => {
                         type="checkbox"
                         id="Print"
                         name="Print"
-                        value="Bike"
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedCategories([
+                              ...selectedCategories, elem
+                            ]);
+                            setCategoriesItems([...categoriesItems, elem.id])
+                          } else {
+                            setSelectedCategories(
+                              selectedCategories.filter((people) => people.id !== elem.id),
+                            );
+                            setCategoriesItems(categoriesItems.filter((element) => element !== elem.id))
+                          }
+                        }}
+                        value={selectedCategories}
                       />
+                      {/* <Checkbox
+                        checked={checked}
+                        onChange={handleChange}
+                        value={elem?.name}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                      /> */}
                     </span>
                     <p>{elem?.name}</p>
                   </li>
@@ -57,7 +108,20 @@ export const Booklist = () => {
                         type="checkbox"
                         id="Print"
                         name="Print"
-                        value="Bike"
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedGenre([
+                              ...selectedGenre, elem
+                            ]);
+                            setGenreItems([...genreItems, elem.id])
+                          } else {
+                            setSelectedGenre(
+                              selectedGenre.filter((people) => people.id !== elem.id),
+                            );
+                            setGenreItems(genreItems.filter((element) => element !== elem.id))
+                          }
+                        }}
+                        value={selectedGenre}
                       />
                     </span>
                     <p>{elem?.name}</p>
@@ -66,7 +130,7 @@ export const Booklist = () => {
               </ul>
             </div>
             <div className="PriceSlider_Wrp">
-              <PriceSlider />
+              <PriceSlider getPriceValue={setPriceValue} />
             </div>
           </div>
         </div>
@@ -94,33 +158,30 @@ export const Booklist = () => {
               </div>
               <div className="category_Grid_Content">
                 {/* {bookList?.map((ele, index) => ( */}
-                {[...Array(10).keys()].map(index => (
-                  <div className="Grid-item" key={index}>
-                    {/* onClick={() => goToBookDetailsPage(ele)} */}
-                    <Link to={"/BookDescription"}>
-                      <figure>
-                        <img src={book1} alt="book" />
-                        <div className="Cart_shop_wrp">
-                          <div className="cart-content">
-                            <span>
-                              <i className="far fa-heart short-item1"></i>
-                            </span>
-                            <span>
-                              <i className="fas fa-shopping-cart short-item1"></i>
-                            </span>
-                          </div>
+                {bookListFilterData?.map((ele, index) => (
+                  <div key={index} className="Grid-item" >
+                    <figure>
+                      <img onClick={() => goToBookDetailsPage(ele)} src={book1} alt="book" />
+                      <div className="Cart_shop_wrp">
+                        <div className="cart-content">
+                          <span>
+                            <i className="far fa-heart short-item1"></i>
+                          </span>
+                          <span>
+                            <i className="fas fa-shopping-cart short-item1"></i>
+                          </span>
                         </div>
-                      </figure>
-                    </Link>
+                      </div>
+                    </figure>
                     <figcaption>
-                      <h3>Title</h3>
+                      <h3>{ele.title}</h3>
                       <h4>Mohan Kishore</h4>
                       <span key={index} className="star_wrp">
-                        {[...Array(4).keys()].map(index => (
+                        {[...Array(ele?.book_reviews?.avg != 0 ? ele?.book_reviews?.avg : 1).keys()].map(index => (
                           <i className="fas fa-star star-item"></i>
                         ))}
                       </span>
-                      <strong>₹ 300</strong>
+                      <strong>{"₹"} {ele?.ebook_details?.e_pub?.original_price}</strong>
                     </figcaption>
                   </div>
                 ))}

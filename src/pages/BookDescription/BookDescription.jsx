@@ -2,37 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Footer } from "../Footer/Footer";
 import book from "../../assets/book2.png";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-// import { GetBookListDetails } from "../../api/api";
+import { GetBookDetails, GetReletdBookDetails } from "../../api/api";
 
 export const BookDescription = () => {
-  //   const { state } = useLocation();
-  //   let navigate = useNavigate();
-  //   const [bookDetails, setBookDetails] = useState();
-  //   const college_slug = JSON.parse(
-  //     sessionStorage.getItem("studentLogin")
-  //   ).college_slug;
-  //   const book_slug = JSON.parse(sessionStorage.getItem("bookDetail")).slug;
-  //   const token = JSON.parse(sessionStorage.getItem("studentLogin")).token;
-  //   const [booklist, setBooklist] = useState([]);
-  //   const booklistId = JSON.parse(sessionStorage.getItem("bookDetail")).id;
-  //   const bookListFIlter = JSON.parse(
-  //     sessionStorage.getItem("filterbokLists")
-  //   )?.results;
-  //   useEffect(() => {
-  //     GetBookListDetails(college_slug, token, book_slug).then(res => {
-  //       setBookDetails(res.data);
-  //     });
-  //     const data = bookListFIlter?.filter(ele => ele.id != booklistId);
-  //     console.log(data, "+++++++++++++++++++++++++++++++++++++++++++++");
-  //     setBooklist(data);
-  //   }, []);
-  //   const readNow = e => {
-  //     navigate("/readbook", {
-  //       state: { readme: e },
-  //     });
-  //   };
-
-  //   console.log(bookDetails, "+++++++++++++bookDetailsbookDetails");
+  const book_slug = JSON.parse(sessionStorage.getItem("bookDetail")).slug;
+  const [bookDetailsData,setBookDetailsData] = React.useState([])
+  const [reletedBook,setReletedBook] = React.useState([])
+  useEffect(() => {
+    GetBookDetails(book_slug).then((e) =>{
+      setBookDetailsData(e?.data)
+    })
+    GetReletdBookDetails(book_slug).then((e) =>{
+      console.log(e,"fffffffffffffffffffffffffffffffffffffffffffff")
+      setReletedBook(e?.results)
+    })
+  },[])
 
   return (
     <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
@@ -75,21 +59,15 @@ export const BookDescription = () => {
             <div className="About_Book">
               <div className="About-book-title">
                 <h2>
-                  Title
-                  {/* {bookDetails?.book_details?.title} */}
+                  {bookDetailsData?.title}
                 </h2>
                 <h5>
                   By Max
-                  {/* {bookDetails?.book_details?.book_authors} */}
                 </h5>
               </div>
               <figcaption>
                 <p>
-                  lorem ispe sie disd iess idks sisdd , sie s idd sie d lorem
-                  ispe sie disd iess idks sisdd , sie s idd sie d lorem ispe sie
-                  disd iess idks sisdd , sie s idd sie d disd iess idks sisdd ,
-                  sie s idd sie d disd iess idks sisdd , sie s idd sie d
-                  {/* {bookDetails?.book_details?.description} */}
+                {bookDetailsData?.description}
                 </p>
               </figcaption>
               <div className="About-book-detail">
@@ -97,22 +75,19 @@ export const BookDescription = () => {
                   <li>
                     <span>ISBN :</span>
                     <strong>
-                      20304
-                      {/* {bookDetails?.book_details?.isbn_code} */}
+                    {bookDetailsData?.isbn_code}
                     </strong>
                   </li>
                   <li>
                     <span>Pages : </span>
                     <strong>
-                      44
-                      {/* {bookDetails?.pages} */}
+                    {bookDetailsData?.ebook_details?.e_pub?.pages}
                     </strong>
                   </li>
                   <li>
                     <span>Publication Date : </span>
                     <strong>
-                      0349994
-                      {/* {bookDetails?.book_details?.publications_year} */}
+                    {bookDetailsData?.publications_year}
                     </strong>
                   </li>
                   <li>
@@ -124,10 +99,11 @@ export const BookDescription = () => {
                   </li>
                   <li>
                     <span>Genre :</span>
-                    <strong>
-                      kavi
-                      {/* {bookDetails?.book_details?.book_genres} */}
+                    {bookDetailsData?.genres?.map((g,index) =>
+                    <strong key={index}>
+                     {g}
                     </strong>
+                    )}
                   </li>
                 </ul>
               </div>
@@ -162,16 +138,16 @@ export const BookDescription = () => {
           <div className="Grid_Carousel_wrp">
             {/* {booklist.length > 0 &&
               booklist?.map(ele => ( */}
-            {[...Array(4).keys()].map(index => (
+            {reletedBook?.map((rel,index) => (
               <div key={index} className="Grid-item">
                 <Link to="#">
                   <figure>
                     <img src={book} alt="book" />
                   </figure>
                   <figcaption>
-                    <h3>Title{/* {ele.title_and_author.title} */}</h3>
+                    <h3>{rel?.title}</h3>
                     <strong>
-                      {/* {ele.title_and_author.authors} */}Mahesh max
+                      Mahesh max
                     </strong>
                   </figcaption>
                 </Link>
