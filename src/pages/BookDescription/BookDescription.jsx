@@ -196,10 +196,7 @@ export const BookDescription = () => {
                       </div>
                     </div>
                   </div>
-                  <button
-                    //   onClick={() => readNow(bookDetails?.original_ebook)}
-                    className="read_btn cart-btn"
-                  >
+                  <button className="read_btn cart-btn">
                     <Link to="#">
                       <i className="fas fa-bolt"></i>
                       <span>Buy now</span>

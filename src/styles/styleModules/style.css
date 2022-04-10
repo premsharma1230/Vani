@@ -1738,4 +1738,145 @@ a {
 .AuthorDescription_Wrapper .Author_Detail p {
   padding: 1rem 0;
 }
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper {
+  width: 91%;
+  margin: 0 auto;
+  border-bottom: 1px solid #0298bf;
+  padding: 2rem 0 2rem;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 2rem;
+  -ms-grid-columns: 200px 1fr 200px;
+      grid-template-columns: 200px 1fr 200px;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li {
+  list-style-type: none;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li img {
+  max-width: 100%;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content h2 {
+  font-family: "Lora";
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 46px;
+  letter-spacing: 0.20000000298023224px;
+  padding: 0.5rem 0;
+  color: #333333;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content .Star_wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0 1rem;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content .Star_wrp .star-item {
+  color: #fe4365;
+  font-size: 1.23em;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content strong {
+  font-family: "Lora";
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0.20000000298023224px;
+  color: #0298bf;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content p {
+  font-family: "Lora";
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #333333;
+  padding: 0.5rem 0;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content p a {
+  color: #fe4365;
+  font-weight: 500;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  text-transform: none;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content p a:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.7;
+  -webkit-transform: scale(1.099);
+          transform: scale(1.099);
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn {
+  width: 170px;
+  height: 44.54px;
+  background: #0298bf;
+  border-radius: 8px;
+  margin: 0.5rem;
+  display: inline-block;
+  outline: none;
+  border: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.7;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn a {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 1.5rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: (max-content)[2];
+      grid-template-columns: repeat(2, -webkit-max-content);
+      grid-template-columns: repeat(2, max-content);
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn:nth-child(2) {
+  margin-top: 1.4rem;
+  border: 1px solid #0298bf !important;
+  background: transparent !important;
+}
+
+.AuthorDescription_Wrapper .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn:nth-child(2) a {
+  color: #0298bf !important;
+}
+
+.AuthorDescription_Wrapper .Author_desc_Wrp {
+  border-bottom: 0;
+  margin-bottom: 1rem;
+}
 /*# sourceMappingURL=style.css.map */

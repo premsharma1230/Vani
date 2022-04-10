@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import book from "../../../assets/niya.png";
 import { useLocation, Link, useNavigate, NavLink } from "react-router-dom";
 import { Footer } from "../../Footer/Footer";
+import { AuthorInfo } from "../authorDescription/AuthorInfo";
 
 export const AuhorDescription = () => {
   return (
@@ -182,8 +183,11 @@ export const AuhorDescription = () => {
           </div>
 
           {/* Related-Books */}
+          <div className="AuthInfo">
+            <AuthorInfo />
+          </div>
 
-          <div className="Otherbook_Wrapper Related_Book_Wrapper">
+          <div className="Otherbook_Wrapper Author_desc_Wrp">
             <div className="Otherbook-Heading">
               <h2>More books by this Author</h2>
             </div>
