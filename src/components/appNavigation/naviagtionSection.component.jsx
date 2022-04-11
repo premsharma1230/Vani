@@ -26,7 +26,6 @@ export default function NavigationSection() {
       url: "#",
     },
   ];
-  console.log(linkarr, "ele++++++++++++");
   return (
     <div className={Classes.navigationContainer}>
       <ul>

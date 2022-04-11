@@ -44,7 +44,6 @@ export const Booklist = () => {
     })
   }
   const setPriceValue = (e) => {
-    console.log(e, "1111111111111111111111111111111111111111111111")
     setSelectedMinPrice(e[0])
     setSelectedMaxPrice(e[1])
   }
@@ -52,6 +51,7 @@ export const Booklist = () => {
     sessionStorage.setItem("bookDetail", JSON.stringify(e))
     navigate("/BookDescription");
   }
+  console.log(bookListFilterData,"88888888888888888888888888888888888888")
   return (
     <>
       <section className="BookList_MainWrapper">

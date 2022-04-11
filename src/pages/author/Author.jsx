@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AuthorBanner } from "./AuthorBanner";
 import author from "../../assets/niya.png";
 import Pagination from "@mui/material/Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import { Footer } from "../Footer/Footer";
+import { GetAuthorsList } from "../../api/api";
 
+const alpha = Array.from(Array(26)).map((e, i) => i + 65);
+const alphabet = alpha.map((x) => String.fromCharCode(x));
 export const Author = () => {
   let navigate = useNavigate();
-  //   const alpha = Array.from(Array(26)).map((e, i) => i + 65);
-  //   const alphabet = alpha.map(x => String.fromCharCode(x));
-  //   console.log(alphabet);
-
-  const handleRoute = () => {
+  const handleRoute = (e) => {
+    sessionStorage.setItem("AuhorDetail", JSON.stringify(e))
     navigate("/AuhorDescription");
   };
+  const [authorList, setAuthorList] = useState([])
+
+  useEffect(() => {
+    GetAuthorsList("NA").then(res => {
+      setAuthorList(res?.results)
+    })
+  }, [])
+
+  const getAllAuthor = (item) => {
+    GetAuthorsList(item).then(res => {
+      setAuthorList(res?.results)
+    })
+  }
+  console.log(authorList, "----------------------------------------")
 
   return (
     <section className="Main_HomeWrapper  Author_Wrapper">
@@ -26,24 +40,23 @@ export const Author = () => {
           </div>
           <div className="Author-Card_Wrap Category_Grid_Wrp">
             <div className="category_Grid_Content">
-              {[...Array(4).keys()].map((ele, index) => (
+              {authorList?.map((ele, index) => (
                 <div key={index} className="Grid-item">
                   <figure>
                     <img
                       onClick={() => handleRoute(ele)}
-                      src={author}
+                      src={ele?.images}
                       alt="book"
                     />
                   </figure>
                   <figcaption>
-                    <h3>Title</h3>
-                    <h4>Jack Rathi</h4>
+                    <h3>{ele?.author_full_name}</h3>
                     <span key={index} className="star_wrp">
-                      {[...Array(4).keys()].map(index => (
-                        <i className="fas fa-star star-item"></i>
+                      {[...Array(ele?.reviews != 0 ? ele?.reviews : 1).keys()].map(index => (
+                        <i key={index} className="fas fa-star star-item"></i>
                       ))}
                     </span>
-                    <strong>Books Written : 15 </strong>
+                    <strong>{"Books Written : "} {ele?.book_counts} </strong>
                   </figcaption>
                 </div>
               ))}
@@ -52,13 +65,12 @@ export const Author = () => {
         </div>
         <div className="Pagination_wrp">
           <div className="Alphabetic-pagination">
-            {[...Array(26).keys()].map(index => (
-              <li>A</li>
+            {alphabet.map((elem, index) => (
+              <li onClick={() => getAllAuthor(elem)} key={index}>{elem}</li>
             ))}
           </div>
           <div className="Pagination_Content">
             <Stack spacing={2}>
-              {/* page={page} */}
               <Pagination count={10} />
             </Stack>
           </div>

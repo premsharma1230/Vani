@@ -50,13 +50,11 @@ export default function Registeration() {
     //   first_name : data.firstName,
     //   last_name : data.lastName
     // }
-    // console.log(Body,"Body++++++++++++++++++++++++++")
     // axios({
     //   method: 'post',
     //   url: 'http://admin.vaniprakashan.in/auth/user/register',
     //   data: Body
     // }).then((e) => {
-    //   console.log(e, "register api")
     //   navigate("/Login")
     // })
 

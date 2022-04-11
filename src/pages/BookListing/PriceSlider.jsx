@@ -42,7 +42,6 @@ export const PriceSlider = props => {
       setCout([count[0], Math.max(newValue[1], count[0] + minDistance)]);
       setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
     }
-    // console.log(count, "setValue1+++++++++++++++");
   };
 
   return (

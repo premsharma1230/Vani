@@ -120,6 +120,25 @@ const GetReletdBookDetails = (bookSlug) => {
     return error
   }
 }
+const GetAuthorsList = (alphabet) => {
+  let slug;
+  if(alphabet == "NA") {
+    slug = `/authors/authors_list/`
+  }else{
+    slug = `/authors/authors_list/?alphabet=${alphabet}/`
+  }
+  const url = `${baseRoute}${slug}`
+  try {
+    const response = axios.get(url).then((response) => {
+      return response.data;
+    });
+    return response
+  }
+  catch (error) {
+
+    return error
+  }
+}
 export {
   HomeBanner,
   AuthorList,
@@ -128,5 +147,6 @@ export {
   GetHomePageLogos,
   GetBookListWithFilters,
   GetBookDetails,
-  GetReletdBookDetails
+  GetReletdBookDetails,
+  GetAuthorsList
 };

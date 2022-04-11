@@ -9,7 +9,6 @@ export default function HomePageLogos() {
       GetHomePageLogos().then(res => {
         const response = res;
         setLogosData(response.data);
-        console.log(response);
       });
     };
     loadData();

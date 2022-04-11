@@ -49,7 +49,6 @@ export default function Login() {
       url: 'http://admin.vaniprakashan.in/auth/user/login/',
       data: Body
     }).then((e) => {
-      console.log(e, "login api")
       navigate("/")
     })
 
