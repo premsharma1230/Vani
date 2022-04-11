@@ -35,7 +35,7 @@ export const AuthorInfo = (props) => {
                     </Link>
                   </button>
                   <button className="Save_btn cart-btn">
-                    <Link to="/Save">
+                    <Link to="#">
                       <i className="fas fa-cart-plus"></i>
                       <span>add to cart</span>
                     </Link>

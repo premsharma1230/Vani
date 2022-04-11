@@ -557,7 +557,7 @@ a {
 
 .Description_wrapper {
   background: #ffffff;
-  padding: 6rem 0 2rem;
+  padding: 6rem 0 0rem;
 }
 
 .Description_wrapper .BookDescription_head {
@@ -1878,5 +1878,179 @@ a {
 .AuthorDescription_Wrapper .Author_desc_Wrp {
   border-bottom: 0;
   margin-bottom: 1rem;
+}
+
+.Wishlist_Wrapper .Whishlist_header {
+  width: 100%;
+  margin: 5rem auto 1rem;
+  border-bottom: 1px solid #4e4e4e;
+  padding-bottom: 1rem;
+}
+
+.Wishlist_Wrapper .Whishlist_header h2 {
+  font-family: "Lora";
+  font-size: 2em;
+  font-weight: 500;
+  line-height: 46px;
+  letter-spacing: 0.20000000298023224px;
+  color: #333;
+}
+
+.Wishlist_Wrapper .Wishlist_content {
+  margin-bottom: 4rem;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper {
+  width: 100%;
+  margin: 0 auto;
+  border-bottom: 1px solid #4e4e4e;
+  padding: 2rem 0 2rem;
+  margin: 0 0 1rem;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper:last-child {
+  border-bottom: 0 !important;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 5rem;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 1rem;
+  -ms-grid-columns: 100px 1fr min-content;
+      grid-template-columns: 100px 1fr -webkit-min-content;
+      grid-template-columns: 100px 1fr min-content;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul:nth-child(1)::before {
+  content: "";
+  width: 1px;
+  height: 120px;
+  background: #4e4e4e;
+  position: absolute;
+  right: -38px;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li {
+  list-style-type: none;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li img {
+  max-width: 100%;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content h2 {
+  font-family: "Lora";
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  padding: 0.5rem 0;
+  color: #333333;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content h4 {
+  font-family: "Lora";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0px;
+  padding: 0.4rem 0;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content .Star_wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0 1rem;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content .Star_wrp .star-item {
+  color: #fe4365;
+  font-size: 1.23em;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content strong {
+  font-family: "Lora";
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #333;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content p {
+  font-family: "Lora";
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #333333;
+  padding: 0.5rem 0;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content p a {
+  color: #fe4365;
+  font-weight: 500;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  text-transform: none;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content p a:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.7;
+  -webkit-transform: scale(1.099);
+          transform: scale(1.099);
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn {
+  width: 167px;
+  height: 35px;
+  background: #0298bf;
+  border-radius: 8px;
+  margin: 0.5rem;
+  display: block;
+  outline: none;
+  border: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.7;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn a {
+  grid-gap: 1.5rem;
+  color: #fff;
+  font-size: 0.89em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn:nth-child(2) {
+  margin-top: 1.4rem;
+  background: #c4c4c4 !important;
 }
 /*# sourceMappingURL=style.css.map */

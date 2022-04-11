@@ -3,6 +3,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { RiTranslate } from "react-icons/ri";
 import { BsPerson } from "react-icons/bs";
 import Classes from "./_appNavigation.module.scss";
+import { Link } from "react-router-dom";
 
 export default function ApplicationArea() {
   return (
@@ -14,7 +15,9 @@ export default function ApplicationArea() {
             <BsPerson />
           </li>
           <li>
-            <HiOutlineShoppingCart />
+            <Link to="/Wishlist">
+              <HiOutlineShoppingCart />
+            </Link>
           </li>
           <li>
             <RiTranslate />
