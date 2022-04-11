@@ -31,7 +31,7 @@ export default function HomeContent({ imageUrl }) {
         </div>
         <TrendingWriters />
         <TrendingAuthor />
-        <LatestRelease />
+        {/* <LatestRelease /> */}
         <DigitalCatelog />
         <PublicationBanner />
         <AboutSection />
