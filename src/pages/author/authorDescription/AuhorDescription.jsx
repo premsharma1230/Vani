@@ -5,6 +5,10 @@ import { Footer } from "../../Footer/Footer";
 import { AuthorInfo } from "../authorDescription/AuthorInfo";
 
 export const AuhorDescription = () => {
+  const book_slug = JSON.parse(sessionStorage.getItem("AuhorDetail")).slug;
+  useEffect(() => {
+
+  },[])
   return (
     <>
       <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper AuthorDescription_Wrapper">

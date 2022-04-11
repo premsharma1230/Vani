@@ -28,11 +28,10 @@ export const BookDescription = () => {
       setBookDetailsData(e?.data);
     });
     GetReletdBookDetails(book_slug).then(e => {
-      console.log(e, "fffffffffffffffffffffffffffffffffffffffffffff");
       setReletedBook(e?.results);
     });
   }, []);
-
+  console.log(reletedBook,"jnkjdfsfkjnkjndskjnkjsfnkjnfjknfskjnfdskj")
   return (
     <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
       <div className="BookDescription_head">
@@ -88,14 +87,18 @@ export const BookDescription = () => {
               <div className="About-book-title">
                 <h2>
                   {bookDetailsData?.title}
-                  <span>In stack</span>
+                  {bookDetailsData?.ebook_details?.e_pub?.is_in_stock ?
+                    <span>In stack</span>
+                    :
+                    null
+                  }
                 </h2>
                 <h5>By Max</h5>
               </div>
               <figcaption>
                 <div className="rating_Wrap">
                   <ul className="Star_Wrp">
-                    {[...Array(4).keys()].map(index => (
+                    {[...Array(bookDetailsData?.book_reviews?.avg != 0 ? bookDetailsData?.book_reviews?.avg : 1).keys()].map(index => (
                       <li key={index}>
                         <i className="fas fa-star star"></i>
                       </li>
@@ -182,7 +185,7 @@ export const BookDescription = () => {
                 <div className="description_content">
                   <div className="Coutner_Wrp">
                     <div className="Counter_heading">
-                      <h3>₹ 399</h3>
+                      <h3>{"₹"} {bookDetailsData?.ebook_details?.e_pub?.original_price}</h3>
                     </div>
                     <div className="Counter_Number">
                       <div className="count_Increment">
@@ -219,18 +222,7 @@ export const BookDescription = () => {
             <div className="bookDes_Wrp_Content">
               <h2>Description</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                etiam purus eget ullamcorper viverra nunc, morbi. Eget ipsum
-                elit laoreet elit facilisis neque pellentesque. Faucibus quis
-                eu, egestas velit. Bibendum quis condimentum integer vitae
-                fermentum. Tempor adipiscing felis nisi faucibus placerat
-                rhoncus malesuada facilisis arcu. Facilisi vel arcu morbi non
-                netus est ipsum malesuada maecenas. Eget fermentum, habitasse
-                faucibus lorem tortor, lorem sapien vitae faucibus. Vitae, mi
-                nunc, vitae leo nunc interdum fringilla urna. Semper lacus, in
-                elit amet, feugiat sem quam. Ut nisl duis sed enim enim aliquam
-                turpis elit. Dis fringilla adipiscing orci odio turpis mattis at
-                est.
+                {bookDetailsData?.description}
               </p>
             </div>
           </div>
@@ -259,7 +251,7 @@ export const BookDescription = () => {
                         <i className="fas fa-star star-item"></i>
                       ))}
                     </span>
-                    <strong>{"₹"} 300</strong>
+                    <strong>{"₹"} {rel?.ebook_details?.e_pub?.original_price}</strong>
                   </figcaption>
                 </Link>
               </div>

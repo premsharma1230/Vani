@@ -8,11 +8,9 @@ export default function TrendingWriters() {
     const loadData = () => {
       AuthorList().then(res => {
         const response = res;
-        console.log(response.data);
         setWriters(response.data);
       });
     };
-    console.log(writers);
 
     loadData();
   }, []);
