@@ -51,7 +51,6 @@ export const Booklist = () => {
     sessionStorage.setItem("bookDetail", JSON.stringify(e))
     navigate("/BookDescription");
   }
-  console.log(bookListFilterData,"88888888888888888888888888888888888888")
   return (
     <>
       <section className="BookList_MainWrapper">

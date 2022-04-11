@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import book from "../../../assets/book3.png";
 
-export const AuthorInfo = () => {
+export const AuthorInfo = (props) => {
   return (
     <>
-      {[...Array(4).keys()].map(index => (
+      {props?.bookInfoReleted?.map((ele, index) => (
         <div key={index} className="AuthInfo_Wrapper">
           <div className="AuthInfo_Content">
             <ul>
@@ -14,19 +14,15 @@ export const AuthorInfo = () => {
               </li>
               <li>
                 <div className="Auth-mid-content">
-                  <h2>The Psychology of Money</h2>
+                  <h2> {ele?.title}</h2>
                   <span className="Star_wrp">
-                    {[...Array(4).keys()].map(index => (
+                    {[...Array(ele?.book_reviews?.avg != 0 ? ele?.book_reviews?.avg : 1).keys()].map(index => (
                       <i className="fas fa-star star-item"></i>
                     ))}
                   </span>
-                  <strong>₹ 399</strong>
+                  <strong>{ele?.ebook_details?.epub?.original_price}</strong>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer etiam purus eget ullamcorper viverra nunc, morbi.
-                    Eget ipsum elit laoreet elit facilisis neque pellentesque.
-                    Faucibus quis eu, egestas velit. Bibendum quis condimentum
-                    integer vitae fermentum. <a href="#">Learn More...</a>
+                    {ele?.description} <a href="#">Learn More...</a>
                   </p>
                 </div>
               </li>

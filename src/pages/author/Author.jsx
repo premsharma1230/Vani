@@ -28,8 +28,6 @@ export const Author = () => {
       setAuthorList(res?.results)
     })
   }
-  console.log(authorList, "----------------------------------------")
-
   return (
     <section className="Main_HomeWrapper  Author_Wrapper">
       <AuthorBanner />

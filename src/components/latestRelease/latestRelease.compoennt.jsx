@@ -34,19 +34,19 @@ export default function LatestRelease() {
           <div className={Classes.first}>
             <BookDetail
               isReverse={false}
-              bookTitle={dataValues.firstElement.book_details.title}
-              authorName={dataValues.firstElement.book_details.authors}
-              imageUrl={dataValues.firstElement.image}
-              description={dataValues.firstElement.book_details.description}
+              bookTitle={dataValues?.firstElement?.book_details?.title}
+              authorName={dataValues?.firstElement?.book_details?.authors}
+              imageUrl={dataValues?.firstElement?.image}
+              description={dataValues?.firstElement?.book_details?.description}
             />
           </div>
           <div>
             <BookDetail
               isReverse={true}
-              bookTitle={dataValues.secondElement.book_details.title}
-              authorName={dataValues.secondElement.book_details.authors}
-              imageUrl={dataValues.secondElement.image}
-              description={dataValues.secondElement.book_details.description}
+              bookTitle={dataValues?.secondElement?.book_details?.title}
+              authorName={dataValues?.secondElement?.book_details?.authors}
+              imageUrl={dataValues?.secondElement?.image}
+              description={dataValues?.secondElement?.book_details?.description}
             />
           </div>
         </div>

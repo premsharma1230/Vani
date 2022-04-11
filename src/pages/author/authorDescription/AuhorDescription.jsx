@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import book from "../../../assets/niya.png";
 import { useLocation, Link, useNavigate, NavLink } from "react-router-dom";
 import { Footer } from "../../Footer/Footer";
-import { AuthorInfo } from "../authorDescription/AuthorInfo";
+import {AuthorInfo } from "../authorDescription/AuthorInfo";
+import { GetAuthorsDetails, GetAuthorsDetailsReleted } from "../../../api/api";
 
 export const AuhorDescription = () => {
   const book_slug = JSON.parse(sessionStorage.getItem("AuhorDetail")).slug;
+  const [bookDetails, setBookDetails] = useState([])
+  const [bookDetailsReleted, setBookDetailsReleted] = useState([])
   useEffect(() => {
-
-  },[])
+    GetAuthorsDetails(book_slug).then((ele) => {
+      setBookDetails(ele?.data)
+    })
+    GetAuthorsDetailsReleted(book_slug).then((ele) => {
+      setBookDetailsReleted(ele?.results)
+    })
+  }, [])
   return (
     <>
       <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper AuthorDescription_Wrapper">
@@ -45,29 +53,28 @@ export const AuhorDescription = () => {
                 <div className="img_Wrp">
                   {" "}
                   <img
-                    src={book}
-                    // {bookDetails?.book_details?.image}
+                    src={bookDetails?.image}
                     alt="book"
                   />
                 </div>
                 <ul className="Social_Content">
                   <li>
-                    <a href="#">
+                    <a href={bookDetails?.fb_link}>
                       <i className="fab fa-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                  <a href={bookDetails?.insta_link}>
                       <i className="fab fa-instagram"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                  <a href={bookDetails?.twitter_link}>
                       <i className="fab fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                  <a href={bookDetails?.youtube_link}>
                       <i className="fab fa-youtube"></i>
                     </a>
                   </li>
@@ -78,17 +85,16 @@ export const AuhorDescription = () => {
               <div className="About_Book">
                 <div className="About-book-title">
                   <h2>
-                    Author Name
-                    {/* {bookDetailsData?.title} */}
+                   {bookDetails?.author_full_name}
                   </h2>
                 </div>
                 <figcaption>
                   <div className="rating_Wrap">
                     <ul className="Star_Wrp">
-                      {[...Array(4).keys()].map(index => (
+                         {[...Array(bookDetails?.reviews != 0 ? bookDetails?.reviews : 1).keys()].map(index => (
                         <li key={index}>
-                          <i className="fas fa-star star"></i>
-                        </li>
+                        <i className="fas fa-star star"></i>
+                      </li>
                       ))}
                     </ul>
                     <div>
@@ -99,33 +105,21 @@ export const AuhorDescription = () => {
                     <ul className="book-list-left">
                       <li>
                         <span>Total Books Written :</span>
-                        <strong>333</strong>
+                        <strong>{bookDetails?.book_counts}</strong>
                       </li>
                       <li>
                         <span>First Publication : </span>
-                        <strong>21 October, 2021</strong>
+                        <strong>{bookDetails?.first_publication_date}</strong>
                       </li>
                       <li>
                         <span>Language :</span>
-                        <strong>English</strong>
+                        <strong>{bookDetails?.book_counts}</strong>
                       </li>
                     </ul>
                   </div>
                   <div className="Author_Detail">
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Integer etiam purus eget ullamcorper viverra nunc, morbi.
-                      Eget ipsum elit laoreet elit facilisis neque pellentesque.
-                      Faucibus quis eu, egestas velit. Bibendum quis condimentum
-                      integer vitae fermentum. Tempor adipiscing felis nisi
-                      faucibus placerat rhoncus malesuada facilisis arcu.
-                      Facilisi vel arcu morbi non netus est ipsum malesuada
-                      maecenas. Eget fermentum, habitasse faucibus lorem tortor,
-                      lorem sapien vitae faucibus. Vitae, mi nunc, vitae leo
-                      nunc interdum fringilla urna. Semper lacus, in elit amet,
-                      feugiat sem quam. Ut nisl duis sed enim enim aliquam
-                      turpis elit. Dis fringilla adipiscing orci odio turpis
-                      mattis at est.
+                    {bookDetails?.description}
                     </p>
                   </div>
                 </figcaption>
@@ -141,8 +135,8 @@ export const AuhorDescription = () => {
                   <div className="Review1">
                     <label>Rating *</label>
                     <span className="Star_wrp">
-                      {[...Array(3).keys()].map(index => (
-                        <i className="far fa-star star-item"></i>
+                       {[...Array(bookDetails?.reviews != 0 ? bookDetails?.reviews : 1).keys()].map(index => (
+                        <i key={index} className="fas fa-star star-item"></i>
                       ))}
                     </span>
                   </div>
@@ -188,7 +182,7 @@ export const AuhorDescription = () => {
 
           {/* Related-Books */}
           <div className="AuthInfo">
-            <AuthorInfo />
+            <AuthorInfo  bookInfoReleted={bookDetailsReleted} />
           </div>
 
           <div className="Otherbook_Wrapper Author_desc_Wrp">
@@ -198,21 +192,21 @@ export const AuhorDescription = () => {
             <div className="Grid_Carousel_wrp">
               {/* {booklist.length > 0 &&
               booklist?.map(ele => ( */}
-              {[...Array(4).keys()].map(index => (
+              {bookDetailsReleted?.map((ele,index) => (
                 <div key={index} className="Grid-item">
                   <Link to="#">
                     <figure>
                       <img src={book} alt="book" />
                     </figure>
                     <figcaption>
-                      <h3>Title</h3>
+                      <h3>{ele?.title}</h3>
                       <strong>Mahesh max</strong>
                       <span key={index} className="star_wrp">
                         {[...Array(4).keys()].map(index => (
                           <i className="fas fa-star star-item"></i>
                         ))}
                       </span>
-                      <strong>{"₹"} 300</strong>
+                      <strong>{"₹"} {ele?.ebook_details?.epub?.original_price}</strong>
                     </figcaption>
                   </Link>
                 </div>

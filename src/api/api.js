@@ -139,6 +139,34 @@ const GetAuthorsList = (alphabet) => {
     return error
   }
 }
+const GetAuthorsDetails = (alphabet) => {
+  let slug = `/authors/author_details/${alphabet}/`
+  const url = `${baseRoute}${slug}`
+  try {
+    const response = axios.get(url).then((response) => {
+      return response.data;
+    });
+    return response
+  }
+  catch (error) {
+
+    return error
+  }
+}
+const GetAuthorsDetailsReleted = (alphabet) => {
+  let slug = `/authors/author_releted_books/${alphabet}/`
+  const url = `${baseRoute}${slug}`
+  try {
+    const response = axios.get(url).then((response) => {
+      return response.data;
+    });
+    return response
+  }
+  catch (error) {
+
+    return error
+  }
+}
 export {
   HomeBanner,
   AuthorList,
@@ -148,5 +176,7 @@ export {
   GetBookListWithFilters,
   GetBookDetails,
   GetReletdBookDetails,
-  GetAuthorsList
+  GetAuthorsList,
+  GetAuthorsDetails,
+  GetAuthorsDetailsReleted
 };

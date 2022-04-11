@@ -6,7 +6,7 @@ import { GetBookDetails, GetReletdBookDetails } from "../../api/api";
 import { Review } from "./Review";
 
 export const BookDescription = () => {
-  const book_slug = JSON.parse(sessionStorage.getItem("bookDetail")).slug;
+  const book_slug = JSON.parse(sessionStorage.getItem("bookDetail"))?.slug;
   const [bookDetailsData, setBookDetailsData] = React.useState([]);
   const [reletedBook, setReletedBook] = React.useState([]);
   const [count, setCount] = useState(0);
@@ -31,7 +31,6 @@ export const BookDescription = () => {
       setReletedBook(e?.results);
     });
   }, []);
-  console.log(reletedBook,"jnkjdfsfkjnkjndskjnkjsfnkjnfjknfskjnfdskj")
   return (
     <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
       <div className="BookDescription_head">
@@ -185,7 +184,7 @@ export const BookDescription = () => {
                 <div className="description_content">
                   <div className="Coutner_Wrp">
                     <div className="Counter_heading">
-                      <h3>{"₹"} {bookDetailsData?.ebook_details?.e_pub?.original_price}</h3>
+                      <h3>{"₹"} {bookDetailsData?.ebook_details?.epub?.original_price}</h3>
                     </div>
                     <div className="Counter_Number">
                       <div className="count_Increment">
@@ -251,7 +250,7 @@ export const BookDescription = () => {
                         <i className="fas fa-star star-item"></i>
                       ))}
                     </span>
-                    <strong>{"₹"} {rel?.ebook_details?.e_pub?.original_price}</strong>
+                    <strong>{"₹"} {rel?.ebook_details?.epub?.original_price}</strong>
                   </figcaption>
                 </Link>
               </div>
