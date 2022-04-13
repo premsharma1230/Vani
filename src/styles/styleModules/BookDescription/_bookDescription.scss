@@ -256,37 +256,7 @@
         }
       }
       .Counter_Number {
-        @include flexwrp;
-        button {
-          height: 29.33333396911621px;
-          width: 29.33333396911621px;
-          border: 0.117333px solid #00102c09;
-          cursor: pointer;
-          color: #fff;
-          transition: $transition;
-          &:hover {
-            transition: $transition;
-            opacity: 0.78;
-          }
-        }
-        .count_btn {
-          button {
-            background: #c4c4c4;
-          }
-        }
-        .count_Increment {
-          button {
-            background: $skysolid;
-          }
-        }
-
-        .Counter_print {
-          height: 29.33333396911621px;
-          width: 29.33333396911621px;
-          border: 0.117333px solid #00102c;
-          @include flexwrp;
-          color: $star;
-        }
+        @include Count;
       }
     }
   }

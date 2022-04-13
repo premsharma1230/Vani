@@ -11,6 +11,10 @@ import { BookDescription } from "./pages/BookDescription/BookDescription";
 import { Author } from "./pages/author/Author";
 import { AuhorDescription } from "./pages/author/authorDescription/AuhorDescription";
 import { Wishlist } from "./pages/Wishlist/Wishlist";
+import { Cart } from "./pages/Cart/Cart";
+import { Address } from "./pages/Address/Address";
+import { AddAddress } from "./pages/Address/AddAddress";
+import { Billing } from "./pages/Billing/billing";
 
 export default function RouteSeperater() {
   return (
@@ -29,6 +33,10 @@ export default function RouteSeperater() {
             <Route path="/Author" element={<Author />} />
             <Route path="/AuhorDescription" element={<AuhorDescription />} />
             <Route path="/Wishlist" element={<Wishlist />} />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/Address" element={<Address />} />
+            <Route path="/AddAddress" element={<AddAddress />} />
+            <Route path="/Billing" element={<Billing />} />
           </Route>
         </Routes>
       </Router>

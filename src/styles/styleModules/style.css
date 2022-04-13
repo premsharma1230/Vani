@@ -1897,14 +1897,12 @@ a {
 }
 
 .Wishlist_Wrapper .Wishlist_content {
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 }
 
 .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper {
   width: 100%;
   margin: 0 auto;
-  border-bottom: 1px solid #4e4e4e;
-  padding: 2rem 0 2rem;
   margin: 0 0 1rem;
 }
 
@@ -1913,11 +1911,14 @@ a {
 }
 
 .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content {
-  display: -ms-grid;
-  display: grid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   grid-gap: 5rem;
+  padding: 2rem 0 2rem;
   -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid #4e4e4e;
 }
 
 .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul {
@@ -2052,5 +2053,727 @@ a {
 .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn:nth-child(2) {
   margin-top: 1.4rem;
   background: #c4c4c4 !important;
+}
+
+.Cart_Wrapper .Cart_Content {
+  width: 100%;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 3rem;
+  border-bottom: 1px solid #4e4e4e;
+  padding: 1rem 0 1.5rem;
+  width: 91%;
+  margin: 0 auto 0.9rem;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left {
+  width: 40%;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 1.5rem;
+  -ms-grid-columns: max-content 100px 1fr;
+      grid-template-columns: -webkit-max-content 100px 1fr;
+      grid-template-columns: max-content 100px 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .checkbox_Wrp input {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #4e4e4e;
+  cursor: pointer;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .Cart_img figure img {
+  max-width: 100%;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .About_Cart h2 {
+  font-family: "Lora";
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #333;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .About_Cart h4 {
+  font-family: "Lora";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+  padding: 0.5rem 0;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .About_Cart h5 {
+  font-family: "Lora";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right {
+  width: 60%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Counter_Number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Counter_Number button {
+  height: 29.33333396911621px;
+  width: 29.33333396911621px;
+  border: 0.117333px solid #00102c09;
+  cursor: pointer;
+  color: #fff;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Counter_Number button:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.78;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Counter_Number .count_btn button {
+  background: #c4c4c4;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Counter_Number .count_Increment button {
+  background: #0298bf;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Counter_Number .Counter_print {
+  height: 29.33333396911621px;
+  width: 29.33333396911621px;
+  border: 0.117333px solid #00102c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  color: #fe4365;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .cart_remove button {
+  width: 135px;
+  height: 28px;
+  background: #fe4365;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  outline: none;
+  border: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .cart_remove button:hover {
+  opacity: 0.78;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .cart_remove button span {
+  font-family: "Lora";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #ffffff;
+}
+
+.Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Cart_Price h3 {
+  font-family: "Lora";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #0298bf;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 3.2rem 0 auto;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total .Total-content {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #4e4e4e;
+  margin: 0 0 1.5rem;
+  padding: 1rem 1rem 1.5rem;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total .Total-content li {
+  list-style-type: none;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total .Total-content .Total-text {
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+  position: relative;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total .Total-content .Total-text::after {
+  content: "";
+  width: 25px;
+  height: 1px;
+  background-color: #4e4e4e;
+  position: absolute;
+  right: -12px;
+  top: 50%;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total .Total-content .Total-number {
+  font-family: "Lora";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #0298bf;
+  text-align: right;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total .button_wrp {
+  width: 100%;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total .button_wrp button {
+  height: 50px;
+  width: 100%;
+  border-radius: 4px;
+  color: #ffffff;
+  background: #0298bf;
+  outline: none;
+  border: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  cursor: pointer;
+}
+
+.Cart_Wrapper .Cart_Content .Grand_Total .button_wrp button:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.78;
+}
+
+.Address_Wrapper .Address_header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.Address_Wrapper .Address_header .Add-Address {
+  text-align: right;
+}
+
+.Address_Wrapper .Address_header .Add-Address button {
+  height: 42px;
+  width: 244px;
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0px;
+  background: #1db954;
+  outline: none;
+  color: #ffffff;
+  border: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.Address_Wrapper .Address_header .Add-Address button:hover {
+  -webkit-transform: all 0.3s ease-in-out;
+          transform: all 0.3s ease-in-out;
+  opacity: 0.78;
+}
+
+.Address_Wrapper .Address_Content {
+  margin: 2.5rem 0 5rem;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 3rem 2em;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px 1fr;
+      grid-template-columns: 100px 1fr;
+  position: relative;
+  grid-gap: 1rem;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list:nth-child(even) .Address-Full button {
+  background: #c4c4c4 !important;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list:nth-child(odd)::after {
+  content: "";
+  width: 1px;
+  height: 200px;
+  background: #4e4e4e;
+  top: 1rem;
+  right: 0;
+  position: absolute;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-RH {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-RH label input {
+  height: 17px;
+  width: 17px;
+  background: #fe4365;
+  border: 1px solid #fe4365;
+  border-radius: 50%;
+  margin: 0.4rem;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-RH h2 {
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 500;
+  line-height: 23px;
+  color: #333;
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full p {
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0px;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full button {
+  width: 350px;
+  height: 50px;
+  background: #0298bf;
+  border-radius: 4px;
+  color: #ffffff;
+  font-family: Lora;
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  outline: none;
+  border: none;
+  -webkit-transform: all 0.3s ease-in-out;
+          transform: all 0.3s ease-in-out;
+  margin: 1.7rem 0 0;
+}
+
+.Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full button:hover {
+  -webkit-transform: all 0.3s ease-in-out;
+          transform: all 0.3s ease-in-out;
+  opacity: 0.78;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form {
+  width: 45%;
+  margin: 2rem auto;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form h3 {
+  margin: 0.8rem 0;
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form .MuiSelect-select {
+  width: 100% !important;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form .FName_wrp, .AddAddress_Wrapper .AddAddress_Content .Address_Form .Group_detail1_Wrapper ul {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form .Group_detail1_Wrapper ul li {
+  list-style-type: none;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form .Submit_Wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form .Submit_Wrapper button {
+  background: #1db954;
+  margin: 2rem auto 0;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: #4e4e4e !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.AddAddress_Wrapper .AddAddress_Content .Address_Form .css-1d3z3hw-MuiOutlinedInput-notchedOutline:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-color: #000;
+}
+
+.Billing_Wrapper .Billing_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.Billing_Wrapper .Billing_Content .billing-left {
+  position: relative;
+}
+
+.Billing_Wrapper .Billing_Content .billing-left .billing_head h2 {
+  font-family: "Lora";
+  margin: 1.4rem 0 1.6rem;
+  font-size: 1.8em;
+  font-weight: 500;
+  line-height: 31px;
+  color: #333333;
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Billing_Wrapper .Billing_Content .billing-left .billing_head p {
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.Billing_Wrapper .Billing_Content .billing-left .PromoCode {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  position: absolute;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Billing_Wrapper .Billing_Content .billing-left .PromoCode label input {
+  height: 52px;
+  width: 236px;
+  border: 1px solid #0298bf;
+  border-radius: 0px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  padding: 0.5rem 0.6rem;
+}
+
+.Billing_Wrapper .Billing_Content .billing-left .PromoCode button {
+  height: 52px;
+  width: 167px;
+  background: #0298bf;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-family: Lora;
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  outline: none;
+  border: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Billing_Wrapper .Billing_Content .billing-left .PromoCode button:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  opacity: 0.78;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .billing_head h2 {
+  font-family: "Lora";
+  margin: 1.4rem 0 1.6rem;
+  font-size: 1.8em;
+  font-weight: 500;
+  line-height: 31px;
+  color: #333333;
+  letter-spacing: 0.20000000298023224px;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .billing-right_Content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px 1fr 100px;
+      grid-template-columns: 100px 1fr 100px;
+  grid-gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #333333;
+  padding: 1rem 0;
+  margin: 0.5rem 0;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li {
+  list-style-type: none;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li img {
+  max-width: 100%;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li h3 {
+  font-family: "Lora";
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  padding: 0.4rem 0;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li p {
+  font-family: "Lora";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0px;
+  padding: 0.3rem 0;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li h6 {
+  font-family: "Lora";
+  font-size: 1.8em;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #0298bf;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 3.2rem 0 auto;
+  width: 100%;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #4e4e4e;
+  margin: 0 0 1.5rem;
+  padding: 1rem 1rem 1.5rem;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content li {
+  list-style-type: none;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content .Total-text {
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+  position: relative;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content .Total-text::after {
+  content: "";
+  width: 25px;
+  height: 1px;
+  background-color: #4e4e4e;
+  position: absolute;
+  right: -12px;
+  top: 50%;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content .Total-number {
+  font-family: "Lora";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #0298bf;
+  text-align: right;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .button_wrp {
+  width: 100%;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .button_wrp button {
+  height: 50px;
+  width: 100%;
+  border-radius: 4px;
+  color: #ffffff;
+  background: #0298bf;
+  outline: none;
+  border: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  cursor: pointer;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .button_wrp button:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.78;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content {
+  width: 70%;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content .Total-text {
+  font-family: "Lora";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Discount .Total-number {
+  color: #1db954;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .button_wrp {
+  width: 70%;
+}
+
+.Billing_Wrapper .Billing_Content .billing-right .Grand_Total .button_wrp button {
+  background: #1db954;
+  font-family: "Lora";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
 }
 /*# sourceMappingURL=style.css.map */

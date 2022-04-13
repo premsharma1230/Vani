@@ -12,8 +12,8 @@ export const Wishlist = () => {
             <h2>Wishlist</h2>
           </div>
           <div className="Wishlist_content">
-            {[...Array(3).keys()].map(index => (
-              <div key={index} className="AuthInfo_Wrapper">
+            {[...Array(2).keys()].map(index => (
+              <div className="AuthInfo_Wrapper">
                 <div className="AuthInfo_Content">
                   {[...Array(2).keys()].map(index => (
                     <ul key={index}>
@@ -36,7 +36,7 @@ export const Wishlist = () => {
                       <li>
                         <div className="AuthInfo_Cart_Btn">
                           <button className="read_btn cart-btn">
-                            <Link to="#">
+                            <Link to="/Cart">
                               <span>Add to cart</span>
                             </Link>
                           </button>
