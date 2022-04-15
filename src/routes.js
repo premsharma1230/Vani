@@ -15,6 +15,11 @@ import { Cart } from "./pages/Cart/Cart";
 import { Address } from "./pages/Address/Address";
 import { AddAddress } from "./pages/Address/AddAddress";
 import { Billing } from "./pages/Billing/billing";
+import { Account } from "./pages/Account/Account";
+import { Order } from "./pages/Account/Order";
+import { PersonalDetail } from "./pages/Account/PersonalDetail";
+import { PersonalEdit } from "./pages/Account/PersonalEdit";
+import { ChangePassword } from "./pages/Account/ChangePassword";
 
 export default function RouteSeperater() {
   return (
@@ -37,6 +42,11 @@ export default function RouteSeperater() {
             <Route path="/Address" element={<Address />} />
             <Route path="/AddAddress" element={<AddAddress />} />
             <Route path="/Billing" element={<Billing />} />
+            <Route path="/Account" element={<Account />} />
+            <Route path="/Order" element={<Order />} />
+            <Route path="/PersonalDetail" element={<PersonalDetail />} />
+            <Route path="/PersonalEdit" element={<PersonalEdit />} />
+            <Route path="/ChangePassword" element={<ChangePassword />} />
           </Route>
         </Routes>
       </Router>

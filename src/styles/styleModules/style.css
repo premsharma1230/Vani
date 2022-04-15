@@ -2776,4 +2776,162 @@ a {
   line-height: 18px;
   letter-spacing: 0px;
 }
+
+.Account_Wrapper .Account_Content {
+  padding: 1rem 0 5rem;
+}
+
+.Account_Wrapper .Account_Content ul {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1.5rem 6rem;
+}
+
+.Account_Wrapper .Account_Content ul li {
+  list-style-type: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50px 1fr;
+      grid-template-columns: 50px 1fr;
+  grid-gap: 1.5rem;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.Account_Wrapper .Account_Content ul li:nth-child(odd)::before {
+  content: "";
+  width: 1px;
+  height: 90px;
+  background: #4e4e4e;
+  position: absolute;
+  right: -38px;
+}
+
+.Account_Wrapper .Account_Content ul li figure img {
+  max-width: 100%;
+}
+
+.Account_Wrapper .Account_Content ul li figcaption h3 {
+  font-family: "Lora";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 31px;
+  letter-spacing: 0px;
+  color: #333333;
+}
+
+.Account_Wrapper .Account_Content ul li figcaption p {
+  font-family: "Lora";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0px;
+  padding: 0.7rem 0;
+  color: #000;
+}
+
+.Order_Wrapper .Order_Content .Cart_Left {
+  -ms-grid-columns: 100px 1fr !important;
+      grid-template-columns: 100px 1fr !important;
+}
+
+.Order_Wrapper .Order_Content .Cart_right .order_number span {
+  font-family: "Lora";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 31px;
+  letter-spacing: 0px;
+}
+
+.Order_Wrapper .Order_Content .Cart_right .Delivered_Wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 1rem;
+}
+
+.Order_Wrapper .Order_Content .Cart_right .Delivered_Wrp h4 {
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+
+.Order_Wrapper .Order_Content .Cart_right .Delivered_Wrp span .check-Success {
+  color: #1db954;
+  font-size: 1.32em;
+}
+
+.PersonalDetail_Wrapper .PersonalDetail_Content .Personal_Form {
+  width: 50%;
+  margin: 3rem auto 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.PersonalDetail_Wrapper .PersonalDetail_Content .Personal_Form ul li {
+  list-style-type: none;
+  margin: 0 0 1.4rem;
+}
+
+.PersonalDetail_Wrapper .PersonalDetail_Content .Personal_Form ul li h3 {
+  font-family: "Lora";
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  color: #333333;
+  margin: 0 0 0.5rem;
+}
+
+.PersonalDetail_Wrapper .PersonalDetail_Content .Personal_Form ul li span {
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+}
+
+.PersonalDetail_Wrapper .PersonalDetail_Content .Personal_Form ul li span .icon {
+  color: #0298bf;
+  margin-right: 0.3rem;
+}
+
+.PersonalDetail_Wrapper .PersonalDetail_Content .Personal_Form ul .Button button {
+  background: #0298bf;
+  height: 36px;
+  width: 158px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  color: #fff;
+  margin: 2rem 0 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.PersonalDetail_Wrapper .PersonalDetail_Content .Personal_Form ul .Button button:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.77;
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.css.map */
