@@ -167,6 +167,21 @@ const GetAuthorsDetailsReleted = (alphabet) => {
     return error
   }
 }
+const GetAuthorsReview = (id) => {
+  console.log(id,";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")
+  let slug = `/authors/author_reviews/${id}/`
+  const url = `${baseRoute}${slug}`
+  try {
+    const response = axios.get(url).then((response) => {
+      return response.data;
+    });
+    return response
+  }
+  catch (error) {
+
+    return error
+  }
+}
 export {
   HomeBanner,
   AuthorList,
@@ -176,6 +191,7 @@ export {
   GetBookListWithFilters,
   GetBookDetails,
   GetReletdBookDetails,
+  GetAuthorsReview,
   GetAuthorsList,
   GetAuthorsDetails,
   GetAuthorsDetailsReleted

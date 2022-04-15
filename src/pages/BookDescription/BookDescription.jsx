@@ -31,6 +31,7 @@ export const BookDescription = () => {
       setReletedBook(e?.results);
     });
   }, []);
+  console.log(bookDetailsData,"*********************************************")
   return (
     <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
       <div className="BookDescription_head">
@@ -86,13 +87,13 @@ export const BookDescription = () => {
               <div className="About-book-title">
                 <h2>
                   {bookDetailsData?.title}
-                  {bookDetailsData?.ebook_details?.e_pub?.is_in_stock ?
+                  {bookDetailsData?.ebook_details?.epub?.is_in_stock ?
                     <span>In stack</span>
                     :
                     null
                   }
                 </h2>
-                <h5>By Max</h5>
+                <h5>By Max <span>{bookDetailsData?.authors}</span></h5>
               </div>
               <figcaption>
                 <div className="rating_Wrap">
@@ -156,7 +157,7 @@ export const BookDescription = () => {
                   <li>
                     <span>Pages : </span>
                     <strong>
-                      {bookDetailsData?.ebook_details?.e_pub?.pages}
+                      {bookDetailsData?.ebook_details?.epub?.pages}
                     </strong>
                   </li>
                   <li>
@@ -260,7 +261,7 @@ export const BookDescription = () => {
         {/* end-here--Other-Books */}
         {/* Review */}
         <div className="Review-Section">
-          <Review />
+          <Review getID={bookDetailsData.id} />
         </div>
       </div>
       <Footer />

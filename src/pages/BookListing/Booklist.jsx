@@ -40,6 +40,7 @@ export const Booklist = () => {
     const minPrices = selectedMinPrice
     const maxPrices = selectedMaxPrice
     GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then((e) => {
+      console.log(e)
       setBookListFilterData(e?.results)
     })
   }
@@ -180,7 +181,7 @@ export const Booklist = () => {
                           <i className="fas fa-star star-item"></i>
                         ))}
                       </span>
-                      <strong>{"₹"} {ele?.ebook_details?.e_pub?.original_price}</strong>
+                      <strong>{"₹"} {ele?.ebook_details?.epub?.original_price}</strong>
                     </figcaption>
                   </div>
                 ))}

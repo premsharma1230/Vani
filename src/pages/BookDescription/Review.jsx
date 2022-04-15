@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { GetAuthorsReview } from "../../api/api";
 
-export const Review = () => {
+export const Review = (getID) => {
+  const [review,setReview] = useState([])
+  useEffect(() => {
+    GetAuthorsReview(getID.getID).then(ele => {
+      setReview(ele?.results)
+    })
+  },[])
   return (
     <div className="Review_Wrapper">
       <div className="container">
