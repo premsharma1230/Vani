@@ -12,7 +12,9 @@ export default function ApplicationArea() {
         <ul>
           <li>Search field</li>
           <li>
-            <BsPerson />
+            <Link to="/Account">
+              <BsPerson />
+            </Link>
           </li>
           <li>
             <Link to="/Wishlist">

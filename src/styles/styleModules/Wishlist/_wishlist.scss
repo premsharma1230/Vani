@@ -14,20 +14,20 @@
     }
   }
   .Wishlist_content {
-    margin-bottom: 4rem;
+    margin-bottom: 6rem;
     .AuthInfo_Wrapper {
       width: 100%;
       margin: 0 auto;
-      border-bottom: 1px solid #4e4e4e;
-      padding: 2rem 0 2rem;
       margin: 0 0 1rem;
       &:last-child {
         border-bottom: 0 !important;
       }
       .AuthInfo_Content {
-        display: grid;
+        display: flex;
         grid-gap: 5rem;
+        padding: 2rem 0 2rem;
         grid-template-columns: repeat(2, 1fr);
+        border-bottom: 1px solid #4e4e4e;
         ul {
           position: relative;
           display: grid;
