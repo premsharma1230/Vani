@@ -12,10 +12,11 @@ export const Wishlist = () => {
             <h2>Wishlist</h2>
           </div>
           <div className="Wishlist_content">
-            {[...Array(2).keys()].map(index => (
+           
               <div className="AuthInfo_Wrapper">
+              {[...Array(4).keys()].map(index => (
                 <div className="AuthInfo_Content">
-                  {[...Array(2).keys()].map(index => (
+              
                     <ul key={index}>
                       <li>
                         <img src={book} alt="book" />
@@ -48,10 +49,11 @@ export const Wishlist = () => {
                         </div>
                       </li>
                     </ul>
-                  ))}
+                      
                 </div>
+                  ))}
               </div>
-            ))}
+        
           </div>
         </div>
         <Footer />

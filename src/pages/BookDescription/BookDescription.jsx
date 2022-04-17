@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Footer } from "../Footer/Footer";
 import book from "../../assets/book2.png";
 import { useLocation, Link, useNavigate, NavLink } from "react-router-dom";
-import { GetBookDetails, GetReletdBookDetails } from "../../api/api";
+import { GetBookDetails, GetBookReview, GetReletdBookDetails } from "../../api/api";
 import { Review } from "./Review";
 
 export const BookDescription = () => {
   const book_slug = JSON.parse(sessionStorage.getItem("bookDetail"))?.slug;
-  const [bookDetailsData, setBookDetailsData] = React.useState([]);
-  const [reletedBook, setReletedBook] = React.useState([]);
+  const [bookDetailsData, setBookDetailsData] = useState([]);
+  const [reletedBook, setReletedBook] = useState([]);
+  const [bookFormat, setBookFormat] = useState([]);
+  const [selectedBook, setSelectedBook] = useState([]);
+  const [getBookReview, setGetBookReview] = useState([]);
   const [count, setCount] = useState(0);
 
   const handelIncrement = () => {
@@ -26,12 +29,87 @@ export const BookDescription = () => {
   useEffect(() => {
     GetBookDetails(book_slug).then(e => {
       setBookDetailsData(e?.data);
+      const printedBookDetails = Object.getOwnPropertyNames(e?.data?.printed_book_details)
+      const ebookDetails = Object.getOwnPropertyNames(e?.data?.ebook_details)
+      const audioBookDetails = Object.getOwnPropertyNames(e?.data?.audio_book_details)
+      if (Object.entries(e?.data?.printed_book_details).length) {
+        let value = Object.values(e?.data?.printed_book_details)
+        if (value) {
+          setSelectedBook(value[0])
+          GetBookReview(value[0].id).then((ele) =>{
+            console.log(ele,"0000000000000000000000000000000000000000000000000000")
+            // setGetBookReview(ele)
+          })
+        }
+      }
+      else if (Object.entries(e?.data?.ebook_details).length) {
+        let value = Object.values(e?.data?.ebook_details)
+        if (value) {
+          setSelectedBook(value[0])
+          GetBookReview(value[0].id).then((ele) =>{
+            console.log(ele,"0000000000000000000000000000000000000000000000000000")
+            // setGetBookReview(ele)
+          })
+        }
+      } else {
+        let value = Object.values(e?.data?.audio_book_details)
+        if (value) {
+          setSelectedBook(value[0])
+          GetBookReview(value[0].id).then((ele) =>{
+            console.log(ele,"0000000000000000000000000000000000000000000000000000")
+            // setGetBookReview(ele)
+          })
+        }
+      }
+      if (printedBookDetails) {
+        const copy = [];
+        printedBookDetails.forEach((item) => {
+          copy.push({ "name": item, "iconName": "printBook" })
+        })
+        setBookFormat(prev => [...prev, ...copy]);
+      }
+      if (ebookDetails) {
+        const copy = [];
+        ebookDetails.forEach((item) => {
+          copy.push({ "name": item, "iconName": "ebookDetails" })
+        })
+        setBookFormat(prev => [...prev, ...copy]);
+      }
+      if (audioBookDetails) {
+        const copy = [];
+        audioBookDetails.forEach((item) => {
+          copy.push({ "name": item, "iconName": "audioBookDetails" })
+        })
+        setBookFormat(prev => [...prev, ...copy]);
+      }
     });
     GetReletdBookDetails(book_slug).then(e => {
       setReletedBook(e?.results);
     });
   }, []);
-  console.log(bookDetailsData,"*********************************************")
+  const handelBookFormat = (e) => {
+    // const b=  bookDetailsData.filter((e) => e.Hardcover)
+    //  console.log(e,"e00000000000000")
+
+    for (let value of Object.values(bookDetailsData.printed_book_details)) {
+      if (value.name == e.name) {
+        setSelectedBook(value)
+      }
+    }
+
+    for (let value of Object.values(bookDetailsData.ebook_details)) {
+      if (value.name == e.name) {
+        setSelectedBook(value)
+      }
+    }
+    for (let value of Object.values(bookDetailsData.audio_book_details)) {
+      if (value.name == e.name) {
+        setSelectedBook(value)
+      }
+    }
+
+  }
+  console.log(bookDetailsData,"0000000000000000000000000000000000000000000000000000")
   return (
     <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
       <div className="BookDescription_head">
@@ -87,22 +165,29 @@ export const BookDescription = () => {
               <div className="About-book-title">
                 <h2>
                   {bookDetailsData?.title}
-                  {bookDetailsData?.ebook_details?.epub?.is_in_stock ?
+                  {selectedBook && selectedBook?.is_in_stock ?
                     <span>In stack</span>
                     :
-                    null
+                    <span style={{ background: "red", width: "max-content", padding: ".4rem .5rem" }}>Out Of stack</span>
                   }
                 </h2>
-                <h5>By Max <span>{bookDetailsData?.authors}</span></h5>
+                <h5>By <span>{bookDetailsData?.authors}</span></h5>
               </div>
               <figcaption>
                 <div className="rating_Wrap">
                   <ul className="Star_Wrp">
-                    {[...Array(bookDetailsData?.book_reviews?.avg != 0 ? bookDetailsData?.book_reviews?.avg : 1).keys()].map(index => (
-                      <li key={index}>
-                        <i className="fas fa-star star"></i>
-                      </li>
-                    ))}
+                    {bookDetailsData?.book_reviews?.avg != 0 ?
+                      [...Array(bookDetailsData?.book_reviews?.avg != 0 ? bookDetailsData?.book_reviews?.avg : 1).keys()].map(index => (
+                        <li>
+                          <i className="fas fa-star star"></i>
+                        </li>
+                      ))
+                      :
+                      [...Array(5).keys()].map(index => (
+                        <li>
+                          <i className="far fa-star star"></i>
+                        </li>
+                      ))}
                   </ul>
                   <div>
                     <p>3,028 ratings</p>
@@ -115,51 +200,40 @@ export const BookDescription = () => {
                   </div>
                   <div className="Format-content">
                     <ul>
-                      <li>
-                        <NavLink to="#">
-                          <i className="far fa-file"></i>
-                          Paper Back
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to="#">
-                          <i className="far fa-file"></i>
-                          Hard Cover
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to="#">
-                          <i className="fab fa-etsy ebook"></i>E - Book
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to="#">
-                          <i className="far fa-file-audio"></i>
-                          Audio Book
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to="#">
-                          <i className="far fa-file"></i>
-                          Kindle
-                        </NavLink>
-                      </li>
+                      {/* {bookDetailsData?.audio_book_details ? */}
+
+                      {bookFormat && bookFormat.map((elem, index) => (
+                        <li key={index} onClick={() => handelBookFormat(elem)}>
+                          <NavLink to="#">
+                            {elem?.iconName == "printBook" ?
+                              <i className="far fa-file"></i>
+                              : elem?.iconName == "ebookDetails" ?
+                                <i className="fab fa-etsy ebook"></i>
+                                : elem?.iconName == "audioBookDetails" ?
+                                  <i className="far fa-file-audio"></i>
+                                  : null}
+                            {elem?.name}
+                          </NavLink>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
               </figcaption>
               <div className="About-book-detail">
                 <ul className="book-list-left">
+
                   <li>
                     <span>ISBN :</span>
-                    <strong>{bookDetailsData?.isbn_code}</strong>
+                    <strong>{selectedBook?.isbn_code}</strong>
                   </li>
                   <li>
                     <span>Pages : </span>
                     <strong>
-                      {bookDetailsData?.ebook_details?.epub?.pages}
+                      {selectedBook?.pages}
                     </strong>
                   </li>
+
                   <li>
                     <span>Publication Date : </span>
                     <strong>{bookDetailsData?.publications_year}</strong>
@@ -185,7 +259,7 @@ export const BookDescription = () => {
                 <div className="description_content">
                   <div className="Coutner_Wrp">
                     <div className="Counter_heading">
-                      <h3>{"₹"} {bookDetailsData?.ebook_details?.epub?.original_price}</h3>
+                      <h3>{"₹"} {selectedBook?.original_price}</h3>
                     </div>
                     <div className="Counter_Number">
                       <div className="count_Increment">

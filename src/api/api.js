@@ -168,8 +168,49 @@ const GetAuthorsDetailsReleted = (alphabet) => {
   }
 }
 const GetAuthorsReview = (id) => {
-  console.log(id,";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;")
   let slug = `/authors/author_reviews/${id}/`
+  const url = `${baseRoute}${slug}`
+  try {
+    const response = axios.get(url).then((response) => {
+      return response.data;
+    });
+    return response
+  }
+  catch (error) {
+
+    return error
+  }
+}
+const GetBookReview = (id) => {
+  let slug = `/book_store/book_reviews/${id}/`
+  const url = `${baseRoute}${slug}`
+  try {
+    const response = axios.get(url).then((response) => {
+      return response.data;
+    });
+    return response
+  }
+  catch (error) {
+
+    return error
+  }
+}
+const GetUserWishlist = (id) => {
+  let slug = `/user_wishlist/list/${id}/`
+  const url = `${baseRoute}${slug}`
+  try {
+    const response = axios.get(url).then((response) => {
+      return response.data;
+    });
+    return response
+  }
+  catch (error) {
+
+    return error
+  }
+}
+const GetGenrelist = () => {
+  let slug = `/book_store/genre_list/`
   const url = `${baseRoute}${slug}`
   try {
     const response = axios.get(url).then((response) => {
@@ -194,5 +235,7 @@ export {
   GetAuthorsReview,
   GetAuthorsList,
   GetAuthorsDetails,
-  GetAuthorsDetailsReleted
+  GetAuthorsDetailsReleted,
+  GetBookReview,
+  GetGenrelist
 };

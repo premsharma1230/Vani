@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
-import { GetBookListWithFilters } from '../../api/api';
+import { GetBookListWithFilters, GetGenrelist } from '../../api/api';
 
 
 export const Booklist = () => {
@@ -18,6 +18,7 @@ export const Booklist = () => {
   const [selectedMinPrice, setSelectedMinPrice] = React.useState(1);
   const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
   const [bookListFilterData, setBookListFilterData] = React.useState([])
+  const [genreList, setGenreList] = React.useState([])
   const Genre = [
     { name: "horror", id: 1 },
     { name: "love", id: 2 },
@@ -27,9 +28,9 @@ export const Booklist = () => {
     { name: "thriller", id: 6 }
   ];
   const categories = [
-    { name: "print", id: 1 },
-    { name: "E book", id: 2 },
-    { name: "Audio book", id: 3 }
+    { name: "print", value: "printed_book",id:1 },
+    { name: "E book", id: 2,value : "e_book" },
+    { name: "Audio book", id: 3 ,value : "audio_book"}
   ];
   React.useEffect(() => {
     GetBookList()
@@ -40,7 +41,6 @@ export const Booklist = () => {
     const minPrices = selectedMinPrice
     const maxPrices = selectedMaxPrice
     GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then((e) => {
-      console.log(e)
       setBookListFilterData(e?.results)
     })
   }
@@ -52,6 +52,13 @@ export const Booklist = () => {
     sessionStorage.setItem("bookDetail", JSON.stringify(e))
     navigate("/BookDescription");
   }
+   React.useEffect(() => {
+    GetGenrelist().then((ele) => {
+      setGenreList(ele.data)
+    })
+   })
+
+  console.log(genreList,"++++++++++++++++++++++++++++++++++")
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -74,12 +81,12 @@ export const Booklist = () => {
                             setSelectedCategories([
                               ...selectedCategories, elem
                             ]);
-                            setCategoriesItems([...categoriesItems, elem.id])
+                            setCategoriesItems([...categoriesItems, elem?.value])
                           } else {
                             setSelectedCategories(
-                              selectedCategories.filter((people) => people.id !== elem.id),
+                              selectedCategories.filter((people) => people?.id !== elem?.id),
                             );
-                            setCategoriesItems(categoriesItems.filter((element) => element !== elem.id))
+                            setCategoriesItems(categoriesItems.filter((element) => element !== elem?.value))
                           }
                         }}
                         value={selectedCategories}
@@ -101,7 +108,7 @@ export const Booklist = () => {
                 <h4>genre</h4>
               </div>
               <ul className="filter-catgry">
-                {Genre.map((elem, index) => (
+                {genreList && genreList.map((elem, index) => (
                   <li key={index}>
                     <span>
                       <input
@@ -113,18 +120,18 @@ export const Booklist = () => {
                             setSelectedGenre([
                               ...selectedGenre, elem
                             ]);
-                            setGenreItems([...genreItems, elem.id])
+                            setGenreItems([...genreItems, elem?.id])
                           } else {
                             setSelectedGenre(
-                              selectedGenre.filter((people) => people.id !== elem.id),
+                              selectedGenre.filter((people) => people?.id !== elem?.id),
                             );
-                            setGenreItems(genreItems.filter((element) => element !== elem.id))
+                            setGenreItems(genreItems.filter((element) => element !== elem?.id))
                           }
                         }}
                         value={selectedGenre}
                       />
                     </span>
-                    <p>{elem?.name}</p>
+                    <p>{elem?.value}</p>
                   </li>
                 ))}
               </ul>
@@ -161,7 +168,7 @@ export const Booklist = () => {
                 {bookListFilterData?.map((ele, index) => (
                   <div key={index} className="Grid-item" >
                     <figure>
-                      <img onClick={() => goToBookDetailsPage(ele)} src={book1} alt="book" />
+                      <img onClick={() => goToBookDetailsPage(ele)} src={ele?.images[0]} alt="book" />
                       <div className="Cart_shop_wrp">
                         <div className="cart-content">
                           <span>
@@ -177,8 +184,13 @@ export const Booklist = () => {
                       <h3>{ele.title}</h3>
                       <h4>Mohan Kishore</h4>
                       <span key={index} className="star_wrp">
-                        {[...Array(ele?.book_reviews?.avg != 0 ? ele?.book_reviews?.avg : 1).keys()].map(index => (
+                        {ele?.book_reviews?.avg != 0 ?
+                        [...Array(ele?.book_reviews?.avg != 0 ? ele?.book_reviews?.avg : 1).keys()].map(index => (
                           <i className="fas fa-star star-item"></i>
+                        ))
+                        :
+                        [...Array(5).keys()].map(index => (
+                          <i className="far fa-star star-item"></i>
                         ))}
                       </span>
                       <strong>{"₹"} {ele?.ebook_details?.epub?.original_price}</strong>

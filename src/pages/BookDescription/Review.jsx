@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { GetAuthorsReview } from "../../api/api";
 
 export const Review = (getID) => {
-  const [review,setReview] = useState([])
+  const [review,setReview] = useState(0)
   useEffect(() => {
-    GetAuthorsReview(getID.getID).then(ele => {
-      setReview(ele?.results)
-    })
+    // GetAuthorsReview(getID.getID).then(ele => {
+    //   setReview(ele?.results)
+    // })
   },[])
+  const handleSelectedStar = (i) => {
+   console.log(i+1,"QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+   setReview(i+1)
+  }
   return (
     <div className="Review_Wrapper">
       <div className="container">
@@ -53,9 +57,38 @@ export const Review = (getID) => {
                 <div className="Review1">
                   <label>Rating *</label>
                   <span className="Star_wrp">
-                    {[...Array(3).keys()].map(index => (
+                  {review != 0 ?
+                      <>
+                      {[...Array(review).keys()].map(index => (
+                          <div onClick={() => handleSelectedStar(index)}>
+                          <i className="far fa-star star-item"></i>
+                          </div>
+                      ))}
+                       {[...Array(5 - Number(review)).keys()].map(index => (
+                         <div onClick={() => handleSelectedStar(index+review)}>
+                        <i className="far fa-star star"></i>
+                         </div>
+                      ))}
+                      </>
+                      :
+                      [...Array(5).keys()].map(index => (
+                        <div onClick={() => handleSelectedStar(index)}>
+                        <i className="far fa-star star-item"></i>
+                        </div>
+                      ))}
+                    {/* {review != 0 ?
+                    [...Array(review).keys()].map(index => (
+                      <div onClick={() => handleSelectedStar(index)}>
                       <i className="far fa-star star-item"></i>
-                    ))}
+                      </div>
+                    ))
+                    :
+                    [...Array(5).keys()].map(index => (
+                      <div onClick={() => handleSelectedStar(index)}>
+                      <i className="far fa-star star-item"></i>
+                      </div>
+                    ))
+                    } */}
                   </span>
                 </div>
                 <div className="Review1">
