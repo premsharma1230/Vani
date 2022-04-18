@@ -8,26 +8,29 @@ import { Footer } from "../Footer/Footer";
 import { GetAuthorsList } from "../../api/api";
 
 const alpha = Array.from(Array(26)).map((e, i) => i + 65);
-const alphabet = alpha.map((x) => String.fromCharCode(x));
+const alphabet = alpha.map(x => String.fromCharCode(x));
 export const Author = () => {
   let navigate = useNavigate();
-  const handleRoute = (e) => {
-    sessionStorage.setItem("AuhorDetail", JSON.stringify(e))
+  const handleRoute = e => {
+    sessionStorage.setItem("AuhorDetail", JSON.stringify(e));
     navigate("/AuhorDescription");
   };
-  const [authorList, setAuthorList] = useState([])
+  const [authorList, setAuthorList] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     GetAuthorsList("NA").then(res => {
-      setAuthorList(res?.results)
-    })
-  }, [])
+      setAuthorList(res?.results);
+    });
+  }, []);
 
-  const getAllAuthor = (item) => {
+  const getAllAuthor = (item, index) => {
+    // console.log(index, "setActiveIndex ++++++++++++++");
+    setActiveIndex(index);
     GetAuthorsList(item).then(res => {
-      setAuthorList(res?.results)
-    })
-  }
+      setAuthorList(res?.results);
+    });
+  };
   return (
     <section className="Main_HomeWrapper  Author_Wrapper">
       <AuthorBanner />
@@ -50,11 +53,15 @@ export const Author = () => {
                   <figcaption>
                     <h3>{ele?.author_full_name}</h3>
                     <span key={index} className="star_wrp">
-                      {[...Array(ele?.reviews != 0 ? ele?.reviews : 1).keys()].map(index => (
+                      {[
+                        ...Array(ele?.reviews != 0 ? ele?.reviews : 1).keys(),
+                      ].map(index => (
                         <i key={index} className="fas fa-star star-item"></i>
                       ))}
                     </span>
-                    <strong>{"Books Written : "} {ele?.book_counts} </strong>
+                    <strong>
+                      {"Books Written : "} {ele?.book_counts}{" "}
+                    </strong>
                   </figcaption>
                 </div>
               ))}
@@ -64,7 +71,13 @@ export const Author = () => {
         <div className="Pagination_wrp">
           <div className="Alphabetic-pagination">
             {alphabet.map((elem, index) => (
-              <li onClick={() => getAllAuthor(elem)} key={index}>{elem}</li>
+              <li
+                onClick={() => getAllAuthor(elem, index)}
+                key={index}
+                className={activeIndex === index ? "activeBtn" : null}
+              >
+                {elem}
+              </li>
             ))}
           </div>
           <div className="Pagination_Content">

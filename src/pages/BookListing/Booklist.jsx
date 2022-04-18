@@ -1,13 +1,12 @@
-import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
+import * as React from "react";
+import Checkbox from "@mui/material/Checkbox";
 import Pagination from "@mui/material/Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
-import { GetBookListWithFilters, GetGenrelist } from '../../api/api';
-
+import { GetBookListWithFilters, GetGenrelist } from "../../api/api";
 
 export const Booklist = () => {
   let navigate = useNavigate();
@@ -17,48 +16,48 @@ export const Booklist = () => {
   const [categoriesItems, setCategoriesItems] = React.useState([]);
   const [selectedMinPrice, setSelectedMinPrice] = React.useState(1);
   const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
-  const [bookListFilterData, setBookListFilterData] = React.useState([])
-  const [genreList, setGenreList] = React.useState([])
+  const [bookListFilterData, setBookListFilterData] = React.useState([]);
+  const [genreList, setGenreList] = React.useState([]);
   const Genre = [
     { name: "horror", id: 1 },
     { name: "love", id: 2 },
     { name: "drama", id: 3 },
     { name: "suspense", id: 4 },
     { name: "comedy", id: 5 },
-    { name: "thriller", id: 6 }
+    { name: "thriller", id: 6 },
   ];
   const categories = [
-    { name: "print", value: "printed_book",id:1 },
-    { name: "E book", id: 2,value : "e_book" },
-    { name: "Audio book", id: 3 ,value : "audio_book"}
+    { name: "print", value: "printed_book", id: 1 },
+    { name: "E book", id: 2, value: "e_book" },
+    { name: "Audio book", id: 3, value: "audio_book" },
   ];
   React.useEffect(() => {
-    GetBookList()
-  }, [selectedCategories, selectedGenre, selectedMinPrice, selectedMaxPrice])
+    GetBookList();
+  }, [selectedCategories, selectedGenre, selectedMinPrice, selectedMaxPrice]);
   const GetBookList = () => {
-    const Categories = categoriesItems
-    const Genre = genreItems
-    const minPrices = selectedMinPrice
-    const maxPrices = selectedMaxPrice
-    GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then((e) => {
-      setBookListFilterData(e?.results)
-    })
-  }
-  const setPriceValue = (e) => {
-    setSelectedMinPrice(e[0])
-    setSelectedMaxPrice(e[1])
-  }
-  const goToBookDetailsPage = (e) => {
-    sessionStorage.setItem("bookDetail", JSON.stringify(e))
+    const Categories = categoriesItems;
+    const Genre = genreItems;
+    const minPrices = selectedMinPrice;
+    const maxPrices = selectedMaxPrice;
+    GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then(e => {
+      setBookListFilterData(e?.results);
+    });
+  };
+  const setPriceValue = e => {
+    setSelectedMinPrice(e[0]);
+    setSelectedMaxPrice(e[1]);
+  };
+  const goToBookDetailsPage = e => {
+    sessionStorage.setItem("bookDetail", JSON.stringify(e));
     navigate("/BookDescription");
-  }
-   React.useEffect(() => {
-    GetGenrelist().then((ele) => {
-      setGenreList(ele.data)
-    })
-   })
+  };
+  React.useEffect(() => {
+    GetGenrelist().then(ele => {
+      setGenreList(ele.data);
+    });
+  });
 
-  console.log(genreList,"++++++++++++++++++++++++++++++++++")
+  // console.log(genreList,"++++++++++++++++++++++++++++++++++")
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -76,17 +75,27 @@ export const Booklist = () => {
                         type="checkbox"
                         id="Print"
                         name="Print"
-                        onChange={(e) => {
+                        onChange={e => {
                           if (e.target.checked) {
                             setSelectedCategories([
-                              ...selectedCategories, elem
+                              ...selectedCategories,
+                              elem,
                             ]);
-                            setCategoriesItems([...categoriesItems, elem?.value])
+                            setCategoriesItems([
+                              ...categoriesItems,
+                              elem?.value,
+                            ]);
                           } else {
                             setSelectedCategories(
-                              selectedCategories.filter((people) => people?.id !== elem?.id),
+                              selectedCategories.filter(
+                                people => people?.id !== elem?.id
+                              )
                             );
-                            setCategoriesItems(categoriesItems.filter((element) => element !== elem?.value))
+                            setCategoriesItems(
+                              categoriesItems.filter(
+                                element => element !== elem?.value
+                              )
+                            );
                           }
                         }}
                         value={selectedCategories}
@@ -108,32 +117,37 @@ export const Booklist = () => {
                 <h4>genre</h4>
               </div>
               <ul className="filter-catgry">
-                {genreList && genreList.map((elem, index) => (
-                  <li key={index}>
-                    <span>
-                      <input
-                        type="checkbox"
-                        id="Print"
-                        name="Print"
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setSelectedGenre([
-                              ...selectedGenre, elem
-                            ]);
-                            setGenreItems([...genreItems, elem?.id])
-                          } else {
-                            setSelectedGenre(
-                              selectedGenre.filter((people) => people?.id !== elem?.id),
-                            );
-                            setGenreItems(genreItems.filter((element) => element !== elem?.id))
-                          }
-                        }}
-                        value={selectedGenre}
-                      />
-                    </span>
-                    <p>{elem?.value}</p>
-                  </li>
-                ))}
+                {genreList &&
+                  genreList.map((elem, index) => (
+                    <li key={index}>
+                      <span>
+                        <input
+                          type="checkbox"
+                          id="Print"
+                          name="Print"
+                          onChange={e => {
+                            if (e.target.checked) {
+                              setSelectedGenre([...selectedGenre, elem]);
+                              setGenreItems([...genreItems, elem?.id]);
+                            } else {
+                              setSelectedGenre(
+                                selectedGenre.filter(
+                                  people => people?.id !== elem?.id
+                                )
+                              );
+                              setGenreItems(
+                                genreItems.filter(
+                                  element => element !== elem?.id
+                                )
+                              );
+                            }
+                          }}
+                          value={selectedGenre}
+                        />
+                      </span>
+                      <p>{elem?.value}</p>
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className="PriceSlider_Wrp">
@@ -166,9 +180,13 @@ export const Booklist = () => {
               <div className="category_Grid_Content">
                 {/* {bookList?.map((ele, index) => ( */}
                 {bookListFilterData?.map((ele, index) => (
-                  <div key={index} className="Grid-item" >
+                  <div key={index} className="Grid-item">
                     <figure>
-                      <img onClick={() => goToBookDetailsPage(ele)} src={ele?.images[0]} alt="book" />
+                      <img
+                        onClick={() => goToBookDetailsPage(ele)}
+                        src={ele?.images[0]}
+                        alt="book"
+                      />
                       <div className="Cart_shop_wrp">
                         <div className="cart-content">
                           <span>
@@ -184,16 +202,23 @@ export const Booklist = () => {
                       <h3>{ele.title}</h3>
                       <h4>Mohan Kishore</h4>
                       <span key={index} className="star_wrp">
-                        {ele?.book_reviews?.avg != 0 ?
-                        [...Array(ele?.book_reviews?.avg != 0 ? ele?.book_reviews?.avg : 1).keys()].map(index => (
-                          <i className="fas fa-star star-item"></i>
-                        ))
-                        :
-                        [...Array(5).keys()].map(index => (
-                          <i className="far fa-star star-item"></i>
-                        ))}
+                        {ele?.book_reviews?.avg != 0
+                          ? [
+                              ...Array(
+                                ele?.book_reviews?.avg != 0
+                                  ? ele?.book_reviews?.avg
+                                  : 1
+                              ).keys(),
+                            ].map(index => (
+                              <i className="fas fa-star star-item"></i>
+                            ))
+                          : [...Array(5).keys()].map(index => (
+                              <i className="far fa-star star-item"></i>
+                            ))}
                       </span>
-                      <strong>{"₹"} {ele?.ebook_details?.epub?.original_price}</strong>
+                      <strong>
+                        {"₹"} {ele?.ebook_details?.epub?.original_price}
+                      </strong>
                     </figcaption>
                   </div>
                 ))}

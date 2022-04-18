@@ -67,6 +67,10 @@
       align-items: center;
       justify-content: center;
       padding: 0 0 2rem;
+      .activeBtn {
+        background: $skysolid;
+        color: $white;
+      }
       li {
         list-style-type: none;
         height: 44px;
@@ -87,10 +91,10 @@
           transition: $transition;
           opacity: 0.78;
         }
-        &:nth-child(1) {
-          background: $skysolid;
-          color: $white;
-        }
+        // &:nth-child(1) {
+        //   background: $skysolid;
+        //   color: $white;
+        // }
         &:last-child {
           border-right: 0.2px solid #000000;
         }

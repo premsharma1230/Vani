@@ -15,7 +15,7 @@ import { Cart } from "./pages/Cart/Cart";
 import { Address } from "./pages/Address/Address";
 import { AddAddress } from "./pages/Address/AddAddress";
 import { Billing } from "./pages/Billing/billing";
-import { Account } from "./pages/Account/account";
+import { Account } from "./pages/Account/Account";
 import { Order } from "./pages/Account/Order";
 import { PersonalDetail } from "./pages/Account/PersonalDetail";
 import { PersonalEdit } from "./pages/Account/PersonalEdit";
