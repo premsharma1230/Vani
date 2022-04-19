@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
-import { createWishList, GetBookListWithFilters, GetGenrelist } from '../../api/api';
+import { createAndRemoveWishList, GetBookListWithFilters, GetGenrelist } from '../../api/api';
 
 export const Booklist = () => {
   let navigate = useNavigate();
@@ -53,7 +53,7 @@ export const Booklist = () => {
   }
 
 const handleAddWishList = (e) => {
-  createWishList().then((ele) => {
+  createAndRemoveWishList().then((ele) => {
   })
 }
   React.useEffect(() => {
