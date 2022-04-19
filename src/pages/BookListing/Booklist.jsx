@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
-import { GetBookListWithFilters, GetGenrelist } from '../../api/api';
+import { createWishList, GetBookListWithFilters, GetGenrelist } from '../../api/api';
 
 
 export const Booklist = () => {
@@ -19,14 +19,6 @@ export const Booklist = () => {
   const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
   const [bookListFilterData, setBookListFilterData] = React.useState([])
   const [genreList, setGenreList] = React.useState([])
-  const Genre = [
-    { name: "horror", id: 1 },
-    { name: "love", id: 2 },
-    { name: "drama", id: 3 },
-    { name: "suspense", id: 4 },
-    { name: "comedy", id: 5 },
-    { name: "thriller", id: 6 }
-  ];
   const categories = [
     { name: "print", value: "printed_book",id:1 },
     { name: "E book", id: 2,value : "e_book" },
@@ -57,8 +49,10 @@ export const Booklist = () => {
       setGenreList(ele.data)
     })
    })
-
-  console.log(genreList,"++++++++++++++++++++++++++++++++++")
+const handleAddWishList = (e) => {
+  createWishList().then((ele) => {
+  })
+}
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -171,7 +165,7 @@ export const Booklist = () => {
                       <img onClick={() => goToBookDetailsPage(ele)} src={ele?.images[0]} alt="book" />
                       <div className="Cart_shop_wrp">
                         <div className="cart-content">
-                          <span>
+                          <span onClick={() =>handleAddWishList(ele)}>
                             <i className="far fa-heart short-item1"></i>
                           </span>
                           <span>

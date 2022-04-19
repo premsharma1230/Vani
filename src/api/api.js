@@ -223,6 +223,20 @@ const GetGenrelist = () => {
     return error
   }
 }
+const createWishList = () => {
+  let slug = `/user_wishlist/list/`
+  const url = `${baseRoute}${slug}`
+  try {
+    const response = axios.get(url).then((response) => {
+      return response.data;
+    });
+    return response
+  }
+  catch (error) {
+
+    return error
+  }
+}
 export {
   HomeBanner,
   AuthorList,
@@ -237,5 +251,6 @@ export {
   GetAuthorsDetails,
   GetAuthorsDetailsReleted,
   GetBookReview,
-  GetGenrelist
+  GetGenrelist,
+  createWishList
 };
