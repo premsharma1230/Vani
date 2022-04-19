@@ -6,7 +6,7 @@ const HomeBanner = () => {
   const slug = "/home_page/home_page_baner/";
   const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
     return response;
@@ -18,209 +18,209 @@ const AuthorList = () => {
   const slug = "/home_page/authors_list/";
   const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
     return response;
   } catch (error) {
     return error;
   }
-}
+};
 const TrendingAuthorAndBook = () => {
   const slug = "/home_page/book_and_author/";
-  const url = `${baseRoute}${slug}`
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-    return error
-  }
-}
+};
 
 const LatestestBookList = () => {
   const slug = "/home_page/latest_picks/?page=1&page_size=2";
   const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
+};
 
 const GetHomePageLogos = () => {
-  const slug = "/home_page/logos/"
-  const url = `${baseRoute}${slug}`
+  const slug = "/home_page/logos/";
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
+};
 const GetBookListWithFilters = (categories, genre, min_prices, max_prices) => {
   let slug;
-  if(categories.length > 0 && genre.length > 0 ){
-    slug = `/book_store/book_multi_cat_list/?categories=${categories}&genre=${genre}&min_prices=${min_prices}&max_prices=${max_prices}`
-  }else if(categories.length > 0){
-     slug = `/book_store/book_multi_cat_list/?categories=${categories}&min_prices=${min_prices}&max_prices=${max_prices}`
-  }else if(genre.length > 0){
-    slug = `/book_store/book_multi_cat_list/?genre=${genre}&min_prices=${min_prices}&max_prices=${max_prices}`
-  }else{
-    slug = `/book_store/book_multi_cat_list/?min_prices=${min_prices}&max_prices=${max_prices}`
+  if (categories.length > 0 && genre.length > 0) {
+    slug = `/book_store/book_multi_cat_list/?categories=${categories}&genre=${genre}&min_prices=${min_prices}&max_prices=${max_prices}`;
+  } else if (categories.length > 0) {
+    slug = `/book_store/book_multi_cat_list/?categories=${categories}&min_prices=${min_prices}&max_prices=${max_prices}`;
+  } else if (genre.length > 0) {
+    slug = `/book_store/book_multi_cat_list/?genre=${genre}&min_prices=${min_prices}&max_prices=${max_prices}`;
+  } else {
+    slug = `/book_store/book_multi_cat_list/?min_prices=${min_prices}&max_prices=${max_prices}`;
   }
-  const url = `${baseRoute}${slug}`
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
-const GetBookDetails = (bookSlug) => {
-  const slug = `/book_store/book_details/${bookSlug}/`
-  const url = `${baseRoute}${slug}`
+};
+const GetBookDetails = bookSlug => {
+  const slug = `/book_store/book_details/${bookSlug}/`;
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
-const GetReletdBookDetails = (bookSlug) => {
-  const slug = `/book_store/releted_book/${bookSlug}/`
-  const url = `${baseRoute}${slug}`
+};
+const GetReletdBookDetails = bookSlug => {
+  const slug = `/book_store/releted_book/${bookSlug}/`;
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
-const GetAuthorsList = (alphabet) => {
+};
+const GetAuthorsList = alphabet => {
   let slug;
-  if(alphabet == "NA") {
-    slug = `/authors/authors_list/`
-  }else{
-    slug = `/authors/authors_list/?alphabet=${alphabet}/`
+  if (alphabet == "NA") {
+    slug = `/authors/authors_list/`;
+  } else {
+    slug = `/authors/authors_list/?alphabet=${alphabet}/`;
   }
-  const url = `${baseRoute}${slug}`
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
-const GetAuthorsDetails = (alphabet) => {
-  let slug = `/authors/author_details/${alphabet}/`
-  const url = `${baseRoute}${slug}`
+};
+const GetAuthorsDetails = alphabet => {
+  let slug = `/authors/author_details/${alphabet}/`;
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
-const GetAuthorsDetailsReleted = (alphabet) => {
-  let slug = `/authors/author_releted_books/${alphabet}/`
-  const url = `${baseRoute}${slug}`
+};
+const GetAuthorsDetailsReleted = alphabet => {
+  let slug = `/authors/author_releted_books/${alphabet}/`;
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
-const GetAuthorsReview = (id) => {
-  let slug = `/authors/author_reviews/${id}/`
-  const url = `${baseRoute}${slug}`
+};
+const GetAuthorsReview = id => {
+  let slug = `/authors/author_reviews/${id}/`;
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
+};
 
-    return error
-  }
-}
-const GetBookReview = (id) => {
-  let slug = `/book_store/book_reviews/${id}/`
-  const url = `${baseRoute}${slug}`
+const GetUserWishlist = id => {
+  let slug = `/user_wishlist/list/${id}/`;
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
-
-    return error
-  }
-}
-const GetUserWishlist = (id) => {
-  let slug = `/user_wishlist/list/${id}/`
-  const url = `${baseRoute}${slug}`
-  try {
-    const response = axios.get(url).then((response) => {
-      return response.data;
-    });
-    return response
-  }
-  catch (error) {
-
-    return error
-  }
-}
+};
 const GetGenrelist = () => {
-  let slug = `/book_store/genre_list/`
-  const url = `${baseRoute}${slug}`
+  let slug = `/book_store/genre_list/`;
+  const url = `${baseRoute}${slug}`;
   try {
-    const response = axios.get(url).then((response) => {
+    const response = axios.get(url).then(response => {
       return response.data;
     });
-    return response
+    return response;
+  } catch (error) {
+    return error;
   }
-  catch (error) {
+};
+const GetBookReview = id => {
+  // console.log(id, "getID.getID");
+  let slug = `/book_store/book_reviews/${id}/`;
+  const url = `${baseRoute}${slug}`;
+  try {
+    const response = axios.get(url).then(response => {
+      return response.data;
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+const CreateBookReview = (book_id, body) => {
+  let slug = `/book_store/book_reviews/${book_id}/`;
+  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1Mzc4MzAyLCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.OvqePVFGXAivqVV_b1stVfUlUobr6gh7uVq9EBLyoBE`;
 
-    return error
+  const url = `${baseRoute}${slug}`;
+
+  try {
+    const response = axios({
+      method: "post",
+      url: url,
+      data: body,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => {
+      return response.data;
+    });
+
+    return response;
+  } catch (error) {
+    return error;
   }
 }
 const createWishList = () => {
@@ -237,6 +237,8 @@ const createWishList = () => {
     return error
   }
 }
+};
+
 export {
   HomeBanner,
   AuthorList,
@@ -252,5 +254,7 @@ export {
   GetAuthorsDetailsReleted,
   GetBookReview,
   GetGenrelist,
-  createWishList
+  createWishList,
+  CreateBookReview,
+  GetGenrelist,
 };
