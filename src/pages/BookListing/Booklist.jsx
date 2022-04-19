@@ -8,8 +8,6 @@ import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
 import { createWishList, GetBookListWithFilters, GetGenrelist } from '../../api/api';
 
-import { GetBookListWithFilters, GetGenrelist } from "../../api/api";
-
 export const Booklist = () => {
   let navigate = useNavigate();
   const [selectedGenre, setSelectedGenre] = React.useState([]);
@@ -53,21 +51,16 @@ export const Booklist = () => {
     sessionStorage.setItem("bookDetail", JSON.stringify(e));
     navigate("/BookDescription");
   }
-   React.useEffect(() => {
-    GetGenrelist().then((ele) => {
-      setGenreList(ele.data)
-    })
-   })
+
 const handleAddWishList = (e) => {
   createWishList().then((ele) => {
   })
 }
-  };
   React.useEffect(() => {
     GetGenrelist().then(ele => {
       setGenreList(ele.data);
     });
-  });
+  },[]);
 
   // console.log(genreList,"++++++++++++++++++++++++++++++++++")
   return (

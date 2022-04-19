@@ -237,7 +237,6 @@ const createWishList = () => {
     return error
   }
 }
-};
 
 export {
   HomeBanner,
@@ -253,7 +252,6 @@ export {
   GetAuthorsDetails,
   GetAuthorsDetailsReleted,
   GetBookReview,
-  GetGenrelist,
   createWishList,
   CreateBookReview,
   GetGenrelist,
