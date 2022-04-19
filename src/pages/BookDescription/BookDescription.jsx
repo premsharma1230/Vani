@@ -146,14 +146,14 @@ export const BookDescription = () => {
                 <Link to="#">Ki Yaad Jo Karen Sabhi</Link>
               </li>
             </ul>
-            <ul className="pagination_view">
+            {/* <ul className="pagination_view">
               <li>
                 <Link to="#">{`< preview`}</Link>
               </li>
               <li>
                 <Link to="#">{`next >`}</Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>
@@ -324,7 +324,7 @@ export const BookDescription = () => {
                     </Link>
                   </button>
                   <button className="Save_btn cart-btn">
-                    <Link to="/Save">
+                    <Link to="/Cart">
                       <i className="fas fa-cart-plus"></i>
                       <span>add to cart</span>
                     </Link>

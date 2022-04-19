@@ -986,8 +986,8 @@ a {
 }
 
 .Description_wrapper .Description_Content .Coutner_Wrp .Counter_heading h3 {
-  font-family: Lora;
-  font-size: 48px;
+  font-family: "Lora";
+  font-size: 1.5em;
   font-weight: 700;
   line-height: 48px;
   letter-spacing: 0.20000000298023224px;
