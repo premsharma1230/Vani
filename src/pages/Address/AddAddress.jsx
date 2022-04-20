@@ -25,6 +25,8 @@ export const AddAddress = () => {
     setCurrency(event.target.value);
   };
 
+  const handleAddresSelect = () => {};
+
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper AddAddress_Wrapper">
@@ -49,9 +51,9 @@ export const AddAddress = () => {
                     select
                     label="Address"
                     value={currency}
-                    onChange={handleChange}
                     required
                     sx={{ width: "62ch" }}
+                    onClick={handleAddresSelect}
                     // helperText="Please select your currency"
                   >
                     {currencies.map(option => (

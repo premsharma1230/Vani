@@ -100,7 +100,25 @@ video {
   vertical-align: baseline;
 }
 
-
 @import "./_mixins";
+
+.CartMain_Wrapper {
+  position: relative;
+  .CartCounter {
+    position: absolute;
+    top: -9px;
+    right: -6px;
+    background: #fe4365;
+    width: 16px;
+    height: 17px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+}
 
 @import "./_main";
