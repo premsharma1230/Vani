@@ -23,6 +23,9 @@ export const BookDescription = () => {
   const [cartData, setCartData] = useState([]);
 
   console.log(cartData, "cartData++++++++");
+
+  const Navigate = useNavigate();
+
   const discount = selectedBook?.discountable_price;
   const handelIncrement = () => {
     let value = count;
@@ -120,7 +123,7 @@ export const BookDescription = () => {
 
   // console.log();
 
-  const handleCart = elem => {
+  const handleCart = (elem, redirect) => {
     console.log(elem, "AddCart");
     const body = {
       cart_id: 1,
@@ -131,6 +134,9 @@ export const BookDescription = () => {
     CreateCart(body).then(elem => {
       console.log(elem, "Click+++++++++++++++++++");
       setCartData("1");
+      if (redirect === "buy") {
+        Navigate("/Cart");
+      }
     });
   };
 
@@ -353,13 +359,19 @@ export const BookDescription = () => {
                       )}
                   </div>
                   <button className="read_btn cart-btn">
-                    <Link to="#">
+                    <Link
+                      to="#"
+                      onClick={() => handleCart(selectedBook?.id, "buy")}
+                    >
                       <i className="fas fa-bolt"></i>
                       <span>Buy now</span>
                     </Link>
                   </button>
                   <button className="Save_btn cart-btn">
-                    <Link to="#" onClick={() => handleCart(selectedBook?.id)}>
+                    <Link
+                      to="#"
+                      onClick={() => handleCart(selectedBook?.id, "addCart")}
+                    >
                       <i className="fas fa-cart-plus"></i>
                       <span>add to cart</span>
                     </Link>
