@@ -3,14 +3,19 @@ import book from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { cartCheckout, CreateCart, getCartList, RemoveCart } from "../../api/api";
+import {
+  cartCheckout,
+  CreateCart,
+  getCartList,
+  RemoveCart,
+} from "../../api/api";
 
 export const Cart = () => {
   const [count, setCount] = useState(0);
   const [newPrice, setNewPrice] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [allCartList, setAllCartList] = useState([]);
-  const [idList, setIdList] = useState([])
+  const [idList, setIdList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
   let navigate = useNavigate();
@@ -32,7 +37,10 @@ export const Cart = () => {
 
   //   setSelectedIndex(i);
   // };
-  const handelIncrement = (e) => {
+  const handelIncrement = e => {
+    console.log(e, "^ffffffffffffffffffff^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+    let realPrice = Number(e?.amount) / Number(e?.quantity);
+    console.log(realPrice, "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     let value = e?.quantity + 1;
     const body = {
       cart_id: e.cart,
@@ -42,8 +50,11 @@ export const Cart = () => {
     CreateCart(body).then(elem => {
       GetAllCartList();
     });
-  }
-  const handelDecrement = (e) => {
+    const current = count + Number(realPrice);
+    setCount(current);
+  };
+  const handelDecrement = e => {
+    let realPrice = Number(e?.amount) / Number(e?.quantity);
     let value = e?.quantity - 1;
     const body = {
       cart_id: e.cart,
@@ -53,7 +64,9 @@ export const Cart = () => {
     CreateCart(body).then(elem => {
       GetAllCartList();
     });
-  }
+    const current = count - Number(realPrice);
+    setCount(current);
+  };
   // const handelDecrement = (e, q, i) => {
   //   if (count > 0) {
   //     if (q != 1) {
@@ -83,10 +96,16 @@ export const Cart = () => {
     });
   };
 
-  const handleRemove = (cart, book) => {
+  const handleRemove = e => {
+    const realAmount = count - Number(e?.amount);
+    console.log(
+      realAmount,
+      "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    );
+    setCount(realAmount);
     const body = {
-      cart_id: cart,
-      book_id: book, //elem?.book_details?.book_id,
+      cart_id: e?.cart,
+      book_id: e?.book,
     };
 
     RemoveCart(body).then(elem => {
@@ -95,33 +114,28 @@ export const Cart = () => {
   };
 
   const handleCheckout = () => {
-    const body = idList
+    const body = idList;
     if (body.length > 0) {
-      cartCheckout(body).then((ele) => {
-        navigate("/Address")
-      })
+      cartCheckout(body).then(ele => {
+        navigate("/Address");
+      });
     }
-  }
+  };
   const handleCheckbox = (e, item) => {
     if (e?.target?.checked) {
       setIdList(prev => [...prev, item.id]);
-      let price = count + Number(item.amount)
-      setCount(price)
-    }
-    else {
-      const index = idList.findIndex((id) => id === item.id);
+      let price = count + Number(item.amount);
+      setCount(price);
+    } else {
+      const index = idList.findIndex(id => id === item.id);
       if (index !== -1) {
-        setIdList([
-          ...idList.slice(0, index),
-          ...idList.slice(index + 1)
-        ]);
+        setIdList([...idList.slice(0, index), ...idList.slice(index + 1)]);
       }
-      let price = count - Number(item.amount)
-      setCount(price)
+      let price = count - Number(item.amount);
+      setCount(price);
     }
-  }
-  console.log(count, "++++++++++++++++++++++++++++++++++++++++++++")
-  console.log(allCartList, "++allCartList++++++++++++++++++++++++++++++++++++++++++")
+  };
+  console.log(count, "++++++++++++++++++++++++++++++++++++++++++++");
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper Cart_Wrapper">
@@ -137,7 +151,10 @@ export const Cart = () => {
                   <div className="Cart_Left">
                     <div className="checkbox_Wrp">
                       <label>
-                        <input onChange={(e) => handleCheckbox(e, ele)} type="checkbox" />
+                        <input
+                          onChange={e => handleCheckbox(e, ele)}
+                          type="checkbox"
+                        />
                       </label>
                     </div>
                     <div className="Cart_img">
@@ -148,7 +165,7 @@ export const Cart = () => {
                     <div className="About_Cart">
                       <h2>{ele?.book_details?.title}</h2>
                       {ele?.book_details?.authors &&
-                        ele?.book_details?.authors.length > 0 ? (
+                      ele?.book_details?.authors.length > 0 ? (
                         ele?.book_details?.authors.map((author, index) => (
                           <h4 key={index}>Author : {author}</h4>
                         ))
@@ -159,10 +176,12 @@ export const Cart = () => {
                     </div>
                   </div>
                   <div className="Cart_right">
-                    {ele?.book_details?.category === "printed_book" ?
+                    {ele?.book_details?.category === "printed_book" ? (
                       <div className="Counter_Number">
                         <div className="count_Increment">
-                          <button onClick={() => handelIncrement(ele)}>+</button>
+                          <button onClick={() => handelIncrement(ele)}>
+                            +
+                          </button>
                         </div>
                         <div className="Counter_print">
                           {/* {selectedIndex == index ?
@@ -172,10 +191,12 @@ export const Cart = () => {
                           {/* } */}
                         </div>{" "}
                         <div className="count_btn">
-                          <button onClick={() => handelDecrement(ele)}>-</button>
+                          <button onClick={() => handelDecrement(ele)}>
+                            -
+                          </button>
                         </div>
                       </div>
-                      :
+                    ) : (
                       <div className="Counter_Number">
                         <div className="count_Increment">
                           {/* <button onClick={() => handelIncrement(ele)}>+</button> */}
@@ -191,11 +212,9 @@ export const Cart = () => {
                           {/* <button onClick={() => handelDecrement(ele)}>-</button> */}
                         </div>
                       </div>
-                    }
+                    )}
                     <div className="cart_remove">
-                      <button
-                        onClick={() => handleRemove(ele?.cart, ele?.book)}
-                      >
+                      <button onClick={() => handleRemove(ele)}>
                         <span>Remove</span>
                       </button>
                     </div>
@@ -206,7 +225,7 @@ export const Cart = () => {
                 </div>
               ))}
             {/* total */}
-            {count != 0 &&
+            {count != 0 && (
               <div className="Grand_Total">
                 <ul className="Total-content">
                   <li className="Total-text">Total</li>
@@ -217,7 +236,7 @@ export const Cart = () => {
                   <button onClick={handleCheckout}>Checkout</button>
                 </div>
               </div>
-            }
+            )}
           </div>
         </div>
         <Footer />

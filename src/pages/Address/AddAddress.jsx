@@ -4,34 +4,56 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+import { CreateAddress, UpdateAddress } from "../../api/api";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const AddAddress = () => {
-  const [currency, setCurrency] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [pinCode, setPinCode] = useState("");
-  const [number, setNumber] = useState("");
-  const currencies = [
+  let navigate = useNavigate();
+  let location = useLocation();
+  console.log(location, "location+++++++++++++++++++");
+  const [addressList, setAddressList] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.address_type : ""
+  );
+  const [firstName, setFirstName] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.first_name : ""
+  );
+  const [lastName, setLastName] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.last_name : ""
+  );
+  const [address1, setAddress1] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.address_line_1 : ""
+  );
+  const [address2, setAddress2] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.address_line_2 : ""
+  );
+  const [city, setCity] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.city : ""
+  );
+  const [state, setState] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.state : ""
+  );
+  const [country, setCountry] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.country : ""
+  );
+  const [pinCode, setPinCode] = useState(
+    location?.state?.Edit ? location?.state?.Edit?.pin : ""
+  );
+  const [number, setNumber] = useState(
+    location?.state?.Edit ? Number(location?.state?.Edit?.phone_number) : ""
+  );
+
+  const AddressList = [
     {
-      value: "A1",
+      value: "home",
       label: "Home",
     },
     {
-      value: "A2",
+      value: "office",
       label: "Office",
-    },
-    {
-      value: "A3",
-      label: "Other",
     },
   ];
   const handleChange = event => {
-    setCurrency(event.target.value);
+    setAddressList(event.target.value);
   };
   const handleFirstName = event => {
     setFirstName(event.target.value);
@@ -60,12 +82,60 @@ export const AddAddress = () => {
   const handleNumber = event => {
     setNumber(event.target.value);
   };
+
+  const handleUpdateSubmit = () => {
+    const body = {
+      first_name: firstName,
+      last_name: lastName,
+      address_line_1: address1,
+      address_line_2: address2,
+      city: city,
+      state: state,
+      pin: pinCode,
+      phone_number: number,
+      is_default: true,
+      address_type: addressList,
+    };
+    // console.log(body, "EEEEEEEEEEEEEEEEEEEEEEEEE+++++++++++++++++");
+    const id = location?.state?.Edit?.id;
+
+    UpdateAddress(body, id).then(elem => {
+      console.log(elem, "updated++++++++++++");
+      navigate("/Address", {
+        state: {
+          saved: "saved",
+        },
+      });
+    });
+  };
+
+  const handleSubmit = e => {
+    const body = {
+      first_name: firstName,
+      last_name: lastName,
+      address_line_1: address1,
+      address_line_2: address2,
+      city: city,
+      state: state,
+      pin: pinCode,
+      phone_number: number,
+      is_default: true,
+      address_type: addressList,
+    };
+    // console.log(body, "EEEEEEEEEEEEEEEEEEEEEEEEE+++++++++++++++++");
+
+    CreateAddress(body).then(elem => {
+      console.log(elem, "AddSubmitApi++++++++++++");
+      navigate("/Address");
+    });
+  };
+
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper AddAddress_Wrapper">
         <div className="container">
           <div className="Whishlist_header">
-            <h2>Add Address</h2>
+            <h2>{location?.state?.Edit ? "Update Address" : "Add Address"}</h2>
           </div>
           <div className="Wishlist_content AddAddress_Content">
             <div className="Address_Form">
@@ -83,12 +153,12 @@ export const AddAddress = () => {
                     id="Address"
                     select
                     label="Address"
-                    value={currency}
+                    value={addressList}
                     required
                     sx={{ width: "62ch" }}
-                  // helperText="Please select your currency"
+                    onChange={handleChange}
                   >
-                    {currencies.map(option => (
+                    {AddressList.map(option => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
@@ -203,9 +273,23 @@ export const AddAddress = () => {
                   />
                 </div>
                 <div className="Submit_Wrapper">
-                  <Button variant="contained" sx={{ width: "30ch" }}>
-                    Save
-                  </Button>
+                  {location?.state?.Edit ? (
+                    <Button
+                      variant="contained"
+                      sx={{ width: "30ch" }}
+                      onClick={handleUpdateSubmit}
+                    >
+                      Update
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      sx={{ width: "30ch" }}
+                      onClick={handleSubmit}
+                    >
+                      Save
+                    </Button>
+                  )}
                 </div>
               </Box>
             </div>
