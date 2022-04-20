@@ -7,24 +7,59 @@ import Button from "@mui/material/Button";
 
 export const AddAddress = () => {
   const [currency, setCurrency] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  const [number, setNumber] = useState("");
   const currencies = [
     {
       value: "A1",
-      label: "A1",
+      label: "Home",
     },
     {
       value: "A2",
-      label: "A2",
+      label: "Office",
     },
     {
       value: "A3",
-      label: "A3",
+      label: "Other",
     },
   ];
   const handleChange = event => {
     setCurrency(event.target.value);
   };
-
+  const handleFirstName = event => {
+    setFirstName(event.target.value);
+  };
+  const handleLastName = event => {
+    setLastName(event.target.value);
+  };
+  const handleAddress1 = event => {
+    setAddress1(event.target.value);
+  };
+  const handleAddress2 = event => {
+    setAddress2(event.target.value);
+  };
+  const handleCity = event => {
+    setCity(event.target.value);
+  };
+  const handleState = event => {
+    setState(event.target.value);
+  };
+  const handleCountry = event => {
+    setCountry(event.target.value);
+  };
+  const handlePinCode = event => {
+    setPinCode(event.target.value);
+  };
+  const handleNumber = event => {
+    setNumber(event.target.value);
+  };
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper AddAddress_Wrapper">
@@ -52,7 +87,7 @@ export const AddAddress = () => {
                     onChange={handleChange}
                     required
                     sx={{ width: "62ch" }}
-                    // helperText="Please select your currency"
+                  // helperText="Please select your currency"
                   >
                     {currencies.map(option => (
                       <MenuItem key={option.value} value={option.value}>
@@ -65,14 +100,18 @@ export const AddAddress = () => {
                   <h3>Name</h3>
                   <div className="FName_wrp">
                     <TextField
-                      id="First-Name"
+                      id="FirstName"
                       label="FirstName"
                       sx={{ width: "30ch" }}
+                      value={firstName}
+                      onChange={handleFirstName}
                     />
                     <TextField
-                      id="Last-Name"
+                      id="LastName"
                       label="LastName"
                       sx={{ width: "30ch" }}
+                      value={lastName}
+                      onChange={handleLastName}
                     />
                   </div>
                 </div>
@@ -83,11 +122,15 @@ export const AddAddress = () => {
                       id="Address1"
                       label="Address1"
                       sx={{ width: "30ch" }}
+                      value={address1}
+                      onChange={handleAddress1}
                     />
                     <TextField
                       id="Address2"
                       label="Address2"
                       sx={{ width: "30ch" }}
+                      value={address2}
+                      onChange={handleAddress2}
                     />
                   </div>
                 </div>
@@ -99,6 +142,8 @@ export const AddAddress = () => {
                         id="City"
                         label="city"
                         sx={{ width: "30ch" }}
+                        value={city}
+                        onChange={handleCity}
                       />
                     </li>
                     <li className="State_Wrp">
@@ -109,6 +154,8 @@ export const AddAddress = () => {
                         label="state"
                         // helperText="Please select your state"
                         sx={{ width: "30ch" }}
+                        value={state}
+                        onChange={handleState}
                       >
                         <MenuItem key="#" value="Delhi">
                           Delhi
@@ -128,6 +175,8 @@ export const AddAddress = () => {
                         id="Country"
                         label="Country"
                         sx={{ width: "30ch" }}
+                        value={country}
+                        onChange={handleCountry}
                       />
                     </li>
                     <li className="Pin_Code">
@@ -137,6 +186,8 @@ export const AddAddress = () => {
                         type="number"
                         label="PinCode"
                         sx={{ width: "30ch" }}
+                        value={pinCode}
+                        onChange={handlePinCode}
                       />
                     </li>
                   </ul>
@@ -148,6 +199,8 @@ export const AddAddress = () => {
                     type="number"
                     label="PhoneNumber"
                     sx={{ width: "62ch" }}
+                    value={number}
+                    onChange={handleNumber}
                   />
                 </div>
                 <div className="Submit_Wrapper">
