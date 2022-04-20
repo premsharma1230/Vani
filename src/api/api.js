@@ -304,9 +304,32 @@ const getCartList = () => {
 };
 
 const CreateCart = body => {
-  console.log(body, "cartcartcart++++++++++++++++");
+  // console.log(body, "cartcartcart++++++++++++++++");
   let slug = `/cart/add_book/`;
   const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NTc5MTYyLCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.2k2CT-05g7Rex7gcHQXEzPLu8Fi9OiwWFzHZA_FnHoo`;
+  const url = `${baseRoute}${slug}`;
+
+  try {
+    const response = axios({
+      method: "post",
+      url: url,
+      data: body,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => {
+      return response.data;
+    });
+
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+const RemoveCart = body => {
+  let slug = `/cart/remove_book/`;
+  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
   const url = `${baseRoute}${slug}`;
 
   try {
@@ -348,4 +371,5 @@ export {
   getWishList,
   getOrderList,
   getCartList,
+  RemoveCart,
 };

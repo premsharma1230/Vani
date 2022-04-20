@@ -17,11 +17,12 @@ export const BookDescription = () => {
   const [bookFormat, setBookFormat] = useState([]);
   const [selectedBook, setSelectedBook] = useState([]);
   const [getBookReview, setGetBookReview] = useState([]);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [activeIndex, setActiveIndex] = useState(0);
   const [discountPrice, setDiscountPrice] = useState("");
+  const [cartData, setCartData] = useState([]);
 
-  // console.log(selectedBook, "selectedBook++++++++");
+  console.log(cartData, "cartData++++++++");
   const discount = selectedBook?.discountable_price;
   const handelIncrement = () => {
     let value = count;
@@ -30,11 +31,14 @@ export const BookDescription = () => {
     setDiscountPrice(value * discount);
   };
   const handelDecrement = () => {
-    if (count > 0) {
+    if (count >= 1) {
+      console.log(count, "+++++++++++++++++++++++++++++++");
       let value = count;
       value--;
-      setCount(value);
-      setDiscountPrice(discount / value);
+      if (value >= 1) {
+        setCount(value);
+        setDiscountPrice(discount * value);
+      }
     }
   };
   useEffect(() => {
@@ -51,6 +55,7 @@ export const BookDescription = () => {
         let value = Object.values(e?.data?.printed_book_details);
         if (value) {
           setSelectedBook(value[0]);
+          setDiscountPrice(value[0]?.discountable_price);
           GetBookReview(value[0].id).then(ele => {
             // console.log(
             //   ele,
@@ -63,6 +68,7 @@ export const BookDescription = () => {
         let value = Object.values(e?.data?.ebook_details);
         if (value) {
           setSelectedBook(value[0]);
+          setDiscountPrice(value[0]?.discountable_price);
           GetBookReview(value[0].id).then(ele => {
             // console.log(
             //   ele,
@@ -75,6 +81,7 @@ export const BookDescription = () => {
         let value = Object.values(e?.data?.audio_book_details);
         if (value) {
           setSelectedBook(value[0]);
+          setDiscountPrice(value[0]?.discountable_price);
           GetBookReview(value[0].id).then(ele => {
             // console.log(
             //   ele,
@@ -114,7 +121,7 @@ export const BookDescription = () => {
   // console.log();
 
   const handleCart = elem => {
-    // console.log(elem, "+++++++++++++++++++++");
+    console.log(elem, "AddCart");
     const body = {
       cart_id: 1,
       book_id: elem,
@@ -123,6 +130,7 @@ export const BookDescription = () => {
 
     CreateCart(body).then(elem => {
       console.log(elem, "Click+++++++++++++++++++");
+      setCartData("1");
     });
   };
 
@@ -132,21 +140,24 @@ export const BookDescription = () => {
     for (let value of Object.values(bookDetailsData.printed_book_details)) {
       if (value.name == e.name) {
         setSelectedBook(value);
+        setDiscountPrice(value.discountable_price);
       }
     }
 
     for (let value of Object.values(bookDetailsData.ebook_details)) {
       if (value.name == e.name) {
         setSelectedBook(value);
+        setDiscountPrice(value.discountable_price);
       }
     }
     for (let value of Object.values(bookDetailsData.audio_book_details)) {
       if (value.name == e.name) {
         setSelectedBook(value);
+        setDiscountPrice(value.discountable_price);
       }
     }
   };
-  // console.log(bookDetailsData, "++++++++++++++++++bookDetailsData");
+  console.log(bookFormat, "++++++++++++++++++bookDetailsData");
   return (
     <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
       <div className="BookDescription_head">
@@ -323,17 +334,23 @@ export const BookDescription = () => {
                         {"₹"} {selectedBook?.original_price}
                       </h3>
                     </div>
-                    <div className="Counter_Number">
-                      <div className="count_Increment">
-                        <button onClick={handelIncrement}>+</button>
-                      </div>
-                      <div className="Counter_print">
-                        <p>{count}</p>
-                      </div>{" "}
-                      <div className="count_btn">
-                        <button onClick={handelDecrement}>-</button>
-                      </div>
-                    </div>
+                    {bookFormat &&
+                      bookFormat.map((elem, index) =>
+                        elem?.iconName === "printBook" &&
+                        activeIndex === index ? (
+                          <div key={index} className="Counter_Number">
+                            <div className="count_Increment">
+                              <button onClick={handelIncrement}>+</button>
+                            </div>
+                            <div className="Counter_print">
+                              <p>{count}</p>
+                            </div>{" "}
+                            <div className="count_btn">
+                              <button onClick={handelDecrement}>-</button>
+                            </div>
+                          </div>
+                        ) : null
+                      )}
                   </div>
                   <button className="read_btn cart-btn">
                     <Link to="#">
@@ -342,10 +359,7 @@ export const BookDescription = () => {
                     </Link>
                   </button>
                   <button className="Save_btn cart-btn">
-                    <Link
-                      to="#"
-                      onClick={() => handleCart(bookDetailsData?.id)}
-                    >
+                    <Link to="#" onClick={() => handleCart(selectedBook?.id)}>
                       <i className="fas fa-cart-plus"></i>
                       <span>add to cart</span>
                     </Link>

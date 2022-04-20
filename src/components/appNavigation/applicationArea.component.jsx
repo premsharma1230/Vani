@@ -10,14 +10,16 @@ export default function ApplicationArea() {
     <>
       <div className={Classes.iconArea}>
         <ul>
-          <li>Search field</li>
+          <li>
+            <input type="text" placeholder="search..." />
+          </li>
           <li>
             <Link to="/Account">
               <BsPerson />
             </Link>
           </li>
           <li>
-            <Link to="/Wishlist">
+            <Link to="/Cart">
               <HiOutlineShoppingCart />
             </Link>
           </li>
