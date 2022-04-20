@@ -23,7 +23,7 @@ import { ChangePassword } from "./pages/Account/ChangePassword";
 
 export default function RouteSeperater() {
   return (
-    <div>
+    <>
       <Router>
         <Routes>
           <Route path="/InstitutionalLogin" element={<InstitutionalLogin />} />
@@ -50,7 +50,7 @@ export default function RouteSeperater() {
           </Route>
         </Routes>
       </Router>
-    </div>
+    </>
   );
 }
 //

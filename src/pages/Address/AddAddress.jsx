@@ -84,7 +84,6 @@ export const AddAddress = () => {
                     select
                     label="Address"
                     value={currency}
-                    onChange={handleChange}
                     required
                     sx={{ width: "62ch" }}
                   // helperText="Please select your currency"

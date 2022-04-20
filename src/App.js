@@ -1,13 +1,14 @@
 import "./styles/styleModules/style.css";
 import "./Fonts/stylesheet.css";
+import CartContext from "./Context/Context";
 
 import RouteSeperater from "./routes";
 
 function App() {
   return (
-    <div>
-      <RouteSeperater />
-    </div>
+    <>
+      <CartContext>{value => <RouteSeperater />}</CartContext>
+    </>
   );
 }
 

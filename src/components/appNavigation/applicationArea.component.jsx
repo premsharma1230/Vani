@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { RiTranslate } from "react-icons/ri";
 import { BsPerson } from "react-icons/bs";
 import Classes from "./_appNavigation.module.scss";
 import { Link } from "react-router-dom";
+import CartContext from "../../Context/Context";
 
 export default function ApplicationArea() {
+  let data = useContext(CartContext);
+
+  const CartCount = JSON.parse(sessionStorage.getItem("CartItems"));
+  console.log(data, "CartCount+++++++++++++++++++++++++++");
   return (
     <>
       <div className={Classes.iconArea}>
@@ -18,9 +23,13 @@ export default function ApplicationArea() {
               <BsPerson />
             </Link>
           </li>
-          <li>
-            <Link to="/Cart">
+          <li className="CartMain_Wrapper">
+            <Link to="/Cart" className="">
               <HiOutlineShoppingCart />
+              <span className="CartCounter">
+                {/* {CartCount} */}
+                {data}
+              </span>
             </Link>
           </li>
           <li>
