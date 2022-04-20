@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
-import { createAndRemoveWishList, GetBookListWithFilters, GetGenrelist, getWishList } from '../../api/api';
+import { createAndRemoveWishList, CreateCart, GetBookListWithFilters, GetGenrelist, getWishList } from '../../api/api';
 
 export const Booklist = () => {
   let navigate = useNavigate();
@@ -93,7 +93,19 @@ export const Booklist = () => {
     }
   }
   const handleShoppingCart = (e) => {
-   
+    for (let value of Object.values(e?.printed_book_details)) {
+      if (value.name == "Paper Back") {
+         const body = {
+        cart_id: 1,
+        book_id: value.id,
+        quantity: 1,
+      };
+      CreateCart(body).then(elem => {
+        navigate("/Cart");
+      });
+      }
+    }
+     
   }
   React.useEffect(() => {
     GetGenrelist().then(ele => {

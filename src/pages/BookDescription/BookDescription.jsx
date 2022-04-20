@@ -124,16 +124,12 @@ export const BookDescription = () => {
   // console.log();
 
   const handleCart = (elem, redirect) => {
-    console.log(elem, "AddCart");
     const body = {
       cart_id: 1,
       book_id: elem,
       quantity: count,
     };
-
     CreateCart(body).then(elem => {
-      console.log(elem, "Click+++++++++++++++++++");
-      setCartData("1");
       if (redirect === "buy") {
         Navigate("/Cart");
       }
