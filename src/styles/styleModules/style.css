@@ -1941,14 +1941,11 @@ a {
 }
 
 .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -ms-grid;
+  display: grid;
   grid-gap: 5rem;
-  padding: 2rem 0 2rem;
   -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
-  border-bottom: 1px solid #4e4e4e;
 }
 
 .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul {
@@ -1956,18 +1953,34 @@ a {
   display: -ms-grid;
   display: grid;
   grid-gap: 1rem;
+  padding: 2rem 0 2rem;
   -ms-grid-columns: 100px 1fr min-content;
       grid-template-columns: 100px 1fr -webkit-min-content;
       grid-template-columns: 100px 1fr min-content;
+  position: relative;
 }
 
-.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul:nth-child(1)::before {
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: #4e4e4e;
+  position: absolute;
+  bottom: 0;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul:nth-child(odd)::before {
   content: "";
   width: 1px;
   height: 120px;
   background: #4e4e4e;
   position: absolute;
   right: -38px;
+  top: 39px;
+}
+
+.Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul:last-child::before {
+  display: none;
 }
 
 .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li {

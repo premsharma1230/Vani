@@ -6,6 +6,7 @@ import {
   GetBookDetails,
   GetBookReview,
   GetReletdBookDetails,
+  CreateCart,
 } from "../../api/api";
 import { Review } from "./Review";
 
@@ -18,19 +19,22 @@ export const BookDescription = () => {
   const [getBookReview, setGetBookReview] = useState([]);
   const [count, setCount] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [discountPrice, setDiscountPrice] = useState("");
 
-  console.log(selectedBook, "selectedBook++++++++");
-
+  // console.log(selectedBook, "selectedBook++++++++");
+  const discount = selectedBook?.discountable_price;
   const handelIncrement = () => {
     let value = count;
     value++;
     setCount(value);
+    setDiscountPrice(value * discount);
   };
   const handelDecrement = () => {
     if (count > 0) {
       let value = count;
       value--;
       setCount(value);
+      setDiscountPrice(discount / value);
     }
   };
   useEffect(() => {
@@ -106,6 +110,22 @@ export const BookDescription = () => {
       setReletedBook(e?.results);
     });
   }, []);
+
+  // console.log();
+
+  const handleCart = elem => {
+    // console.log(elem, "+++++++++++++++++++++");
+    const body = {
+      cart_id: 1,
+      book_id: elem,
+      quantity: count,
+    };
+
+    CreateCart(body).then(elem => {
+      console.log(elem, "Click+++++++++++++++++++");
+    });
+  };
+
   const handelBookFormat = (e, index) => {
     setActiveIndex(index);
 
@@ -126,10 +146,7 @@ export const BookDescription = () => {
       }
     }
   };
-  // console.log(
-  //   bookDetailsData.id,
-  //   "getID___________________++++++++++++++++++++++++++++_----------------"
-  // );
+  // console.log(bookDetailsData, "++++++++++++++++++bookDetailsData");
   return (
     <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
       <div className="BookDescription_head">
@@ -298,11 +315,12 @@ export const BookDescription = () => {
                 <div className="description_content">
                   <div className="Coutner_Wrp">
                     <div className="Counter_heading Discount-price_wrp">
+                      {" "}
                       <h3>
-                        {"₹"} {selectedBook?.original_price}
+                        {" ₹ "} {discountPrice}
                       </h3>
                       <h3 className="Discount">
-                        {" ₹ "} {selectedBook?.discountable_price}
+                        {"₹"} {selectedBook?.original_price}
                       </h3>
                     </div>
                     <div className="Counter_Number">
@@ -324,7 +342,10 @@ export const BookDescription = () => {
                     </Link>
                   </button>
                   <button className="Save_btn cart-btn">
-                    <Link to="/Cart">
+                    <Link
+                      to="#"
+                      onClick={() => handleCart(bookDetailsData?.id)}
+                    >
                       <i className="fas fa-cart-plus"></i>
                       <span>add to cart</span>
                     </Link>

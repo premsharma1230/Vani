@@ -23,17 +23,27 @@
         border-bottom: 0 !important;
       }
       .AuthInfo_Content {
-        display: flex;
+        display: grid;
         grid-gap: 5rem;
-        padding: 2rem 0 2rem;
         grid-template-columns: repeat(2, 1fr);
-        border-bottom: 1px solid #4e4e4e;
+        // border-bottom: 1px solid #4e4e4e;
         ul {
           position: relative;
           display: grid;
           grid-gap: 1rem;
+          padding: 2rem 0 2rem;
           grid-template-columns: 100px 1fr min-content;
-          &:nth-child(1) {
+          position: relative;
+          &::after {
+            content: "";
+            width: 100%;
+            height: 1px;
+            background: #4e4e4e;
+            position: absolute;
+            // border-bottom: 1px solid #4e4e4e;
+            bottom: 0;
+          }
+          &:nth-child(odd) {
             &::before {
               content: "";
               width: 1px;
@@ -41,9 +51,14 @@
               background: #4e4e4e;
               position: absolute;
               right: -38px;
+              top: 39px;
             }
           }
-
+          &:last-child {
+            &::before {
+              display: none;
+            }
+          }
           li {
             list-style-type: none;
             img {
