@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import book from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
+import { getOrderList } from "../../api/api";
 
 export const Order = () => {
-  let navigate = useNavigate();
+  const [allOrderList, setAllOrderList] = useState([])
+  useEffect(() => {
+    getOrderList().then((ele) => {
+      setAllOrderList(ele?.results)
+    })
+  }, [])
 
   return (
     <>
@@ -14,7 +20,7 @@ export const Order = () => {
             <h2>Order</h2>
           </div>
           <div className="Wishlist_content Cart_Content Order_Content">
-            {[...Array(2).keys()].map(index => (
+            {allOrderList && allOrderList.length > 0 && allOrderList?.map((ele, index) => (
               <div className="Cart_Grid_Wrapper">
                 <div className="Cart_Left">
                   <div className="Cart_img">
@@ -23,9 +29,11 @@ export const Order = () => {
                     </figure>
                   </div>
                   <div className="About_Cart">
-                    <h2>The Psychology of Money</h2>
-                    <h4>Author : Morgan Housel</h4>
-                    <h5>ISBN : 123456789</h5>
+                    <h2>{ele?.book_details?.title}</h2>
+                    {ele?.book_details?.authors.length > 0 ? ele?.book_details?.authors.map((author, index) =>
+                      <h4 key={index}>Author : {author}</h4>
+                    ) : <h4>Author : </h4>}
+                    <h5>ISBN : {ele?.book_details?.isbn}</h5>
                   </div>
                 </div>
                 <div className="Cart_right">
@@ -39,7 +47,7 @@ export const Order = () => {
                     </span>
                   </div>
                   <div className="Cart_Price">
-                    <h3>₹ 300</h3>
+                    <h3>₹  {ele?.book_details?.price}</h3>
                   </div>
                 </div>
               </div>

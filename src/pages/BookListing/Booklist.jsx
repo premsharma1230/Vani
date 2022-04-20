@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
-import { GetBookListWithFilters, GetGenrelist } from "../../api/api";
+import { createAndRemoveWishList, GetBookListWithFilters, GetGenrelist } from '../../api/api';
 
 export const Booklist = () => {
   let navigate = useNavigate();
@@ -16,8 +16,8 @@ export const Booklist = () => {
   const [categoriesItems, setCategoriesItems] = React.useState([]);
   const [selectedMinPrice, setSelectedMinPrice] = React.useState(1);
   const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
-  const [bookListFilterData, setBookListFilterData] = React.useState([]);
-  const [genreList, setGenreList] = React.useState([]);
+  const [bookListFilterData, setBookListFilterData] = React.useState([])
+  const [genreList, setGenreList] = React.useState([])
   const Genre = [
     { name: "horror", id: 1 },
     { name: "love", id: 2 },
@@ -50,12 +50,17 @@ export const Booklist = () => {
   const goToBookDetailsPage = e => {
     sessionStorage.setItem("bookDetail", JSON.stringify(e));
     navigate("/BookDescription");
-  };
+  }
+
+const handleAddWishList = (e) => {
+  createAndRemoveWishList().then((ele) => {
+  })
+}
   React.useEffect(() => {
     GetGenrelist().then(ele => {
       setGenreList(ele.data);
     });
-  });
+  },[]);
 
   // console.log(genreList,"++++++++++++++++++++++++++++++++++")
   return (
@@ -189,7 +194,7 @@ export const Booklist = () => {
                       />
                       <div className="Cart_shop_wrp">
                         <div className="cart-content">
-                          <span>
+                          <span onClick={() =>handleAddWishList(ele)}>
                             <i className="far fa-heart short-item1"></i>
                           </span>
                           <span>

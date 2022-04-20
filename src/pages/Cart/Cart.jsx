@@ -2,23 +2,58 @@ import React, { useState } from "react";
 import book from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getCartList } from "../../api/api";
 
 export const Cart = () => {
   const [count, setCount] = useState(0);
+  const [newPrice, setNewPrice] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [allCartList, setAllCartList] = useState([]);
+  const [totalAmount,setTotalAmount] = useState(0)
   let navigate = useNavigate();
 
-  const handelIncrement = () => {
-    let value = count;
-    value++;
-    setCount(value);
-  };
-  const handelDecrement = () => {
-    if (count > 0) {
-      let value = count;
-      value--;
+  const handelIncrement = (e, q, i) => {
+    if (q != 1) {
+      let realPrice = e / q
+      let value = q + 1;
+      const current = realPrice * value
       setCount(value);
+      setNewPrice(current)
+    } else {
+      const realPrice = e
+      let value = q + 1;
+      const current = realPrice * value
+      setCount(value);
+      setNewPrice(current)
     }
+
+    setSelectedIndex(i)
   };
+  const handelDecrement = (e, q, i) => {
+    if (count > 0) {
+      if (q != 1) {
+        let realPrice = e / q
+        let value = q - 1;
+        const current = realPrice * value
+        setCount(value);
+        setNewPrice(current)
+      } else {
+        const realPrice = e
+        let value = q - 1;
+        const current = realPrice * value
+        setCount(value);
+        setNewPrice(current)
+      }
+    }
+    setSelectedIndex(i)
+  };
+  useEffect(() => {
+    getCartList().then((ele) => {
+      setAllCartList(ele?.data)
+      setTotalAmount(ele?.total_sum)
+    })
+  }, [])
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper Cart_Wrapper">
@@ -27,8 +62,8 @@ export const Cart = () => {
             <h2>Cart</h2>
           </div>
           <div className="Wishlist_content Cart_Content">
-            {[...Array(2).keys()].map(index => (
-              <div className="Cart_Grid_Wrapper">
+            {allCartList && allCartList.length > 0 && allCartList.map((ele, index) => (
+              <div key={index} className="Cart_Grid_Wrapper">
                 <div className="Cart_Left">
                   <div className="checkbox_Wrp">
                     <label>
@@ -41,21 +76,30 @@ export const Cart = () => {
                     </figure>
                   </div>
                   <div className="About_Cart">
-                    <h2>The Psychology of Money</h2>
-                    <h4>Author : Morgan Housel</h4>
-                    <h5>ISBN : 123456789</h5>
+                    <h2>{ele?.book_details?.title}</h2>
+                    {ele?.book_details?.authors && ele?.book_details?.authors.length > 0 ? ele?.book_details?.authors.map((author, index) =>
+                      <h4 key={index}>Author : {author}</h4>
+                    )
+                      :
+                      <h4>Author : </h4>
+                    }
+                    <h5>ISBN : {ele?.book_details?.isbn_code}</h5>
                   </div>
                 </div>
                 <div className="Cart_right">
                   <div className="Counter_Number">
                     <div className="count_Increment">
-                      <button onClick={handelIncrement}>+</button>
+                          <button onClick={() => handelIncrement(ele)}>+</button>
                     </div>
                     <div className="Counter_print">
-                      <p>{count}</p>
+                      {/* {selectedIndex == index ?
+                          <p>{count}</p>
+                        : */}
+                          <p>{ele?.quantity}</p>
+                      {/* } */}
                     </div>{" "}
                     <div className="count_btn">
-                      <button onClick={handelDecrement}>-</button>
+                      <button onClick={() => handelDecrement(ele)}>-</button>
                     </div>
                   </div>
                   <div className="cart_remove">
@@ -64,7 +108,7 @@ export const Cart = () => {
                     </button>
                   </div>
                   <div className="Cart_Price">
-                    <h3>₹ 300</h3>
+                        <h3>₹ {ele?.amount}</h3>
                   </div>
                 </div>
               </div>
@@ -73,7 +117,7 @@ export const Cart = () => {
             <div className="Grand_Total">
               <ul className="Total-content">
                 <li className="Total-text">Total</li>
-                <li className="Total-number">₹ 600</li>
+                <li className="Total-number">₹ {totalAmount}</li>
               </ul>
               <div className="button_wrp">
                 <button onClick={() => navigate("/Address")}>Checkout</button>
