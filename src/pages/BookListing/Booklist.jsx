@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
-import { createAndRemoveWishList, GetBookListWithFilters, GetGenrelist } from '../../api/api';
+import { createAndRemoveWishList, GetBookListWithFilters, GetGenrelist, getWishList } from '../../api/api';
 
 export const Booklist = () => {
   let navigate = useNavigate();
@@ -17,15 +17,8 @@ export const Booklist = () => {
   const [selectedMinPrice, setSelectedMinPrice] = React.useState(1);
   const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
   const [bookListFilterData, setBookListFilterData] = React.useState([])
+  const [getWishListData, setGetWishListData] = React.useState([])
   const [genreList, setGenreList] = React.useState([])
-  const Genre = [
-    { name: "horror", id: 1 },
-    { name: "love", id: 2 },
-    { name: "drama", id: 3 },
-    { name: "suspense", id: 4 },
-    { name: "comedy", id: 5 },
-    { name: "thriller", id: 6 },
-  ];
   const categories = [
     { name: "print", value: "printed_book", id: 1 },
     { name: "E book", id: 2, value: "e_book" },
@@ -41,6 +34,7 @@ export const Booklist = () => {
     const maxPrices = selectedMaxPrice;
     GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then(e => {
       setBookListFilterData(e?.results);
+      handleGetWishList(e?.results, "fisrtTime")
     });
   };
   const setPriceValue = e => {
@@ -51,18 +45,61 @@ export const Booklist = () => {
     sessionStorage.setItem("bookDetail", JSON.stringify(e));
     navigate("/BookDescription");
   }
-
-const handleAddWishList = (e) => {
-  createAndRemoveWishList().then((ele) => {
-  })
-}
+  const handleGetWishList = (e, r) => {
+    getWishList().then((ele) => {
+      if (r == "not remove") {
+        for (let value of Object.values(ele?.results)) {
+          if (value.book == e.id) {
+            const data = {
+              id: e.id
+            }
+            setGetWishListData(prev => [...prev, data]);
+          }
+        }
+      } else if(r == "fisrtTime"){
+        for (let value of Object.values(ele?.results)) {
+             e.map((items) => {
+              if (value.book == items.id) {
+                const data = {
+                  id:  items.id
+                }
+                setGetWishListData(prev => [...prev, data]);
+              }
+          })
+        }
+      }
+      else {
+        const index = getWishListData.findIndex(({ id }) => id === e.id);
+        if (index !== -1) {
+          setGetWishListData([
+            ...getWishListData.slice(0, index),
+            ...getWishListData.slice(index + 1)
+          ]);
+        }
+      }
+    })
+  }
+  const handleAddWishList = (e) => {
+    for (let value of Object.values(e?.printed_book_details)) {
+      if (value.name == "Paper Back") {
+        createAndRemoveWishList(value.id).then((ele) => {
+          if (ele?.msg == 'book remove from wishlist') {
+            handleGetWishList(e, "remove")
+          } else {
+            handleGetWishList(e, "not remove")
+          }
+        })
+      }
+    }
+  }
+  const handleShoppingCart = (e) => {
+   
+  }
   React.useEffect(() => {
     GetGenrelist().then(ele => {
       setGenreList(ele.data);
     });
-  },[]);
-
-  // console.log(genreList,"++++++++++++++++++++++++++++++++++")
+  }, []);
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -194,10 +231,22 @@ const handleAddWishList = (e) => {
                       />
                       <div className="Cart_shop_wrp">
                         <div className="cart-content">
-                          <span onClick={() =>handleAddWishList(ele)}>
-                            <i className="far fa-heart short-item1"></i>
-                          </span>
-                          <span>
+                          {getWishListData && getWishListData.length > 0 ? getWishListData.map((lists, index) =>
+                            lists?.id == ele.id ?
+                              <span key={index} onClick={() => handleAddWishList(ele)}>
+                                <i className="far fa-heart short-item1" style={{color:"red"}}></i>
+                              </span>
+                              :
+                              <span onClick={() => handleAddWishList(ele)}>
+                                <i className="far fa-heart short-item1"></i>
+                              </span>
+                          )
+                            :
+                            <span onClick={() => handleAddWishList(ele)}>
+                              <i className="far fa-heart short-item1"></i>
+                            </span>
+                          }
+                          <span onClick={() => handleShoppingCart(ele)}>
                             <i className="fas fa-shopping-cart short-item1"></i>
                           </span>
                         </div>
@@ -209,17 +258,17 @@ const handleAddWishList = (e) => {
                       <span key={index} className="star_wrp">
                         {ele?.book_reviews?.avg != 0
                           ? [
-                              ...Array(
-                                ele?.book_reviews?.avg != 0
-                                  ? ele?.book_reviews?.avg
-                                  : 1
-                              ).keys(),
-                            ].map(index => (
-                              <i className="fas fa-star star-item"></i>
-                            ))
+                            ...Array(
+                              ele?.book_reviews?.avg != 0
+                                ? ele?.book_reviews?.avg
+                                : 1
+                            ).keys(),
+                          ].map(index => (
+                            <i className="fas fa-star star-item"></i>
+                          ))
                           : [...Array(5).keys()].map(index => (
-                              <i className="far fa-star star-item"></i>
-                            ))}
+                            <i className="far fa-star star-item"></i>
+                          ))}
                       </span>
                       <strong>
                         {"₹"} {ele?.ebook_details?.epub?.original_price}
