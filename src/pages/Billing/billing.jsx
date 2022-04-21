@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { cartFinalCheckout, getVoucherDiscount } from "../../api/api";
 import book from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 
 export const Billing = () => {
+
+  const [applyCode, setApplyCode] = useState('')
+
+  const handleFinalCheckout = () => {
+    const body = {
+      "cart_id": 1,
+      "voucher_code": applyCode,
+      "address_id": 1
+    }
+    cartFinalCheckout(body).then((ele) => {
+console.log(ele)
+    })
+  }
+  useEffect(() => {
+
+  }, [])
+  const handleApplyPromocode = () => {
+    const body = {
+      cart_id : 1,
+      voucher_code : "oYMWis0ua0BGyyq5Sa7"
+    }
+    getVoucherDiscount(body).then((value) =>{
+      console.log(value,"++++++++++++++++++++++++++++++++++++")
+    })
+  }
+  const handleApplyCode = (e) => {
+    setApplyCode(e?.target?.value)
+  }
   return (
     <section className="Description_wrapper Wishlist_Wrapper Billing_Wrapper AddAddress_Wrapper">
       <div className="container">
@@ -24,9 +53,9 @@ export const Billing = () => {
             </p>
             <div className="PromoCode">
               <label>
-                <input type="text" placeholder="Enter your Promocode" />
+                <input value={applyCode} onChange={handleApplyCode} type="text" placeholder="Enter your Promocode" />
               </label>
-              <button>Apply Promocode</button>
+              <button onClick={handleApplyPromocode}>Apply Promocode</button>
             </div>
           </div>
           <div className="billing-right">
@@ -62,8 +91,7 @@ export const Billing = () => {
                 <li className="Total-number">₹ 800</li>
               </ul>
               <div className="button_wrp">
-                {/* onClick={() => navigate("/Address")} */}
-                <button>Proceed to Pay</button>
+                <button onClick={handleFinalCheckout}>Proceed to Pay</button>
               </div>
             </div>
           </div>
