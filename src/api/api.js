@@ -423,13 +423,13 @@ const RemoveCart = (body,token) => {
     return error;
   }
 };
+
 const cartCheckout = (list,token) => {
   let slug = `/cart/check_out_1/`;
   const body = {
     "id_list": list
   }
  const url = `${baseRoute}${slug}`;
-
   try {
     const response = axios({
       method: "post",
@@ -447,11 +447,9 @@ const cartCheckout = (list,token) => {
     return error;
   }
 };
-const AddAddress = list => {
+const CreateAddress = body => {
   let slug = `/user_address/get_user_address/`;
-  const body = {
-    "id_list": list
-  }
+
   const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
   const url = `${baseRoute}${slug}`;
 
@@ -515,7 +513,49 @@ const getVoucherDiscount = body => {
     return error;
   }
 };
+const UpdateAddress = (body, id) => {
+  let slug = `/user_address/address_details/${id}/`;
 
+  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
+  const url = `${baseRoute}${slug}`;
+
+  try {
+    const response = axios({
+      method: "put",
+      url: url,
+      data: body,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => {
+      return response.data;
+    });
+
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getAddressList = () => {
+  let slug = `/user_address/get_user_address/?page_size=110`;
+  const url = `${baseRoute}${slug}`;
+  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjYwODM1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.dYlr8aSJASo6fh9R9zYD28wiK7oPKl2K-dzu3vDJOKI`;
+  try {
+    const response = axios({
+      method: "get",
+      url: url,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => {
+      return response.data;
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 
 export {
   LoginApi,
@@ -543,5 +583,8 @@ export {
   RemoveCart,
   cartCheckout,
   cartFinalCheckout,
-  getVoucherDiscount
+  getVoucherDiscount,
+  CreateAddress,
+  getAddressList,
+  UpdateAddress,
 };

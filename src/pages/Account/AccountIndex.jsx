@@ -6,8 +6,17 @@ import order3 from "../../assets/order3.png";
 import order4 from "../../assets/order4.png";
 import { Footer } from "../Footer/Footer";
 
-export const Account = () => {
-  let navigate = useNavigate;
+export const Account = props => {
+  let navigate = useNavigate();
+
+  function handleSavedAddress() {
+    console.log("=================");
+    navigate("/Address", {
+      state: {
+        saved: "saved",
+      },
+    });
+  }
 
   return (
     <section className=" Description_wrapper Wishlist_Wrapper  Cart_Wrapper Address_Wrapper Account_Wrapper">
@@ -45,7 +54,8 @@ export const Account = () => {
                 </figcaption>
               </li>
             </Link>
-            <Link to="/Address">
+
+            <div onClick={handleSavedAddress}>
               <li className="account_item3">
                 <figure>
                   <img src={order3} lalt="img" />
@@ -58,7 +68,7 @@ export const Account = () => {
                   </p>
                 </figcaption>
               </li>
-            </Link>
+            </div>
             <Link to="/ChangePassword">
               <li className="account_item4">
                 <figure>
