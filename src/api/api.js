@@ -2,6 +2,58 @@ import axios from "axios";
 
 const baseRoute = "https://admin.vaniprakashan.in";
 // Home Page Apis
+const LoginApi = (body) => {
+  const slug = `/auth/user/login/`
+  const url = `${baseRoute}${slug}`;
+  try {
+    const response = axios({
+      method: "post",
+      url: url,
+      data: body,
+    }).then(res => {
+      return res.data;
+    }).catch(function (error) {
+      if (error.response) {
+        return error.response;
+      }
+      else if (error.request) {
+        return error.request;
+      } else {
+        return error.message;
+      }
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+
+const RegisterApi = (body) => {
+  const slug = `/auth/user/register/`
+  const url = `${baseRoute}${slug}`;
+  try {
+    const response = axios({
+      method: "post",
+      url: url,
+      data: body
+    }).then(res => {
+      return res.data;
+    }).catch(function (error) {
+      if (error.response) {
+        return error.response;
+      }
+      else if (error.request) {
+        return error.request;
+      } else {
+        return error.message;
+      }
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+}
 const HomeBanner = () => {
   const slug = "/home_page/home_page_baner/";
   const url = `${baseRoute}${slug}`;
@@ -200,12 +252,9 @@ const GetBookReview = id => {
     return error;
   }
 };
-const CreateBookReview = (book_id, body) => {
+const CreateBookReview = (book_id, body,token) => {
   let slug = `/book_store/book_reviews/${book_id}/`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1Mzc4MzAyLCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.OvqePVFGXAivqVV_b1stVfUlUobr6gh7uVq9EBLyoBE`;
-
   const url = `${baseRoute}${slug}`;
-
   try {
     const response = axios({
       method: "post",
@@ -223,10 +272,9 @@ const CreateBookReview = (book_id, body) => {
     return error;
   }
 };
-const createAndRemoveWishList = id => {
+const createAndRemoveWishList = (id,token) => {
   let slug = `/user_wishlist/list/`;
   const url = `${baseRoute}${slug}`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1Mzc4MzAyLCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.OvqePVFGXAivqVV_b1stVfUlUobr6gh7uVq9EBLyoBE`;
   const formData = new FormData();
   formData.append("book_id", id);
   try {
@@ -245,10 +293,9 @@ const createAndRemoveWishList = id => {
     return error;
   }
 };
-const getWishList = () => {
+const getWishList = (token) => {
   let slug = `/user_wishlist/list/`;
   const url = `${baseRoute}${slug}`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1Mzc4MzAyLCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.OvqePVFGXAivqVV_b1stVfUlUobr6gh7uVq9EBLyoBE`;
   try {
     const response = axios({
       method: "get",
@@ -264,10 +311,9 @@ const getWishList = () => {
     return error;
   }
 };
-const getOrderList = () => {
+const getOrderList = (token) => {
   let slug = `/order/user_order/`;
   const url = `${baseRoute}${slug}`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1Mzc4MzAyLCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.OvqePVFGXAivqVV_b1stVfUlUobr6gh7uVq9EBLyoBE`;
   try {
     const response = axios({
       method: "get",
@@ -283,31 +329,82 @@ const getOrderList = () => {
     return error;
   }
 };
-const getCartList = () => {
+const getCartList = (token) => {
   let slug = `/cart/user_cart/`;
   const url = `${baseRoute}${slug}`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1Mzc4MzAyLCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.OvqePVFGXAivqVV_b1stVfUlUobr6gh7uVq9EBLyoBE`;
-  try {
-    const response = axios({
-      method: "get",
-      url: url,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(response => {
-      return response.data;
-    });
-    return response;
-  } catch (error) {
-    return error;
+  const Token = token
+  if (Token) {
+    try {
+      const response = axios({
+        method: "get",
+        url: url,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then(response => {
+        return response.data;
+      });
+      return response;
+    } catch (error) {
+      return error;
+    }
+  } else {
+    try {
+      const response = axios({
+        method: "get",
+        url: url
+      }).then(response => {
+        return response.data;
+      });
+      return response;
+    } catch (error) {
+      return error;
+    }
   }
 };
 
-const CreateCart = body => {
-  // console.log(body, "cartcartcart++++++++++++++++");
+const CreateCart = (body, token) => {
   let slug = `/cart/add_book/`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NTc5MTYyLCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.2k2CT-05g7Rex7gcHQXEzPLu8Fi9OiwWFzHZA_FnHoo`;
+  const Token = token
   const url = `${baseRoute}${slug}`;
+  if (Token) {
+    try {
+      const response = axios({
+        method: "post",
+        url: url,
+        data: body,
+        headers: {
+          Authorization: `Bearer ${Token}`,
+        },
+      }).then(response => {
+        return response.data;
+      });
+
+      return response;
+    } catch (error) {
+      return error;
+    }
+  } else {
+    try {
+      const response = axios({
+        method: "post",
+        url: url,
+        data: body,
+      }).then(response => {
+        console.log(response, "*********************************")
+        return response.data;
+      });
+
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+};
+
+const RemoveCart = (body,token) => {
+  let slug = `/cart/remove_book/`;
+ const url = `${baseRoute}${slug}`;
 
   try {
     const response = axios({
@@ -326,35 +423,12 @@ const CreateCart = body => {
     return error;
   }
 };
-
-const RemoveCart = () => {
-  let slug = `/cart/remove_book/`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
-  const url = `${baseRoute}${slug}`;
-
-  try {
-    const response = axios({
-      method: "post",
-      url: url,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(response => {
-      return response.data;
-    });
-
-    return response;
-  } catch (error) {
-    return error;
-  }
-};
-const cartCheckout = list => {
+const cartCheckout = (list,token) => {
   let slug = `/cart/check_out_1/`;
   const body = {
     "id_list": list
   }
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
-  const url = `${baseRoute}${slug}`;
+ const url = `${baseRoute}${slug}`;
 
   try {
     const response = axios({
@@ -444,6 +518,8 @@ const getVoucherDiscount = body => {
 
 
 export {
+  LoginApi,
+  RegisterApi,
   HomeBanner,
   AuthorList,
   TrendingAuthorAndBook,

@@ -19,6 +19,8 @@ export const Booklist = () => {
   const [bookListFilterData, setBookListFilterData] = React.useState([])
   const [getWishListData, setGetWishListData] = React.useState([])
   const [genreList, setGenreList] = React.useState([])
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
+  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
   const categories = [
     { name: "print", value: "printed_book", id: 1 },
     { name: "E book", id: 2, value: "e_book" },
@@ -82,6 +84,7 @@ export const Booklist = () => {
   const handleAddWishList = (e) => {
     for (let value of Object.values(e?.printed_book_details)) {
       if (value.name == "Paper Back") {
+      if(token){
         createAndRemoveWishList(value.id).then((ele) => {
           if (ele?.msg == 'book remove from wishlist') {
             handleGetWishList(e, "remove")
@@ -89,18 +92,30 @@ export const Booklist = () => {
             handleGetWishList(e, "not remove")
           }
         })
+      }else{
+        navigate("/Login");
+      }
       }
     }
   }
   const handleShoppingCart = (e) => {
     for (let value of Object.values(e?.printed_book_details)) {
       if (value.name == "Paper Back") {
-         const body = {
-        cart_id: 1,
-        book_id: value.id,
-        quantity: 1,
-      };
-      CreateCart(body).then(elem => {
+        let body;
+        if(!token){
+          body = {
+            cart_id: cartId,
+            book_id: value.id,
+            quantity: 1,
+          };
+        }else{
+          body = {
+            cart_id: 1,
+            book_id: value.id,
+            quantity: 1,
+          };
+        }
+      CreateCart(body,token).then(elem => {
         navigate("/Cart");
       });
       }

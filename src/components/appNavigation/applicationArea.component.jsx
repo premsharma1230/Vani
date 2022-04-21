@@ -10,7 +10,6 @@ export default function ApplicationArea() {
   let data = useContext(CartContext);
 
   const CartCount = JSON.parse(sessionStorage.getItem("CartItems"));
-  console.log(data, "CartCount+++++++++++++++++++++++++++");
   return (
     <>
       <div className={Classes.iconArea}>

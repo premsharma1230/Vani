@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from "react";
 import book from "../../assets/book3.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
 import { createAndRemoveWishList, getWishList } from "../../api/api";
 
 export const Wishlist = () => {
+  let navigate = useNavigate();
   const [wishListItems, setWishListItems] = useState([]);
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
 
   useEffect(() => {
     getWishListFuncation();
   }, []);
   const getWishListFuncation = () => {
-    getWishList().then(ele => {
-      setWishListItems(ele?.results);
-    });
+    if (token) {
+      getWishList().then(ele => {
+        setWishListItems(ele?.results);
+      });
+    } else {
+      navigate("/Login");
+    }
   };
   const handleRemove = e => {
-    createAndRemoveWishList(e).then(ele => {
-      getWishListFuncation();
-    });
+    if (token) {
+      createAndRemoveWishList(e, token).then(ele => {
+        getWishListFuncation();
+      });
+    } else {
+      navigate("/Login");
+    }
   };
   return (
     <>

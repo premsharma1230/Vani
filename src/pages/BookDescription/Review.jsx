@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { GetBookReview, CreateBookReview } from "../../api/api";
 
 export const Review = getID => {
+  let navigate = useNavigate()
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const [review, setReview] = useState("");
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
   const [selectStar, setSelectStar] = useState(0);
   const [getReviewData, setGetReviewData] = useState([]);
-
+  
   useEffect(() => {
     // GetAuthorsReview(getID.getID).then(ele => {
     //   setReview(ele?.results)
@@ -47,10 +50,13 @@ export const Review = getID => {
       title: title,
       reviews: review,
     };
-    // console.log(body, "body++++++++++++");
-    CreateBookReview(getID.getID, body).then(elm => {
+    if(token){
+    CreateBookReview(getID.getID, body,token).then(elm => {
       // console.log(elm, "elm++++++++++++++++++");
     });
+  }else{
+    navigate("/Login");
+  }
   };
   // console.log(getReviewData, "+++++++++++++++++++++++++++++++++++++++++");
 

@@ -6,14 +6,14 @@ import { useEffect } from "react";
 import { cartCheckout, CreateCart, getCartList, RemoveCart } from "../../api/api";
 
 export const Cart = () => {
+  let navigate = useNavigate()
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const [count, setCount] = useState(0);
   const [newPrice, setNewPrice] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [allCartList, setAllCartList] = useState([]);
   const [idList, setIdList] = useState([])
   const [totalAmount, setTotalAmount] = useState(0);
-
-  let navigate = useNavigate();
 
   // const handelIncrement = (e, q, i) => {
   //   if (q != 1) {
@@ -86,20 +86,27 @@ export const Cart = () => {
   const handleRemove = (cart, book) => {
     const body = {
       cart_id: cart,
-      book_id: book, //elem?.book_details?.book_id,
+      book_id: book,
     };
-
-    RemoveCart(body).then(elem => {
-      GetAllCartList();
-    });
+    if (token) {
+      RemoveCart(body, token).then(elem => {
+        GetAllCartList();
+      });
+    } else {
+      navigate("/Login");
+    }
   };
 
   const handleCheckout = () => {
-    const body = idList
-    if (body.length > 0) {
-      cartCheckout(body).then((ele) => {
-        navigate("/Address")
-      })
+    if (token) {
+      const body = idList
+      if (body.length > 0) {
+        cartCheckout(body).then((ele) => {
+          navigate("/Address")
+        })
+      }
+    } else {
+      navigate("/Login");
     }
   }
   const handleCheckbox = (e, item) => {
@@ -120,8 +127,6 @@ export const Cart = () => {
       setCount(price)
     }
   }
-  console.log(count, "++++++++++++++++++++++++++++++++++++++++++++")
-  console.log(allCartList, "++allCartList++++++++++++++++++++++++++++++++++++++++++")
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper Cart_Wrapper">

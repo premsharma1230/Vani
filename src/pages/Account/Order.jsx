@@ -5,11 +5,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { getOrderList } from "../../api/api";
 
 export const Order = () => {
+  let navigate = useNavigate();
   const [allOrderList, setAllOrderList] = useState([])
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   useEffect(() => {
-    getOrderList().then((ele) => {
+    if (token) {
+    getOrderList(token).then((ele) => {
       setAllOrderList(ele?.results)
     })
+  } else {
+    navigate("/Login");
+  }
   }, [])
 
   return (

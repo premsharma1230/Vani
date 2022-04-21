@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Classes from "./registeration.module.scss";
@@ -12,6 +12,7 @@ import Close from "../../assets/Close.png";
 import GooglePic from "../../assets/google_logo.png";
 import FacebookPic from "../../assets/facebook_logo.png";
 import { useHistory, useNavigate } from "react-router-dom";
+import { RegisterApi } from "../../api/api";
 
 const useStyles = makeStyles({
   root: {
@@ -33,43 +34,36 @@ const useStyles = makeStyles({
 export default function Registeration() {
   let navigate = useNavigate();
   const classes = useStyles();
+
+  useEffect(() => {
+    const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
+    if (token) {
+      navigate("/")
+    }
+  }, [window.location.pathname])
+
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       firstName: "",
-      lastName : "",
-      email : "",
+      lastName: "",
+      email: "",
       password: "",
 
     },
   });
   const onSubmit = (data) => {
-    // const Body = {
-    //   email: data.email,
-    //   password: data.password,
-    //   provider : "",
-    //   first_name : data.firstName,
-    //   last_name : data.lastName
-    // }
-    // axios({
-    //   method: 'post',
-    //   url: 'http://admin.vaniprakashan.in/auth/user/register',
-    //   data: Body
-    // }).then((e) => {
-    //   navigate("/Login")
-    // })
-
     const formData = new FormData();
     formData.append("email", data.email);
     formData.append("password", data.password);
     formData.append("provider", "");
     formData.append("first_name", data.firstName);
     formData.append("last_name", data.lastName);
-  
-    axios.post("http://admin.vaniprakashan.in/auth/user/register/", formData).then(res => {
+    RegisterApi(formData).then((ele) => {
       navigate("/Login")
-    }).catch((error)=>{
     })
-
+  }
+  const handleLogin = () => {
+    navigate("/Login")
   }
   return (
     <div className={Classes.loginContainer}>
@@ -91,7 +85,7 @@ export default function Registeration() {
               className={`${classes.root} ${Classes.formMain}`}
             >
               <div>
-              <div className={Classes.passwordFieldMargin}>
+                <div className={Classes.passwordFieldMargin}>
                   <Controller
                     name="firstName"
                     control={control}
@@ -122,7 +116,7 @@ export default function Registeration() {
                       />
                     )}
                   />
-                </div>  
+                </div>
                 <div className={Classes.passwordFieldMargin}>
                   <Controller
                     name="email"
@@ -187,7 +181,7 @@ export default function Registeration() {
               <div className={Classes.back}>
                 <img src={GooglePic} alt="Close image" />
               </div>
-              <div className={Classes.back}>
+              <div onClick={handleLogin} className={Classes.back}>
                 Sign In?
               </div>
             </div>

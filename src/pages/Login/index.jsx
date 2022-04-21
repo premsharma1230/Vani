@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Classes from "./login.module.scss";
@@ -6,12 +6,18 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { useForm, Controller } from "react-hook-form";
-import axios from "axios"
 import Logo from "../../assets/vaani-logo.png";
 import Close from "../../assets/Close.png";
 import GooglePic from "../../assets/google_logo.png";
 import FacebookPic from "../../assets/facebook_logo.png";
 import { useHistory, useNavigate } from "react-router-dom";
+import { LoginApi } from "../../api/api";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const useStyles = makeStyles({
   root: {
@@ -33,25 +39,59 @@ const useStyles = makeStyles({
 export default function Login() {
   let navigate = useNavigate();
   const classes = useStyles();
-  const { handleSubmit, control, reset } = useForm({
+  const { handleSubmit, control, reset, formState: { errors }, register } = useForm({
     defaultValues: {
       username: "",
       password: "",
     },
   });
+  const [showError, setShowError] = React.useState("")
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+  const { vertical, horizontal, open } = state;
+  const handleClick = () => {
+    setState({
+      open: true,
+      vertical: 'top',
+      horizontal: 'right',
+    });
+  };
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setState({ ...state, open: false });
+  };
+  useEffect(() => {
+    const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
+    if (token) {
+      navigate("/")
+    }
+  }, [window.location.pathname])
   const onSubmit = (data) => {
     const Body = {
       email: data.username,
       password: data.password,
     }
-    axios({
-      method: 'post',
-      url: 'http://admin.vaniprakashan.in/auth/user/login/',
-      data: Body
-    }).then((e) => {
-      navigate("/")
-    })
+    LoginApi(Body).then(res => {
+      if (res?.status == true) {
+        sessionStorage.setItem("LoginData", JSON.stringify(res));
+        navigate("/")
+      } else {
+        setShowError(res?.data?.non_field_errors[0])
+        handleClick()
+      }
 
+    })
+      .catch(err => {
+      });
+  }
+  const handleNewRegister = () => {
+    navigate("/Registeration")
   }
   return (
     <div className={Classes.loginContainer}>
@@ -74,7 +114,19 @@ export default function Login() {
             >
               <div>
                 <div>
-                  <Controller
+                  <TextField
+                    label="Username"
+                    variant="outlined"
+                    fullWidth
+                    className={classes.userField}
+                    name="username"
+                    {...register("username", {
+                      required: "username is required",
+                    })}
+                    error={Boolean(errors?.username)}
+                    helperText={errors.username?.message}
+                  />
+                  {/* <Controller
                     name="username"
                     control={control}
                     rules={{ required: true }}
@@ -84,13 +136,14 @@ export default function Login() {
                         // id="outlined-basic"
                         label="Enter your Email Address"
                         variant="outlined"
+                        type={email}
                         className={Classes.userField}
                       />
                     )}
-                  />
+                  /> */}
                 </div>
                 <div className={Classes.passwordFieldMargin}>
-                  <Controller
+                  {/* <Controller
                     name="password"
                     control={control}
                     rules={{ required: true }}
@@ -103,7 +156,17 @@ export default function Login() {
                         className={Classes.passwordField}
                       />
                     )}
-                  />
+                  /> */}
+                   <TextField
+                      label="Password"
+                      variant="outlined"
+                      className={Classes.passwordField}
+                      {...register("password", {
+                        required: "password is required",
+                      })}
+                      error={Boolean(errors?.password)}
+                      helperText={errors.password?.message}
+                    />
                 </div>
               </div>
               <div className={Classes.SignupButton}>
@@ -135,12 +198,26 @@ export default function Login() {
               <div className={Classes.back}>
                 <img src={FacebookPic} alt="logo image" />
                 <img src={GooglePic} alt="Close image" />
-                New User?
+                <div onClick={handleNewRegister}>
+                  New User?
+
+                </div>
+
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        autoHideDuration={3000}
+        message={showError}
+        key={vertical + horizontal}
+        onClose={handleClose}
+      >
+        <Alert severity="error">{showError}</Alert>
+      </Snackbar>
     </div>
   );
 }
