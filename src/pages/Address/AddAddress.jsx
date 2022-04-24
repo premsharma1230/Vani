@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const AddAddress = () => {
   let navigate = useNavigate();
   let location = useLocation();
-  console.log(location, "location+++++++++++++++++++");
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const [addressList, setAddressList] = useState(
     location?.state?.Edit ? location?.state?.Edit?.address_type : ""
   );
@@ -99,7 +99,7 @@ export const AddAddress = () => {
     // console.log(body, "EEEEEEEEEEEEEEEEEEEEEEEEE+++++++++++++++++");
     const id = location?.state?.Edit?.id;
 
-    UpdateAddress(body, id).then(elem => {
+    UpdateAddress(body, id,token).then(elem => {
       console.log(elem, "updated++++++++++++");
       navigate("/Address", {
         state: {
@@ -124,7 +124,7 @@ export const AddAddress = () => {
     };
     // console.log(body, "EEEEEEEEEEEEEEEEEEEEEEEEE+++++++++++++++++");
 
-    CreateAddress(body).then(elem => {
+    CreateAddress(body,token).then(elem => {
       console.log(elem, "AddSubmitApi++++++++++++");
       navigate("/Address");
     });

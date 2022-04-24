@@ -364,6 +364,7 @@ const getCartList = (token) => {
 };
 
 const CreateCart = (body, token) => {
+  console.log(body,"======================body==============")
   let slug = `/cart/add_book/`;
   const Token = token
   const url = `${baseRoute}${slug}`;
@@ -377,6 +378,7 @@ const CreateCart = (body, token) => {
           Authorization: `Bearer ${Token}`,
         },
       }).then(response => {
+        console.log(response,"========================response==============")
         return response.data;
       });
 
@@ -447,12 +449,9 @@ const cartCheckout = (list,token) => {
     return error;
   }
 };
-const CreateAddress = body => {
+const CreateAddress = (body,token) => {
   let slug = `/user_address/get_user_address/`;
-
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
   const url = `${baseRoute}${slug}`;
-
   try {
     const response = axios({
       method: "post",
@@ -470,11 +469,9 @@ const CreateAddress = body => {
     return error;
   }
 };
-const cartFinalCheckout = body => {
+const cartFinalCheckout = (body,token) => {
   let slug = `/cart/final_checkout/`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
   const url = `${baseRoute}${slug}`;
-
   try {
     const response = axios({
       method: "post",
@@ -494,7 +491,6 @@ const cartFinalCheckout = body => {
 };
 const getVoucherDiscount = body => {
   let slug = `/cart/get_voucher_discount_values/`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
   const url = `${baseRoute}${slug}`;
   try {
     const response = axios({
@@ -513,12 +509,9 @@ const getVoucherDiscount = body => {
     return error;
   }
 };
-const UpdateAddress = (body, id) => {
+const UpdateAddress = (body, id,token) => {
   let slug = `/user_address/address_details/${id}/`;
-
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjMwNzY1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.yi8x3j3IYdvHOdIF9vBsNfcIjXvXoPQ1o-WOCTBspyw`;
   const url = `${baseRoute}${slug}`;
-
   try {
     const response = axios({
       method: "put",
@@ -537,11 +530,10 @@ const UpdateAddress = (body, id) => {
   }
 };
 
-const getAddressList = () => {
+const getAddressList = (token) => {
   let slug = `/user_address/get_user_address/?page_size=110`;
   const url = `${baseRoute}${slug}`;
-  const token = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjU1NjYwODM1LCJ1c2VybmFtZSI6InBzYXVuZGFyeSIsImltYWdlIjoiaHR0cHM6Ly92YW5pZWNvbW1lcmNlLnMzLmFtYXpvbmF3cy5jb20vdXNlcl9waWNzL2RlZmF1bHRfZm9sZGVyL2RlZmF1bHQuanBnIn0.dYlr8aSJASo6fh9R9zYD28wiK7oPKl2K-dzu3vDJOKI`;
-  try {
+   try {
     const response = axios({
       method: "get",
       url: url,

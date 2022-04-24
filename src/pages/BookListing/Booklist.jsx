@@ -1,9 +1,7 @@
 import * as React from "react";
-import Checkbox from "@mui/material/Checkbox";
 import Pagination from "@mui/material/Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
-import book1 from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
 import { createAndRemoveWishList, CreateCart, GetBookListWithFilters, GetGenrelist, getWishList } from '../../api/api';
@@ -19,8 +17,13 @@ export const Booklist = () => {
   const [bookListFilterData, setBookListFilterData] = React.useState([])
   const [getWishListData, setGetWishListData] = React.useState([])
   const [genreList, setGenreList] = React.useState([])
+  const [count, setCount] = React.useState(1);
+  const [page, setPage] = React.useState(1);
+  const [startSize, setStartSize] = React.useState(0);
+
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
+  console.log(JSON.parse(sessionStorage?.getItem("LoginData")),"++++++++++++++++++++++++++++++++++++++++++++++uuuuu")
   const categories = [
     { name: "print", value: "printed_book", id: 1 },
     { name: "E book", id: 2, value: "e_book" },
@@ -36,7 +39,10 @@ export const Booklist = () => {
     const maxPrices = selectedMaxPrice;
     GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then(e => {
       setBookListFilterData(e?.results);
+      setCount(Math.ceil(e?.results?.length/2))
+      if(token){
       handleGetWishList(e?.results, "fisrtTime")
+      }
     });
   };
   const setPriceValue = e => {
@@ -48,20 +54,20 @@ export const Booklist = () => {
     navigate("/BookDescription");
   }
   const handleGetWishList = (e, r) => {
-    getWishList().then((ele) => {
-      if (r == "not remove") {
+    getWishList(token).then((ele) => {
+      if (r === "not remove") {
         for (let value of Object.values(ele?.results)) {
-          if (value.book == e.id) {
+          if (value.book === e.id) {
             const data = {
               id: e.id
             }
             setGetWishListData(prev => [...prev, data]);
           }
         }
-      } else if(r == "fisrtTime"){
+      } else if(r === "fisrtTime"){
         for (let value of Object.values(ele?.results)) {
              e.map((items) => {
-              if (value.book == items.id) {
+              if (value.book === items.id) {
                 const data = {
                   id:  items.id
                 }
@@ -83,10 +89,10 @@ export const Booklist = () => {
   }
   const handleAddWishList = (e) => {
     for (let value of Object.values(e?.printed_book_details)) {
-      if (value.name == "Paper Back") {
+      if (value.name === "Paper Back") {
       if(token){
         createAndRemoveWishList(value.id).then((ele) => {
-          if (ele?.msg == 'book remove from wishlist') {
+          if (ele?.msg === 'book remove from wishlist') {
             handleGetWishList(e, "remove")
           } else {
             handleGetWishList(e, "not remove")
@@ -100,7 +106,7 @@ export const Booklist = () => {
   }
   const handleShoppingCart = (e) => {
     for (let value of Object.values(e?.printed_book_details)) {
-      if (value.name == "Paper Back") {
+      if (value.name === "Paper Back") {
         let body;
         if(!token){
           body = {
@@ -110,23 +116,28 @@ export const Booklist = () => {
           };
         }else{
           body = {
-            cart_id: 1,
             book_id: value.id,
             quantity: 1,
           };
         }
       CreateCart(body,token).then(elem => {
+        console.log(elem,"======================================")
         navigate("/Cart");
       });
       }
-    }
-     
+    }  
   }
   React.useEffect(() => {
     GetGenrelist().then(ele => {
       setGenreList(ele.data);
     });
   }, []);
+  const handleChange  = (event, value) => {
+    console.log(value , "+++++++++++++++++++++++++++++++++")
+    setPage(value)
+    setStartSize((value * 2)-2)
+  }
+ 
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -137,7 +148,7 @@ export const Booklist = () => {
                 <h4>categories</h4>
               </div>
               <ul className="filter-catgry">
-                {categories.map((elem, index) => (
+                {categories && categories.map((elem, index) => (
                   <li key={index}>
                     <span>
                       <input
@@ -248,7 +259,7 @@ export const Booklist = () => {
               </div>
               <div className="category_Grid_Content">
                 {/* {bookList?.map((ele, index) => ( */}
-                {bookListFilterData?.map((ele, index) => (
+                {bookListFilterData && bookListFilterData.slice(startSize,startSize+2)?.map((ele, index) => (
                   <div key={index} className="Grid-item">
                     <figure>
                       <img
@@ -259,7 +270,7 @@ export const Booklist = () => {
                       <div className="Cart_shop_wrp">
                         <div className="cart-content">
                           {getWishListData && getWishListData.length > 0 ? getWishListData.map((lists, index) =>
-                            lists?.id == ele.id ?
+                            lists?.id === ele.id ?
                               <span key={index} onClick={() => handleAddWishList(ele)}>
                                 <i className="far fa-heart short-item1" style={{color:"red"}}></i>
                               </span>
@@ -283,10 +294,10 @@ export const Booklist = () => {
                       <h3>{ele.title}</h3>
                       <h4>Mohan Kishore</h4>
                       <span key={index} className="star_wrp">
-                        {ele?.book_reviews?.avg != 0
+                        {ele?.book_reviews?.avg !== 0
                           ? [
                             ...Array(
-                              ele?.book_reviews?.avg != 0
+                              ele?.book_reviews?.avg !== 0
                                 ? ele?.book_reviews?.avg
                                 : 1
                             ).keys(),
@@ -305,9 +316,9 @@ export const Booklist = () => {
                 ))}
               </div>
               <div className="Pagination_wrp">
-                <Stack spacing={2}>
-                  {/* page={page} */}
-                  <Pagination count={10} />
+                <Stack
+                  spacing={2}>
+                  <Pagination count={count} page={page}  onChange={handleChange} />
                 </Stack>
               </div>
             </div>

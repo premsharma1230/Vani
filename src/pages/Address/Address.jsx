@@ -6,19 +6,16 @@ import { getAddressList } from "../../api/api";
 export const Address = () => {
   let navigate = useNavigate();
   const location = useLocation();
-  console.log(location, "location+++++++++++++++++");
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const [addressData, setAddressData] = useState([]);
 
-  // console.log(addressData, "addressData+++++++++++");
   useEffect(() => {
-    getAddressList().then(e => {
-      console.log(e?.results, "GEtaddress+++++++++++++");
+    getAddressList(token).then(e => {
       setAddressData(e?.results);
     });
   }, []);
 
   const handleEditAddress = editAddress => {
-    // console.log(e, "eeee+++++++++++++");
     navigate("/AddAddress", { state: { Edit: editAddress } });
   };
 
