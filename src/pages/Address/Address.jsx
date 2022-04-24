@@ -18,6 +18,10 @@ export const Address = () => {
   const handleEditAddress = editAddress => {
     navigate("/AddAddress", { state: { Edit: editAddress } });
   };
+  const handleShipToThisAddress = data => {
+    sessionStorage.setItem("SelectedAddress", JSON.stringify(data));
+    navigate("/Billing", { state: { SelectedAddress: data } });
+  };
 
   return (
     <section className=" Description_wrapper Wishlist_Wrapper Cart_Wrapper Address_Wrapper">
@@ -65,7 +69,7 @@ export const Address = () => {
                         Edit this Address
                       </button>
                     ) : (
-                      <button onClick={() => navigate("/Billing")}>
+                      <button onClick={() => handleShipToThisAddress(elem)}>
                         Ship to this Address
                       </button>
                     )}

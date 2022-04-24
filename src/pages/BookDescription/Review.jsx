@@ -15,19 +15,14 @@ export const Review = getID => {
     // GetAuthorsReview(getID.getID).then(ele => {
     //   setReview(ele?.results)
     // })
-    // console.log(getID.getID, "UseEffecct++++++++++++");
     if (getID.getID) {
       GetBookReview(getID.getID).then(elem => {
-        // console.log(elem, "GetBookReview++++++++++++");
         setGetReviewData(elem?.data);
       });
     }
   }, [getID]);
 
-  // console.log(getReviewData, "getReviewData=============");
-
   const handleSelectedStar = i => {
-    // console.log(i + 1, "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
     setSelectStar(i + 1);
   };
 
@@ -42,8 +37,6 @@ export const Review = getID => {
   };
 
   const handleSubmit = elm => {
-    // console.log(elm, "elm++++++++++++++++++");
-
     const body = {
       username: setName,
       stars: selectStar,
@@ -52,14 +45,12 @@ export const Review = getID => {
     };
     if(token){
     CreateBookReview(getID.getID, body,token).then(elm => {
-      // console.log(elm, "elm++++++++++++++++++");
     });
   }else{
     navigate("/Login");
   }
   };
-  // console.log(getReviewData, "+++++++++++++++++++++++++++++++++++++++++");
-
+  
   return (
     <div className="Review_Wrapper">
       <div className="container">

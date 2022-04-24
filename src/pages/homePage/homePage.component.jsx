@@ -17,12 +17,13 @@ class HomePage extends Component {
         this.setState(response.data);
       });
         if(!token && !cartId){
-          console.log(token,"token,,,,,,,,,,,,,,")
-          console.log(cartId,"cartId,,,,,,,,,,,,,,")
           getCartList().then(elem => {
             sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
-          console.log(elem,"...........................................")
         });
+      }else{
+        getCartList(token).then(elem => {
+          sessionStorage.setItem("cartIdWithToken", JSON.stringify(elem?.cart_id));
+      });
       }
     };
     loadData();

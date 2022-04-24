@@ -10,7 +10,6 @@ export const Account = props => {
   let navigate = useNavigate();
 
   function handleSavedAddress() {
-    console.log("=================");
     navigate("/Address", {
       state: {
         saved: "saved",

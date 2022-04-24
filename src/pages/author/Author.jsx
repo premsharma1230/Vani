@@ -11,6 +11,9 @@ const alpha = Array.from(Array(26)).map((e, i) => i + 65);
 const alphabet = alpha.map(x => String.fromCharCode(x));
 export const Author = () => {
   let navigate = useNavigate();
+  const [count, setCount] = React.useState(1);
+  const [page, setPage] = React.useState(1);
+  const [startSize, setStartSize] = React.useState(0);
   const handleRoute = e => {
     sessionStorage.setItem("AuhorDetail", JSON.stringify(e));
     navigate("/AuhorDescription");
@@ -21,16 +24,21 @@ export const Author = () => {
   useEffect(() => {
     GetAuthorsList("NA").then(res => {
       setAuthorList(res?.results);
+      setCount(Math.ceil(res?.results?.length / 2))
     });
   }, []);
 
   const getAllAuthor = (item, index) => {
-    // console.log(index, "setActiveIndex ++++++++++++++");
     setActiveIndex(index);
     GetAuthorsList(item).then(res => {
+      setCount(Math.ceil(res?.results?.length / 2))
       setAuthorList(res?.results);
     });
   };
+  const handleChange = (event, value) => {
+    setPage(value)
+    setStartSize((value * 2) - 2)
+  }
   return (
     <section className="Main_HomeWrapper  Author_Wrapper">
       <AuthorBanner />
@@ -41,7 +49,7 @@ export const Author = () => {
           </div>
           <div className="Author-Card_Wrap Category_Grid_Wrp">
             <div className="category_Grid_Content">
-              {authorList?.map((ele, index) => (
+              {authorList && authorList.slice(startSize,startSize+2)?.map((ele, index) => (
                 <div key={index} className="Grid-item">
                   <figure>
                     <img
@@ -81,8 +89,9 @@ export const Author = () => {
             ))}
           </div>
           <div className="Pagination_Content">
-            <Stack spacing={2}>
-              <Pagination count={10} />
+            <Stack
+              spacing={2}>
+              <Pagination count={count} page={page} onChange={handleChange} />
             </Stack>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { Footer } from "../Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import {
+  cardIdMerge,
   cartCheckout,
   CreateCart,
   getCartList,
@@ -13,6 +14,8 @@ import {
 export const Cart = () => {
   let navigate = useNavigate()
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
+  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
+  const cartIdWithToken = JSON.parse(sessionStorage?.getItem("cartIdWithToken"))
   const [count, setCount] = useState(0);
   const [newPrice, setNewPrice] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -38,9 +41,7 @@ export const Cart = () => {
   //   setSelectedIndex(i);
   // };
   const handelIncrement = e => {
-    console.log(e, "^ffffffffffffffffffff^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     let realPrice = Number(e?.amount) / Number(e?.quantity);
-    console.log(realPrice, "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     let value = e?.quantity + 1;
     const body = {
       cart_id: e.cart,
@@ -86,23 +87,33 @@ export const Cart = () => {
   //   setSelectedIndex(i);
   // };
   useEffect(() => {
-    GetAllCartList();
+    cartIdMergerApiCall();
   }, []);
-
+  const cartIdMergerApiCall = () => {
+    if (token) {
+      const body = {
+        "cart_one": cartId,
+        "cart_two": cartIdWithToken
+      }
+      cardIdMerge(body, token).then((ele) => {
+        GetAllCartList();
+      })
+    } else {
+      navigate("/Login");
+    }
+  }
   const GetAllCartList = () => {
-    getCartList().then(ele => {
+    getCartList(token).then(ele => {
       setAllCartList(ele?.data);
       setTotalAmount(ele?.total_sum);
     });
   };
 
   const handleRemove = e => {
-    const realAmount = count - Number(e?.amount);
-    console.log(
-      realAmount,
-      "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    );
-    setCount(realAmount);
+    if (count !== 0) {
+      const realAmount = count - Number(e?.amount);
+      setCount(realAmount);
+    }
     const body = {
       cart_id: e?.cart,
       book_id: e?.book,
@@ -120,7 +131,8 @@ export const Cart = () => {
     if (token) {
       const body = idList
       if (body.length > 0) {
-        cartCheckout(body).then((ele) => {
+        cartCheckout(body,token).then((ele) => {
+          sessionStorage.setItem("Checkout1Data", JSON.stringify(ele));
           navigate("/Address")
         })
       }
@@ -171,7 +183,7 @@ export const Cart = () => {
                     <div className="About_Cart">
                       <h2>{ele?.book_details?.title}</h2>
                       {ele?.book_details?.authors &&
-                      ele?.book_details?.authors.length > 0 ? (
+                        ele?.book_details?.authors.length > 0 ? (
                         ele?.book_details?.authors.map((author, index) => (
                           <h4 key={index}>Author : {author}</h4>
                         ))

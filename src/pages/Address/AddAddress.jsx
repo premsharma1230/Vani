@@ -96,11 +96,9 @@ export const AddAddress = () => {
       is_default: true,
       address_type: addressList,
     };
-    // console.log(body, "EEEEEEEEEEEEEEEEEEEEEEEEE+++++++++++++++++");
     const id = location?.state?.Edit?.id;
 
     UpdateAddress(body, id,token).then(elem => {
-      console.log(elem, "updated++++++++++++");
       navigate("/Address", {
         state: {
           saved: "saved",
@@ -122,10 +120,7 @@ export const AddAddress = () => {
       is_default: true,
       address_type: addressList,
     };
-    // console.log(body, "EEEEEEEEEEEEEEEEEEEEEEEEE+++++++++++++++++");
-
     CreateAddress(body,token).then(elem => {
-      console.log(elem, "AddSubmitApi++++++++++++");
       navigate("/Address");
     });
   };

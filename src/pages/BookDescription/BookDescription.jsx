@@ -14,6 +14,7 @@ import CartContext from "../../Context/Context";
 // export const CartContext = createContext();
 
 export const BookDescription = props => {
+  const Navigate = useNavigate();
   const book_slug = JSON.parse(sessionStorage.getItem("bookDetail"))?.slug;
   const [bookDetailsData, setBookDetailsData] = useState([]);
   const [reletedBook, setReletedBook] = useState([]);
@@ -24,10 +25,9 @@ export const BookDescription = props => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [discountPrice, setDiscountPrice] = useState("");
   const [cartData, setCartData] = useState("0");
-
-  // console.log(cartData, "cartData++++++++");
-
-  const Navigate = useNavigate();
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
+  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
+  const cartIdWithToken = JSON.parse(sessionStorage?.getItem("cartIdWithToken"))
 
   const discount = selectedBook?.discountable_price;
   const handelIncrement = () => {
@@ -38,7 +38,6 @@ export const BookDescription = props => {
   };
   const handelDecrement = () => {
     if (count >= 1) {
-      console.log(count, "+++++++++++++++++++++++++++++++");
       let value = count;
       value--;
       if (value >= 1) {
@@ -63,10 +62,6 @@ export const BookDescription = props => {
           setSelectedBook(value[0]);
           setDiscountPrice(value[0]?.discountable_price);
           GetBookReview(value[0].id).then(ele => {
-            // console.log(
-            //   ele,
-            //   "0000000000000000000000000000000000000000000000000000"
-            // );
             // setGetBookReview(ele)
           });
         }
@@ -76,10 +71,6 @@ export const BookDescription = props => {
           setSelectedBook(value[0]);
           setDiscountPrice(value[0]?.discountable_price);
           GetBookReview(value[0].id).then(ele => {
-            // console.log(
-            //   ele,
-            //   "0000000000000000000000000000000000000000000000000000"
-            // );
             // setGetBookReview(ele)
           });
         }
@@ -89,10 +80,6 @@ export const BookDescription = props => {
           setSelectedBook(value[0]);
           setDiscountPrice(value[0]?.discountable_price);
           GetBookReview(value[0].id).then(ele => {
-            // console.log(
-            //   ele,
-            //   "0000000000000000000000000000000000000000000000000000"
-            // );
             // setGetBookReview(ele)
           });
         }
@@ -124,16 +111,22 @@ export const BookDescription = props => {
     });
   }, []);
 
-  // console.log();
-
   const handleCart = (elem, redirect) => {
-    const body = {
-      cart_id: 1,
-      book_id: elem,
-      quantity: count,
-    };
-    CreateCart(body).then(elem => {
-      // console.log(elem, "Click+++++++++++++++++++");
+    let body;
+        if(!token){
+          body = {
+            cart_id: cartId,
+            book_id: elem,
+            quantity: count,
+          };
+        }else{
+          body = {
+            cart_id: cartIdWithToken,
+            book_id: elem,
+            quantity: count,
+          };
+        }
+    CreateCart(body,token).then(elem => {
       sessionStorage.setItem("CartItems", 2);
       if (redirect === "buy") {
         Navigate("/Cart");
@@ -164,7 +157,6 @@ export const BookDescription = props => {
       }
     }
   };
-  // console.log(bookFormat, "++++++++++++++++++bookDetailsData");
 
   const CartState = {
     name: "1",

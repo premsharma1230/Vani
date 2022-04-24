@@ -240,7 +240,6 @@ const GetGenrelist = () => {
   }
 };
 const GetBookReview = id => {
-  // console.log(id, "getID.getID");
   let slug = `/book_store/book_reviews/${id}/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -364,7 +363,6 @@ const getCartList = (token) => {
 };
 
 const CreateCart = (body, token) => {
-  console.log(body,"======================body==============")
   let slug = `/cart/add_book/`;
   const Token = token
   const url = `${baseRoute}${slug}`;
@@ -378,7 +376,6 @@ const CreateCart = (body, token) => {
           Authorization: `Bearer ${Token}`,
         },
       }).then(response => {
-        console.log(response,"========================response==============")
         return response.data;
       });
 
@@ -393,7 +390,6 @@ const CreateCart = (body, token) => {
         url: url,
         data: body,
       }).then(response => {
-        console.log(response, "*********************************")
         return response.data;
       });
 
@@ -470,6 +466,7 @@ const CreateAddress = (body,token) => {
   }
 };
 const cartFinalCheckout = (body,token) => {
+  console.log(body,'---------------',token,'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
   let slug = `/cart/final_checkout/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -489,7 +486,7 @@ const cartFinalCheckout = (body,token) => {
     return error;
   }
 };
-const getVoucherDiscount = body => {
+const getVoucherDiscount = (body,token) => {
   let slug = `/cart/get_voucher_discount_values/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -548,6 +545,25 @@ const getAddressList = (token) => {
     return error;
   }
 };
+const cardIdMerge = (body,token) => {
+  let slug = `/cart/merge_carts/`;
+  const url = `${baseRoute}${slug}`;
+   try {
+    const response = axios({
+      method: "post",
+      url: url,
+      data: body,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => {
+      return response.data;
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 
 export {
   LoginApi,
@@ -579,4 +595,5 @@ export {
   CreateAddress,
   getAddressList,
   UpdateAddress,
+  cardIdMerge
 };

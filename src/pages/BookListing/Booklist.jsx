@@ -23,7 +23,7 @@ export const Booklist = () => {
 
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
-  console.log(JSON.parse(sessionStorage?.getItem("LoginData")),"++++++++++++++++++++++++++++++++++++++++++++++uuuuu")
+  const cartIdWithToken = JSON.parse(sessionStorage?.getItem("cartIdWithToken"))
   const categories = [
     { name: "print", value: "printed_book", id: 1 },
     { name: "E book", id: 2, value: "e_book" },
@@ -91,7 +91,7 @@ export const Booklist = () => {
     for (let value of Object.values(e?.printed_book_details)) {
       if (value.name === "Paper Back") {
       if(token){
-        createAndRemoveWishList(value.id).then((ele) => {
+        createAndRemoveWishList(value.id,token).then((ele) => {
           if (ele?.msg === 'book remove from wishlist') {
             handleGetWishList(e, "remove")
           } else {
@@ -116,12 +116,12 @@ export const Booklist = () => {
           };
         }else{
           body = {
+            cart_id: cartIdWithToken,
             book_id: value.id,
             quantity: 1,
           };
         }
       CreateCart(body,token).then(elem => {
-        console.log(elem,"======================================")
         navigate("/Cart");
       });
       }
@@ -133,7 +133,6 @@ export const Booklist = () => {
     });
   }, []);
   const handleChange  = (event, value) => {
-    console.log(value , "+++++++++++++++++++++++++++++++++")
     setPage(value)
     setStartSize((value * 2)-2)
   }
