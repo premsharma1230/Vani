@@ -164,6 +164,71 @@ a {
   font-weight: bold;
 }
 
+.Latest_Wrapper {
+  padding: 1rem 0 2rem;
+}
+
+.Latest_Wrapper .Latest_heading h1 {
+  font-family: "Lora";
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0.20000000298023224px;
+  text-align: center;
+  padding: 3rem 0 3rem;
+}
+
+.Latest_Wrapper .LatestGrid_wrapper {
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 2rem;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.Search_Wrp input {
+  padding: 0.5rem;
+  margin: 0 0.5rem 0;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #777;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Search_Wrp input:hover, .Search_Wrp input:focus, .Search_Wrp input:active {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-color: #999 !important;
+}
+
+.Client_Wrapper {
+  padding: 3rem 0;
+}
+
+.Client_Wrapper .Client_img {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.Client_Wrapper .Client_img figure img {
+  max-width: 100%;
+}
+
+.Client_Wrapper .LatestCarousel_Wrap .rec-dot {
+  background: #999 !important;
+  -webkit-box-shadow: inherit !important;
+          box-shadow: inherit !important;
+}
+
+.Client_Wrapper .LatestCarousel_Wrap .rec-dot_active {
+  background: #020056 !important;
+  -webkit-box-shadow: inherit !important;
+          box-shadow: inherit !important;
+}
+
 h1,
 h2,
 h3,

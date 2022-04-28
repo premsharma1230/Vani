@@ -121,4 +121,64 @@ video {
   }
 }
 
+.Latest_Wrapper {
+  padding: 1rem 0 2rem;
+  .Latest_heading {
+    h1 {
+      font-family: "Lora";
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 32px;
+      letter-spacing: 0.20000000298023224px;
+      text-align: center;
+      padding: 3rem 0 3rem;
+    }
+  }
+  .LatestGrid_wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    grid-gap: 2rem;
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+.Search_Wrp {
+  input {
+    padding: 0.5rem;
+    margin: 0 0.5rem 0;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #777;
+    transition: all 0.3s ease-in-out;
+    &:hover,
+    &:focus,
+    &:active {
+      transition: all 0.3s ease-in-out;
+      border-color: #999 !important;
+    }
+  }
+}
+.Client_Wrapper {
+  padding: 3rem 0;
+  .Client_img {
+    width: 90%;
+    margin: 0 auto;
+    figure {
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+  .LatestCarousel_Wrap {
+    .rec-dot {
+      background: #999 !important;
+      box-shadow: inherit !important;
+    }
+    .rec-dot_active {
+      background: #020056 !important;
+      box-shadow: inherit !important;
+    }
+  }
+}
+
 @import "./_main";

@@ -7,13 +7,12 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function ApplicationArea() {
-
   const CartCount = JSON.parse(sessionStorage.getItem("CartItems"));
   const changeTheNumber = useSelector(state => state.changeTheNumber);
   return (
     <>
       <div className={Classes.iconArea}>
-        <ul>
+        <ul className="Search_Wrp">
           <li>
             <input type="text" placeholder="search..." />
           </li>
@@ -27,7 +26,7 @@ export default function ApplicationArea() {
               <HiOutlineShoppingCart />
               <span className="CartCounter">
                 {CartCount}
-                {changeTheNumber}   
+                {changeTheNumber}
               </span>
             </Link>
           </li>

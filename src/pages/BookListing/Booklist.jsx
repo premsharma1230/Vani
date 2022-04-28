@@ -4,15 +4,19 @@ import { Link, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
-import { createAndRemoveWishList, CreateCart, GetBookListWithFilters, GetGenrelist, getWishList } from '../../api/api';
-import {incNumber} from "../../actions";
-import {decNumber} from "../../actions";
+import {
+  createAndRemoveWishList,
+  CreateCart,
+  GetBookListWithFilters,
+  GetGenrelist,
+  getWishList,
+} from "../../api/api";
+import { incNumber } from "../../actions";
+import { decNumber } from "../../actions";
 
 import { useSelector, useDispatch } from "react-redux";
 
 export const Booklist = () => {
- 
-  
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const [selectedGenre, setSelectedGenre] = React.useState([]);
@@ -21,16 +25,18 @@ export const Booklist = () => {
   const [categoriesItems, setCategoriesItems] = React.useState([]);
   const [selectedMinPrice, setSelectedMinPrice] = React.useState(1);
   const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
-  const [bookListFilterData, setBookListFilterData] = React.useState([])
-  const [getWishListData, setGetWishListData] = React.useState([])
-  const [genreList, setGenreList] = React.useState([])
+  const [bookListFilterData, setBookListFilterData] = React.useState([]);
+  const [getWishListData, setGetWishListData] = React.useState([]);
+  const [genreList, setGenreList] = React.useState([]);
   const [count, setCount] = React.useState(1);
   const [page, setPage] = React.useState(1);
   const [startSize, setStartSize] = React.useState(0);
 
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
-  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
-  const cartIdWithToken = JSON.parse(sessionStorage?.getItem("cartIdWithToken"))
+  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
+  const cartIdWithToken = JSON.parse(
+    sessionStorage?.getItem("cartIdWithToken")
+  );
   const categories = [
     { name: "print", value: "printed_book", id: 1 },
     { name: "E book", id: 2, value: "e_book" },
@@ -46,9 +52,9 @@ export const Booklist = () => {
     const maxPrices = selectedMaxPrice;
     GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then(e => {
       setBookListFilterData(e?.results);
-      setCount(Math.ceil(e?.results?.length / 2))
+      setCount(Math.ceil(e?.results?.length / 2));
       if (token) {
-        handleGetWishList(e?.results, "fisrtTime")
+        handleGetWishList(e?.results, "fisrtTime");
       }
     });
   };
@@ -59,59 +65,58 @@ export const Booklist = () => {
   const goToBookDetailsPage = e => {
     sessionStorage.setItem("bookDetail", JSON.stringify(e));
     // navigate("/BookDescription");
-  }
+  };
   const handleGetWishList = (e, r) => {
-    getWishList(token).then((ele) => {
+    getWishList(token).then(ele => {
       if (r === "not remove") {
         for (let value of Object.values(ele?.results)) {
           if (value.book === e.id) {
             const data = {
-              id: e.id
-            }
+              id: e.id,
+            };
             setGetWishListData(prev => [...prev, data]);
           }
         }
       } else if (r === "fisrtTime") {
         for (let value of Object.values(ele?.results)) {
-          e.map((items) => {
+          e.map(items => {
             if (value.book === items.id) {
               const data = {
-                id: items.id
-              }
+                id: items.id,
+              };
               setGetWishListData(prev => [...prev, data]);
             }
-          })
+          });
         }
-      }
-      else {
+      } else {
         const index = getWishListData.findIndex(({ id }) => id === e.id);
         if (index !== -1) {
           setGetWishListData([
             ...getWishListData.slice(0, index),
-            ...getWishListData.slice(index + 1)
+            ...getWishListData.slice(index + 1),
           ]);
         }
       }
-    })
-  }
-  const handleAddWishList = (e) => {
+    });
+  };
+  const handleAddWishList = e => {
     for (let value of Object.values(e?.printed_book_details)) {
       if (value.name === "Paper Back") {
         if (token) {
-          createAndRemoveWishList(value.id, token).then((ele) => {
-            if (ele?.msg === 'book remove from wishlist') {
-              handleGetWishList(e, "remove")
+          createAndRemoveWishList(value.id, token).then(ele => {
+            if (ele?.msg === "book remove from wishlist") {
+              handleGetWishList(e, "remove");
             } else {
-              handleGetWishList(e, "not remove")
+              handleGetWishList(e, "not remove");
             }
-          })
+          });
         } else {
           navigate("/Login");
         }
       }
     }
-  }
-  const handleShoppingCart = (e) => {
+  };
+  const handleShoppingCart = e => {
     for (let value of Object.values(e?.printed_book_details)) {
       if (value.name === "Paper Back") {
         let body;
@@ -129,21 +134,21 @@ export const Booklist = () => {
           };
         }
         CreateCart(body, token).then(elem => {
-          dispatch(incNumber(elem?.count))
+          dispatch(incNumber(elem?.count));
           navigate("/Cart");
         });
       }
     }
-  }
+  };
   React.useEffect(() => {
     GetGenrelist().then(ele => {
       setGenreList(ele.data);
     });
   }, []);
   const handleChange = (event, value) => {
-    setPage(value)
-    setStartSize((value * 2) - 2)
-  }
+    setPage(value);
+    setStartSize(value * 2 - 2);
+  };
 
   return (
     <>
@@ -155,48 +160,49 @@ export const Booklist = () => {
                 <h4>categories</h4>
               </div>
               <ul className="filter-catgry">
-                {categories && categories.map((elem, index) => (
-                  <li key={index}>
-                    <span>
-                      <input
-                        type="checkbox"
-                        id="Print"
-                        name="Print"
-                        onChange={e => {
-                          if (e.target.checked) {
-                            setSelectedCategories([
-                              ...selectedCategories,
-                              elem,
-                            ]);
-                            setCategoriesItems([
-                              ...categoriesItems,
-                              elem?.value,
-                            ]);
-                          } else {
-                            setSelectedCategories(
-                              selectedCategories.filter(
-                                people => people?.id !== elem?.id
-                              )
-                            );
-                            setCategoriesItems(
-                              categoriesItems.filter(
-                                element => element !== elem?.value
-                              )
-                            );
-                          }
-                        }}
-                        value={selectedCategories}
-                      />
-                      {/* <Checkbox
+                {categories &&
+                  categories.map((elem, index) => (
+                    <li key={index}>
+                      <span>
+                        <input
+                          type="checkbox"
+                          id="Print"
+                          name="Print"
+                          onChange={e => {
+                            if (e.target.checked) {
+                              setSelectedCategories([
+                                ...selectedCategories,
+                                elem,
+                              ]);
+                              setCategoriesItems([
+                                ...categoriesItems,
+                                elem?.value,
+                              ]);
+                            } else {
+                              setSelectedCategories(
+                                selectedCategories.filter(
+                                  people => people?.id !== elem?.id
+                                )
+                              );
+                              setCategoriesItems(
+                                categoriesItems.filter(
+                                  element => element !== elem?.value
+                                )
+                              );
+                            }
+                          }}
+                          value={selectedCategories}
+                        />
+                        {/* <Checkbox
                         checked={checked}
                         onChange={handleChange}
                         value={elem?.name}
                         inputProps={{ 'aria-label': 'controlled' }}
                       /> */}
-                    </span>
-                    <p>{elem?.name}</p>
-                  </li>
-                ))}
+                      </span>
+                      <p>{elem?.name}</p>
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className="Category_Item1">
@@ -255,82 +261,95 @@ export const Booklist = () => {
                     <Link to="/Booklist">Book</Link>
                   </li>
                 </ul>
-                <ul className="pagination_view">
+                {/* <ul className="pagination_view">
                   <li>
                     <Link to="#">{`< preview`}</Link>
                   </li>
                   <li>
                     <Link to="#">{`next >`}</Link>
                   </li>
-                </ul>
+                </ul> */}
               </div>
               <div className="category_Grid_Content">
                 {/* {bookList?.map((ele, index) => ( */}
-                {bookListFilterData && bookListFilterData.slice(startSize, startSize + 2)?.map((ele, index) => (
-                  <div key={index} className="Grid-item">
-                    <figure>
-                      <Link
-                        to={`/BookDescription/${ele?.slug}`}
-                        key={ele?.slug}
-                        onClick={() => goToBookDetailsPage(ele)}
-                      >
-                        <img
-                          src={ele?.images[0]}
-                          alt="book"
-                        />
-                        </Link>
-                        <div className="Cart_shop_wrp">
-                          <div className="cart-content">
-                            {getWishListData && getWishListData.length > 0 ? getWishListData.map((lists, index) =>
-                              lists?.id === ele.id ?
-                                <span key={index} onClick={() => handleAddWishList(ele)}>
-                                  <i className="far fa-heart short-item1" style={{ color: "red" }}></i>
-                                </span>
-                                :
+                {bookListFilterData &&
+                  bookListFilterData
+                    .slice(startSize, startSize + 2)
+                    ?.map((ele, index) => (
+                      <div key={index} className="Grid-item">
+                        <figure>
+                          <Link
+                            to={`/BookDescription/${ele?.slug}`}
+                            key={ele?.slug}
+                            onClick={() => goToBookDetailsPage(ele)}
+                          >
+                            <img src={ele?.images[0]} alt="book" />
+                          </Link>
+                          <div className="Cart_shop_wrp">
+                            <div className="cart-content">
+                              {getWishListData && getWishListData.length > 0 ? (
+                                getWishListData.map((lists, index) =>
+                                  lists?.id === ele.id ? (
+                                    <span
+                                      key={index}
+                                      onClick={() => handleAddWishList(ele)}
+                                    >
+                                      <i
+                                        className="far fa-heart short-item1"
+                                        style={{ color: "red" }}
+                                      ></i>
+                                    </span>
+                                  ) : (
+                                    <span
+                                      onClick={() => handleAddWishList(ele)}
+                                    >
+                                      <i className="far fa-heart short-item1"></i>
+                                    </span>
+                                  )
+                                )
+                              ) : (
                                 <span onClick={() => handleAddWishList(ele)}>
                                   <i className="far fa-heart short-item1"></i>
                                 </span>
-                            )
-                              :
-                              <span onClick={() => handleAddWishList(ele)}>
-                                <i className="far fa-heart short-item1"></i>
+                              )}
+                              <span onClick={() => handleShoppingCart(ele)}>
+                                <i className="fas fa-shopping-cart short-item1"></i>
                               </span>
-                            }
-                            <span onClick={() => handleShoppingCart(ele)}>
-                              <i className="fas fa-shopping-cart short-item1"></i>
-                            </span>
+                            </div>
                           </div>
-                        </div>
-                    </figure>
-                    <figcaption>
-                      <h3>{ele.title}</h3>
-                      <h4>Mohan Kishore</h4>
-                      <span key={index} className="star_wrp">
-                        {ele?.book_reviews?.avg !== 0
-                          ? [
-                            ...Array(
-                              ele?.book_reviews?.avg !== 0
-                                ? ele?.book_reviews?.avg
-                                : 1
-                            ).keys(),
-                          ].map(index => (
-                            <i className="fas fa-star star-item"></i>
-                          ))
-                          : [...Array(5).keys()].map(index => (
-                            <i className="far fa-star star-item"></i>
-                          ))}
-                      </span>
-                      <strong>
-                        {"₹"} {ele?.ebook_details?.epub?.original_price}
-                      </strong>
-                    </figcaption>
-                  </div>
-                ))}
+                        </figure>
+                        <figcaption>
+                          <h3>{ele.title}</h3>
+                          <h4>Mohan Kishore</h4>
+                          <span key={index} className="star_wrp">
+                            {ele?.book_reviews?.avg !== 0
+                              ? [
+                                  ...Array(
+                                    ele?.book_reviews?.avg !== 0
+                                      ? ele?.book_reviews?.avg
+                                      : 1
+                                  ).keys(),
+                                ].map(index => (
+                                  <i className="fas fa-star star-item"></i>
+                                ))
+                              : [...Array(5).keys()].map(index => (
+                                  <i className="far fa-star star-item"></i>
+                                ))}
+                          </span>
+                          <strong>
+                            {"₹"} {ele?.ebook_details?.epub?.original_price}
+                          </strong>
+                        </figcaption>
+                      </div>
+                    ))}
               </div>
               <div className="Pagination_wrp">
-                <Stack
-                  spacing={2}>
-                  <Pagination count={count} page={page} onChange={handleChange} />
+                <Stack spacing={2}>
+                  <Pagination
+                    count={count}
+                    page={page}
+                    onChange={handleChange}
+                  />
                 </Stack>
               </div>
             </div>

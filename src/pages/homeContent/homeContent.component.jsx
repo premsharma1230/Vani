@@ -8,6 +8,7 @@ import PublicationBanner from "../../components/publicationBanner/PublicationBan
 import Prefooter from "../../components/PreFooter/preFooter.component";
 import AboutSection from "../../components/aboutSection/aboutSection.component";
 import { Footer } from "../../pages/Footer/Footer";
+import { ClientView } from "./ClientView";
 
 export default function HomeContent({ imageUrl }) {
   const backdrop = imageUrl;
@@ -35,7 +36,8 @@ export default function HomeContent({ imageUrl }) {
         <DigitalCatelog />
         <PublicationBanner />
         <AboutSection />
-        {/* <HomePageLogos/> */}
+        {/* <HomePageLogos /> */}
+        <ClientView />
         <div className={Classes.prefooter}>
           <Prefooter />
         </div>
