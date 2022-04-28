@@ -73,7 +73,6 @@ export const ChangePassword = () => {
     }
     if(token){
     ChangePasswordApi(Body,token).then(res => {
-      console.log(res,"++++++++++++++++++++++++++")
       if (res?.status == true) {
         setShowError(res?.msg)
         handleClick()

@@ -16,7 +16,6 @@ export const BookDescription = props => {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location.pathname.split("/"),"********************************")
   const book_slug  = location.pathname.split("/")
   // const book_slug = JSON.parse(sessionStorage.getItem("bookDetail"))?.slug;
   const [bookDetailsData, setBookDetailsData] = useState([]);

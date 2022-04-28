@@ -11,7 +11,6 @@ import { Link, useNavigate } from "react-router-dom";
 export const PersonalEdit = () => {
   let navigate = useNavigate();
   const userDetails = JSON.parse(sessionStorage?.getItem("LoginData"));
-  console.log(userDetails,"userDetails++++++++++++++++++++++++=")
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     first_name : '',
     last_name : '',
@@ -25,7 +24,6 @@ export const PersonalEdit = () => {
     }
     if(userDetails?.token){
     UpdatePersonalDetailsApi(body,userDetails).then((ele) => {
-      console.log(ele,"============================")
       navigate('/PersonalDetail')
     })
   }else{

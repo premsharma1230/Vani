@@ -523,7 +523,6 @@ const CreateAddress = (body,token) => {
   }
 };
 const cartFinalCheckout = (body,token) => {
-  console.log(body,'---------------',token,'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
   let slug = `/cart/final_checkout/`;
   const url = `${baseRoute}${slug}`;
   try {

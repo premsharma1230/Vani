@@ -19,8 +19,6 @@ export const Billing = () => {
       "address_id": selectedAddress?.id
     }
     cartFinalCheckout(body, token).then((ele) => {
-      console.log(ele, "eleeleeleele++++____________++++++________________")
-    
     })
   }
   useEffect(() => {
@@ -45,7 +43,6 @@ export const Billing = () => {
   }
   const GetTotalCost = () => {
     let finalTotalCost
-    console.log(discountCost,"+++++++++++++++++++++++++++")
     if (discountCost !== 0) {
       finalTotalCost = totalCost - discountCost;
     } else {
