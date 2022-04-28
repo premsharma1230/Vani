@@ -10,9 +10,12 @@ import {
   getCartList,
   RemoveCart,
 } from "../../api/api";
+import {incNumber} from "../../actions";
+import { useSelector, useDispatch } from "react-redux";
 
 export const Cart = () => {
   let navigate = useNavigate()
+  const dispatch = useDispatch();
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
   const cartIdWithToken = JSON.parse(sessionStorage?.getItem("cartIdWithToken"))
@@ -49,6 +52,7 @@ export const Cart = () => {
       quantity: value,
     };
     CreateCart(body).then(elem => {
+      dispatch(incNumber(elem?.count))
       GetAllCartList();
     });
     const current = count + Number(realPrice);
@@ -63,6 +67,7 @@ export const Cart = () => {
       quantity: value,
     };
     CreateCart(body).then(elem => {
+      dispatch(incNumber(elem?.count))
       GetAllCartList();
     });
     const current = count - Number(realPrice);
@@ -120,6 +125,7 @@ export const Cart = () => {
     };
     if (token) {
       RemoveCart(body, token).then(elem => {
+        dispatch(incNumber(elem?.count))
         GetAllCartList();
       });
     } else {

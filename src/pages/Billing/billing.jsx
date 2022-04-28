@@ -13,32 +13,31 @@ export const Billing = () => {
   const [discountCost, setDiscountCost] = useState(0)
 
   const handleFinalCheckout = () => {
-    const formData = new FormData();
-    formData.append("cart_id", CheckoutItems?.data?.[0].cart);
-    formData.append("voucher_code", "oYMWis0ua0BGyyq5Sa7C");
-    formData.append("address_id", selectedAddress?.id);
     const body = {
       "cart_id": CheckoutItems?.data?.[0].cart,
-      "voucher_code" : "oYMWis0ua0BGyyq5Sa7C",
-      "address_id" : selectedAddress?.id
+      "voucher_code": applyCode,
+      "address_id": selectedAddress?.id
     }
-    console.log(body, "+++++++++++++++++++++++++++body++++++++++++++++++++++++++++++++++++")
-    console.log(formData, "+++++++++++++++++++++++++++formData++++++++++++++++++++++++++++++++++++")
-    console.log( CheckoutItems?.data?.[0].cart, "+++++++++++++++++++++++++++ CheckoutItems?.data?.[0].cart++++++++++++++++++++++++++++++++++++")
-    console.log(selectedAddress?.id, "+++++++++++++++++++++++++++selectedAddress?.id++++++++++++++++++++++++++++++++++++")
     cartFinalCheckout(body, token).then((ele) => {
-      console.log(ele,"eleeleeleele++++____________++++++________________")
+      console.log(ele, "eleeleeleele++++____________++++++________________")
+    
     })
   }
   useEffect(() => {
     setTotalCost(CheckoutItems?.total_sum)
   }, [totalCost])
+  useEffect(() => {
+    GetTotalCost()
+  }, [discountCost])
   const handleApplyPromocode = () => {
     const body = {
       cart_id: CheckoutItems?.data?.[0].cart,
-      voucher_code: discountCost
+      voucher_code: applyCode
     }
     getVoucherDiscount(body, token).then((value) => {
+      if(value?.status){
+        setDiscountCost(value?.discount_amount)
+        }
     })
   }
   const handleApplyCode = (e) => {
@@ -46,9 +45,10 @@ export const Billing = () => {
   }
   const GetTotalCost = () => {
     let finalTotalCost
-    if(discountCost !== 0){
+    console.log(discountCost,"+++++++++++++++++++++++++++")
+    if (discountCost !== 0) {
       finalTotalCost = totalCost - discountCost;
-    }else{
+    } else {
       finalTotalCost = totalCost
     }
     return finalTotalCost;
@@ -87,15 +87,15 @@ export const Billing = () => {
             <div className="billing_head">
               <h2>Summary</h2>
             </div>
-            {CheckoutItems && CheckoutItems?.data?.map((ele,index) => (
+            {CheckoutItems && CheckoutItems?.data?.map((ele, index) => (
               <ul key={index} className="billing-right_Content">
                 <li>
                   <img src={book} alt="book" />
                 </li>
                 <li>
                   <h3>{ele?.book_details?.title}</h3>
-                  {ele?.book_details?.authors?.map((auth,index) =>
-                  <p key={index}>Author : {auth}</p>
+                  {ele?.book_details?.authors?.map((auth, index) =>
+                    <p key={index}>Author : {auth}</p>
                   )}
                   <p>ISBN : {ele?.book_details?.isbn_code}</p>
                 </li>

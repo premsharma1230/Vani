@@ -9,13 +9,16 @@ import {
   CreateCart,
 } from "../../api/api";
 import { Review } from "./Review";
-import CartContext from "../../Context/Context";
-
-// export const CartContext = createContext();
+import {incNumber} from "../../actions";
+import { useSelector, useDispatch } from "react-redux";
 
 export const BookDescription = props => {
   const Navigate = useNavigate();
-  const book_slug = JSON.parse(sessionStorage.getItem("bookDetail"))?.slug;
+  const dispatch = useDispatch();
+  const location = useLocation();
+  console.log(location.pathname.split("/"),"********************************")
+  const book_slug  = location.pathname.split("/")
+  // const book_slug = JSON.parse(sessionStorage.getItem("bookDetail"))?.slug;
   const [bookDetailsData, setBookDetailsData] = useState([]);
   const [reletedBook, setReletedBook] = useState([]);
   const [bookFormat, setBookFormat] = useState([]);
@@ -47,7 +50,7 @@ export const BookDescription = props => {
     }
   };
   useEffect(() => {
-    GetBookDetails(book_slug).then(e => {
+    GetBookDetails(book_slug[2]).then(e => {
       setBookDetailsData(e?.data);
       const printedBookDetails = Object.getOwnPropertyNames(
         e?.data?.printed_book_details
@@ -127,7 +130,7 @@ export const BookDescription = props => {
           };
         }
     CreateCart(body,token).then(elem => {
-      sessionStorage.setItem("CartItems", 2);
+      dispatch(incNumber(elem?.count))
       if (redirect === "buy") {
         Navigate("/Cart");
       }
@@ -164,9 +167,6 @@ export const BookDescription = props => {
 
   return (
     <>
-      <CartContext.Provider value={cartData}>
-        {props.children}
-      </CartContext.Provider>
       <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
         <div className="BookDescription_head">
           <div className="container">

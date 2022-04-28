@@ -27,6 +27,63 @@ const LoginApi = (body) => {
     return error;
   }
 };
+const ChangePasswordApi = (body,token) => {
+  const slug = `/auth/user/change_password/`
+  const url = `${baseRoute}${slug}`;
+  try {
+    const response = axios({
+      method: "post",
+      url: url,
+      data: body,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(res => {
+      return res.data;
+    }).catch(function (error) {
+      if (error.response) {
+        return error.response;
+      }
+      else if (error.request) {
+        return error.request;
+      } else {
+        return error.message;
+      }
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+const UpdatePersonalDetailsApi = (body,userData) => {
+  const slug = `/auth/user/user_profile/${userData?.slug}/`
+  const url = `${baseRoute}${slug}`;
+  try {
+    const response = axios({
+      method: "put",
+      url: url,
+      data: body,
+      headers: {
+        Authorization: `Bearer ${userData?.token}`,
+      },
+    }).then(res => {
+      return res.data;
+    }).catch(function (error) {
+      if (error.response) {
+        return error.response;
+      }
+      else if (error.request) {
+        return error.request;
+      } else {
+        return error.message;
+      }
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 
 
 const RegisterApi = (body) => {
@@ -568,6 +625,8 @@ const cardIdMerge = (body,token) => {
 export {
   LoginApi,
   RegisterApi,
+  ChangePasswordApi,
+  UpdatePersonalDetailsApi,
   HomeBanner,
   AuthorList,
   TrendingAuthorAndBook,

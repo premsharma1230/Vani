@@ -34,7 +34,10 @@ export default function RouteSeperater() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/BookDetail" element={<BooksDetail />} />
             <Route path="/BookList" element={<Booklist />} />
-            <Route path="/BookDescription" element={<BookDescription />} />
+            <Route path="/BookDescription" element={<BookDescription />}>
+              <Route path=":BookDescriptionId" element={<BookDescription />} />
+            </Route>
+            {/* <Route path="/BookDescription" element={<BookDescription />} /> */}
             <Route path="/Author" element={<Author />} />
             <Route path="/AuhorDescription" element={<AuhorDescription />} />
             <Route path="/Wishlist" element={<Wishlist />} />
@@ -47,6 +50,14 @@ export default function RouteSeperater() {
             <Route path="/PersonalDetail" element={<PersonalDetail />} />
             <Route path="/PersonalEdit" element={<PersonalEdit />} />
             <Route path="/ChangePassword" element={<ChangePassword />} />
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>There's nothing here!</p>
+                </main>
+              }
+            />
           </Route>
         </Routes>
       </Router>

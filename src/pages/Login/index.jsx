@@ -11,7 +11,7 @@ import Close from "../../assets/Close.png";
 import GooglePic from "../../assets/google_logo.png";
 import FacebookPic from "../../assets/facebook_logo.png";
 import { useHistory, useNavigate } from "react-router-dom";
-import { LoginApi } from "../../api/api";
+import { getCartList, LoginApi } from "../../api/api";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
@@ -80,7 +80,10 @@ export default function Login() {
     LoginApi(Body).then(res => {
       if (res?.status == true) {
         sessionStorage.setItem("LoginData", JSON.stringify(res));
-        navigate("/")
+        getCartList(res?.token).then(elem => {
+          sessionStorage.setItem("cartIdWithToken", JSON.stringify(elem?.cart_id));
+          navigate("/")
+      });
       } else {
         setShowError(res?.data?.non_field_errors[0])
         handleClick()

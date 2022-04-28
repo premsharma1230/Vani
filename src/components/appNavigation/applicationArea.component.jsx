@@ -4,12 +4,12 @@ import { RiTranslate } from "react-icons/ri";
 import { BsPerson } from "react-icons/bs";
 import Classes from "./_appNavigation.module.scss";
 import { Link } from "react-router-dom";
-import CartContext from "../../Context/Context";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function ApplicationArea() {
-  let data = useContext(CartContext);
 
   const CartCount = JSON.parse(sessionStorage.getItem("CartItems"));
+  const changeTheNumber = useSelector(state => state.changeTheNumber);
   return (
     <>
       <div className={Classes.iconArea}>
@@ -26,8 +26,8 @@ export default function ApplicationArea() {
             <Link to="/Cart" className="">
               <HiOutlineShoppingCart />
               <span className="CartCounter">
-                {/* {CartCount} */}
-                {data}
+                {CartCount}
+                {changeTheNumber}   
               </span>
             </Link>
           </li>
