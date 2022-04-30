@@ -10,10 +10,14 @@ export default function CustomeButton({ getSlug, name, accent }) {
          to={`/AuhorDescription/${getSlug}`}
          key={getSlug}
        >{name}</Link>
-        :
+        :name === "SEE THIS BOOK" ?
         <Link
         to={`/BookDescription/${getSlug}`}
         key={getSlug}
+      >{name}</Link>
+      :
+      <Link
+        to="#"
       >{name}</Link>
       }
     </button>

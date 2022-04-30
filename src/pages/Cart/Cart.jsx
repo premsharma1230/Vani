@@ -27,7 +27,11 @@ export const Cart = () => {
   const [allCartList, setAllCartList] = useState([]);
   const [idList, setIdList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [checkoutTrue, setCheckoutTrue] = useState(false);
 
+
+  console.log(cartId, "cartId++++++++++++++++++++++++++++++")
+  console.log(cartIdWithToken, "cartIdWithToken++++++++++++++++++")
   // const handelIncrement = (e, q, i) => {
   //   if (q != 1) {
   //     let realPrice = e / q;
@@ -47,33 +51,43 @@ export const Cart = () => {
   // };
   const handelIncrement = e => {
     let realPrice = Number(e?.amount) / Number(e?.quantity);
+    const isAvaible = idList.find(f => f === e.id)
     let value = e?.quantity + 1;
     const body = {
-      cart_id: e.cart,
+      cart_id: e?.cart,
       book_id: e?.book,
       quantity: value,
     };
-    CreateCart(body).then(elem => {
-      dispatch(incNumber(elem?.count));
+    CreateCart(body, token).then(elem => {
+      if (elem?.status) {
+        if (isAvaible) {
+          // const sendValue = elem?.data.find(f => f.id === e.id)
+          const current = count + Number(realPrice);
+          handleCheckbox("Increment", current)
+        }
+      }
       GetAllCartList();
     });
-    const current = count + Number(realPrice);
-    setCount(current);
   };
   const handelDecrement = e => {
     let realPrice = Number(e?.amount) / Number(e?.quantity);
+    const isAvaible = idList.find(f => f === e.id)
     let value = e?.quantity - 1;
     const body = {
-      cart_id: e.cart,
+      cart_id: e?.cart,
       book_id: e?.book,
       quantity: value,
     };
-    CreateCart(body).then(elem => {
-      dispatch(incNumber(elem?.count));
+    CreateCart(body, token).then(elem => {
+      if (elem?.status) {
+        if (isAvaible) {
+          // const sendValue = elem?.data.find(f => f.id === e.id)
+          const current = count - Number(realPrice);
+          handleCheckbox("Decrement", current)
+        }
+      }
       GetAllCartList();
     });
-    const current = count - Number(realPrice);
-    setCount(current);
   };
   // const handelDecrement = (e, q, i) => {
   //   if (count > 0) {
@@ -156,7 +170,12 @@ export const Cart = () => {
     }
   };
   const handleCheckbox = (e, item) => {
-    if (e?.target?.checked) {
+    setCheckoutTrue(true)
+    if (e === "Increment") {
+      setCount(item);
+    } else if (e === "Decrement") {
+      setCount(item);
+    } else if (e === true) {
       setIdList(prev => [...prev, item.id]);
       let price = count + Number(item.amount);
       setCount(price);
@@ -185,7 +204,7 @@ export const Cart = () => {
                     <div className="checkbox_Wrp">
                       <label>
                         <input
-                          onChange={e => handleCheckbox(e, ele)}
+                          onChange={e => handleCheckbox(e?.target?.checked, ele)}
                           type="checkbox"
                         />
                       </label>
@@ -198,7 +217,7 @@ export const Cart = () => {
                     <div className="About_Cart">
                       <h2>{ele?.book_details?.title}</h2>
                       {ele?.book_details?.authors &&
-                      ele?.book_details?.authors.length > 0 ? (
+                        ele?.book_details?.authors.length > 0 ? (
                         ele?.book_details?.authors.map((author, index) => (
                           <h4 key={index}>Author : {author}</h4>
                         ))
@@ -258,7 +277,7 @@ export const Cart = () => {
                 </div>
               ))}
             {/* total */}
-            {count != 0 && (
+            {checkoutTrue ?
               <div className="Grand_Total">
                 <ul className="Total-content">
                   <li className="Total-text">Total</li>
@@ -269,7 +288,8 @@ export const Cart = () => {
                   <button onClick={handleCheckout}>Checkout</button>
                 </div>
               </div>
-            )}
+              : null
+            }
           </div>
         </div>
         <Footer />

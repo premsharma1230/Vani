@@ -12,7 +12,7 @@ import {
   GetGenrelist,
   getWishList,
 } from "../../api/api";
-import { incNumber,Redirection } from "../../actions";
+import { incNumber, Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Booklist = () => {
@@ -46,16 +46,20 @@ export const Booklist = () => {
   }, [selectedCategories, selectedGenre, selectedMinPrice, selectedMaxPrice]);
 
   React.useEffect(() => {
-    if(!token && !cartId){
-      getCartList().then(elem => {
-        sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
-    });
-  }else{
-    getCartList(token).then(elem => {
-      setCartIdWithToken(elem?.cart_id)
-  });
-  }
-  })
+    if (token) {
+      getCartList(token).then(elem => {
+        setCartIdWithToken(elem?.cart_id)
+        sessionStorage.setItem("cartIdWithToken", JSON.stringify(elem?.cart_id));
+      });
+    } else {
+      if (!cartId) {
+        getCartList().then(elem => {
+          console.log(elem, "&&&&&&&&&&&&&&&&&&&&&&&&&77")
+          sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
+        });
+      }
+    }
+  }, [])
   const GetBookList = () => {
     const Categories = categoriesItems;
     const Genre = genreItems;
@@ -161,7 +165,7 @@ export const Booklist = () => {
     setPage(value)
     setStartSize((value * 2) - 2)
   }
-  const handleSelectGenre = (e,elem) => {
+  const handleSelectGenre = (e, elem) => {
     if (e?.target?.checked) {
       setSelectedGenre([...selectedGenre, elem]);
       setGenreItems([...genreItems, elem?.id]);
@@ -178,28 +182,28 @@ export const Booklist = () => {
       );
     }
   }
-  const handleCatrogary = (e,elem) => {
-      if (e.target.checked) {
-        setSelectedCategories([
-          ...selectedCategories,
-          elem,
-        ]);
-        setCategoriesItems([
-          ...categoriesItems,
-          elem?.value,
-        ]);
-      } else {
-        setSelectedCategories(
-          selectedCategories.filter(
-            people => people?.id !== elem?.id
-          )
-        );
-        setCategoriesItems(
-          categoriesItems.filter(
-            element => element !== elem?.value
-          )
-        );
-      }
+  const handleCatrogary = (e, elem) => {
+    if (e.target.checked) {
+      setSelectedCategories([
+        ...selectedCategories,
+        elem,
+      ]);
+      setCategoriesItems([
+        ...categoriesItems,
+        elem?.value,
+      ]);
+    } else {
+      setSelectedCategories(
+        selectedCategories.filter(
+          people => people?.id !== elem?.id
+        )
+      );
+      setCategoriesItems(
+        categoriesItems.filter(
+          element => element !== elem?.value
+        )
+      );
+    }
   }
   return (
     <>
@@ -262,8 +266,8 @@ export const Booklist = () => {
                         type="checkbox"
                         id="Print"
                         name="Print"
-                        onChange={(e) => handleSelectGenre(e,List) }
-                        value={selectedGenre} 
+                        onChange={(e) => handleSelectGenre(e, List)}
+                        value={selectedGenre}
                       />
                       {/* <Checkbox
                         checked={checked}
@@ -309,14 +313,14 @@ export const Booklist = () => {
                               <Link
                                 to={`/BookDescription/${ele?.slug}`}
                                 key={ele?.slug}
-                                // onClick={() => goToBookDetailsPage(ele)}
+                              // onClick={() => goToBookDetailsPage(ele)}
                               >
                                 <img src={ele?.images[0]} alt="book" />
                               </Link>
                               <div className="Cart_shop_wrp">
                                 <div className="cart-content">
                                   {getWishListData &&
-                                  getWishListData.length > 0 ? (
+                                    getWishListData.length > 0 ? (
                                     getWishListData.map((lists, index) =>
                                       lists?.id === ele.id ? (
                                         <span
@@ -356,23 +360,23 @@ export const Booklist = () => {
                               <span className="star_wrp">
                                 {ele?.book_reviews?.avg !== 0
                                   ? [
-                                      ...Array(ele?.book_reviews?.avg).keys(),
-                                    ].map(index => (
-                                      <strong key={index}>
-                                        <i
-                                          key={index}
-                                          className="fas fa-star star-item"
-                                        ></i>
-                                      </strong>
-                                    ))
+                                    ...Array(ele?.book_reviews?.avg).keys(),
+                                  ].map(index => (
+                                    <strong key={index}>
+                                      <i
+                                        key={index}
+                                        className="fas fa-star star-item"
+                                      ></i>
+                                    </strong>
+                                  ))
                                   : [...Array(5).keys()].map(index => (
-                                      <strong key={index}>
-                                        <i
-                                          key={index}
-                                          className="far fa-star star-item"
-                                        ></i>
-                                      </strong>
-                                    ))}
+                                    <strong key={index}>
+                                      <i
+                                        key={index}
+                                        className="far fa-star star-item"
+                                      ></i>
+                                    </strong>
+                                  ))}
                               </span>
                               <strong>
                                 {"₹"} {ele?.ebook_details?.epub?.original_price}
