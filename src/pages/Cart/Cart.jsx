@@ -10,15 +10,17 @@ import {
   getCartList,
   RemoveCart,
 } from "../../api/api";
-import {incNumber} from "../../actions";
+import { incNumber } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Cart = () => {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
-  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
-  const cartIdWithToken = JSON.parse(sessionStorage?.getItem("cartIdWithToken"))
+  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
+  const cartIdWithToken = JSON.parse(
+    sessionStorage?.getItem("cartIdWithToken")
+  );
   const [count, setCount] = useState(0);
   const [newPrice, setNewPrice] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -52,7 +54,7 @@ export const Cart = () => {
       quantity: value,
     };
     CreateCart(body).then(elem => {
-      dispatch(incNumber(elem?.count))
+      dispatch(incNumber(elem?.count));
       GetAllCartList();
     });
     const current = count + Number(realPrice);
@@ -67,7 +69,7 @@ export const Cart = () => {
       quantity: value,
     };
     CreateCart(body).then(elem => {
-      dispatch(incNumber(elem?.count))
+      dispatch(incNumber(elem?.count));
       GetAllCartList();
     });
     const current = count - Number(realPrice);
@@ -97,19 +99,20 @@ export const Cart = () => {
   const cartIdMergerApiCall = () => {
     if (token) {
       const body = {
-        "cart_one": cartId,
-        "cart_two": cartIdWithToken
-      }
-      cardIdMerge(body, token).then((ele) => {
+        cart_one: cartId,
+        cart_two: cartIdWithToken,
+      };
+      cardIdMerge(body, token).then(ele => {
         GetAllCartList();
-      })
+      });
     } else {
       navigate("/Login");
     }
-  }
+  };
   const GetAllCartList = () => {
     getCartList(token).then(ele => {
       setAllCartList(ele?.data);
+      dispatch(incNumber(ele?.count));
       setTotalAmount(ele?.total_sum);
     });
   };
@@ -125,7 +128,7 @@ export const Cart = () => {
     };
     if (token) {
       RemoveCart(body, token).then(elem => {
-        dispatch(incNumber(elem?.count))
+        dispatch(incNumber(elem?.count));
         GetAllCartList();
       });
     } else {
@@ -135,12 +138,12 @@ export const Cart = () => {
 
   const handleCheckout = () => {
     if (token) {
-      const body = idList
+      const body = idList;
       if (body.length > 0) {
-        cartCheckout(body,token).then((ele) => {
+        cartCheckout(body, token).then(ele => {
           sessionStorage.setItem("Checkout1Data", JSON.stringify(ele));
-          navigate("/Address")
-        })
+          navigate("/Address");
+        });
       }
     } else {
       navigate("/Login");
@@ -159,7 +162,7 @@ export const Cart = () => {
       let price = count - Number(item.amount);
       setCount(price);
     }
-  }
+  };
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper Cart_Wrapper">
@@ -189,7 +192,7 @@ export const Cart = () => {
                     <div className="About_Cart">
                       <h2>{ele?.book_details?.title}</h2>
                       {ele?.book_details?.authors &&
-                        ele?.book_details?.authors.length > 0 ? (
+                      ele?.book_details?.authors.length > 0 ? (
                         ele?.book_details?.authors.map((author, index) => (
                           <h4 key={index}>Author : {author}</h4>
                         ))

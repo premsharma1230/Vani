@@ -6,8 +6,19 @@ import Classes from "./_appNavigation.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { globleSearchData } from "../../actions";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 export default function ApplicationArea() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const changeTheNumber = useSelector(state => state.changeTheNumber);
@@ -26,10 +37,37 @@ export default function ApplicationArea() {
               onChange={handleSearch}
             />
           </li>
-          <li>
-            <Link to="/Account">
+          <li className="Profile_Wrapper">
+            <div
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
               <BsPerson />
-            </Link>
+            </div>
+
+            <Menu
+              id="basic-menu"
+              className="Menu_Wrap"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={handleClose}>
+                <Link to="/Account">Profile</Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link to={"/wishlist"}>Wishlist</Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link to="/login">Logout</Link>
+              </MenuItem>
+            </Menu>
           </li>
           <li className="CartMain_Wrapper cartTop">
             <Link to="/Cart" className="">
