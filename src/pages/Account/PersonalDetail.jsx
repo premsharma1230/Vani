@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 export const PersonalDetail = () => {
   let navigate = useNavigate();
   const userData = JSON.parse(sessionStorage?.getItem("LoginData"))
-
+  const LoginUserData = JSON.parse(sessionStorage?.getItem("LoginUserData"))
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper PersonalDetail_Wrapper">
@@ -18,7 +18,7 @@ export const PersonalDetail = () => {
             <div className="Personal_Form">
               <ul>
                 <li>
-                  <h3>{userData?.first_name}{userData?.last_name}</h3>
+                  <h3>{LoginUserData?.firstName}{"  "}{LoginUserData?.lastName}</h3>
                   <span>
                     <i className="fas fa-user-circle icon"></i> lorem Doe
                   </span>

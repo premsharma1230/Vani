@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { menuNav } from "../../actions";
 
@@ -7,16 +7,22 @@ export const BottomNavigation = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState(false);
   const [menuBar, setmenuBar] = useState(false);
-  //   const CartCount = JSON.parse(sessionStorage.getItem("CartItems"));
   const changeTheNumber = useSelector(state => state.changeTheNumber);
-  //   console.log(changeTheNumber, "changeTheNumber");
   const handleMenu = () => {
     setmenuBar(!menuBar);
     dispatch(menuNav(!menuBar));
+    if (search) {
+      setSearch(false);
+    }
   };
-  //   useEffect(() => {
-  //
-  //   }, [menuBar]);
+
+  const handleSearch = () => {
+    setSearch(!search);
+    if (!search) {
+      dispatch(menuNav(false));
+    }
+    // setSearch(false);
+  };
   return (
     <>
       <div className="Bottom_Navitgator_Wrapper">
@@ -29,7 +35,7 @@ export const BottomNavigation = () => {
           <li onClick={handleMenu}>
             <i className="fas fa-bars"></i>
           </li>
-          <li className="Search" onClick={() => setSearch(!search)}>
+          <li className="Search" onClick={handleSearch}>
             <i className="fas fa-search"></i>
           </li>
           <li className="CartMain_Wrapper">
@@ -39,7 +45,7 @@ export const BottomNavigation = () => {
             </Link>
           </li>
         </ul>
-        {menuBar !== false ? (
+        {search !== false ? (
           <div className="Search-input">
             <input type="text" placeholder="search...." />
           </div>

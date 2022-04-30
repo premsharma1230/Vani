@@ -79,7 +79,14 @@ export default function Login() {
     }
     LoginApi(Body).then(res => {
       if (res?.status == true) {
+        const LoginUserData = {
+          firstName : res?.first_name,
+          lastName : res?.last_name,
+          phoneNumber: res?.phone_number
+        }
+        sessionStorage.setItem("LoginUserData", JSON.stringify(LoginUserData));
         sessionStorage.setItem("LoginData", JSON.stringify(res));
+        sessionStorage.setItem("LoginUserData", JSON.stringify(LoginUserData));
         getCartList(res?.token).then(elem => {
           sessionStorage.setItem("cartIdWithToken", JSON.stringify(elem?.cart_id));
           navigate("/")

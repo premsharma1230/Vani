@@ -44,6 +44,7 @@ export default function LatestRelease() {
               <div className={Classes.first}>
                 <BookDetail
                   isReverse={false}
+                  allData={dataValues?.firstElement}
                   bookTitle={dataValues?.firstElement?.book_details?.title}
                   authorName={dataValues?.firstElement?.book_details?.authors}
                   imageUrl={dataValues?.firstElement?.image}
@@ -55,6 +56,7 @@ export default function LatestRelease() {
               <div>
                 <BookDetail
                   isReverse={true}
+                  allData={dataValues?.secondElement}
                   bookTitle={dataValues?.secondElement?.book_details?.title}
                   authorName={dataValues?.secondElement?.book_details?.authors}
                   imageUrl={dataValues?.secondElement?.image}

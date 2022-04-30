@@ -5,6 +5,7 @@ import CustomeButton from "../customeButton/customeButton.component";
 import "../bookDetail/_Bookdetail.styles.scss";
 
 export default function BookDetail({
+  allData,
   isReverse,
   bookTitle,
   authorName,
@@ -32,7 +33,7 @@ export default function BookDetail({
           consequat, cum nam
         </p>
         <div className="Book_btn">
-          <CustomeButton name="SEE THIS BOOK" />
+          <CustomeButton getSlug={allData?.book_details?.slug} name="SEE THIS BOOK" />
         </div>
       </div>
       <div className="book-image-conatiner">

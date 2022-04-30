@@ -254,6 +254,24 @@ a {
   display: none;
 }
 
+.NavigationSection_Mobile {
+  display: none;
+}
+
+.NavigationSection_Laptop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.NavigationSection_Laptop ._appNavigation_navigationContainer__OOT6Y {
+  width: 70% !important;
+}
+
 h1,
 h2,
 h3,
@@ -1511,18 +1529,25 @@ a {
   background: #ffffff;
 }
 
-.Author_Wrapper .AuthorBanner_Wrapper {
-  background: url("/src/assets/authBanner.png");
-  background-size: cover;
+.Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
   height: 500px;
   border-radius: 0px 0px 16px 16px;
   margin: 5rem 0 0;
+  z-index: 0;
+}
+
+.Author_Wrapper .AuthorBanner_Wrapper .Banner_img img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content {
   width: 45%;
   margin: 0rem 0 0 4rem;
-  padding: 5rem 0;
+  padding: 9rem 0;
+  position: absolute;
+  top: 30px;
 }
 
 .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
@@ -3587,6 +3612,12 @@ a {
 }
 
 @media only screen and (max-width: 480px) {
+  .NavigationSection_Mobile {
+    display: block;
+  }
+  .NavigationSection_Laptop {
+    display: none;
+  }
   ._appNavigation_navigationContainer__OOT6Y {
     display: block !important;
     position: fixed;

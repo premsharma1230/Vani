@@ -175,7 +175,6 @@ export const BookDescription = props => {
   const CartState = {
     name: "1",
   };
-
   return (
     <>
       <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
@@ -190,7 +189,7 @@ export const BookDescription = props => {
                   <Link to="/Booklist">Books</Link>/
                 </li>
                 <li>
-                  <Link to="#">Ki Yaad Jo Karen Sabhi</Link>
+                  <Link to="#">{book_slug[2]}</Link>
                 </li>
               </ul>
               {/* <ul className="pagination_view">

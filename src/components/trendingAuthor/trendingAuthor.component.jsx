@@ -16,12 +16,14 @@ export default function TrendingAuthor() {
           bookTitle: response.data.book_details.title,
           bookDetails: response.data.book_details.description,
           author_name: response.data.author_details.name,
+          author_slug : response.data.author_details.slug,
           // stars:response.data.
         });
       });
     };
     loadData();
   }, []);
+ 
   return (
     <div className={Classes.sectionMain}>
       <div className={Classes.contentArea}>
@@ -42,7 +44,7 @@ export default function TrendingAuthor() {
         </div>
         <div className={Classes.authorDescription}>
           <img src={otherData?.author} alt="author picture" />
-          <CustomeButton name={"LEARN ABOUT AUTHOR"} accent={true} />
+          <CustomeButton getSlug={otherData?.author_slug} name={"LEARN ABOUT AUTHOR"} accent={true} />
         </div>
       </div>
     </div>

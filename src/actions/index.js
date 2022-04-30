@@ -11,3 +11,10 @@ export const menuNav = item => {
     payload: item,
   };
 };
+
+export const globleSearchData = item => {
+  return {
+    type: "MENU",
+    payload: item,
+  };
+};
