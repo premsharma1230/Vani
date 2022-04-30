@@ -1,0 +1,88 @@
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (max-width: 992px) {
+}
+@media only screen and (max-width: 800px) {
+}
+@media only screen and (max-width: 768px) {
+  .custom_loginroot {
+    min-width: 80% !important;
+    width: 80%;
+  }
+  .loginheader {
+    .logo_img {
+      width: 70%;
+    }
+    .closeicon_img {
+      width: 10px;
+    }
+  }
+  form .login_form,
+  .makeStyles-root-1 .login_form {
+    width: 90% !important;
+    min-width: 90% !important;
+    display: block !important;
+    margin: auto;
+  }
+  .login_userField__xo-81,
+  .login_passwordField__IshWb,
+  .registeration_userField__6-Vfq,
+  .registeration_passwordField__v6m3W {
+    width: 100% !important;
+  }
+  .MuiFormControl-root.MuiTextField-root.login_passwordField__0iubs,
+  .registeration_userField__d0lpG,
+  .registeration_passwordField__f0vfH {
+    width: 100% !important;
+  }
+
+  form.makeStyles-root-9.registeration_formMain__JiUlq.login_form {
+    min-width: 0 !important;
+  }
+
+  .registeration_back__bE9M5 {
+    border-right: none !important;
+  }
+  .loginbtn {
+    margin: auto !important;
+    display: block !important;
+  }
+  .logContainter {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+  .other_logins img {
+    width: 40px !important;
+    padding-right: 20px !important;
+  }
+  .forgot_link {
+    width: 90% !important;
+    padding-bottom: 15px !important;
+  }
+  .registeration_formMain__Gw9I3 {
+    margin: auto;
+  }
+  .registeration_passwordFieldMargin__ude4z {
+    &:nth-child(1) {
+      width: 49%;
+      display: inline-block;
+      margin-right: 1%;
+    }
+    &:nth-child(2) {
+      width: 49%;
+      display: inline-block;
+      margin-left: 1%;
+    }
+  }
+}
+@media only screen and (max-width: 557px) {
+}
+
+@media only screen and (max-width: 480px) {
+}
+@media only screen and (max-width: 375px) {
+}
+@media only screen and (max-width: 320px) {
+}

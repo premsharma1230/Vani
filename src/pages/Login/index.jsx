@@ -12,8 +12,8 @@ import GooglePic from "../../assets/google_logo.png";
 import FacebookPic from "../../assets/facebook_logo.png";
 import { useHistory, useNavigate } from "react-router-dom";
 import { getCartList, LoginApi } from "../../api/api";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -22,7 +22,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const useStyles = makeStyles({
   root: {
     minWidth: 500,
-    borderRadius: '26px',
+    borderRadius: "26px",
   },
   bullet: {
     display: "inline-block",
@@ -39,28 +39,34 @@ const useStyles = makeStyles({
 export default function Login() {
   let navigate = useNavigate();
   const classes = useStyles();
-  const { handleSubmit, control, reset, formState: { errors }, register } = useForm({
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+    register,
+  } = useForm({
     defaultValues: {
       username: "",
       password: "",
     },
   });
-  const [showError, setShowError] = React.useState("")
+  const [showError, setShowError] = React.useState("");
   const [state, setState] = React.useState({
     open: false,
-    vertical: 'top',
-    horizontal: 'center',
+    vertical: "top",
+    horizontal: "center",
   });
   const { vertical, horizontal, open } = state;
   const handleClick = () => {
     setState({
       open: true,
-      vertical: 'top',
-      horizontal: 'right',
+      vertical: "top",
+      horizontal: "right",
     });
   };
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -69,51 +75,52 @@ export default function Login() {
   useEffect(() => {
     const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
     if (token) {
-      navigate("/")
+      navigate("/");
     }
-  }, [window.location.pathname])
+  }, [window.location.pathname]);
   const onSubmit = (data) => {
     const Body = {
       email: data.username,
       password: data.password,
-    }
-    LoginApi(Body).then(res => {
-      if (res?.status == true) {
-        sessionStorage.setItem("LoginData", JSON.stringify(res));
-        getCartList(res?.token).then(elem => {
-          sessionStorage.setItem("cartIdWithToken", JSON.stringify(elem?.cart_id));
-          navigate("/")
-      });
-      } else {
-        setShowError(res?.data?.non_field_errors[0])
-        handleClick()
-      }
-
-    })
-      .catch(err => {
-      });
-  }
+    };
+    LoginApi(Body)
+      .then((res) => {
+        if (res?.status == true) {
+          sessionStorage.setItem("LoginData", JSON.stringify(res));
+          getCartList(res?.token).then((elem) => {
+            sessionStorage.setItem(
+              "cartIdWithToken",
+              JSON.stringify(elem?.cart_id)
+            );
+            navigate("/");
+          });
+        } else {
+          setShowError(res?.data?.non_field_errors[0]);
+          handleClick();
+        }
+      })
+      .catch((err) => {});
+  };
   const handleNewRegister = () => {
-    navigate("/Registeration")
-  }
+    navigate("/Registeration");
+  };
   return (
-    <div className={Classes.loginContainer}>
-      <Card className={classes.root}>
-        <CardContent>
+    <div className={Classes.loginContainer + " logContainter"}>
+      <Card className={classes.root + " custom_loginroot"}>
+        <CardContent className="">
           <div className={Classes.loginHeader}>
-
-            <div className={Classes.loginMainHeader}>
-              <img src={Logo} alt="logo image" />
-              <img src={Close} alt="Close image" />
+            <div className={Classes.loginMainHeader + " loginheader"}>
+              <img src={Logo} alt="logo image" className="logo_img" />
+              <img src={Close} alt="Close image" className="closeicon_img" />
             </div>
-            <div className={Classes.loginSubheader}>
+            <div className={Classes.loginSubheader + " login_heading"}>
               Login
             </div>
           </div>
           <div className={Classes.formContainer}>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className={`${classes.root} ${Classes.formMain}`}
+              className={`${classes.root} ${Classes.formMain} login_form`}
             >
               <div>
                 <div>
@@ -160,16 +167,16 @@ export default function Login() {
                       />
                     )}
                   /> */}
-                   <TextField
-                      label="Password"
-                      variant="outlined"
-                      className={Classes.passwordField}
-                      {...register("password", {
-                        required: "password is required",
-                      })}
-                      error={Boolean(errors?.password)}
-                      helperText={errors.password?.message}
-                    />
+                  <TextField
+                    label="Password"
+                    variant="outlined"
+                    className={Classes.passwordField}
+                    {...register("password", {
+                      required: "password is required",
+                    })}
+                    error={Boolean(errors?.password)}
+                    helperText={errors.password?.message}
+                  />
                 </div>
               </div>
               <div className={Classes.SignupButton}>
@@ -182,13 +189,15 @@ export default function Login() {
                     <Button
                       variant="contained"
                       style={{
-                        background: "#0298BF", height: '30px',
-                        width: '130px',
-                        borderRadius: '8px'
+                        background: "#0298BF",
+                        height: "30px",
+                        width: "130px",
+                        borderRadius: "8px",
                       }}
                       type="submit"
                       color="primary"
                       {...field}
+                      className="loginbtn"
                     >
                       Login
                     </Button>
@@ -196,16 +205,16 @@ export default function Login() {
                 />
               </div>
             </form>
-            <div className={Classes.forgotPassword}>Forgot Password</div>
+            <div className={Classes.forgotPassword + " forgot_link"}>
+              Forgot Password
+            </div>
             <div className={Classes.backForgotPassword}>
-              <div className={Classes.back}>
+              <div className={Classes.back + " other_logins"}>
                 <img src={FacebookPic} alt="logo image" />
                 <img src={GooglePic} alt="Close image" />
-                <div onClick={handleNewRegister}>
+                <div onClick={handleNewRegister} className="Signuplink">
                   New User?
-
                 </div>
-
               </div>
             </div>
           </div>
