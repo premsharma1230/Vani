@@ -14,7 +14,7 @@ export const Wishlist = () => {
   }, []);
   const getWishListFuncation = () => {
     if (token) {
-      getWishList().then(ele => {
+      getWishList(token).then(ele => {
         setWishListItems(ele?.results);
       });
     } else {

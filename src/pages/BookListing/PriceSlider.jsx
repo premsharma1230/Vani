@@ -57,6 +57,14 @@ export const PriceSlider = props => {
         disableSwap
         // marks={marks}
       />
+      <div className="Price_text">
+        <span className="price1">
+          {"₹"} {value1[0]}
+        </span>
+        <span className="price2">
+          {"₹"} {value1[1]}
+        </span>
+      </div>
     </Box>
   );
 };

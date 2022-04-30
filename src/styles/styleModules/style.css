@@ -272,6 +272,31 @@ a {
   width: 70% !important;
 }
 
+.Profile_Wrapper #basic-button svg,
+.Profile_Wrapper #basic-button i {
+  cursor: pointer;
+}
+
+.Menu_Wrap .MuiPaper-root.MuiPaper-elevation {
+  top: 60px !important;
+}
+
+.Menu_Wrap .MuiPaper-root.MuiPaper-elevation a {
+  color: #0298bf !important;
+}
+
+.Menu_Wrap ul {
+  width: -webkit-max-content !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+}
+
+.Menu_Wrap ul li {
+  display: block !important;
+  padding: 0.5rem 0.5rem !important;
+  color: #0298bf;
+}
+
 h1,
 h2,
 h3,
@@ -595,6 +620,59 @@ a {
 
 .BookList_MainWrapper .booklist_navigation .pagination_view {
   grid-gap: 1rem;
+}
+
+.BookList_MainWrapper .NoData-Wrp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 50vh;
+}
+
+.BookList_MainWrapper .NoData-Wrp .Nodata-Child {
+  display: block;
+  text-align: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 2rem;
+  background: #fff;
+  -webkit-box-shadow: 0 0 17px 2px #eee;
+          box-shadow: 0 0 17px 2px #eee;
+  border-radius: 5px;
+}
+
+.BookList_MainWrapper .NoData-Wrp .Nodata-Child b .file,
+.BookList_MainWrapper .NoData-Wrp .Nodata-Child b svg,
+.BookList_MainWrapper .NoData-Wrp .Nodata-Child b i {
+  color: rgba(136, 136, 136, 0.584);
+}
+
+.BookList_MainWrapper .NoData-Wrp .Nodata-Child span {
+  font-size: 0.89em;
+  color: #333333;
+}
+
+.BookList_MainWrapper .Price_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  grid-gap: 1rem;
+  margin: 0 0 1rem;
+}
+
+.BookList_MainWrapper .Price_text span {
+  color: #0298bf;
+  font-weight: 600;
 }
 
 .Pagination_wrp {

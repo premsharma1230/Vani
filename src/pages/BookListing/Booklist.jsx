@@ -14,7 +14,6 @@ import {
 } from "../../api/api";
 import { incNumber } from "../../actions";
 
-
 import { useSelector, useDispatch } from "react-redux";
 
 export const Booklist = () => {
@@ -163,7 +162,6 @@ export const Booklist = () => {
     setStartSize((value * 2) - 2)
   }
   const handleSelectGenre = (e,elem) => {
-    debugger
     if (e?.target?.checked) {
       setSelectedGenre([...selectedGenre, elem]);
       setGenreItems([...genreItems, elem?.id]);
@@ -213,26 +211,43 @@ export const Booklist = () => {
                 <h4>categories</h4>
               </div>
               <ul className="filter-catgry">
-                {categories && categories.map((categ, index1) => (
-                  <li key={index1}>
-                    <span>
-                      <input
-                        type="checkbox"
-                        id="Print"
-                        name="Print"
-                        onChange={(e) => handleCatrogary(e,categ) }
-                        value={selectedCategories}
-                      />
-                      {/* <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
-                        value={elem?.name}
-                        inputProps={{ 'aria-label': 'controlled' }}
-                      /> */}
-                    </span>
-                    <p>{categ?.name}</p>
-                  </li>
-                ))}
+                {categories &&
+                  categories.map((elem, index) => (
+                    <li key={index}>
+                      <span>
+                        <input
+                          type="checkbox"
+                          id="Print"
+                          name="Print"
+                          onChange={e => {
+                            if (e.target.checked) {
+                              setSelectedCategories([
+                                ...selectedCategories,
+                                elem,
+                              ]);
+                              setCategoriesItems([
+                                ...categoriesItems,
+                                elem?.value,
+                              ]);
+                            } else {
+                              setSelectedCategories(
+                                selectedCategories.filter(
+                                  people => people?.id !== elem?.id
+                                )
+                              );
+                              setCategoriesItems(
+                                categoriesItems.filter(
+                                  element => element !== elem?.value
+                                )
+                              );
+                            }
+                          }}
+                          value={selectedCategories}
+                        />
+                      </span>
+                      <p>{elem?.name}</p>
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className="Category_Item1">
@@ -280,97 +295,113 @@ export const Booklist = () => {
                     <Link to="/Booklist">Book</Link>
                   </li>
                 </ul>
-                {/* <ul className="pagination_view">
-                  <li>
-                    <Link to="#">{`< preview`}</Link>
-                  </li>
-                  <li>
-                    <Link to="#">{`next >`}</Link>
-                  </li>
-                </ul> */}
               </div>
-              <div className="category_Grid_Content">
-                {/* {bookList?.map((ele, index) => ( */}
-                {bookListFilterData &&
-                  bookListFilterData
-                    .slice(startSize, startSize + 2)
-                    ?.map((ele, index) => (
-                      <div key={index} className="Grid-item">
-                        <figure>
-                          <Link
-                            to={`/BookDescription/${ele?.slug}`}
-                            key={ele?.slug}
-                            // onClick={() => goToBookDetailsPage(ele)}
-                          >
-                            <img src={ele?.images[0]} alt="book" />
-                          </Link>
-                          <div className="Cart_shop_wrp">
-                            <div className="cart-content">
-                              {getWishListData && getWishListData.length > 0 ? (
-                                getWishListData.map((lists, index) =>
-                                  lists?.id === ele.id ? (
-                                    <span
-                                      key={index}
-                                      onClick={() => handleAddWishList(ele)}
-                                    >
-                                      <i
-                                        className="fas fa-heart short-item1"
-                                        style={{ color: "red" }}
-                                      ></i>
-                                    </span>
+              {bookListFilterData && bookListFilterData?.length > 0 ? (
+                <>
+                  <div className="category_Grid_Content">
+                    {/* {bookList?.map((ele, index) => ( */}
+                    {bookListFilterData &&
+                      bookListFilterData
+                        .slice(startSize, startSize + 2)
+                        ?.map((ele, index) => (
+                          <div key={index} className="Grid-item">
+                            <figure>
+                              <Link
+                                to={`/BookDescription/${ele?.slug}`}
+                                key={ele?.slug}
+                                // onClick={() => goToBookDetailsPage(ele)}
+                              >
+                                <img src={ele?.images[0]} alt="book" />
+                              </Link>
+                              <div className="Cart_shop_wrp">
+                                <div className="cart-content">
+                                  {getWishListData &&
+                                  getWishListData.length > 0 ? (
+                                    getWishListData.map((lists, index) =>
+                                      lists?.id === ele.id ? (
+                                        <span
+                                          key={index}
+                                          onClick={() => handleAddWishList(ele)}
+                                        >
+                                          <i
+                                            className="fas fa-heart short-item1"
+                                            style={{ color: "red" }}
+                                          ></i>
+                                        </span>
+                                      ) : (
+                                        <span
+                                          key={index}
+                                          onClick={() => handleAddWishList(ele)}
+                                        >
+                                          <i className="far fa-heart short-item1"></i>
+                                        </span>
+                                      )
+                                    )
                                   ) : (
                                     <span
                                       onClick={() => handleAddWishList(ele)}
                                     >
                                       <i className="far fa-heart short-item1"></i>
                                     </span>
-                                  )
-                                )
-                              ) : (
-                                <span onClick={() => handleAddWishList(ele)}>
-                                  <i className="far fa-heart short-item1"></i>
-                                </span>
-                              )}
-                              <span onClick={() => handleShoppingCart(ele)}>
-                                <i className="fas fa-shopping-cart short-item1"></i>
+                                  )}
+                                  <span onClick={() => handleShoppingCart(ele)}>
+                                    <i className="fas fa-shopping-cart short-item1"></i>
+                                  </span>
+                                </div>
+                              </div>
+                            </figure>
+                            <figcaption>
+                              <h3>{ele.title}</h3>
+                              <h4>Mohan Kishore</h4>
+                              <span className="star_wrp">
+                                {ele?.book_reviews?.avg !== 0
+                                  ? [
+                                      ...Array(ele?.book_reviews?.avg).keys(),
+                                    ].map(index => (
+                                      <strong key={index}>
+                                        <i
+                                          key={index}
+                                          className="fas fa-star star-item"
+                                        ></i>
+                                      </strong>
+                                    ))
+                                  : [...Array(5).keys()].map(index => (
+                                      <strong key={index}>
+                                        <i
+                                          key={index}
+                                          className="far fa-star star-item"
+                                        ></i>
+                                      </strong>
+                                    ))}
                               </span>
-                            </div>
+                              <strong>
+                                {"₹"} {ele?.ebook_details?.epub?.original_price}
+                              </strong>
+                            </figcaption>
                           </div>
-                        </figure>
-                        <figcaption>
-                          <h3>{ele.title}</h3>
-                          <h4>Mohan Kishore</h4>
-                          <span key={index} className="star_wrp">
-                            {ele?.book_reviews?.avg !== 0
-                              ? [
-                                  ...Array(
-                                    ele?.book_reviews?.avg !== 0
-                                      ? ele?.book_reviews?.avg
-                                      : 1
-                                  ).keys(),
-                                ].map(index => (
-                                  <i className="fas fa-star star-item"></i>
-                                ))
-                              : [...Array(5).keys()].map(index => (
-                                  <i className="far fa-star star-item"></i>
-                                ))}
-                          </span>
-                          <strong>
-                            {"₹"} {ele?.ebook_details?.epub?.original_price}
-                          </strong>
-                        </figcaption>
-                      </div>
-                    ))}
-              </div>
-              <div className="Pagination_wrp">
-                <Stack spacing={2}>
-                  <Pagination
-                    count={count}
-                    page={page}
-                    onChange={handleChange}
-                  />
-                </Stack>
-              </div>
+                        ))}
+                  </div>
+                  <div className="Pagination_wrp">
+                    <Stack spacing={2}>
+                      <Pagination
+                        count={count}
+                        page={page}
+                        onChange={handleChange}
+                      />
+                    </Stack>
+                  </div>
+                </>
+              ) : (
+                <div className="NoData-Wrp">
+                  <div className="Nodata-Child">
+                    <b>
+                      <i className="fas fa-file file"></i>
+                    </b>
+                    <br />
+                    <span>No data Found</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -117,6 +117,44 @@
     @include booklist-Navigation;
   }
   // bread---cumb---end--here---
+
+  .NoData-Wrp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    .Nodata-Child {
+      display: block;
+      text-align: center;
+      width: max-content;
+      padding: 2rem;
+      background: #fff;
+      box-shadow: 0 0 17px 2px #eee;
+      border-radius: 5px;
+      b {
+        .file,
+        svg,
+        i {
+          color: rgba(136, 136, 136, 0.584);
+        }
+      }
+      span {
+        font-size: 0.89em;
+        color: #333333;
+      }
+    }
+  }
+
+  .Price_text {
+    display: flex;
+    justify-content: space-between;
+    grid-gap: 1rem;
+    margin: 0 0 1rem;
+    span {
+      color: #0298bf;
+      font-weight: 600;
+    }
+  }
 }
 
 // --pagination--
