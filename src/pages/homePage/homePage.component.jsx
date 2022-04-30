@@ -31,6 +31,7 @@ class HomePage extends Component {
 
   render() {
     const image = this.state.image;
+    console.log(image,"++++++++++++++++++++++")
 
     return (
       <div className="Main_Home_Content">

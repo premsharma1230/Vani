@@ -5,7 +5,7 @@ import "./_customeButton.styles.scss";
 export default function CustomeButton({ name, accent }) {
   return (
     <button className={accent ? "CustomeButtonAccent" : "CustomeButton"}>
-      <Link to="/Booklist">{name}</Link>
+      <Link to="#">{name}</Link>
     </button>
   );
 }
