@@ -5,20 +5,20 @@ import Stack from "@mui/material/Stack";
 import { Footer } from "../Footer/Footer";
 import { PriceSlider } from "../BookListing/PriceSlider";
 import { createAndRemoveWishList, CreateCart, GetBookListWithFilters, GetGenrelist, getWishList } from '../../api/api';
-import {incNumber} from "../../actions";
-import {decNumber} from "../../actions";
+import { incNumber } from "../../actions";
+import { decNumber } from "../../actions";
 
 import { useSelector, useDispatch } from "react-redux";
 
 export const Booklist = () => {
- 
-  
+
+
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  const [selectedGenre, setSelectedGenre] = React.useState([]);
+  const [categoriesItems, setCategoriesItems] = React.useState([]);
   const [selectedCategories, setSelectedCategories] = React.useState([]);
   const [genreItems, setGenreItems] = React.useState([]);
-  const [categoriesItems, setCategoriesItems] = React.useState([]);
+  const [selectedGenre, setSelectedGenre] = React.useState([]);
   const [selectedMinPrice, setSelectedMinPrice] = React.useState(1);
   const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
   const [bookListFilterData, setBookListFilterData] = React.useState([])
@@ -46,7 +46,7 @@ export const Booklist = () => {
     const maxPrices = selectedMaxPrice;
     GetBookListWithFilters(Categories, Genre, minPrices, maxPrices).then(e => {
       setBookListFilterData(e?.results);
-      setCount(Math.ceil(e?.results?.length / 2))
+      // setCount(Math.ceil(e?.results?.length / 2))
       if (token) {
         handleGetWishList(e?.results, "fisrtTime")
       }
@@ -137,6 +137,7 @@ export const Booklist = () => {
   }
   React.useEffect(() => {
     GetGenrelist().then(ele => {
+      console.log(ele, "++++++++++++GetGenrelist++++++++++++++++++++++++++++++")
       setGenreList(ele.data);
     });
   }, []);
@@ -144,7 +145,47 @@ export const Booklist = () => {
     setPage(value)
     setStartSize((value * 2) - 2)
   }
-
+  const handleSelectGenre = (e,elem) => {
+    debugger
+    if (e?.target?.checked) {
+      setSelectedGenre([...selectedGenre, elem]);
+      setGenreItems([...genreItems, elem?.id]);
+    } else {
+      setSelectedGenre(
+        selectedGenre.filter(
+          people => people?.id !== elem?.id
+        )
+      );
+      setGenreItems(
+        genreItems.filter(
+          element => element !== elem?.id
+        )
+      );
+    }
+  }
+  const handleCatrogary = (e,elem) => {
+      if (e.target.checked) {
+        setSelectedCategories([
+          ...selectedCategories,
+          elem,
+        ]);
+        setCategoriesItems([
+          ...categoriesItems,
+          elem?.value,
+        ]);
+      } else {
+        setSelectedCategories(
+          selectedCategories.filter(
+            people => people?.id !== elem?.id
+          )
+        );
+        setCategoriesItems(
+          categoriesItems.filter(
+            element => element !== elem?.value
+          )
+        );
+      }
+  }
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -155,36 +196,14 @@ export const Booklist = () => {
                 <h4>categories</h4>
               </div>
               <ul className="filter-catgry">
-                {categories && categories.map((elem, index) => (
-                  <li key={index}>
+                {categories && categories.map((categ, index1) => (
+                  <li key={index1}>
                     <span>
                       <input
                         type="checkbox"
                         id="Print"
                         name="Print"
-                        onChange={e => {
-                          if (e.target.checked) {
-                            setSelectedCategories([
-                              ...selectedCategories,
-                              elem,
-                            ]);
-                            setCategoriesItems([
-                              ...categoriesItems,
-                              elem?.value,
-                            ]);
-                          } else {
-                            setSelectedCategories(
-                              selectedCategories.filter(
-                                people => people?.id !== elem?.id
-                              )
-                            );
-                            setCategoriesItems(
-                              categoriesItems.filter(
-                                element => element !== elem?.value
-                              )
-                            );
-                          }
-                        }}
+                        onChange={(e) => handleCatrogary(e,categ) }
                         value={selectedCategories}
                       />
                       {/* <Checkbox
@@ -194,7 +213,7 @@ export const Booklist = () => {
                         inputProps={{ 'aria-label': 'controlled' }}
                       /> */}
                     </span>
-                    <p>{elem?.name}</p>
+                    <p>{categ?.name}</p>
                   </li>
                 ))}
               </ul>
@@ -204,37 +223,26 @@ export const Booklist = () => {
                 <h4>genre</h4>
               </div>
               <ul className="filter-catgry">
-                {genreList &&
-                  genreList.map((elem, index) => (
-                    <li key={index}>
-                      <span>
-                        <input
-                          type="checkbox"
-                          id="Print"
-                          name="Print"
-                          onChange={e => {
-                            if (e.target.checked) {
-                              setSelectedGenre([...selectedGenre, elem]);
-                              setGenreItems([...genreItems, elem?.id]);
-                            } else {
-                              setSelectedGenre(
-                                selectedGenre.filter(
-                                  people => people?.id !== elem?.id
-                                )
-                              );
-                              setGenreItems(
-                                genreItems.filter(
-                                  element => element !== elem?.id
-                                )
-                              );
-                            }
-                          }}
-                          value={selectedGenre}
-                        />
-                      </span>
-                      <p>{elem?.value}</p>
-                    </li>
-                  ))}
+                {genreList && genreList.map((List, index2) => (
+                  <li key={index2}>
+                    <span>
+                      <input
+                        type="checkbox"
+                        id="Print"
+                        name="Print"
+                        onChange={(e) => handleSelectGenre(e,List) }
+                        value={selectedGenre} 
+                      />
+                      {/* <Checkbox
+                        checked={checked}
+                        onChange={handleChange}
+                        value={elem?.name}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                      /> */}
+                    </span>
+                    <p>{List?.value}</p>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="PriceSlider_Wrp">
@@ -278,29 +286,29 @@ export const Booklist = () => {
                           src={ele?.images[0]}
                           alt="book"
                         />
-                        </Link>
-                        <div className="Cart_shop_wrp">
-                          <div className="cart-content">
-                            {getWishListData && getWishListData.length > 0 ? getWishListData.map((lists, index) =>
-                              lists?.id === ele.id ?
-                                <span key={index} onClick={() => handleAddWishList(ele)}>
-                                  <i className="far fa-heart short-item1" style={{ color: "red" }}></i>
-                                </span>
-                                :
-                                <span onClick={() => handleAddWishList(ele)}>
-                                  <i className="far fa-heart short-item1"></i>
-                                </span>
-                            )
+                      </Link>
+                      <div className="Cart_shop_wrp">
+                        <div className="cart-content">
+                          {getWishListData && getWishListData.length > 0 ? getWishListData.map((lists, index) =>
+                            lists?.id === ele.id ?
+                              <span key={index} onClick={() => handleAddWishList(ele)}>
+                                <i className="far fa-heart short-item1" style={{ color: "red" }}></i>
+                              </span>
                               :
                               <span onClick={() => handleAddWishList(ele)}>
                                 <i className="far fa-heart short-item1"></i>
                               </span>
-                            }
-                            <span onClick={() => handleShoppingCart(ele)}>
-                              <i className="fas fa-shopping-cart short-item1"></i>
+                          )
+                            :
+                            <span onClick={() => handleAddWishList(ele)}>
+                              <i className="far fa-heart short-item1"></i>
                             </span>
-                          </div>
+                          }
+                          <span onClick={() => handleShoppingCart(ele)}>
+                            <i className="fas fa-shopping-cart short-item1"></i>
+                          </span>
                         </div>
+                      </div>
                     </figure>
                     <figcaption>
                       <h3>{ele.title}</h3>

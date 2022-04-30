@@ -139,7 +139,10 @@ export const Cart = () => {
       if (body.length > 0) {
         cartCheckout(body,token).then((ele) => {
           sessionStorage.setItem("Checkout1Data", JSON.stringify(ele));
-          navigate("/Address")
+          getCartList(token).then(ele => {
+            dispatch(incNumber(ele?.count))
+            navigate("/Address")
+          });
         })
       }
     } else {
