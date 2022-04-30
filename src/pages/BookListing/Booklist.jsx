@@ -12,8 +12,7 @@ import {
   GetGenrelist,
   getWishList,
 } from "../../api/api";
-import { incNumber } from "../../actions";
-
+import { incNumber,Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Booklist = () => {
@@ -123,6 +122,7 @@ export const Booklist = () => {
             }
           });
         } else {
+          dispatch(Redirection("/BookList"));
           navigate("/Login");
         }
       }

@@ -14,6 +14,8 @@ import { useHistory, useNavigate } from "react-router-dom";
 import { getCartList, LoginApi } from "../../api/api";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { useSelector, useDispatch } from "react-redux";
+import { Redirection } from "../../actions";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -38,7 +40,9 @@ const useStyles = makeStyles({
 });
 export default function Login() {
   let navigate = useNavigate();
+  const RedirectSamePage = useSelector(state => state.RedirectSamePage);
   const classes = useStyles();
+  
   const { handleSubmit, control, reset, formState: { errors }, register } = useForm({
     defaultValues: {
       username: "",
@@ -89,7 +93,7 @@ export default function Login() {
         sessionStorage.setItem("LoginUserData", JSON.stringify(LoginUserData));
         getCartList(res?.token).then(elem => {
           sessionStorage.setItem("cartIdWithToken", JSON.stringify(elem?.cart_id));
-          navigate("/")
+          navigate(RedirectSamePage)
       });
       } else {
         setShowError(res?.data?.non_field_errors[0])

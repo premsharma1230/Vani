@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetBookReview, CreateBookReview } from "../../api/api";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirection } from "../../actions";
 
 export const Review = getID => {
   let navigate = useNavigate()
+  const dispatch = useDispatch();
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const [review, setReview] = useState("");
   const [title, setTitle] = useState("");
@@ -47,6 +50,7 @@ export const Review = getID => {
     CreateBookReview(getID.getID, body,token).then(elm => {
     });
   }else{
+    dispatch(Redirection("/AuhorDescription"));
     navigate("/Login");
   }
   };

@@ -3,9 +3,12 @@ import book from "../../assets/book3.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
 import { createAndRemoveWishList, getWishList } from "../../api/api";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirection } from "../../actions";
 
 export const Wishlist = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const [wishListItems, setWishListItems] = useState([]);
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
 
@@ -18,6 +21,7 @@ export const Wishlist = () => {
         setWishListItems(ele?.results);
       });
     } else {
+      dispatch(Redirection("/Wishlist"));
       navigate("/Login");
     }
   };
@@ -27,6 +31,7 @@ export const Wishlist = () => {
         getWishListFuncation();
       });
     } else {
+      dispatch(Redirection("/Wishlist"));
       navigate("/Login");
     }
   };

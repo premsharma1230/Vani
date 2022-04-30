@@ -10,7 +10,7 @@ import {
   getCartList,
   RemoveCart,
 } from "../../api/api";
-import { incNumber } from "../../actions";
+import { incNumber, Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Cart = () => {
@@ -106,6 +106,7 @@ export const Cart = () => {
         GetAllCartList();
       });
     } else {
+      dispatch(Redirection("/Cart"));
       navigate("/Login");
     }
   };
@@ -132,6 +133,7 @@ export const Cart = () => {
         GetAllCartList();
       });
     } else {
+      dispatch(Redirection("/Cart"));
       navigate("/Login");
     }
   };
@@ -149,6 +151,7 @@ export const Cart = () => {
         })
       }
     } else {
+      dispatch(Redirection("/Cart"));
       navigate("/Login");
     }
   };
