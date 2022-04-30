@@ -9,6 +9,7 @@ import Prefooter from "../../components/PreFooter/preFooter.component";
 import AboutSection from "../../components/aboutSection/aboutSection.component";
 import { Footer } from "../../pages/Footer/Footer";
 import { ClientView } from "./ClientView";
+import { BottomNavigation } from "./BottomNavigation";
 
 export default function HomeContent({ imageUrl }) {
   const backdrop = imageUrl;
@@ -37,11 +38,13 @@ export default function HomeContent({ imageUrl }) {
         <PublicationBanner />
         <AboutSection />
         {/* <HomePageLogos /> */}
+
         <ClientView />
         <div className={Classes.prefooter}>
           <Prefooter />
         </div>
         <Footer />
+        <BottomNavigation />
       </div>
     </>
   );

@@ -157,6 +157,15 @@ video {
       border-color: #999 !important;
     }
   }
+  li {
+    a {
+      text-decoration: none;
+      color: #333333;
+    }
+  }
+  .CartMain_Wrapper {
+    margin: 0 0.5rem;
+  }
 }
 .Client_Wrapper {
   padding: 3rem 0;
@@ -179,6 +188,19 @@ video {
       box-shadow: inherit !important;
     }
   }
+}
+
+.TrendingStar_wrp {
+  display: flex;
+  gap: 0.5rem;
+  li {
+    list-style-type: none;
+    font-size: 0.79em;
+  }
+}
+
+.Bottom_Navitgator_Wrapper {
+  display: none;
 }
 
 @import "./_main";

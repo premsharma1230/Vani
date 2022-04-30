@@ -1,12 +1,13 @@
-export const incNumber = (num) => {
-    return {
-        type: 'INCREMENT',
-        payload: num
-    }
-}
+export const incNumber = num => {
+  return {
+    type: "INCREMENT",
+    payload: num,
+  };
+};
 
-export const decNumber = () => {
-    return {
-        type: 'DECREMENT'
-    }
+export const menuNav = item => {
+  return {
+    type: "MENU",
+    payload: item,
+  };
 };

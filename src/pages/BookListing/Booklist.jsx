@@ -12,7 +12,6 @@ import {
   getWishList,
 } from "../../api/api";
 import { incNumber } from "../../actions";
-import { decNumber } from "../../actions";
 
 import { useSelector, useDispatch } from "react-redux";
 

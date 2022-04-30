@@ -31,7 +31,13 @@ export default function TrendingAuthor() {
         <div className={Classes.bookDescription}>
           <h1>{otherData.bookTitle}</h1>
           <h2>by - {otherData?.author_name}</h2>
-          {/* <h6>Stars</h6> */}
+          <ul className="TrendingStar_wrp">
+            {[...Array(3).keys()].map(index => (
+              <li key={index}>
+                <i className="fas fa-star star"></i>
+              </li>
+            ))}
+          </ul>
           <p>{otherData.bookDetails}</p>
         </div>
         <div className={Classes.authorDescription}>
