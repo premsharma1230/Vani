@@ -184,12 +184,6 @@ export default function Login() {
                 </div>
               </div>
               <div className={Classes.SignupButton}>
-                <Controller
-                  className={Classes.loginField}
-                  name="password"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => (
                     <Button
                       variant="contained"
                       style={{
@@ -199,12 +193,9 @@ export default function Login() {
                       }}
                       type="submit"
                       color="primary"
-                      {...field}
                     >
                       Login
                     </Button>
-                  )}
-                />
               </div>
             </form>
             <div className={Classes.forgotPassword}>Forgot Password</div>
