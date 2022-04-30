@@ -11,19 +11,22 @@ class HomePage extends Component {
 
   componentDidMount() {
     const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
-    const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
+    const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
     const loadData = () => {
       HomeBanner().then(response => {
         this.setState(response.data);
       });
-        if(!token && !cartId){
-          getCartList().then(elem => {
-            sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
+      if (!token && !cartId) {
+        getCartList().then(elem => {
+          sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
         });
-      }else{
+      } else {
         getCartList(token).then(elem => {
-          sessionStorage.setItem("cartIdWithToken", JSON.stringify(elem?.cart_id));
-      });
+          sessionStorage.setItem(
+            "cartIdWithToken",
+            JSON.stringify(elem?.cart_id)
+          );
+        });
       }
     };
     loadData();

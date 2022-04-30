@@ -2,27 +2,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 
 .navigationContainer {
-  
-  margin-top :1rem;
+  margin-top: 1rem;
   font-family: "Lora", serif;
   width: 50%;
   color: black;
   font-weight: bold;
   font-size: 1.1rem;
 
- 
   ul {
-    @include flexDesign(row,center,space-around);
+    @include flexDesign(row, center, space-around);
     margin-right: 1rem;
-
-    
 
     li {
       list-style: none;
-      &:last-child{
+      &:last-child {
         display: none;
       }
-       
     }
   }
 }
@@ -44,9 +39,8 @@
 
 .mainContainer {
   width: 90%;
-   
-   
-  @include flexDesign(row,center,space-around);
+
+  @include flexDesign(row, center, space-around);
 
   & :first-child,
   & :last-child {
@@ -58,10 +52,10 @@
   margin-top: 1rem;
   font-family: "Lora", serif;
   width: 20%;
-   
+
   color: black;
   ul {
-    @include flexDesign(row,center,space-around);
+    @include flexDesign(row, center, space-around);
     li {
       list-style: none;
       font-size: 1.3rem;
@@ -77,49 +71,48 @@
   top: 0;
   left: 3%;
 }
-.navigationBar{
+.navigationBar {
   height: 5rem;
 }
-.responseIcon{
-  display:none;
+.responseIcon {
+  display: none;
 }
 
-
-.Navlinks{
-   a{
-     text-decoration: none;
-     color: black;
-     cursor: pointer;
-   }
+.Navlinks {
+  a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
 }
 @media screen and (max-width: 798px) {
-  .iconArea,
-  .navigationContainer {
-    display: none;
+  ._appNavigation_iconArea__UZsHc {
+    margin-top: 0rem !important;
   }
-  .responseIcon{
+
+  .responseIcon {
     width: 25%;
     font-size: 1.5rem;
     display: block;
     color: black;
-    ul{
-      @include flexDesign(row,center,space-around);
+    ul {
+      @include flexDesign(row, center, space-around);
     }
-    li{
+    li {
       list-style: none;
     }
   }
 
   .Banner {
     width: 10%;
-    margin-left:4rem;
+    margin-left: 4rem;
   }
 
   .mainContainer {
-    .vani{
+    .vani {
       margin: 0rem 0.1rem;
-      img{
-        width : 50px;
+      img {
+        width: 50px;
       }
     }
     .englishLogo {
@@ -138,8 +131,7 @@
     }
   }
 
-  .navigationBar{
+  .navigationBar {
     height: 3.6rem;
   }
 }
-

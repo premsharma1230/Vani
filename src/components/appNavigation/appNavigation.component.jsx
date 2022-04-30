@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,11 +7,21 @@ import Typography from "@mui/material/Typography";
 import LogogSection from "./logoSection.component";
 import NavigationSection from "./naviagtionSection.component";
 import ApplicationArea from "./applicationArea.component";
-
 import Classes from "./_appNavigation.module.scss";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { menuNav } from "../../actions/index";
 
 class AppNavigation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuNav: {},
+    };
+  }
+
   render() {
+    console.log(this.props, "++hj,hdfbijlknbfsdajk++++");
+    // changeTheNumber = useSelector(state => state.ManuBar);
     return (
       <div>
         <Box sx={{ flexGrow: 1 }}>
@@ -38,5 +48,14 @@ class AppNavigation extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  menuNav: state,
+});
 
-export default AppNavigation;
+const mapDispatchToProps = () => ({
+  // console.log(state, "++++++");
+  menuNav,
+});
+export default connect(mapStateToProps, mapDispatchToProps())(AppNavigation);
+
+// export default AppNavigation;

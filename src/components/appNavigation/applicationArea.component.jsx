@@ -21,7 +21,7 @@ export default function ApplicationArea() {
               <BsPerson />
             </Link>
           </li>
-          <li className="CartMain_Wrapper">
+          <li className="CartMain_Wrapper cartTop">
             <Link to="/Cart" className="">
               <HiOutlineShoppingCart />
               <span className="CartCounter">
@@ -35,7 +35,7 @@ export default function ApplicationArea() {
           </li>
         </ul>
       </div>
-      <div className={Classes.responseIcon}>
+      {/* <div className={Classes.responseIcon}>
         <ul>
           <li>
             <BsPerson />
@@ -44,7 +44,7 @@ export default function ApplicationArea() {
             <RiTranslate />
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 }
