@@ -2,10 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./_customeButton.styles.scss";
 
-export default function CustomeButton({ name, accent }) {
+export default function CustomeButton({ getSlug, name, accent }) {
   return (
     <button className={accent ? "CustomeButtonAccent" : "CustomeButton"}>
-      <Link to="#">{name}</Link>
+      {name === "LEARN ABOUT AUTHOR" ?
+         <Link
+         to={`/AuhorDescription/${getSlug}`}
+         key={getSlug}
+       >{name}</Link>
+        :
+        <Link
+        to={`/BookDescription/${getSlug}`}
+        key={getSlug}
+      >{name}</Link>
+      }
     </button>
   );
 }

@@ -3,9 +3,12 @@ import book from "../../assets/book3.png";
 import { Footer } from "../Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { getOrderList } from "../../api/api";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirection } from "../../actions";
 
 export const Order = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const [allOrderList, setAllOrderList] = useState([])
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   useEffect(() => {
@@ -14,6 +17,7 @@ export const Order = () => {
       setAllOrderList(ele?.results)
     })
   } else {
+    dispatch(Redirection("/Order"));
     navigate("/Login");
   }
   }, [])

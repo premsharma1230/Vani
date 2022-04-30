@@ -14,6 +14,8 @@ import { useHistory, useNavigate } from "react-router-dom";
 import { getCartList, LoginApi } from "../../api/api";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirection } from "../../actions";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -38,7 +40,9 @@ const useStyles = makeStyles({
 });
 export default function Login() {
   let navigate = useNavigate();
+  const RedirectSamePage = useSelector(state => state.RedirectSamePage);
   const classes = useStyles();
+
   const {
     handleSubmit,
     control,
@@ -78,28 +82,41 @@ export default function Login() {
       navigate("/");
     }
   }, [window.location.pathname]);
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     const Body = {
       email: data.username,
       password: data.password,
     };
     LoginApi(Body)
-      .then((res) => {
+      .then(res => {
         if (res?.status == true) {
+          const LoginUserData = {
+            firstName: res?.first_name,
+            lastName: res?.last_name,
+            phoneNumber: res?.phone_number,
+          };
+          sessionStorage.setItem(
+            "LoginUserData",
+            JSON.stringify(LoginUserData)
+          );
           sessionStorage.setItem("LoginData", JSON.stringify(res));
-          getCartList(res?.token).then((elem) => {
+          sessionStorage.setItem(
+            "LoginUserData",
+            JSON.stringify(LoginUserData)
+          );
+          getCartList(res?.token).then(elem => {
             sessionStorage.setItem(
               "cartIdWithToken",
               JSON.stringify(elem?.cart_id)
             );
-            navigate("/");
+            navigate(RedirectSamePage);
           });
         } else {
           setShowError(res?.data?.non_field_errors[0]);
           handleClick();
         }
       })
-      .catch((err) => {});
+      .catch(err => {});
   };
   const handleNewRegister = () => {
     navigate("/Registeration");

@@ -8,9 +8,12 @@ import {
   GetAuthorsDetailsReleted,
   AuthorReviewApi,
 } from "../../../api/api";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirection } from "../../../actions";
 
 export const AuhorDescription = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
   const auth_slug = location.pathname.split("/");
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
@@ -44,6 +47,7 @@ export const AuhorDescription = () => {
     if (token) {
       AuthorReviewApi(body, bookDetails?.id, token).then(elm => {});
     } else {
+      dispatch(Redirection("/AuhorDescription"));
       navigate("/Login");
     }
   };

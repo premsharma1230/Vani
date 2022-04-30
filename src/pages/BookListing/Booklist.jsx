@@ -8,20 +8,20 @@ import {
   createAndRemoveWishList,
   CreateCart,
   GetBookListWithFilters,
+  getCartList,
   GetGenrelist,
   getWishList,
 } from "../../api/api";
-import { incNumber } from "../../actions";
-
+import { incNumber,Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Booklist = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  const [selectedGenre, setSelectedGenre] = React.useState([]);
+  const [categoriesItems, setCategoriesItems] = React.useState([]);
   const [selectedCategories, setSelectedCategories] = React.useState([]);
   const [genreItems, setGenreItems] = React.useState([]);
-  const [categoriesItems, setCategoriesItems] = React.useState([]);
+  const [selectedGenre, setSelectedGenre] = React.useState([]);
   const [selectedMinPrice, setSelectedMinPrice] = React.useState(1);
   const [selectedMaxPrice, setSelectedMaxPrice] = React.useState(2000);
   const [bookListFilterData, setBookListFilterData] = React.useState([]);
@@ -31,20 +31,31 @@ export const Booklist = () => {
   const [page, setPage] = React.useState(1);
   const [startSize, setStartSize] = React.useState(0);
   const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
+  const [cartIdWithToken, setCartIdWithToken] = React.useState('');
 
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
-  const cartIdWithToken = JSON.parse(
-    sessionStorage?.getItem("cartIdWithToken")
-  );
   const categories = [
     { name: "print", value: "printed_book", id: 1 },
     { name: "E book", id: 2, value: "e_book" },
     { name: "Audio book", id: 3, value: "audio_book" },
   ];
+
   React.useEffect(() => {
     GetBookList();
   }, [selectedCategories, selectedGenre, selectedMinPrice, selectedMaxPrice]);
+
+  React.useEffect(() => {
+    if(!token && !cartId){
+      getCartList().then(elem => {
+        sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
+    });
+  }else{
+    getCartList(token).then(elem => {
+      setCartIdWithToken(elem?.cart_id)
+  });
+  }
+  })
   const GetBookList = () => {
     const Categories = categoriesItems;
     const Genre = genreItems;
@@ -111,6 +122,7 @@ export const Booklist = () => {
             }
           });
         } else {
+          dispatch(Redirection("/BookList"));
           navigate("/Login");
         }
       }
@@ -146,11 +158,49 @@ export const Booklist = () => {
     });
   }, []);
   const handleChange = (event, value) => {
-    setPage(value);
-    setStartSize(value * 2 - 2);
-  };
-  console.log(bookListFilterData, "++++++++++++++++++++++++++++PPPPPPPPPPPP");
-
+    setPage(value)
+    setStartSize((value * 2) - 2)
+  }
+  const handleSelectGenre = (e,elem) => {
+    if (e?.target?.checked) {
+      setSelectedGenre([...selectedGenre, elem]);
+      setGenreItems([...genreItems, elem?.id]);
+    } else {
+      setSelectedGenre(
+        selectedGenre.filter(
+          people => people?.id !== elem?.id
+        )
+      );
+      setGenreItems(
+        genreItems.filter(
+          element => element !== elem?.id
+        )
+      );
+    }
+  }
+  const handleCatrogary = (e,elem) => {
+      if (e.target.checked) {
+        setSelectedCategories([
+          ...selectedCategories,
+          elem,
+        ]);
+        setCategoriesItems([
+          ...categoriesItems,
+          elem?.value,
+        ]);
+      } else {
+        setSelectedCategories(
+          selectedCategories.filter(
+            people => people?.id !== elem?.id
+          )
+        );
+        setCategoriesItems(
+          categoriesItems.filter(
+            element => element !== elem?.value
+          )
+        );
+      }
+  }
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -205,37 +255,26 @@ export const Booklist = () => {
                 <h4>genre</h4>
               </div>
               <ul className="filter-catgry">
-                {genreList &&
-                  genreList.map((elem, index) => (
-                    <li key={index}>
-                      <span>
-                        <input
-                          type="checkbox"
-                          id="Print"
-                          name="Print"
-                          onChange={e => {
-                            if (e.target.checked) {
-                              setSelectedGenre([...selectedGenre, elem]);
-                              setGenreItems([...genreItems, elem?.id]);
-                            } else {
-                              setSelectedGenre(
-                                selectedGenre.filter(
-                                  people => people?.id !== elem?.id
-                                )
-                              );
-                              setGenreItems(
-                                genreItems.filter(
-                                  element => element !== elem?.id
-                                )
-                              );
-                            }
-                          }}
-                          value={selectedGenre}
-                        />
-                      </span>
-                      <p>{elem?.value}</p>
-                    </li>
-                  ))}
+                {genreList && genreList.map((List, index2) => (
+                  <li key={index2}>
+                    <span>
+                      <input
+                        type="checkbox"
+                        id="Print"
+                        name="Print"
+                        onChange={(e) => handleSelectGenre(e,List) }
+                        value={selectedGenre} 
+                      />
+                      {/* <Checkbox
+                        checked={checked}
+                        onChange={handleChange}
+                        value={elem?.name}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                      /> */}
+                    </span>
+                    <p>{List?.value}</p>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="PriceSlider_Wrp">

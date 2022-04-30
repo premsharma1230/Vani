@@ -18,3 +18,10 @@ export const globleSearchData = item => {
     payload: item,
   };
 };
+
+export const Redirection = item => {
+  return {
+    type: "REDIRECTPAGE",
+    payload: item,
+  };
+};

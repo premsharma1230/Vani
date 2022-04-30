@@ -39,7 +39,6 @@ export const Author = () => {
     setPage(value);
     setStartSize(value * 2 - 2);
   };
-  console.log(authorList, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   return (
     <section className="Main_HomeWrapper  Author_Wrapper">
       <AuthorBanner />
@@ -61,7 +60,7 @@ export const Author = () => {
                           key={ele?.slug}
                         >
                           <img
-                            onClick={() => handleRoute(ele)}
+                            // onClick={() => handleRoute(ele)}
                             src={ele?.images}
                             alt="book"
                           />

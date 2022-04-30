@@ -7,7 +7,6 @@ export const AuthorBanner = () => {
 
   useEffect(() => {
     AuthorBannerApi().then(elem => {
-      console.log(elem, "setAuthor");
       setAuthor(elem?.data);
     });
   }, []);

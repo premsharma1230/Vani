@@ -11,6 +11,8 @@ import { useForm, Controller } from "react-hook-form";
 import { useHistory, useNavigate } from "react-router-dom";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { Redirection } from "../../actions";
+import { useSelector, useDispatch } from "react-redux";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -35,6 +37,7 @@ const useStyles = makeStyles({
 });
 export const ChangePassword = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const classes = useStyles();
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -86,6 +89,7 @@ export const ChangePassword = () => {
       .catch(err => {
       });
     }else{
+      dispatch(Redirection("/ChangePassword"));
       navigate("/Login")
     }
     }

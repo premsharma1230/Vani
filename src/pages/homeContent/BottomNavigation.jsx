@@ -23,7 +23,6 @@ export const BottomNavigation = () => {
     }
     // setSearch(false);
   };
-  console.log(search, "+++++++++++++++++++++++++++++++++++");
   return (
     <>
       <div className="Bottom_Navitgator_Wrapper">

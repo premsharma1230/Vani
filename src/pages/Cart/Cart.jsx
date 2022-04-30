@@ -10,7 +10,7 @@ import {
   getCartList,
   RemoveCart,
 } from "../../api/api";
-import { incNumber } from "../../actions";
+import { incNumber, Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Cart = () => {
@@ -106,6 +106,7 @@ export const Cart = () => {
         GetAllCartList();
       });
     } else {
+      dispatch(Redirection("/Cart"));
       navigate("/Login");
     }
   };
@@ -132,6 +133,7 @@ export const Cart = () => {
         GetAllCartList();
       });
     } else {
+      dispatch(Redirection("/Cart"));
       navigate("/Login");
     }
   };
@@ -142,10 +144,14 @@ export const Cart = () => {
       if (body.length > 0) {
         cartCheckout(body, token).then(ele => {
           sessionStorage.setItem("Checkout1Data", JSON.stringify(ele));
-          navigate("/Address");
-        });
+          getCartList(token).then(ele => {
+            dispatch(incNumber(ele?.count))
+            navigate("/Address")
+          });
+        })
       }
     } else {
+      dispatch(Redirection("/Cart"));
       navigate("/Login");
     }
   };

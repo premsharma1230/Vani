@@ -7,6 +7,7 @@ import {
   GetBookReview,
   GetReletdBookDetails,
   CreateCart,
+  getCartList,
 } from "../../api/api";
 import { Review } from "./Review";
 import {incNumber} from "../../actions";
@@ -29,7 +30,7 @@ export const BookDescription = props => {
   const [cartData, setCartData] = useState("0");
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
-  const cartIdWithToken = JSON.parse(sessionStorage?.getItem("cartIdWithToken"))
+  const [cartIdWithToken, setCartIdWithToken] = React.useState('');
 
   const discount = selectedBook?.discountable_price;
   const handelIncrement = () => {
@@ -48,6 +49,17 @@ export const BookDescription = props => {
       }
     }
   };
+  useEffect(() => {
+    if(!token && !cartId){
+      getCartList().then(elem => {
+        sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
+    });
+  }else{
+    getCartList(token).then(elem => {
+      setCartIdWithToken(elem?.cart_id)
+  });
+  }
+  },[])
   useEffect(() => {
     GetBookDetails(book_slug[2]).then(e => {
       setBookDetailsData(e?.data);
@@ -163,7 +175,6 @@ export const BookDescription = props => {
   const CartState = {
     name: "1",
   };
-
   return (
     <>
       <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper">
@@ -178,7 +189,7 @@ export const BookDescription = props => {
                   <Link to="/Booklist">Books</Link>/
                 </li>
                 <li>
-                  <Link to="#">Ki Yaad Jo Karen Sabhi</Link>
+                  <Link to="#">{book_slug[2]}</Link>
                 </li>
               </ul>
               {/* <ul className="pagination_view">
