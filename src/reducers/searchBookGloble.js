@@ -1,12 +1,12 @@
 const initialMenu = false;
 
-const MenuBar = (state = initialMenu, action) => {
+const SearchGlobleBook = (state = initialMenu, action) => {
   switch (action.type) {
-    case "MENU":
+    case "SEARCHGLOBLEBOOK":
       return action.payload;
     default:
       return state;
   }
 };
 
-export default MenuBar;
+export default SearchGlobleBook;

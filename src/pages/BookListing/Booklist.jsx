@@ -13,6 +13,7 @@ import {
 } from "../../api/api";
 import { incNumber } from "../../actions";
 
+
 import { useSelector, useDispatch } from "react-redux";
 
 export const Booklist = () => {
@@ -30,6 +31,7 @@ export const Booklist = () => {
   const [count, setCount] = React.useState(1);
   const [page, setPage] = React.useState(1);
   const [startSize, setStartSize] = React.useState(0);
+  const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
 
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
@@ -280,7 +282,7 @@ export const Booklist = () => {
                           <Link
                             to={`/BookDescription/${ele?.slug}`}
                             key={ele?.slug}
-                            onClick={() => goToBookDetailsPage(ele)}
+                            // onClick={() => goToBookDetailsPage(ele)}
                           >
                             <img src={ele?.images[0]} alt="book" />
                           </Link>

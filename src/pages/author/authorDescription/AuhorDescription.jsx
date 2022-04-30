@@ -2,21 +2,51 @@ import React, { useEffect, useState } from "react";
 import book from "../../../assets/niya.png";
 import { useLocation, Link, useNavigate, NavLink } from "react-router-dom";
 import { Footer } from "../../Footer/Footer";
-import {AuthorInfo } from "../authorDescription/AuthorInfo";
-import { GetAuthorsDetails, GetAuthorsDetailsReleted } from "../../../api/api";
+import { AuthorInfo } from "../authorDescription/AuthorInfo";
+import {
+  GetAuthorsDetails,
+  GetAuthorsDetailsReleted,
+  AuthorReviewApi,
+} from "../../../api/api";
 
 export const AuhorDescription = () => {
-  const book_slug = JSON.parse(sessionStorage.getItem("AuhorDetail")).slug;
-  const [bookDetails, setBookDetails] = useState([])
-  const [bookDetailsReleted, setBookDetailsReleted] = useState([])
+  let navigate = useNavigate();
+  const location = useLocation();
+  const auth_slug = location.pathname.split("/");
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
+  const [bookDetails, setBookDetails] = useState([]);
+  const [bookDetailsReleted, setBookDetailsReleted] = useState([]);
+  const [rating, setRating] = useState("");
+  const [selectStar, setSelectStar] = useState(0);
+
   useEffect(() => {
-    GetAuthorsDetails(book_slug).then((ele) => {
-      setBookDetails(ele?.data)
-    })
-    GetAuthorsDetailsReleted(book_slug).then((ele) => {
-      setBookDetailsReleted(ele?.results)
-    })
-  }, [])
+    GetAuthorsDetails(auth_slug[2]).then(ele => {
+      setBookDetails(ele?.data);
+    });
+    GetAuthorsDetailsReleted(auth_slug[2]).then(ele => {
+      setBookDetailsReleted(ele?.results);
+    });
+  }, []);
+
+  const handleName = e => {
+    setRating(e?.target?.value);
+  };
+  const handleSelectedStar = i => {
+    setSelectStar(i + 1);
+  };
+
+  const handleSubmitAuthorReview = () => {
+    const body = {
+      title: "setName",
+      review: rating,
+      rating: selectStar,
+    };
+    if (token) {
+      AuthorReviewApi(body, bookDetails?.id, token).then(elm => {});
+    } else {
+      navigate("/Login");
+    }
+  };
   return (
     <>
       <section className="Main_HomeWrapper Description_wrapper BookDesciption_Wrapper AuthorDescription_Wrapper">
@@ -31,15 +61,7 @@ export const AuhorDescription = () => {
                   <Link to="/Author">Authors</Link>/
                 </li>
                 <li>
-                  <Link to="#">Author Name</Link>
-                </li>
-              </ul>
-              <ul className="pagination_view">
-                <li>
-                  <Link to="#">{`< preview`}</Link>
-                </li>
-                <li>
-                  <Link to="#">{`next >`}</Link>
+                  <Link to="#">{bookDetails?.slug}</Link>
                 </li>
               </ul>
             </div>
@@ -52,10 +74,7 @@ export const AuhorDescription = () => {
               <figure>
                 <div className="img_Wrp">
                   {" "}
-                  <img
-                    src={bookDetails?.image}
-                    alt="book"
-                  />
+                  <img src={bookDetails?.image} alt="book" />
                 </div>
                 <ul className="Social_Content">
                   <li>
@@ -64,17 +83,17 @@ export const AuhorDescription = () => {
                     </a>
                   </li>
                   <li>
-                  <a href={bookDetails?.insta_link}>
+                    <a href={bookDetails?.insta_link}>
                       <i className="fab fa-instagram"></i>
                     </a>
                   </li>
                   <li>
-                  <a href={bookDetails?.twitter_link}>
+                    <a href={bookDetails?.twitter_link}>
                       <i className="fab fa-twitter"></i>
                     </a>
                   </li>
                   <li>
-                  <a href={bookDetails?.youtube_link}>
+                    <a href={bookDetails?.youtube_link}>
                       <i className="fab fa-youtube"></i>
                     </a>
                   </li>
@@ -84,17 +103,19 @@ export const AuhorDescription = () => {
             <div className="Description_Right">
               <div className="About_Book">
                 <div className="About-book-title">
-                  <h2>
-                   {bookDetails?.author_full_name}
-                  </h2>
+                  <h2>{bookDetails?.author_full_name}</h2>
                 </div>
                 <figcaption>
                   <div className="rating_Wrap">
                     <ul className="Star_Wrp">
-                         {[...Array(bookDetails?.reviews != 0 ? bookDetails?.reviews : 1).keys()].map(index => (
+                      {[
+                        ...Array(
+                          bookDetails?.reviews != 0 ? bookDetails?.reviews : 1
+                        ).keys(),
+                      ].map(index => (
                         <li key={index}>
-                        <i className="fas fa-star star"></i>
-                      </li>
+                          <i className="fas fa-star star"></i>
+                        </li>
                       ))}
                     </ul>
                     <div>
@@ -118,9 +139,7 @@ export const AuhorDescription = () => {
                     </ul>
                   </div>
                   <div className="Author_Detail">
-                    <p>
-                    {bookDetails?.description}
-                    </p>
+                    <p>{bookDetails?.description}</p>
                   </div>
                 </figcaption>
               </div>
@@ -129,15 +148,50 @@ export const AuhorDescription = () => {
                   <div className="Review1">
                     <label>name *</label>
                     <span>
-                      <input type="text" placeholder="" name="name" />
+                      <input
+                        type="text"
+                        placeholder=""
+                        name="name"
+                        onChange={handleName}
+                      />
                     </span>
                   </div>
                   <div className="Review1">
                     <label>Rating *</label>
                     <span className="Star_wrp">
-                       {[...Array(bookDetails?.reviews != 0 ? bookDetails?.reviews : 1).keys()].map(index => (
+                      {/* {[
+                        ...Array(
+                          bookDetails?.reviews != 0 ? bookDetails?.reviews : 1
+                        ).keys(),
+                      ].map(index => (
                         <i key={index} className="fas fa-star star-item"></i>
-                      ))}
+                      ))} */}
+                      {selectStar != 0 ? (
+                        <>
+                          {[...Array(selectStar).keys()].map(index => (
+                            <div onClick={() => handleSelectedStar(index)}>
+                              <i className="fas fa-star star-item"></i>
+                            </div>
+                          ))}
+                          {[...Array(5 - Number(selectStar)).keys()].map(
+                            index => (
+                              <div
+                                onClick={() =>
+                                  handleSelectedStar(index + selectStar)
+                                }
+                              >
+                                <i className="far fa-star star star-item"></i>
+                              </div>
+                            )
+                          )}
+                        </>
+                      ) : (
+                        [...Array(5).keys()].map(index => (
+                          <div onClick={() => handleSelectedStar(index)}>
+                            <i className="far fa-star star-item"></i>
+                          </div>
+                        ))
+                      )}
                     </span>
                   </div>
                   <div className="Review1">
@@ -148,6 +202,7 @@ export const AuhorDescription = () => {
                         form="form1"
                         value="Submit"
                         id="Submit"
+                        onClick={handleSubmitAuthorReview}
                       >
                         Submit Your Review
                       </button>
@@ -182,7 +237,7 @@ export const AuhorDescription = () => {
 
           {/* Related-Books */}
           <div className="AuthInfo">
-            <AuthorInfo  bookInfoReleted={bookDetailsReleted} />
+            <AuthorInfo bookInfoReleted={bookDetailsReleted} />
           </div>
 
           <div className="Otherbook_Wrapper Author_desc_Wrp">
@@ -192,7 +247,7 @@ export const AuhorDescription = () => {
             <div className="Grid_Carousel_wrp">
               {/* {booklist.length > 0 &&
               booklist?.map(ele => ( */}
-              {bookDetailsReleted?.map((ele,index) => (
+              {bookDetailsReleted?.map((ele, index) => (
                 <div key={index} className="Grid-item">
                   <Link to="#">
                     <figure>
@@ -206,7 +261,9 @@ export const AuhorDescription = () => {
                           <i className="fas fa-star star-item"></i>
                         ))}
                       </span>
-                      <strong>{"₹"} {ele?.ebook_details?.epub?.original_price}</strong>
+                      <strong>
+                        {"₹"} {ele?.ebook_details?.epub?.original_price}
+                      </strong>
                     </figcaption>
                   </Link>
                 </div>

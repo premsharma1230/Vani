@@ -1,11 +1,13 @@
 import changeTheNumber from "./updown";
-import ManuBar from "./menu";
+import MenuBar from "./menu";
+import SearchGlobleBook from "./searchBookGloble";
 
 import { combineReducers } from "redux";
 
 const reducers = combineReducers({
   changeTheNumber,
-  ManuBar,
+  MenuBar,
+  SearchGlobleBook,
 });
 
 export default reducers;

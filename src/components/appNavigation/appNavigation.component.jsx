@@ -9,19 +9,14 @@ import NavigationSection from "./naviagtionSection.component";
 import ApplicationArea from "./applicationArea.component";
 import Classes from "./_appNavigation.module.scss";
 import { useSelector, useDispatch, connect } from "react-redux";
-import { menuNav } from "../../actions/index";
 
 class AppNavigation extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      menuNav: {},
-    };
+    this.state = {};
   }
 
   render() {
-    console.log(this.props, "++hj,hdfbijlknbfsdajk++++");
-    // changeTheNumber = useSelector(state => state.ManuBar);
     return (
       <div>
         <Box sx={{ flexGrow: 1 }}>
@@ -39,7 +34,12 @@ class AppNavigation extends Component {
                   <LogogSection />
                 </div>
               </Typography>
-              <NavigationSection />
+              <div className="NavigationSection_Mobile">
+                {this.props.MenuBar ? <NavigationSection /> : null}
+              </div>
+              <div className="NavigationSection_Laptop">
+                <NavigationSection />
+              </div>
               <ApplicationArea />
             </Toolbar>
           </AppBar>
@@ -48,14 +48,11 @@ class AppNavigation extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  menuNav: state,
-});
+const mapStateToProps = state => {
+  console.log(state, "state");
+  return state;
+};
 
-const mapDispatchToProps = () => ({
-  // console.log(state, "++++++");
-  menuNav,
-});
-export default connect(mapStateToProps, mapDispatchToProps())(AppNavigation);
+export default connect(mapStateToProps)(AppNavigation);
 
-// export default AppNavigation;
+ 

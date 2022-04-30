@@ -569,6 +569,12 @@
   }
 }
 @media only screen and (max-width: 480px) {
+  .NavigationSection_Mobile {
+    display: block;
+  }
+  .NavigationSection_Laptop {
+    display: none;
+  }
   ._appNavigation_navigationContainer__OOT6Y {
     display: block !important;
     position: fixed;

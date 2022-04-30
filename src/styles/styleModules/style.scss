@@ -202,5 +202,17 @@ video {
 .Bottom_Navitgator_Wrapper {
   display: none;
 }
+.NavigationSection_Mobile {
+  display: none;
+}
+
+.NavigationSection_Laptop {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  ._appNavigation_navigationContainer__OOT6Y {
+    width: 70% !important;
+  }
+}
 
 @import "./_main";

@@ -9,4 +9,4 @@ const changeTheNumber = (state = initialState, action) => {
       return state;
   }
 };
-
+export default changeTheNumber;

@@ -2,33 +2,34 @@ import axios from "axios";
 
 const baseRoute = "https://admin.vaniprakashan.in";
 // Home Page Apis
-const LoginApi = (body) => {
-  const slug = `/auth/user/login/`
+const LoginApi = body => {
+  const slug = `/auth/user/login/`;
   const url = `${baseRoute}${slug}`;
   try {
     const response = axios({
       method: "post",
       url: url,
       data: body,
-    }).then(res => {
-      return res.data;
-    }).catch(function (error) {
-      if (error.response) {
-        return error.response;
-      }
-      else if (error.request) {
-        return error.request;
-      } else {
-        return error.message;
-      }
-    });
+    })
+      .then(res => {
+        return res.data;
+      })
+      .catch(function (error) {
+        if (error.response) {
+          return error.response;
+        } else if (error.request) {
+          return error.request;
+        } else {
+          return error.message;
+        }
+      });
     return response;
   } catch (error) {
     return error;
   }
 };
-const ChangePasswordApi = (body,token) => {
-  const slug = `/auth/user/change_password/`
+const ChangePasswordApi = (body, token) => {
+  const slug = `/auth/user/change_password/`;
   const url = `${baseRoute}${slug}`;
   try {
     const response = axios({
@@ -38,26 +39,27 @@ const ChangePasswordApi = (body,token) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then(res => {
-      return res.data;
-    }).catch(function (error) {
-      if (error.response) {
-        return error.response;
-      }
-      else if (error.request) {
-        return error.request;
-      } else {
-        return error.message;
-      }
-    });
+    })
+      .then(res => {
+        return res.data;
+      })
+      .catch(function (error) {
+        if (error.response) {
+          return error.response;
+        } else if (error.request) {
+          return error.request;
+        } else {
+          return error.message;
+        }
+      });
     return response;
   } catch (error) {
     return error;
   }
 };
 
-const UpdatePersonalDetailsApi = (body,userData) => {
-  const slug = `/auth/user/user_profile/${userData?.slug}/`
+const UpdatePersonalDetailsApi = (body, userData) => {
+  const slug = `/auth/user/user_profile/${userData?.slug}/`;
   const url = `${baseRoute}${slug}`;
   try {
     const response = axios({
@@ -67,50 +69,51 @@ const UpdatePersonalDetailsApi = (body,userData) => {
       headers: {
         Authorization: `Bearer ${userData?.token}`,
       },
-    }).then(res => {
-      return res.data;
-    }).catch(function (error) {
-      if (error.response) {
-        return error.response;
-      }
-      else if (error.request) {
-        return error.request;
-      } else {
-        return error.message;
-      }
-    });
+    })
+      .then(res => {
+        return res.data;
+      })
+      .catch(function (error) {
+        if (error.response) {
+          return error.response;
+        } else if (error.request) {
+          return error.request;
+        } else {
+          return error.message;
+        }
+      });
     return response;
   } catch (error) {
     return error;
   }
 };
 
-
-const RegisterApi = (body) => {
-  const slug = `/auth/user/register/`
+const RegisterApi = body => {
+  const slug = `/auth/user/register/`;
   const url = `${baseRoute}${slug}`;
   try {
     const response = axios({
       method: "post",
       url: url,
-      data: body
-    }).then(res => {
-      return res.data;
-    }).catch(function (error) {
-      if (error.response) {
-        return error.response;
-      }
-      else if (error.request) {
-        return error.request;
-      } else {
-        return error.message;
-      }
-    });
+      data: body,
+    })
+      .then(res => {
+        return res.data;
+      })
+      .catch(function (error) {
+        if (error.response) {
+          return error.response;
+        } else if (error.request) {
+          return error.request;
+        } else {
+          return error.message;
+        }
+      });
     return response;
   } catch (error) {
     return error;
   }
-}
+};
 const HomeBanner = () => {
   const slug = "/home_page/home_page_baner/";
   const url = `${baseRoute}${slug}`;
@@ -308,7 +311,7 @@ const GetBookReview = id => {
     return error;
   }
 };
-const CreateBookReview = (book_id, body,token) => {
+const CreateBookReview = (book_id, body, token) => {
   let slug = `/book_store/book_reviews/${book_id}/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -328,7 +331,7 @@ const CreateBookReview = (book_id, body,token) => {
     return error;
   }
 };
-const createAndRemoveWishList = (id,token) => {
+const createAndRemoveWishList = (id, token) => {
   let slug = `/user_wishlist/list/`;
   const url = `${baseRoute}${slug}`;
   const formData = new FormData();
@@ -349,7 +352,7 @@ const createAndRemoveWishList = (id,token) => {
     return error;
   }
 };
-const getWishList = (token) => {
+const getWishList = token => {
   let slug = `/user_wishlist/list/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -367,7 +370,7 @@ const getWishList = (token) => {
     return error;
   }
 };
-const getOrderList = (token) => {
+const getOrderList = token => {
   let slug = `/order/user_order/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -385,10 +388,10 @@ const getOrderList = (token) => {
     return error;
   }
 };
-const getCartList = (token) => {
+const getCartList = token => {
   let slug = `/cart/user_cart/`;
   const url = `${baseRoute}${slug}`;
-  const Token = token
+  const Token = token;
   if (Token) {
     try {
       const response = axios({
@@ -408,7 +411,7 @@ const getCartList = (token) => {
     try {
       const response = axios({
         method: "get",
-        url: url
+        url: url,
       }).then(response => {
         return response.data;
       });
@@ -421,7 +424,7 @@ const getCartList = (token) => {
 
 const CreateCart = (body, token) => {
   let slug = `/cart/add_book/`;
-  const Token = token
+  const Token = token;
   const url = `${baseRoute}${slug}`;
   if (Token) {
     try {
@@ -457,9 +460,9 @@ const CreateCart = (body, token) => {
   }
 };
 
-const RemoveCart = (body,token) => {
+const RemoveCart = (body, token) => {
   let slug = `/cart/remove_book/`;
- const url = `${baseRoute}${slug}`;
+  const url = `${baseRoute}${slug}`;
 
   try {
     const response = axios({
@@ -479,12 +482,12 @@ const RemoveCart = (body,token) => {
   }
 };
 
-const cartCheckout = (list,token) => {
+const cartCheckout = (list, token) => {
   let slug = `/cart/check_out_1/`;
   const body = {
-    "id_list": list
-  }
- const url = `${baseRoute}${slug}`;
+    id_list: list,
+  };
+  const url = `${baseRoute}${slug}`;
   try {
     const response = axios({
       method: "post",
@@ -502,7 +505,7 @@ const cartCheckout = (list,token) => {
     return error;
   }
 };
-const CreateAddress = (body,token) => {
+const CreateAddress = (body, token) => {
   let slug = `/user_address/get_user_address/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -522,7 +525,7 @@ const CreateAddress = (body,token) => {
     return error;
   }
 };
-const cartFinalCheckout = (body,token) => {
+const cartFinalCheckout = (body, token) => {
   let slug = `/cart/final_checkout/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -542,7 +545,7 @@ const cartFinalCheckout = (body,token) => {
     return error;
   }
 };
-const getVoucherDiscount = (body,token) => {
+const getVoucherDiscount = (body, token) => {
   let slug = `/cart/get_voucher_discount_values/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -562,7 +565,7 @@ const getVoucherDiscount = (body,token) => {
     return error;
   }
 };
-const UpdateAddress = (body, id,token) => {
+const UpdateAddress = (body, id, token) => {
   let slug = `/user_address/address_details/${id}/`;
   const url = `${baseRoute}${slug}`;
   try {
@@ -583,10 +586,10 @@ const UpdateAddress = (body, id,token) => {
   }
 };
 
-const getAddressList = (token) => {
+const getAddressList = token => {
   let slug = `/user_address/get_user_address/?page_size=110`;
   const url = `${baseRoute}${slug}`;
-   try {
+  try {
     const response = axios({
       method: "get",
       url: url,
@@ -601,10 +604,25 @@ const getAddressList = (token) => {
     return error;
   }
 };
-const cardIdMerge = (body,token) => {
+const AuthorBannerApi = () => {
+  const slug = `/authors/author_page_banner/`;
+  const url = `${baseRoute}${slug}`;
+  try {
+    const response = axios({
+      method: "get",
+      url: url,
+    }).then(response => {
+      return response.data;
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+const cardIdMerge = (body, token) => {
   let slug = `/cart/merge_carts/`;
   const url = `${baseRoute}${slug}`;
-   try {
+  try {
     const response = axios({
       method: "post",
       url: url,
@@ -616,6 +634,29 @@ const cardIdMerge = (body,token) => {
       return response.data;
     });
     return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+const AuthorReviewApi = (body, id, token) => {
+  let slug = `/authors/author_reviews/${id}/`;
+  const url = `${baseRoute}${slug}`;
+  try {
+    axios({
+      method: "post",
+      url: url,
+      data: body,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(response => {
+        return response?.data;
+      })
+      .catch(error => {
+        return error;
+      });
   } catch (error) {
     return error;
   }
@@ -653,5 +694,7 @@ export {
   CreateAddress,
   getAddressList,
   UpdateAddress,
-  cardIdMerge
+  cardIdMerge,
+  AuthorBannerApi,
+  AuthorReviewApi,
 };

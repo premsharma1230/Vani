@@ -1,15 +1,22 @@
 .Author_Wrapper {
   background: $white;
   .AuthorBanner_Wrapper {
-    background: url("/src/assets/authBanner.png");
-    background-size: cover;
-    height: 500px;
-    border-radius: 0px 0px 16px 16px;
-    margin: 5rem 0 0;
+    .Banner_img {
+      height: 500px;
+      border-radius: 0px 0px 16px 16px;
+      margin: 5rem 0 0;
+      z-index: 0;
+      img {
+        max-width: 100%;
+        object-fit: cover;
+      }
+    }
     .AuthBanner-Content {
       width: 45%;
       margin: 0rem 0 0 4rem;
-      padding: 5rem 0;
+      padding: 9rem 0;
+      position: absolute;
+      top: 30px;
       h2 {
         font-family: "Lora";
         font-size: 60px;

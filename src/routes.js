@@ -39,7 +39,13 @@ export default function RouteSeperater() {
             </Route>
             {/* <Route path="/BookDescription" element={<BookDescription />} /> */}
             <Route path="/Author" element={<Author />} />
-            <Route path="/AuhorDescription" element={<AuhorDescription />} />
+            <Route path="/AuhorDescription" element={<AuhorDescription />}>
+              <Route
+                path=":AuhorDescriptionId"
+                element={<AuhorDescription />}
+              />
+            </Route>
+            {/* <Route path="/AuhorDescription" element={<AuhorDescription />} /> */}
             <Route path="/Wishlist" element={<Wishlist />} />
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Address" element={<Address />} />
