@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { useForm, Controller } from "react-hook-form";
-import axios from "axios"
+import axios from "axios";
 import Logo from "../../assets/vaani-logo.png";
 import Close from "../../assets/Close.png";
 import GooglePic from "../../assets/google_logo.png";
@@ -17,7 +17,7 @@ import { RegisterApi } from "../../api/api";
 const useStyles = makeStyles({
   root: {
     minWidth: 500,
-    borderRadius: '26px',
+    borderRadius: "26px",
   },
   bullet: {
     display: "inline-block",
@@ -38,9 +38,9 @@ export default function Registeration() {
   useEffect(() => {
     const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
     if (token) {
-      navigate("/")
+      navigate("/");
     }
-  }, [window.location.pathname])
+  }, [window.location.pathname]);
 
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
@@ -48,7 +48,6 @@ export default function Registeration() {
       lastName: "",
       email: "",
       password: "",
-
     },
   });
   const onSubmit = (data) => {
@@ -59,30 +58,29 @@ export default function Registeration() {
     formData.append("first_name", data.firstName);
     formData.append("last_name", data.lastName);
     RegisterApi(formData).then((ele) => {
-      navigate("/Login")
-    })
-  }
+      navigate("/Login");
+    });
+  };
   const handleLogin = () => {
-    navigate("/Login")
-  }
+    navigate("/Login");
+  };
   return (
-    <div className={Classes.loginContainer}>
-      <Card className={classes.root}>
+    <div className={Classes.loginContainer + " logContainter"}>
+      <Card className={classes.root + " custom_loginroot"}>
         <CardContent>
           <div className={Classes.loginHeader}>
-
-            <div className={Classes.loginMainHeader}>
-              <img src={Logo} alt="logo image" />
-              <img src={Close} alt="Close image" />
+            <div className={Classes.loginMainHeader + " loginheader"}>
+              <img src={Logo} alt="logo image" className="logo_img" />
+              <img src={Close} alt="Close image" className="closeicon_img" />
             </div>
-            <div className={Classes.loginSubheader}>
+            <div className={Classes.loginSubheader + " login_heading"}>
               Sign up
             </div>
           </div>
           <div className={Classes.formContainer}>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className={`${classes.root} ${Classes.formMain}`}
+              className={`${classes.root} ${Classes.formMain} login_form`}
             >
               <div>
                 <div className={Classes.passwordFieldMargin}>
@@ -160,13 +158,15 @@ export default function Registeration() {
                     <Button
                       variant="contained"
                       style={{
-                        background: "#0298BF", height: '30px',
-                        width: '130px',
-                        borderRadius: '8px'
+                        background: "#0298BF",
+                        height: "30px",
+                        width: "130px",
+                        borderRadius: "8px",
                       }}
                       type="submit"
                       color="primary"
                       {...field}
+                      className="loginbtn"
                     >
                       SIGN UP
                     </Button>
@@ -174,14 +174,17 @@ export default function Registeration() {
                 />
               </div>
             </form>
-            <div className={Classes.backForgotPassword}>
+            <div className={Classes.backForgotPassword + " other_logins"}>
               <div className={Classes.back}>
                 <img src={FacebookPic} alt="logo image" />
               </div>
               <div className={Classes.back}>
                 <img src={GooglePic} alt="Close image" />
               </div>
-              <div onClick={handleLogin} className={Classes.back}>
+              <div
+                onClick={handleLogin}
+                className={Classes.back + " Signuplink"}
+              >
                 Sign In?
               </div>
             </div>

@@ -3289,6 +3289,14 @@ a {
     height: max-content !important;
     width: 100% !important;
   }
+  .Wishlist_Wrapper .Whishlist_header h2 {
+    font-size: 1.9em;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full button {
+    width: 300px;
+    height: 43px;
+    font-size: 1em;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -3687,9 +3695,6 @@ a {
   .Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figure {
     height: 124px !important;
   }
-}
-
-@media only screen and (max-width: 480px) {
   .NavigationSection_Mobile {
     display: block;
   }
@@ -3772,6 +3777,9 @@ a {
     color: #333;
     text-decoration: none;
   }
+}
+
+@media only screen and (max-width: 480px) {
   .homeContent_contentLayer__GNUwA h1 {
     font-size: 1.6rem !important;
   }
@@ -4154,6 +4162,136 @@ a {
 @media only screen and (max-width: 320px) {
   .makeStyles-root-1 {
     width: 80% !important;
+  }
+}
+
+.logContainter {
+  margin-top: 8rem !important;
+}
+
+.loginheader {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.closeicon_img {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+}
+
+.login_heading {
+  border-top: 1px solid #4e4e4e;
+  width: 60% !important;
+  margin: auto;
+}
+
+.forgot_link {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #4e4e4e;
+  width: 60% !important;
+  margin: auto;
+}
+
+.other_logins {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border-right: none !important;
+  margin: 2rem auto;
+}
+
+.other_logins img {
+  padding-right: 40px;
+}
+
+.other_logins img::after {
+  content: "";
+  border: 1px solid #f30;
+}
+
+.Signuplink {
+  color: #4e4e4e !important;
+  border-bottom: 1px solid #4e4e4e;
+  padding-right: 0px !important;
+}
+
+.registeration_back__bE9M5 {
+  border-right: none !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .custom_loginroot {
+    min-width: 80% !important;
+    width: 80%;
+  }
+  .loginheader .logo_img {
+    width: 70%;
+  }
+  .loginheader .closeicon_img {
+    width: 10px;
+  }
+  form .login_form,
+  .makeStyles-root-1 .login_form {
+    width: 90% !important;
+    min-width: 90% !important;
+    display: block !important;
+    margin: auto;
+  }
+  .login_userField__xo-81,
+  .login_passwordField__IshWb,
+  .registeration_userField__6-Vfq,
+  .registeration_passwordField__v6m3W {
+    width: 100% !important;
+  }
+  .MuiFormControl-root.MuiTextField-root.login_passwordField__0iubs,
+  .registeration_userField__d0lpG,
+  .registeration_passwordField__f0vfH {
+    width: 100% !important;
+  }
+  form.makeStyles-root-9.registeration_formMain__JiUlq.login_form {
+    min-width: 0 !important;
+  }
+  .registeration_back__bE9M5 {
+    border-right: none !important;
+  }
+  .loginbtn {
+    margin: auto !important;
+    display: block !important;
+  }
+  .logContainter {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+  .other_logins img {
+    width: 40px !important;
+    padding-right: 20px !important;
+  }
+  .forgot_link {
+    width: 90% !important;
+    padding-bottom: 15px !important;
+  }
+  .registeration_formMain__Gw9I3 {
+    margin: auto;
+  }
+  .registeration_passwordFieldMargin__ude4z:nth-child(1) {
+    width: 49%;
+    display: inline-block;
+    margin-right: 1%;
+  }
+  .registeration_passwordFieldMargin__ude4z:nth-child(2) {
+    width: 49%;
+    display: inline-block;
+    margin-left: 1%;
   }
 }
 /*# sourceMappingURL=style.css.map */

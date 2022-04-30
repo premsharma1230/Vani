@@ -87,6 +87,19 @@
     height: max-content !important;
     width: 100% !important;
   }
+  .Wishlist_Wrapper .Whishlist_header h2 {
+    font-size: 1.9em;
+  }
+  .Address_Wrapper
+    .Address_Content
+    .Address_Main_list
+    .Address-list
+    .Address-Full
+    button {
+    width: 300px;
+    height: 43px; 
+    font-size: 1em;
+  }
   //<<<<<<<-----------Home---end---here---->>>>>>>
 }
 @media only screen and (max-width: 1024px) {
@@ -567,8 +580,8 @@
   .Description_wrapper .Otherbook_Wrapper .Grid_Carousel_wrp .Grid-item figure {
     height: 124px !important;
   }
-}
-@media only screen and (max-width: 480px) {
+
+  // <<<<<<<<-----Bottom----Navigation----->>>>>>
   .NavigationSection_Mobile {
     display: block;
   }
@@ -647,6 +660,9 @@
     }
   }
 
+  // <<<<<<<<-----Bottom----Navigation---end--here-->>>>>>
+}
+@media only screen and (max-width: 480px) {
   .homeContent_contentLayer__GNUwA h1 {
     font-size: 1.6rem !important;
   }
