@@ -294,7 +294,7 @@ export const Booklist = () => {
                                       onClick={() => handleAddWishList(ele)}
                                     >
                                       <i
-                                        className="far fa-heart short-item1"
+                                        className="fas fa-heart short-item1"
                                         style={{ color: "red" }}
                                       ></i>
                                     </span>
