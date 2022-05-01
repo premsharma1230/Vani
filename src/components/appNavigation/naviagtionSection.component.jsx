@@ -1,7 +1,12 @@
 import React from "react";
 import Classes from "./_appNavigation.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { menuNav } from "../../actions";
+
 export default function NavigationSection() {
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
   const linkarr = [
     {
       name: "Kitab ki dukan",
@@ -26,6 +31,15 @@ export default function NavigationSection() {
       url: "#",
     },
   ];
+
+  const handleMenuList = e => {
+    console.log(e, "eee++++++++");
+    if (e === "/Booklist") {
+      dispatch(menuNav(false));
+    }
+    navigate(e);
+  };
+
   return (
     <div className={Classes.navigationContainer}>
       <ul>
@@ -33,7 +47,7 @@ export default function NavigationSection() {
           return (
             <React.Fragment key={index}>
               <li className={Classes.Navlinks}>
-                <Link to={ele.url}>{ele.name}</Link>
+                <div onClick={() => handleMenuList(ele.url)}>{ele.name}</div>
               </li>
 
               <li className={Classes.bullet}></li>

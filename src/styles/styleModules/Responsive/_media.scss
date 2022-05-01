@@ -97,7 +97,7 @@
     .Address-Full
     button {
     width: 300px;
-    height: 43px; 
+    height: 43px;
     font-size: 1em;
   }
   //<<<<<<<-----------Home---end---here---->>>>>>>
@@ -338,11 +338,49 @@
   .Footer_Wrapper .Footer_Content .foot_item ul li {
     padding: 0.4rem 0;
   }
+  .BookList_MainWrapper
+    .BookList_wrp
+    .Category_Grid_Wrp
+    .category_Grid_Content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+  }
 
   // <<<<<<-----------Footer---end---here--->>>>>>>>>
 }
 
 @media only screen and (max-width: 768px) {
+  .BookList_MainWrapper {
+    padding: 3rem 0 0;
+  }
+  .BookList_MainWrapper .Price_text {
+    transform: translateX(-6px);
+  }
+  .BookList_MainWrapper
+    .BookList_wrp
+    .Category_Grid_Wrp
+    .category_Grid_Content
+    .Grid-item
+    figcaption
+    h3 {
+    font-size: 1.09em;
+  }
+  .BookList_MainWrapper
+    .Filter-Categories_Wrapper
+    .Category_Item1
+    .category-heading
+    h4 {
+    font-size: 1.1em;
+  }
+  .BookList_MainWrapper
+    .Filter-Categories_Wrapper
+    .Category_Item1
+    .filter-catgry
+    li
+    p {
+    font-size: 0.89em;
+  }
   .SaveMain_Wrapper
     .Save_Content_wrp
     .Save_Content
@@ -480,6 +518,160 @@
 }
 
 @media only screen and (max-width: 576px) {
+  .Filter_wrp {
+    display: none;
+  }
+  .BottonShort_Wrapper {
+    display: block;
+    ul {
+      position: fixed;
+      width: 100%;
+      background: #fff;
+      // box-shadow: 0px -2px 4px 2px #eee;
+      border: 0.2px solid rgba(153, 153, 153, 0.386);
+      display: flex;
+      align-items: center;
+      // padding: 0.7rem;
+      height: 60px;
+      bottom: 0;
+      justify-content: space-around;
+      gap: 1rem;
+      li {
+        list-style-type: none;
+        display: flex;
+        gap: 0.7rem;
+        align-items: center;
+        position: relative;
+        &:nth-child(1) {
+          &::before {
+            content: "";
+            width: 1px;
+            height: 32px;
+            background: #4e4e4e;
+            position: absolute;
+            top: -7px;
+            left: 10rem;
+          }
+        }
+        i,
+        svg,
+        .short-icon,
+        .filter-icon {
+          font-size: 0.89em;
+          color: #4e4e4e;
+        }
+        span {
+          text-transform: capitalize;
+          font-family: "Lora";
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 18px;
+          letter-spacing: 0px;
+        }
+      }
+    }
+  }
+
+  .Short_Wrapper {
+    border: 0.5px solid rgba(153, 153, 153, 0.386);
+    border-bottom: none;
+    background: #fff;
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+    &::before {
+      content: "";
+      filter: blur(8px);
+      -webkit-filter: blur(17px);
+      background: #e5e5e5bf;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      bottom: 100%;
+      z-index: -7;
+    }
+    .Short_head {
+      padding: 0.5rem 1rem;
+      border-bottom: 0.5px solid rgba(153, 153, 153, 0.386);
+      display: flex;
+      justify-content: space-between;
+
+      h2 {
+        font-family: "Lora";
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 18px;
+        letter-spacing: 0px;
+      }
+    }
+    .Short-Content {
+      padding: 1rem;
+      ul {
+        li {
+          list-style-type: none;
+          padding: 0.4rem 0;
+          h4 {
+            font-family: "Lora";
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 15px;
+            letter-spacing: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  .ShortFilter_Wrapper {
+    display: block !important;
+    .Filter-Categories_Wrapper {
+      background: #fff;
+      width: 100%;
+      padding: 0rem 0 0;
+      position: fixed;
+      bottom: 60px;
+      height: max-content;
+      border: 0.5px solid rgba(153, 153, 153, 0.386);
+      .Short_head {
+        padding: 0.5rem 1rem;
+        border-bottom: 0.5px solid rgba(153, 153, 153, 0.386);
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+          font-family: "Lora";
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 18px;
+          letter-spacing: 0px;
+        }
+      }
+      .Category_Item1 {
+        .filter-catgry li p {
+          font-size: 14px;
+        }
+        .category-heading {
+          padding: 0.5rem 0rem;
+          border-bottom: 0.5px solid rgba(153, 153, 153, 0.386);
+          display: flex;
+          justify-content: space-between;
+          h4 {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 18px;
+            letter-spacing: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  .BookList_MainWrapper
+    .BookList_wrp
+    .Category_Grid_Wrp
+    .category_Grid_Content {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .cartTop {
     display: none;
   }

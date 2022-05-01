@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
@@ -14,8 +14,9 @@ import {
 } from "../../api/api";
 import { incNumber, Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
+import BottonShort from "./BottonShort";
 
-export const Booklist = () => {
+export const Booklist = props => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const [categoriesItems, setCategoriesItems] = React.useState([]);
@@ -30,8 +31,11 @@ export const Booklist = () => {
   const [count, setCount] = React.useState(1);
   const [page, setPage] = React.useState(1);
   const [startSize, setStartSize] = React.useState(0);
+  const [category, setCategory] = useState(false);
+  const [genre, setGenre] = useState(true);
+  const [filter, setFilter] = useState(false);
   const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
-  const [cartIdWithToken, setCartIdWithToken] = React.useState('');
+  const [cartIdWithToken, setCartIdWithToken] = React.useState("");
 
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
@@ -48,18 +52,21 @@ export const Booklist = () => {
   React.useEffect(() => {
     if (token) {
       getCartList(token).then(elem => {
-        setCartIdWithToken(elem?.cart_id)
-        sessionStorage.setItem("cartIdWithToken", JSON.stringify(elem?.cart_id));
+        setCartIdWithToken(elem?.cart_id);
+        sessionStorage.setItem(
+          "cartIdWithToken",
+          JSON.stringify(elem?.cart_id)
+        );
       });
     } else {
       if (!cartId) {
         getCartList().then(elem => {
-          console.log(elem, "&&&&&&&&&&&&&&&&&&&&&&&&&77")
+          console.log(elem, "&&&&&&&&&&&&&&&&&&&&&&&&&77");
           sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
         });
       }
     }
-  }, [])
+  }, []);
   const GetBookList = () => {
     const Categories = categoriesItems;
     const Genre = genreItems;
@@ -162,55 +169,51 @@ export const Booklist = () => {
     });
   }, []);
   const handleChange = (event, value) => {
-    setPage(value)
-    setStartSize((value * 2) - 2)
-  }
+    setPage(value);
+    setStartSize(value * 2 - 2);
+  };
   const handleSelectGenre = (e, elem) => {
     if (e?.target?.checked) {
       setSelectedGenre([...selectedGenre, elem]);
       setGenreItems([...genreItems, elem?.id]);
     } else {
-      setSelectedGenre(
-        selectedGenre.filter(
-          people => people?.id !== elem?.id
-        )
-      );
-      setGenreItems(
-        genreItems.filter(
-          element => element !== elem?.id
-        )
-      );
+      setSelectedGenre(selectedGenre.filter(people => people?.id !== elem?.id));
+      setGenreItems(genreItems.filter(element => element !== elem?.id));
     }
-  }
+  };
   const handleCatrogary = (e, elem) => {
     if (e.target.checked) {
-      setSelectedCategories([
-        ...selectedCategories,
-        elem,
-      ]);
-      setCategoriesItems([
-        ...categoriesItems,
-        elem?.value,
-      ]);
+      setSelectedCategories([...selectedCategories, elem]);
+      setCategoriesItems([...categoriesItems, elem?.value]);
     } else {
       setSelectedCategories(
-        selectedCategories.filter(
-          people => people?.id !== elem?.id
-        )
+        selectedCategories.filter(people => people?.id !== elem?.id)
       );
       setCategoriesItems(
-        categoriesItems.filter(
-          element => element !== elem?.value
-        )
+        categoriesItems.filter(element => element !== elem?.value)
       );
     }
-  }
+  };
+
+  const handleCategory = () => {
+    setCategory(!category);
+    setGenre(false);
+  };
+  const handleGenre = () => {
+    setGenre(!genre);
+    setCategory(false);
+  };
+  const handleFilter = e => {
+    console.log(e, "++++++++++++++++++++++");
+    setFilter(e);
+  };
+
   return (
     <>
       <section className="BookList_MainWrapper">
-        <div className="Filter-Categories_Wrapper">
-          <div className="Filter_Content_wrp">
-            <div className="Category_Item1">
+        <div className="Filter-Categories_Wrapper Filter_wrp">
+          <div className="Filter_Content_wrp ">
+            <div className="Category_Item1 ">
               <div className="category-heading">
                 <h4>categories</h4>
               </div>
@@ -259,26 +262,27 @@ export const Booklist = () => {
                 <h4>genre</h4>
               </div>
               <ul className="filter-catgry">
-                {genreList && genreList.map((List, index2) => (
-                  <li key={index2}>
-                    <span>
-                      <input
-                        type="checkbox"
-                        id="Print"
-                        name="Print"
-                        onChange={(e) => handleSelectGenre(e, List)}
-                        value={selectedGenre}
-                      />
-                      {/* <Checkbox
+                {genreList &&
+                  genreList.map((List, index2) => (
+                    <li key={index2}>
+                      <span>
+                        <input
+                          type="checkbox"
+                          id="Print"
+                          name="Print"
+                          onChange={e => handleSelectGenre(e, List)}
+                          value={selectedGenre}
+                        />
+                        {/* <Checkbox
                         checked={checked}
                         onChange={handleChange}
                         value={elem?.name}
                         inputProps={{ 'aria-label': 'controlled' }}
                       /> */}
-                    </span>
-                    <p>{List?.value}</p>
-                  </li>
-                ))}
+                      </span>
+                      <p>{List?.value}</p>
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className="PriceSlider_Wrp">
@@ -313,14 +317,14 @@ export const Booklist = () => {
                               <Link
                                 to={`/BookDescription/${ele?.slug}`}
                                 key={ele?.slug}
-                              // onClick={() => goToBookDetailsPage(ele)}
+                                // onClick={() => goToBookDetailsPage(ele)}
                               >
                                 <img src={ele?.images[0]} alt="book" />
                               </Link>
                               <div className="Cart_shop_wrp">
                                 <div className="cart-content">
                                   {getWishListData &&
-                                    getWishListData.length > 0 ? (
+                                  getWishListData.length > 0 ? (
                                     getWishListData.map((lists, index) =>
                                       lists?.id === ele.id ? (
                                         <span
@@ -360,23 +364,23 @@ export const Booklist = () => {
                               <span className="star_wrp">
                                 {ele?.book_reviews?.avg !== 0
                                   ? [
-                                    ...Array(ele?.book_reviews?.avg).keys(),
-                                  ].map(index => (
-                                    <strong key={index}>
-                                      <i
-                                        key={index}
-                                        className="fas fa-star star-item"
-                                      ></i>
-                                    </strong>
-                                  ))
+                                      ...Array(ele?.book_reviews?.avg).keys(),
+                                    ].map(index => (
+                                      <strong key={index}>
+                                        <i
+                                          key={index}
+                                          className="fas fa-star star-item"
+                                        ></i>
+                                      </strong>
+                                    ))
                                   : [...Array(5).keys()].map(index => (
-                                    <strong key={index}>
-                                      <i
-                                        key={index}
-                                        className="far fa-star star-item"
-                                      ></i>
-                                    </strong>
-                                  ))}
+                                      <strong key={index}>
+                                        <i
+                                          key={index}
+                                          className="far fa-star star-item"
+                                        ></i>
+                                      </strong>
+                                    ))}
                               </span>
                               <strong>
                                 {"₹"} {ele?.ebook_details?.epub?.original_price}
@@ -410,6 +414,100 @@ export const Booklist = () => {
           </div>
         </div>
       </section>
+      {/* <<<<---Sorting & Filter---->>>> */}
+      {filter ? (
+        <div className="BookList_MainWrapper ShortFilter_Wrapper">
+          <div className="Filter-Categories_Wrapper">
+            <div className="Filter_Content_wrp ">
+              <div className="Short_head">
+                <h2>Filter</h2>
+                <span onClick={() => handleFilter(false)}>
+                  <i className="fas fa-times close"></i>
+                </span>
+              </div>
+              <div className="Category_Item1 ">
+                <div className="category-heading" onClick={handleCategory}>
+                  <h4>categories</h4>
+                  <span>
+                    {/* <i className="fas fa-angle-up"></i> */}
+                    <i className="fas fa-angle-down"></i>
+                  </span>
+                </div>
+                {category ? (
+                  <ul className="filter-catgry">
+                    {categories &&
+                      categories.map((elem, index) => (
+                        <li key={index}>
+                          <span>
+                            <input
+                              type="checkbox"
+                              id="Print"
+                              name="Print"
+                              onChange={e => {
+                                if (e.target.checked) {
+                                  setSelectedCategories([
+                                    ...selectedCategories,
+                                    elem,
+                                  ]);
+                                  setCategoriesItems([
+                                    ...categoriesItems,
+                                    elem?.value,
+                                  ]);
+                                } else {
+                                  setSelectedCategories(
+                                    selectedCategories.filter(
+                                      people => people?.id !== elem?.id
+                                    )
+                                  );
+                                  setCategoriesItems(
+                                    categoriesItems.filter(
+                                      element => element !== elem?.value
+                                    )
+                                  );
+                                }
+                              }}
+                              value={selectedCategories}
+                            />
+                          </span>
+                          <p>{elem?.name}</p>
+                        </li>
+                      ))}
+                  </ul>
+                ) : null}
+              </div>
+              <div className="Category_Item1">
+                <div className="category-heading" onClick={handleGenre}>
+                  <h4>genre</h4>
+                  <span>
+                    <i className="fas fa-angle-down"></i>
+                  </span>
+                </div>
+                {genre ? (
+                  <ul className="filter-catgry">
+                    {genreList &&
+                      genreList.map((List, index2) => (
+                        <li key={index2}>
+                          <span>
+                            <input
+                              type="checkbox"
+                              id="Print"
+                              name="Print"
+                              onChange={e => handleSelectGenre(e, List)}
+                              value={selectedGenre}
+                            />
+                          </span>
+                          <p>{List?.value}</p>
+                        </li>
+                      ))}
+                  </ul>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+      <BottonShort Filter={handleFilter} />
+      {/* <<<<<----Sorting & Filter ----end---here--->>>>> */}
       <Footer />
     </>
   );

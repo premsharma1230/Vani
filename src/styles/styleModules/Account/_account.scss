@@ -5,6 +5,11 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 1.5rem 6rem;
+      a:nth-child(even) {
+        li:nth-child(odd)::before {
+          display: none;
+        }
+      }
       li {
         list-style-type: none;
         align-items: center;

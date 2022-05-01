@@ -240,5 +240,11 @@ video {
     }
   }
 }
-
+.BottonShort_Wrapper,
+.ShortFilter_Wrapper {
+  display: none;
+}
+.ShortFilter_Wrapper {
+  display: none !important;
+}
 @import "./_main";
