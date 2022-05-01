@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 export default function ApplicationArea() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -34,6 +35,7 @@ export default function ApplicationArea() {
               type="text"
               placeholder="search..."
               onChange={handleSearch}
+              value={SearchGlobleBook}
             />
           </li>
           <li className="Profile_Wrapper">

@@ -10,7 +10,7 @@ import {
   getCartList,
 } from "../../api/api";
 import { Review } from "./Review";
-import {incNumber} from "../../actions";
+import {incNumber,globleSearchData} from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export const BookDescription = props => {
@@ -59,6 +59,7 @@ export const BookDescription = props => {
       setCartIdWithToken(elem?.cart_id)
   });
   }
+  dispatch(globleSearchData(''));
   },[])
   useEffect(() => {
     GetBookDetails(book_slug[2]).then(e => {
