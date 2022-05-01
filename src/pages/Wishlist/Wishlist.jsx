@@ -2,16 +2,29 @@ import React, { useEffect, useState } from "react";
 import book from "../../assets/book3.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
-import { createAndRemoveWishList, getWishList } from "../../api/api";
+import { createAndRemoveWishList, CreateCart, getCartList, getWishList } from "../../api/api";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirection } from "../../actions";
+import { incNumber, Redirection } from "../../actions";
 
 export const Wishlist = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [wishListItems, setWishListItems] = useState([]);
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
+  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
+  const [cartIdWithToken, setCartIdWithToken] = React.useState('');
 
+  useEffect(() => {
+    if(!token && !cartId){
+      getCartList().then(elem => {
+        sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
+    });
+  }else{
+    getCartList(token).then(elem => {
+      setCartIdWithToken(elem?.cart_id)
+  });
+  }
+  },[])
   useEffect(() => {
     getWishListFuncation();
   }, []);
@@ -35,6 +48,26 @@ export const Wishlist = () => {
       navigate("/Login");
     }
   };
+  const handleCart = e => {
+    let body;
+        if(!token){
+          body = {
+            cart_id: cartId,
+            book_id: e?.book,
+            quantity: 1,
+          };
+        }else{
+          body = {
+            cart_id: cartIdWithToken,
+            book_id: e?.book,
+            quantity: 1,
+          };
+        }
+    CreateCart(body,token).then(elem => {
+      dispatch(incNumber(elem?.count))
+        navigate("/Cart");
+    });
+  }
   return (
     <>
       <section className=" Description_wrapper   Wishlist_Wrapper">
@@ -73,8 +106,10 @@ export const Wishlist = () => {
                       </li>
                       <li>
                         <div className="AuthInfo_Cart_Btn">
-                          <button className="read_btn cart-btn">
-                            <Link to="/Cart">
+                          <button
+                         onClick={() => handleCart(ele)} 
+                          className="read_btn cart-btn">
+                            <Link to="#">
                               <span>Add to cart</span>
                             </Link>
                           </button>
