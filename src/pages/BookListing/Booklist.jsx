@@ -15,6 +15,7 @@ import {
 import { incNumber, Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 import BottonShort from "./BottonShort";
+import axios from "axios";
 
 export const Booklist = props => {
   const dispatch = useDispatch();
@@ -46,6 +47,28 @@ export const Booklist = props => {
   ];
 
   React.useEffect(() => {
+    if (token && SearchGlobleBook != "") {
+      const body = {
+        word: SearchGlobleBook,
+      };
+      axios({
+        method: "post",
+        url: `http://admin.vaniprakashan.in/searchBook/`,
+        data: body,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then(e => {
+          setBookListFilterData(e?.data?.results);
+          setCount(Math.ceil(e?.results?.length / 2));
+        })
+        .catch(error => {});
+    } else {
+    }
+  }, [SearchGlobleBook]);
+
+  React.useEffect(() => {
     GetBookList();
   }, [selectedCategories, selectedGenre, selectedMinPrice, selectedMaxPrice]);
 
@@ -61,7 +84,6 @@ export const Booklist = props => {
     } else {
       if (!cartId) {
         getCartList().then(elem => {
-          console.log(elem, "&&&&&&&&&&&&&&&&&&&&&&&&&77");
           sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
         });
       }
@@ -83,10 +105,6 @@ export const Booklist = props => {
   const setPriceValue = e => {
     setSelectedMinPrice(e[0]);
     setSelectedMaxPrice(e[1]);
-  };
-  const goToBookDetailsPage = e => {
-    sessionStorage.setItem("bookDetail", JSON.stringify(e));
-    // navigate("/BookDescription");
   };
   const handleGetWishList = (e, r) => {
     getWishList(token).then(ele => {
@@ -208,6 +226,7 @@ export const Booklist = props => {
     setFilter(e);
   };
 
+  console.log(getWishListData, "getWishListData++++++++");
   return (
     <>
       <section className="BookList_MainWrapper">
@@ -324,7 +343,6 @@ export const Booklist = props => {
                               <div className="Cart_shop_wrp">
                                 <div className="cart-content">
                                   {getWishListData &&
-                                  getWishListData.length > 0 ? (
                                     getWishListData.map((lists, index) =>
                                       lists?.id === ele.id ? (
                                         <span
@@ -344,14 +362,7 @@ export const Booklist = props => {
                                           <i className="far fa-heart short-item1"></i>
                                         </span>
                                       )
-                                    )
-                                  ) : (
-                                    <span
-                                      onClick={() => handleAddWishList(ele)}
-                                    >
-                                      <i className="far fa-heart short-item1"></i>
-                                    </span>
-                                  )}
+                                    )}
                                   <span onClick={() => handleShoppingCart(ele)}>
                                     <i className="fas fa-shopping-cart short-item1"></i>
                                   </span>

@@ -1,4 +1,4 @@
-const initialMenu = false;
+const initialMenu = '';
 
 const SearchGlobleBook = (state = initialMenu, action) => {
   switch (action.type) {

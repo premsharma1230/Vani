@@ -14,7 +14,7 @@ export const menuNav = item => {
 
 export const globleSearchData = item => {
   return {
-    type: "MENU",
+    type: "SEARCHGLOBLEBOOK",
     payload: item,
   };
 };

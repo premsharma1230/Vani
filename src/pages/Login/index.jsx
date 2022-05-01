@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-export default function Login() {
+export default function Login(props) {
   let navigate = useNavigate();
   const RedirectSamePage = useSelector(state => state.RedirectSamePage);
   const classes = useStyles();
@@ -122,13 +122,18 @@ export default function Login() {
     navigate("/Registeration");
   };
   return (
-    <div className={Classes.loginContainer + " logContainter"}>
+    <div className={`${Classes.loginContainer} logContainter`}>
       <Card className={classes.root + " custom_loginroot"}>
         <CardContent className="">
           <div className={Classes.loginHeader}>
             <div className={Classes.loginMainHeader + " loginheader"}>
               <img src={Logo} alt="logo image" className="logo_img" />
-              <img src={Close} alt="Close image" className="closeicon_img" />
+              <img
+                onClick={() => props.Logout()}
+                src={Close}
+                alt="Close image"
+                className="closeicon_img"
+              />
             </div>
             <div className={Classes.loginSubheader + " login_heading"}>
               Login
@@ -197,19 +202,19 @@ export default function Login() {
                 </div>
               </div>
               <div className={Classes.SignupButton}>
-                    <Button
-                      variant="contained"
-                      style={{
-                        background: "#0298BF",
-                        height: "30px",
-                        width: "130px",
-                        borderRadius: "8px",
-                      }}
-                      type="submit"
-                      color="primary"
-                    >
-                      Login
-                    </Button>
+                <Button
+                  variant="contained"
+                  style={{
+                    background: "#0298BF",
+                    height: "30px",
+                    width: "130px",
+                    borderRadius: "8px",
+                  }}
+                  type="submit"
+                  color="primary"
+                >
+                  Login
+                </Button>
               </div>
             </form>
             <div className={Classes.forgotPassword + " forgot_link"}>

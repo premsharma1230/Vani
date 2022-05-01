@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { RiTranslate } from "react-icons/ri";
 import { BsPerson } from "react-icons/bs";
@@ -6,12 +6,14 @@ import Classes from "./_appNavigation.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { globleSearchData } from "../../actions";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Login from "../../pages/Login";
 
 export default function ApplicationArea() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [loginModal, setLoginModal] = useState(false);
+  const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -26,6 +28,11 @@ export default function ApplicationArea() {
     dispatch(globleSearchData(e?.target?.value));
     navigate("/BookList");
   };
+
+  const handLogout = () => {
+    setLoginModal(!loginModal);
+  };
+
   return (
     <>
       <div className={Classes.iconArea}>
@@ -35,6 +42,7 @@ export default function ApplicationArea() {
               type="text"
               placeholder="search..."
               onChange={handleSearch}
+              value={SearchGlobleBook}
             />
           </li>
           <li className="Profile_Wrapper">
@@ -65,7 +73,7 @@ export default function ApplicationArea() {
                 <Link to={"/wishlist"}>Wishlist</Link>
               </MenuItem>
               <MenuItem onClick={handleClose}>
-                <Link to="/login">Logout</Link>
+                <div onClick={handLogout}>Logout</div>
               </MenuItem>
             </Menu>
           </li>
@@ -80,6 +88,11 @@ export default function ApplicationArea() {
           </li>
         </ul>
       </div>
+      {loginModal ? (
+        <div className="Login_Wrapper">
+          <Login Logout={handLogout} />
+        </div>
+      ) : null}
     </>
   );
 }

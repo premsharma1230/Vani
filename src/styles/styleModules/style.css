@@ -306,6 +306,37 @@ a {
   display: none !important;
 }
 
+.Login_Wrapper:before {
+  content: "";
+  width: 100%;
+  height: 100vh;
+  background: #00000061;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.closeicon_img {
+  cursor: pointer;
+}
+
+.login_loginContainer__ihhhz.logContainter {
+  position: absolute;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto !important;
+  left: 30%;
+  top: 0%;
+}
+
 h1,
 h2,
 h3,
