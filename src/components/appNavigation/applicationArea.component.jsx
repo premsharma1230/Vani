@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { RiTranslate } from "react-icons/ri";
 import { BsPerson } from "react-icons/bs";
@@ -6,7 +6,6 @@ import Classes from "./_appNavigation.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { globleSearchData } from "../../actions";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 

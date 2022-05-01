@@ -10,10 +10,11 @@ import {
   GetBookListWithFilters,
   getCartList,
   GetGenrelist,
-  getWishList,
+  getWishList
 } from "../../api/api";
 import { incNumber, Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 export const Booklist = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,31 @@ export const Booklist = () => {
   ];
 
   React.useEffect(() => {
+    if (token && SearchGlobleBook != "") {
+      const body = {
+        "word": SearchGlobleBook
+      }
+      axios({
+        method: "post",
+        url: `http://admin.vaniprakashan.in/searchBook/`,
+        data: body,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then(e => {
+          setBookListFilterData(e?.data?.results);
+          setCount(Math.ceil(e?.results?.length / 2));
+        })
+        .catch(error => {
+        });
+    } else {
+
+    }
+
+  }, [SearchGlobleBook]);
+
+  React.useEffect(() => {
     GetBookList();
   }, [selectedCategories, selectedGenre, selectedMinPrice, selectedMaxPrice]);
 
@@ -54,7 +80,6 @@ export const Booklist = () => {
     } else {
       if (!cartId) {
         getCartList().then(elem => {
-          console.log(elem, "&&&&&&&&&&&&&&&&&&&&&&&&&77")
           sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
         });
       }
@@ -76,10 +101,6 @@ export const Booklist = () => {
   const setPriceValue = e => {
     setSelectedMinPrice(e[0]);
     setSelectedMaxPrice(e[1]);
-  };
-  const goToBookDetailsPage = e => {
-    sessionStorage.setItem("bookDetail", JSON.stringify(e));
-    // navigate("/BookDescription");
   };
   const handleGetWishList = (e, r) => {
     getWishList(token).then(ele => {
@@ -205,6 +226,7 @@ export const Booklist = () => {
       );
     }
   }
+  console.log(bookListFilterData,"***************7777777777777")
   return (
     <>
       <section className="BookList_MainWrapper">
