@@ -1,12 +1,494 @@
 @media only screen and (max-width: 1200px) {
+  .Wishlist_Wrapper .Whishlist_header h2 {
+    font-size: 24px;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list {
+    display: block !important;
+    .Address-list {
+      display: block;
+      margin-bottom: 20px;
+      border-bottom: 1px solid $paraText;
+      padding-bottom: 20px;
+      &:nth-child(odd)::after {
+        display: none;
+      }
+      .Address-RH {
+        display: flex;
+        justify-content: flex-start;
+      }
+      .Address-Full {
+        p {
+          padding-left: 30px;
+        }
+      }
+    }
+  }
 }
 @media only screen and (max-width: 1024px) {
+  .Description_wrapper
+    .Description_Content
+    .Coutner_Wrp
+    .Counter_Number
+    .count_Increment
+    button,
+  .Description_wrapper
+    .Description_Content
+    .Coutner_Wrp
+    .Counter_Number
+    .count_btn,
+  .Description_wrapper
+    .Description_Content
+    .Coutner_Wrp
+    .Counter_Number
+    .count_btn
+    button {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+  }
+  .Description_wrapper
+    .Description_Content
+    .Description_Right
+    .About_Book
+    figcaption
+    .Format_Wrp
+    .Format-content
+    ul {
+    margin-top: 0.5rem;
+    grid-template-columns: repeat(2, max-content);
+    grid-row-gap: 0.5rem;
+  }
 }
+
 @media only screen and (max-width: 992px) {
+  // 1may start
+  .Cart_Grid_Wrapper_mob {
+    border-bottom: none !important;
+    padding-bottom: 0px !important;
+
+    .Cart_Left {
+      display: block !important;
+      width: 20% !important;
+      .Cart_img {
+        figure {
+          width: 100%;
+          img {
+            width: 100%;
+            display: block;
+            max-width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+    .Cart_right {
+      display: block !important;
+      .About_Cart {
+        h2,
+        h4 {
+          margin-bottom: 5px;
+        }
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .cart_actions {
+    display: flex;
+    align-items: center;
+    grid-gap: 3rem;
+    border-bottom: 1px solid #4e4e4e;
+    padding: 1rem 0 1.5rem;
+    width: 91%;
+    margin: 0 auto 0.9rem;
+    justify-content: space-between;
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+    }
+    .Counter_Number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-left: 20%;
+
+      .count_Increment button {
+        background: #0298bf;
+        height: 29.33333396911621px;
+        width: 29.33333396911621px;
+        border: 0.117333px solid #00102c09;
+        cursor: pointer;
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+      }
+      .Counter_print {
+        height: 29.33333396911621px;
+        width: 29.33333396911621px;
+        border: 0.117333px solid #00102c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        color: #fe4365;
+      }
+      .count_btn button {
+        background: #c4c4c4;
+        height: 29.33333396911621px;
+        width: 29.33333396911621px;
+        border: 0.117333px solid #00102c09;
+        cursor: pointer;
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+    .cart_remove {
+      margin-left: auto;
+      button {
+        height: 30px;
+        width: 30px;
+        background: #fe4365;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        outline: none;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        color: #fff;
+      }
+    }
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total {
+    padding: 1rem 0 1.5rem;
+    width: 91% !important;
+    margin: 0 auto !important;
+    .Total-content {
+      display: flex;
+      justify-content: end;
+      .Total-text {
+        padding-right: 100px;
+        &::after {
+          // display: none;
+          right: 30px;
+        }
+      }
+    }
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form {
+    width: 100%;
+    .Address-Select {
+      width: 100%;
+    }
+    .Name_field.address-cmn {
+      width: 100%;
+      margin-top: 30px;
+      .FName_wrp {
+        .MuiFormControl-root.MuiTextField-root.css-tghzsf-MuiFormControl-root-MuiTextField-root {
+          width: 100%;
+        }
+      }
+    }
+    .Address_field {
+      width: 100% !important;
+      margin-top: 30px;
+      .FName_wrp {
+        display: block;
+      }
+      .MuiFormControl-root.MuiTextField-root.css-tghzsf-MuiFormControl-root-MuiTextField-root {
+        width: 100% !important;
+        margin: 5px 0px;
+      }
+    }
+    .Group_detail1_Wrapper {
+      width: 100% !important;
+      margin-top: 15px;
+      .MuiFormControl-root.MuiTextField-root.css-tghzsf-MuiFormControl-root-MuiTextField-root {
+        width: 100% !important;
+      }
+    }
+    .PhneNumber_Wrapper {
+      width: 100%;
+      margin-top: 30px;
+    }
+  }
+  .MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+    width: 100%;
+  }
+  .MuiFormControl-root.MuiTextField-root.css-vl0gdm-MuiFormControl-root-MuiTextField-root {
+    max-width: 100%;
+  }
+  // 1may end
+  .Description_wrapper .Review_Wrapper .Review_form {
+    width: 100%;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 45px;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
+    height: 350px;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 36px;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .Author_Wrapper
+    .Author_content
+    .Author-Card_Wrap
+    .category_Grid_Content
+    .Grid-item
+    figcaption
+    h3 {
+    font-size: 1.3em;
+  }
 }
 @media only screen and (max-width: 800px) {
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 31px;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content p {
+    padding: 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 36px;
+  }
+  ._appNavigation_iconArea__UZsHc {
+    margin-top: 0rem !important;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
+    height: 260px;
+    margin: 3rem 0 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content {
+    width: 60%;
+    padding: 4rem 0;
+    top: 30px;
+  }
+  .Description_wrapper .Description_Content {
+    padding-top: 0;
+    .Description_Right .About_Book .About-book-title h2 {
+      width: 100%;
+      span {
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper {
+    flex-wrap: wrap;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left {
+    width: 100%;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right {
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 768px) {
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content {
+    margin: 0;
+    padding: 4rem 0 0;
+    width: max-content !important;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
+    height: 260px;
+    margin: 0rem 0 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
+    height: max-content;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .Author_Wrapper
+    .Author_content
+    .Author-Card_Wrap
+    .category_Grid_Content
+    .Grid-item
+    figcaption
+    h3 {
+    font-size: 1em;
+  }
+  .Author_Wrapper
+    .Author_content
+    .Author-Card_Wrap
+    .category_Grid_Content
+    .Grid-item
+    figcaption
+    strong {
+    font-size: 0.99em;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 35px;
+  }
+  .Address_Wrapper .Address_header {
+    // display: block;
+    .Add-Address {
+      button {
+        width: auto;
+        padding: 0 20px;
+      }
+    }
+  }
+
+  .Author_Wrapper {
+    .AuthorBanner_Wrapper {
+      height: auto;
+      .AuthBanner-Content {
+        margin: 0;
+        padding: 4rem 0;
+        width: 100%;
+        h2 {
+          font-size: 36px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+    .Author_content {
+      .Author_heading {
+        h2 {
+          font-size: 30px;
+        }
+      }
+      .Author-Card_Wrap .category_Grid_Content {
+        grid-template-columns: repeat(2, 1fr) !important;
+        .Grid-item {
+          text-align: center;
+          figure {
+            height: auto;
+            min-height: 235px;
+          }
+          figcaption {
+            text-align: center;
+            h3 {
+              font-size: 14px !important;
+              padding-bottom: 2px;
+              line-height: 1;
+            }
+            span.star_wrp {
+              margin: auto;
+              width: fit-content;
+            }
+            strong {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+    // 1 may code start
+    .Pagination_wrp {
+      .Alphabetic-pagination {
+        flex-wrap: wrap;
+        padding: 0;
+        margin-bottom: 30px;
+        li {
+          padding: 0 5px;
+          margin: 0;
+          width: 10%;
+          font-size: 12px;
+          height: 37px;
+          &:nth-child(10n) {
+            border-right: 0.2px solid #000000;
+          }
+          &:nth-child(-n + 10) {
+            border-bottom: 0px;
+          }
+          &:nth-last-child(-n + 6) {
+            border-top: 0;
+          }
+        }
+      }
+    }
+  }
+  .AuthorDescription_Wrapper {
+    .Social_Content {
+      display: none !important;
+    }
+    .mob_Social_Content {
+      display: grid;
+      grid-template-columns: repeat(4, max-content);
+      grid-gap: 1rem;
+      padding: 0.5rem 0;
+      // width: 50%;
+      // margin: 0 auto;
+      grid-gap: 1.5rem;
+      li {
+        list-style: none;
+        svg {
+          color: #fe4365;
+          font-size: 1.5em;
+          transition: all 0.3s ease-in-out;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  .AuthorDescription_Wrapper.Description_wrapper {
+    .bookDes_Wrp .bookDes_Wrp_Content {
+      padding-bottom: 1rem;
+      h2 {
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 16px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+    .Description_Content .Description_Right {
+      .About_Book .About-book-title h2 {
+        font-size: 36px;
+        line-height: 46px;
+        padding: 10px 0;
+      }
+      .About-book-detail {
+        padding-top: 0.5rem;
+      }
+    }
+  }
+  .AuthorDescription_Wrapper .Description_Content {
+    padding: 1rem 0 1rem;
+    .Review_Form_Wrp {
+      width: 100%;
+      padding-top: 1rem;
+      form .Review1 {
+        padding: 0.75rem 0;
+        label {
+          font-size: 14px;
+        }
+        #Submit {
+          font-size: 12px;
+          width: fit-content;
+          padding: 0 30px;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  .Otherbook_Wrapper .Otherbook-Heading {
+    padding-top: 0 !important;
+    padding-bottom: 1rem !important;
+    h2 {
+      font-size: 16px !important;
+    }
+  }
+  .Address_Wrapper
+    .Address_Content
+    .Address_Main_list
+    .Address-list
+    .Address-Full
+    button {
+    width: 100%;
+  }
+  .Wishlist_Wrapper .Whishlist_header {
+    margin-top: 1rem;
+  }
+
   .custom_loginroot {
     min-width: 80% !important;
     width: 80%;
@@ -76,13 +558,204 @@
       margin-left: 1%;
     }
   }
+  .Description_wrapper
+    .Description_Content
+    .Description_Right
+    .About_Book
+    figcaption
+    .Format_Wrp
+    .Format-content
+    ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70vw;
+  }
+
+  .Description_wrapper .Review_Wrapper .Review_Content {
+    display: block;
+    .Review_form {
+      margin-top: 3rem;
+    }
+  }
+  .Author_Wrapper
+    .Author_content
+    .Author-Card_Wrap
+    .category_Grid_Content
+    .Grid-item
+    figure {
+    height: 300px;
+    min-height: 235px;
+  }
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 @media only screen and (max-width: 557px) {
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul {
+    padding: 2rem 0 2rem;
+    grid-template-columns: 80px 1fr 1fr;
+  }
+  .Wishlist_Wrapper
+    .Wishlist_content
+    .AuthInfo_Wrapper
+    .AuthInfo_Content
+    ul
+    li
+    .AuthInfo_Cart_Btn
+    .cart-btn {
+    width: 129px;
+    height: 30px;
+    margin: 0.4rem auto;
+  }
+  .Wishlist_Wrapper
+    .Wishlist_content
+    .AuthInfo_Wrapper
+    .AuthInfo_Content
+    ul
+    li
+    .Auth-mid-content
+    h2 {
+    font-size: 14px;
+  }
+  .Wishlist_Wrapper
+    .Wishlist_content
+    .AuthInfo_Wrapper
+    .AuthInfo_Content
+    ul
+    li
+    .Auth-mid-content
+    .Star_wrp
+    .star-item {
+    font-size: 14px;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper
+    .Description_Content
+    .Description_Right
+    .About_Book
+    .About-book-title
+    h2 {
+    font-size: 22px;
+    line-height: 46px;
+    padding: 4px 0;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper
+    .bookDes_Wrp
+    .bookDes_Wrp_Content
+    p {
+    font-size: 13px;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper
+    .bookDes_Wrp
+    .bookDes_Wrp_Content
+    h2 {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 15px;
+  }
+  .AuthorDescription_Wrapper
+    .Description_Content
+    .Review_Form_Wrp
+    form
+    .Review1
+    #Submit {
+    width: 100%;
+  }
+
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 26px;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 25px;
+  }
+  .Author_Wrapper .Author_content .Author_heading {
+    padding: 0rem 0 1rem;
+  }
+  .Author_Wrapper .Author_content {
+    padding: 0rem 0 0;
+  }
+  .Description_Right .About_Book {
+    .About-book-title h2 {
+      width: 80% !important;
+      span {
+        right: -20% !important;
+        top: 20px !important;
+      }
+    }
+    figcaption {
+      border-bottom: 1px solid #0298bf;
+    }
+  }
+  .Wishlist_Wrapper .Whishlist_header h2 {
+    font-size: 19px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .AuthorDescription_Wrapper
+    .Description_Content
+    .Review_Form_Wrp
+    form
+    .Review1 {
+    grid-template-columns: 80px 1fr;
+    grid-gap: 0.5rem;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 24px;
+    line-height: 1.5;
+    padding: 1rem 0 0;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 23px;
+  }
 }
 @media only screen and (max-width: 375px) {
+  .AuthorDescription_Wrapper
+    .Description_Content
+    .Review_Form_Wrp
+    form
+    .Review1 {
+    grid-template-columns: 60px 1fr;
+    grid-gap: 0.5rem;
+  }
+  .Description_wrapper .BookDescription_head .booklist_navigation {
+    padding: 1rem 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 19px;
+    line-height: 1.5;
+    padding: 1rem 0 0;
+    .Author_Wrapper .Author_content .Author_heading h2 {
+      font-size: 22px;
+    }
+  }
+  .AuthorDescription_Wrapper .Author_Detail p {
+    padding: 0.3rem 0;
+  }
+
+  .Author_Wrapper
+    .Author_content
+    .Author-Card_Wrap
+    .category_Grid_Content
+    .Grid-item
+    figure {
+    height: 240px;
+    min-height: 235px;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content p {
+    font-size: 13px;
+    padding: 0;
+    line-height: 1.4;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 21px;
+  }
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul {
+    padding: 2rem 0 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media only screen and (max-width: 320px) {
 }

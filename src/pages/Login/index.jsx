@@ -11,11 +11,11 @@ import Close from "../../assets/Close.png";
 import GooglePic from "../../assets/google_logo.png";
 import FacebookPic from "../../assets/facebook_logo.png";
 import { useHistory, useNavigate } from "react-router-dom";
-import { getCartList, LoginApi } from "../../api/api";
+import { getCartList,LoginApi } from "../../api/api";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirection } from "../../actions";
+import {Redirection, UserIsLogin } from "../../actions";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -38,8 +38,9 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-export default function Login() {
+export default function Login(props) {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const RedirectSamePage = useSelector(state => state.RedirectSamePage);
   const classes = useStyles();
 
@@ -95,6 +96,7 @@ export default function Login() {
             lastName: res?.last_name,
             phoneNumber: res?.phone_number,
           };
+          dispatch(UserIsLogin(true));
           sessionStorage.setItem(
             "LoginUserData",
             JSON.stringify(LoginUserData)
@@ -122,13 +124,18 @@ export default function Login() {
     navigate("/Registeration");
   };
   return (
-    <div className={Classes.loginContainer + " logContainter"}>
+    <div className={`${Classes.loginContainer} logContainter`}>
       <Card className={classes.root + " custom_loginroot"}>
         <CardContent className="">
           <div className={Classes.loginHeader}>
             <div className={Classes.loginMainHeader + " loginheader"}>
               <img src={Logo} alt="logo image" className="logo_img" />
-              <img src={Close} alt="Close image" className="closeicon_img" />
+              <img
+                onClick={() => props.Logout()}
+                src={Close}
+                alt="Close image"
+                className="closeicon_img"
+              />
             </div>
             <div className={Classes.loginSubheader + " login_heading"}>
               Login
@@ -197,19 +204,19 @@ export default function Login() {
                 </div>
               </div>
               <div className={Classes.SignupButton}>
-                    <Button
-                      variant="contained"
-                      style={{
-                        background: "#0298BF",
-                        height: "30px",
-                        width: "130px",
-                        borderRadius: "8px",
-                      }}
-                      type="submit"
-                      color="primary"
-                    >
-                      Login
-                    </Button>
+                <Button
+                  variant="contained"
+                  style={{
+                    background: "#0298BF",
+                    height: "30px",
+                    width: "130px",
+                    borderRadius: "8px",
+                  }}
+                  type="submit"
+                  color="primary"
+                >
+                  Login
+                </Button>
               </div>
             </form>
             <div className={Classes.forgotPassword + " forgot_link"}>

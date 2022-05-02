@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { RiTranslate } from "react-icons/ri";
 import { BsPerson } from "react-icons/bs";
@@ -8,10 +8,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { globleSearchData } from "../../actions";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Login from "../../pages/Login";
 
 export default function ApplicationArea() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [loginModal, setLoginModal] = useState(false);
   const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
+  const UserLoginTrue = useSelector(state => state.UserLogin);
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -26,6 +29,14 @@ export default function ApplicationArea() {
     dispatch(globleSearchData(e?.target?.value));
     navigate("/BookList");
   };
+
+  const handLogout = () => {
+    sessionStorage.removeItem('LoginData');
+    sessionStorage.removeItem('cartIdWithToken');
+    // setLoginModal(!loginModal);
+    navigate("/");
+  };
+
   return (
     <>
       <div className={Classes.iconArea}>
@@ -65,9 +76,11 @@ export default function ApplicationArea() {
               <MenuItem onClick={handleClose}>
                 <Link to={"/wishlist"}>Wishlist</Link>
               </MenuItem>
+              {UserLoginTrue ?
               <MenuItem onClick={handleClose}>
-                <Link to="/login">Logout</Link>
+                <div onClick={handLogout}>Logout</div>
               </MenuItem>
+              :null}
             </Menu>
           </li>
           <li className="CartMain_Wrapper cartTop">
@@ -81,6 +94,11 @@ export default function ApplicationArea() {
           </li>
         </ul>
       </div>
+      {/* {loginModal ? (
+        <div className="Login_Wrapper">
+          <Login Logout={handLogout} />
+        </div>
+      ) : null} */}
     </>
   );
 }

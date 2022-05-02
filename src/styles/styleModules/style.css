@@ -297,6 +297,46 @@ a {
   color: #0298bf;
 }
 
+.BottonShort_Wrapper,
+.ShortFilter_Wrapper {
+  display: none;
+}
+
+.ShortFilter_Wrapper {
+  display: none !important;
+}
+
+.Login_Wrapper:before {
+  content: "";
+  width: 100%;
+  height: 100vh;
+  background: #00000061;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.closeicon_img {
+  cursor: pointer;
+}
+
+.login_loginContainer__ihhhz.logContainter {
+  position: absolute;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto !important;
+  left: 30%;
+  top: 0%;
+}
+
 h1,
 h2,
 h3,
@@ -3051,6 +3091,10 @@ a {
   grid-gap: 1.5rem 6rem;
 }
 
+.Account_Wrapper .Account_Content ul a:nth-child(even) li:nth-child(odd)::before {
+  display: none;
+}
+
 .Account_Wrapper .Account_Content ul li {
   list-style-type: none;
   -webkit-box-align: center;
@@ -3470,9 +3514,32 @@ a {
   .Footer_Wrapper .Footer_Content .foot_item ul li {
     padding: 0.4rem 0;
   }
+  .BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  .BookList_MainWrapper {
+    padding: 3rem 0 0;
+  }
+  .BookList_MainWrapper .Price_text {
+    -webkit-transform: translateX(-6px);
+            transform: translateX(-6px);
+  }
+  .BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content .Grid-item figcaption h3 {
+    font-size: 1.09em;
+  }
+  .BookList_MainWrapper .Filter-Categories_Wrapper .Category_Item1 .category-heading h4 {
+    font-size: 1.1em;
+  }
+  .BookList_MainWrapper .Filter-Categories_Wrapper .Category_Item1 .filter-catgry li p {
+    font-size: 0.89em;
+  }
   .SaveMain_Wrapper .Save_Content_wrp .Save_Content .SaveBook_Grid .Grid-item figure {
     height: 250px !important;
   }
@@ -3603,6 +3670,168 @@ a {
 }
 
 @media only screen and (max-width: 576px) {
+  .Filter_wrp {
+    display: none;
+  }
+  .BottonShort_Wrapper {
+    display: block;
+  }
+  .BottonShort_Wrapper ul {
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    border: 0.2px solid rgba(153, 153, 153, 0.386);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 60px;
+    bottom: 0;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    gap: 1rem;
+  }
+  .BottonShort_Wrapper ul li {
+    list-style-type: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 0.7rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    position: relative;
+  }
+  .BottonShort_Wrapper ul li:nth-child(1)::before {
+    content: "";
+    width: 1px;
+    height: 32px;
+    background: #4e4e4e;
+    position: absolute;
+    top: -7px;
+    left: 10rem;
+  }
+  .BottonShort_Wrapper ul li i,
+  .BottonShort_Wrapper ul li svg,
+  .BottonShort_Wrapper ul li .short-icon,
+  .BottonShort_Wrapper ul li .filter-icon {
+    font-size: 0.89em;
+    color: #4e4e4e;
+  }
+  .BottonShort_Wrapper ul li span {
+    text-transform: capitalize;
+    font-family: "Lora";
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0px;
+  }
+  .Short_Wrapper {
+    border: 0.5px solid rgba(153, 153, 153, 0.386);
+    border-bottom: none;
+    background: #fff;
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+  }
+  .Short_Wrapper::before {
+    content: "";
+    filter: blur(8px);
+    -webkit-filter: blur(17px);
+    background: #e5e5e5bf;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    bottom: 100%;
+    z-index: -7;
+  }
+  .Short_Wrapper .Short_head {
+    padding: 0.5rem 1rem;
+    border-bottom: 0.5px solid rgba(153, 153, 153, 0.386);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .Short_Wrapper .Short_head h2 {
+    font-family: "Lora";
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0px;
+  }
+  .Short_Wrapper .Short-Content {
+    padding: 1rem;
+  }
+  .Short_Wrapper .Short-Content ul li {
+    list-style-type: none;
+    padding: 0.4rem 0;
+  }
+  .Short_Wrapper .Short-Content ul li h4 {
+    font-family: "Lora";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0px;
+  }
+  .ShortFilter_Wrapper {
+    display: block !important;
+  }
+  .ShortFilter_Wrapper .Filter-Categories_Wrapper {
+    background: #fff;
+    width: 100%;
+    padding: 0rem 0 0;
+    position: fixed;
+    bottom: 60px;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    border: 0.5px solid rgba(153, 153, 153, 0.386);
+  }
+  .ShortFilter_Wrapper .Filter-Categories_Wrapper .Short_head {
+    padding: 0.5rem 1rem;
+    border-bottom: 0.5px solid rgba(153, 153, 153, 0.386);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .ShortFilter_Wrapper .Filter-Categories_Wrapper .Short_head h2 {
+    font-family: "Lora";
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0px;
+  }
+  .ShortFilter_Wrapper .Filter-Categories_Wrapper .Category_Item1 .filter-catgry li p {
+    font-size: 14px;
+  }
+  .ShortFilter_Wrapper .Filter-Categories_Wrapper .Category_Item1 .category-heading {
+    padding: 0.5rem 0rem;
+    border-bottom: 0.5px solid rgba(153, 153, 153, 0.386);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .ShortFilter_Wrapper .Filter-Categories_Wrapper .Category_Item1 .category-heading h4 {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0px;
+  }
+  .BookList_MainWrapper .BookList_wrp .Category_Grid_Wrp .category_Grid_Content {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
   .cartTop {
     display: none;
   }
@@ -4229,7 +4458,483 @@ a {
   border-right: none !important;
 }
 
+.mob_Social_Content .registeration_back__bE9M5 {
+  display: none;
+  border-right: none !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .Wishlist_Wrapper .Whishlist_header h2 {
+    font-size: 24px;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list {
+    display: block !important;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list {
+    display: block;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #4e4e4e;
+    padding-bottom: 20px;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list:nth-child(odd)::after {
+    display: none;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-RH {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full p {
+    padding-left: 30px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .count_Increment button,
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .count_btn,
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .count_btn button {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+  }
+  .Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp .Format-content ul {
+    margin-top: 0.5rem;
+    -ms-grid-columns: (max-content)[2];
+        grid-template-columns: repeat(2, -webkit-max-content);
+        grid-template-columns: repeat(2, max-content);
+    grid-row-gap: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .Cart_Grid_Wrapper_mob {
+    border-bottom: none !important;
+    padding-bottom: 0px !important;
+  }
+  .Cart_Grid_Wrapper_mob .Cart_Left {
+    display: block !important;
+    width: 20% !important;
+  }
+  .Cart_Grid_Wrapper_mob .Cart_Left .Cart_img figure {
+    width: 100%;
+  }
+  .Cart_Grid_Wrapper_mob .Cart_Left .Cart_img figure img {
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .Cart_Grid_Wrapper_mob .Cart_right {
+    display: block !important;
+  }
+  .Cart_Grid_Wrapper_mob .Cart_right .About_Cart {
+    margin-bottom: 10px;
+  }
+  .Cart_Grid_Wrapper_mob .Cart_right .About_Cart h2,
+  .Cart_Grid_Wrapper_mob .Cart_right .About_Cart h4 {
+    margin-bottom: 5px;
+  }
+  .cart_actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    grid-gap: 3rem;
+    border-bottom: 1px solid #4e4e4e;
+    padding: 1rem 0 1.5rem;
+    width: 91%;
+    margin: 0 auto 0.9rem;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .cart_actions input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+  .cart_actions .Counter_Number {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-left: 20%;
+  }
+  .cart_actions .Counter_Number .count_Increment button {
+    background: #0298bf;
+    height: 29.33333396911621px;
+    width: 29.33333396911621px;
+    border: 0.117333px solid #00102c09;
+    cursor: pointer;
+    color: #fff;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  .cart_actions .Counter_Number .Counter_print {
+    height: 29.33333396911621px;
+    width: 29.33333396911621px;
+    border: 0.117333px solid #00102c;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    color: #fe4365;
+  }
+  .cart_actions .Counter_Number .count_btn button {
+    background: #c4c4c4;
+    height: 29.33333396911621px;
+    width: 29.33333396911621px;
+    border: 0.117333px solid #00102c09;
+    cursor: pointer;
+    color: #fff;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  .cart_actions .cart_remove {
+    margin-left: auto;
+  }
+  .cart_actions .cart_remove button {
+    height: 30px;
+    width: 30px;
+    background: #fe4365;
+    border-radius: 4px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    outline: none;
+    border: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    color: #fff;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total {
+    padding: 1rem 0 1.5rem;
+    width: 91% !important;
+    margin: 0 auto !important;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .Total-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: end;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .Total-content .Total-text {
+    padding-right: 100px;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .Total-content .Total-text::after {
+    right: 30px;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form {
+    width: 100%;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .Address-Select {
+    width: 100%;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .Name_field.address-cmn {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .Name_field.address-cmn .FName_wrp .MuiFormControl-root.MuiTextField-root.css-tghzsf-MuiFormControl-root-MuiTextField-root, .AddAddress_Wrapper .AddAddress_Content .Address_Form .Name_field.address-cmn .Group_detail1_Wrapper ul .MuiFormControl-root.MuiTextField-root.css-tghzsf-MuiFormControl-root-MuiTextField-root, .AddAddress_Wrapper .AddAddress_Content .Address_Form .Group_detail1_Wrapper .Name_field.address-cmn ul .MuiFormControl-root.MuiTextField-root.css-tghzsf-MuiFormControl-root-MuiTextField-root {
+    width: 100%;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .Address_field {
+    width: 100% !important;
+    margin-top: 30px;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .Address_field .FName_wrp, .AddAddress_Wrapper .AddAddress_Content .Address_Form .Address_field .Group_detail1_Wrapper ul, .AddAddress_Wrapper .AddAddress_Content .Address_Form .Group_detail1_Wrapper .Address_field ul {
+    display: block;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .Address_field .MuiFormControl-root.MuiTextField-root.css-tghzsf-MuiFormControl-root-MuiTextField-root {
+    width: 100% !important;
+    margin: 5px 0px;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .Group_detail1_Wrapper {
+    width: 100% !important;
+    margin-top: 15px;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .Group_detail1_Wrapper .MuiFormControl-root.MuiTextField-root.css-tghzsf-MuiFormControl-root-MuiTextField-root {
+    width: 100% !important;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .PhneNumber_Wrapper {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .MuiOutlinedInput-root.MuiInputBase-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+    width: 100%;
+  }
+  .MuiFormControl-root.MuiTextField-root.css-vl0gdm-MuiFormControl-root-MuiTextField-root {
+    max-width: 100%;
+  }
+  .Description_wrapper .Review_Wrapper .Review_form {
+    width: 100%;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 45px;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
+    height: 350px;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 36px;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption h3 {
+    font-size: 1.3em;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 31px;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content p {
+    padding: 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 36px;
+  }
+  ._appNavigation_iconArea__UZsHc {
+    margin-top: 0rem !important;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
+    height: 260px;
+    margin: 3rem 0 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content {
+    width: 60%;
+    padding: 4rem 0;
+    top: 30px;
+  }
+  .Description_wrapper .Description_Content {
+    padding-top: 0;
+  }
+  .Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 {
+    width: 100%;
+  }
+  .Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 span {
+    right: 0;
+    top: 0;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left {
+    width: 100%;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right {
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 768px) {
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content {
+    margin: 0;
+    padding: 4rem 0 0;
+    width: -webkit-max-content !important;
+    width: -moz-max-content !important;
+    width: max-content !important;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
+    height: 260px;
+    margin: 0rem 0 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .Banner_img {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption h3 {
+    font-size: 1em;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption strong {
+    font-size: 0.99em;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 35px;
+  }
+  .Address_Wrapper .Address_header .Add-Address button {
+    width: auto;
+    padding: 0 20px;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper {
+    height: auto;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content {
+    margin: 0;
+    padding: 4rem 0;
+    width: 100%;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 36px;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content p {
+    font-size: 14px;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 30px;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content {
+    -ms-grid-columns: (1fr)[2] !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item {
+    text-align: center;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figure {
+    height: auto;
+    min-height: 235px;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption {
+    text-align: center;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption h3 {
+    font-size: 14px !important;
+    padding-bottom: 2px;
+    line-height: 1;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption span.star_wrp {
+    margin: auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption strong {
+    font-size: 10px;
+  }
+  .Author_Wrapper .Pagination_wrp .Alphabetic-pagination {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+  .Author_Wrapper .Pagination_wrp .Alphabetic-pagination li {
+    padding: 0 5px;
+    margin: 0;
+    width: 10%;
+    font-size: 12px;
+    height: 37px;
+  }
+  .Author_Wrapper .Pagination_wrp .Alphabetic-pagination li:nth-child(10n) {
+    border-right: 0.2px solid #000000;
+  }
+  .Author_Wrapper .Pagination_wrp .Alphabetic-pagination li:nth-child(-n + 10) {
+    border-bottom: 0px;
+  }
+  .Author_Wrapper .Pagination_wrp .Alphabetic-pagination li:nth-last-child(-n + 6) {
+    border-top: 0;
+  }
+  .AuthorDescription_Wrapper .Social_Content {
+    display: none !important;
+  }
+  .AuthorDescription_Wrapper .mob_Social_Content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (max-content)[4];
+        grid-template-columns: repeat(4, -webkit-max-content);
+        grid-template-columns: repeat(4, max-content);
+    grid-gap: 1rem;
+    padding: 0.5rem 0;
+    grid-gap: 1.5rem;
+  }
+  .AuthorDescription_Wrapper .mob_Social_Content li {
+    list-style: none;
+  }
+  .AuthorDescription_Wrapper .mob_Social_Content li svg {
+    color: #fe4365;
+    font-size: 1.5em;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content {
+    padding-bottom: 1rem;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content h2 {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 16px;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content p {
+    font-size: 14px;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 {
+    font-size: 36px;
+    line-height: 46px;
+    padding: 10px 0;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper .Description_Content .Description_Right .About-book-detail {
+    padding-top: 0.5rem;
+  }
+  .AuthorDescription_Wrapper .Description_Content {
+    padding: 1rem 0 1rem;
+  }
+  .AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp {
+    width: 100%;
+    padding-top: 1rem;
+  }
+  .AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 {
+    padding: 0.75rem 0;
+  }
+  .AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 label {
+    font-size: 14px;
+  }
+  .AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 #Submit {
+    font-size: 12px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0 30px;
+    margin-top: 10px;
+  }
+  .Otherbook_Wrapper .Otherbook-Heading {
+    padding-top: 0 !important;
+    padding-bottom: 1rem !important;
+  }
+  .Otherbook_Wrapper .Otherbook-Heading h2 {
+    font-size: 16px !important;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full button {
+    width: 100%;
+  }
+  .Wishlist_Wrapper .Whishlist_header {
+    margin-top: 1rem;
+  }
   .custom_loginroot {
     min-width: 80% !important;
     width: 80%;
@@ -4292,6 +4997,147 @@ a {
     width: 49%;
     display: inline-block;
     margin-left: 1%;
+  }
+  .Description_wrapper .Description_Content .Description_Right .About_Book figcaption .Format_Wrp .Format-content ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 70vw;
+  }
+  .Description_wrapper .Review_Wrapper .Review_Content {
+    display: block;
+  }
+  .Description_wrapper .Review_Wrapper .Review_Content .Review_form {
+    margin-top: 3rem;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figure {
+    height: 300px;
+    min-height: 235px;
+  }
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media only screen and (max-width: 557px) {
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul {
+    padding: 2rem 0 2rem;
+    -ms-grid-columns: 80px 1fr 1fr;
+        grid-template-columns: 80px 1fr 1fr;
+  }
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .AuthInfo_Cart_Btn .cart-btn {
+    width: 129px;
+    height: 30px;
+    margin: 0.4rem auto;
+  }
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content h2 {
+    font-size: 14px;
+  }
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul li .Auth-mid-content .Star_wrp .star-item {
+    font-size: 14px;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 {
+    font-size: 22px;
+    line-height: 46px;
+    padding: 4px 0;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content p {
+    font-size: 13px;
+  }
+  .AuthorDescription_Wrapper.Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content h2 {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 15px;
+  }
+  .AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 #Submit {
+    width: 100%;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 26px;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 25px;
+  }
+  .Author_Wrapper .Author_content .Author_heading {
+    padding: 0rem 0 1rem;
+  }
+  .Author_Wrapper .Author_content {
+    padding: 0rem 0 0;
+  }
+  .Description_Right .About_Book .About-book-title h2 {
+    width: 80% !important;
+  }
+  .Description_Right .About_Book .About-book-title h2 span {
+    right: -20% !important;
+    top: 20px !important;
+  }
+  .Description_Right .About_Book figcaption {
+    border-bottom: 1px solid #0298bf;
+  }
+  .Wishlist_Wrapper .Whishlist_header h2 {
+    font-size: 19px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+  .AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 {
+    -ms-grid-columns: 80px 1fr;
+        grid-template-columns: 80px 1fr;
+    grid-gap: 0.5rem;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 24px;
+    line-height: 1.5;
+    padding: 1rem 0 0;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 23px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 {
+    -ms-grid-columns: 60px 1fr;
+        grid-template-columns: 60px 1fr;
+    grid-gap: 0.5rem;
+  }
+  .Description_wrapper .BookDescription_head .booklist_navigation {
+    padding: 1rem 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 {
+    font-size: 19px;
+    line-height: 1.5;
+    padding: 1rem 0 0;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content h2 .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 22px;
+  }
+  .AuthorDescription_Wrapper .Author_Detail p {
+    padding: 0.3rem 0;
+  }
+  .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figure {
+    height: 240px;
+    min-height: 235px;
+  }
+  .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content p {
+    font-size: 13px;
+    padding: 0;
+    line-height: 1.4;
+  }
+  .Author_Wrapper .Author_content .Author_heading h2 {
+    font-size: 21px;
+  }
+  .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul {
+    padding: 2rem 0 2rem;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
   }
 }
 /*# sourceMappingURL=style.css.map */

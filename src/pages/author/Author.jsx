@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import { Footer } from "../Footer/Footer";
 import { GetAuthorsList } from "../../api/api";
+import { BottomNavigation } from "../homeContent/BottomNavigation";
 
 const alpha = Array.from(Array(26)).map((e, i) => i + 65);
 const alphabet = alpha.map(x => String.fromCharCode(x));
@@ -109,6 +110,7 @@ export const Author = () => {
         </div>
       </div>
       <Footer />
+      <BottomNavigation />
     </section>
   );
 };

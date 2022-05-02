@@ -29,9 +29,6 @@ export const Cart = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [checkoutTrue, setCheckoutTrue] = useState(false);
 
-
-  console.log(cartId, "cartId++++++++++++++++++++++++++++++")
-  console.log(cartIdWithToken, "cartIdWithToken++++++++++++++++++")
   // const handelIncrement = (e, q, i) => {
   //   if (q != 1) {
   //     let realPrice = e / q;
