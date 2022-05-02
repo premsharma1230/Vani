@@ -337,6 +337,39 @@ a {
   top: 0%;
 }
 
+.Main_Home_Content header {
+  z-index: 1;
+}
+
+.other_logins img {
+  padding-right: 40px;
+  max-width: 20%;
+}
+
+.NavigationSection_Laptop ul li {
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.NavigationSection_Laptop ul li:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
+.Signuplink {
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Signuplink:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
 h1,
 h2,
 h3,
@@ -1239,7 +1272,7 @@ a {
 
 .Description_wrapper .Description_Content .Coutner_Wrp .Counter_heading h3 {
   font-family: "Lora";
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 700;
   line-height: 48px;
   letter-spacing: 0.20000000298023224px;
@@ -2915,8 +2948,8 @@ a {
 .Billing_Wrapper .Billing_Content .billing-right .billing-right_Content {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 100px 1fr 100px;
-      grid-template-columns: 100px 1fr 100px;
+  -ms-grid-columns: 100px 1fr 130px;
+      grid-template-columns: 100px 1fr 130px;
   grid-gap: 2rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -2954,11 +2987,12 @@ a {
 
 .Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li h6 {
   font-family: "Lora";
-  font-size: 1.8em;
+  font-size: 1.5em;
   font-weight: 700;
   line-height: 18px;
   letter-spacing: 0px;
   color: #0298bf;
+  text-align: right;
 }
 
 .Billing_Wrapper .Billing_Content .billing-right .Grand_Total {
@@ -4464,6 +4498,21 @@ a {
 }
 
 @media only screen and (max-width: 1200px) {
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_heading h3 {
+    font-size: 1.2em;
+  }
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number button,
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .Counter_print {
+    height: 25px;
+    width: 25px;
+  }
+  .Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn {
+    width: 135px;
+    height: 40px;
+  }
+  .Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn a {
+    font-size: 0.89em;
+  }
   .Wishlist_Wrapper .Whishlist_header h2 {
     font-size: 24px;
   }
@@ -4490,6 +4539,30 @@ a {
   .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full p {
     padding-left: 30px;
   }
+  .Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li h6 {
+    font-size: 1.4em;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .billing_head h2,
+  .Billing_Wrapper .Billing_Content .billing-left .billing_head h2 {
+    margin: 1.1rem 0 1.6rem;
+    font-size: 1.5em;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .Grand_Total .button_wrp button {
+    font-size: 1em;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .Grand_Total .button_wrp button {
+    height: 43px;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content {
+    margin: 0 0 1.1rem;
+    padding: 0.6rem 1rem 1rem;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content .Total-text {
+    font-size: 1em;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .Grand_Total .Total-content .Total-number {
+    font-size: 1.1em;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -4510,6 +4583,16 @@ a {
 }
 
 @media only screen and (max-width: 992px) {
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Cart_Price h3 {
+    font-size: 18px;
+  }
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .count_Increment button,
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .count_btn,
+  .Description_wrapper .Description_Content .Coutner_Wrp .Counter_Number .count_btn button {
+    margin: 0 !important;
+    height: 25px !important;
+    width: 25px !important;
+  }
   .Cart_Grid_Wrapper_mob {
     border-bottom: none !important;
     padding-bottom: 0px !important;
@@ -4692,6 +4775,7 @@ a {
   }
   .MuiFormControl-root.MuiTextField-root.css-vl0gdm-MuiFormControl-root-MuiTextField-root {
     max-width: 100%;
+    width: 100%;
   }
   .Description_wrapper .Review_Wrapper .Review_form {
     width: 100%;
@@ -4712,9 +4796,37 @@ a {
   .Author_Wrapper .Author_content .Author-Card_Wrap .category_Grid_Content .Grid-item figcaption h3 {
     font-size: 1.3em;
   }
+  .Address_Form .login_formMain__SCC1a {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .Address_Form .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 800px) {
+  .Billing_Wrapper .Billing_Content {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    grid-gap: 1rem;
+  }
+  .Billing_Wrapper .Billing_Content .billing-left .PromoCode {
+    position: relative;
+    margin: 1rem 0;
+  }
+  .Billing_Wrapper .Billing_Content .billing-left .PromoCode button,
+  .Billing_Wrapper .Billing_Content .billing-left .PromoCode label input {
+    height: 40px;
+    padding: 0 0.5rem;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    font-size: 15px;
+  }
+  .Billing_Wrapper .Billing_Content .billing-left .PromoCode label input {
+    font-size: 13px;
+  }
   .Author_Wrapper .Author_content .Author_heading h2 {
     font-size: 31px;
   }
@@ -4756,9 +4868,66 @@ a {
   .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right {
     width: 100%;
   }
+  .Cart_Wrapper .Cart_Content .Grand_Total .Total-content {
+    width: 50%;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .button_wrp button {
+    height: 45px;
+    width: 60%;
+    margin: 0 0 0 auto;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .button_wrp {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  .Description_wrapper .Review_Wrapper {
+    margin: 1rem 0;
+  }
+  .Description_wrapper .Review_Wrapper .Review_Content .Review_client ul li .User_content h3 {
+    font-size: 14px;
+  }
+  .Description_wrapper .Review_Wrapper .Review_heading h2 {
+    font-size: 1.3em;
+  }
+  .Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn a {
+    font-size: 0.8em;
+  }
+  .Description_wrapper .Description_Content .Description_Right .description-Group-btn .description_content .cart-btn {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    height: 35px;
+    padding: 0 0.5rem;
+  }
+  .Description_wrapper .Description_Content .Coutner_Wrp {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    grid-gap: 1rem;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .button_wrp button {
+    height: 40px;
+    width: 50%;
+    margin: 0 0 0 auto;
+    font-size: 0.89em;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .Total-content {
+    width: 100%;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .Total-content .Total-number {
+    font-size: 19px;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .Total-content {
+    width: 100%;
+    padding: 0rem 0 1rem;
+  }
   .Author_Wrapper .AuthorBanner_Wrapper .AuthBanner-Content {
     margin: 0;
     padding: 4rem 0 0;
@@ -5023,6 +5192,58 @@ a {
 }
 
 @media only screen and (max-width: 557px) {
+  .login_loginContainer__ihhhz.logContainter {
+    height: 100vh;
+    margin: 1.5rem auto !important;
+    left: 9%;
+    top: 0%;
+    width: 88%;
+    overflow-y: auto;
+  }
+  .login_SignupButton__2vlnv button {
+    width: 100% !important;
+  }
+  .Description_wrapper .Description_Content .Coutner_Wrp {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    grid-gap: 1rem;
+    width: 72%;
+  }
+  .Address_Form .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+  .Address_Wrapper .Address_header .Add-Address button {
+    height: 37px;
+    font-size: 0.89em;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full p {
+    font-size: 0.89em;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-Full button {
+    margin: 1rem 0;
+    height: 38px;
+    font-size: 0.8em;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-RH h2 {
+    font-size: 1em;
+  }
+  .Address_Wrapper .Address_Content .Address_Main_list .Address-list .Address-RH label input {
+    height: 15px;
+    width: 15px;
+    margin: 0.3rem 0.4rem;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form .PhneNumber_Wrapper {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form h3 {
+    font-size: 0.89em;
+  }
+  .AddAddress_Wrapper .AddAddress_Content .Address_Form {
+    margin: 0rem auto;
+  }
   .Wishlist_Wrapper .Wishlist_content .AuthInfo_Wrapper .AuthInfo_Content ul {
     padding: 2rem 0 2rem;
     -ms-grid-columns: 80px 1fr 1fr;
@@ -5080,9 +5301,87 @@ a {
   .Wishlist_Wrapper .Whishlist_header h2 {
     font-size: 19px;
   }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Counter_Number button,
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Counter_Number .Counter_print {
+    height: 25px;
+    width: 25px;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .Cart_Price h3 {
+    font-size: 20px;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .checkbox_Wrp input {
+    width: 24px;
+    height: 24px;
+  }
+  .Wishlist_Wrapper .Wishlist_content {
+    margin-bottom: 4rem;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right .cart_remove button {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    padding: 0 1rem;
+    height: 25px;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    grid-gap: 1rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
 }
 
 @media only screen and (max-width: 480px) {
+  .Description_wrapper .bookDes_Wrp .bookDes_Wrp_Content p {
+    font-size: 15px;
+  }
+  .Description_wrapper .Description_Content .Description_Left figure .img_Wrp {
+    padding: 1rem 1rem 0.7rem;
+    margin: 0 1rem 0 0;
+  }
+  .Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 span {
+    height: 20px;
+    padding: 0 0.4rem;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    font-size: 10px;
+  }
+  .Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h5 {
+    padding: 0rem 0 0.5rem;
+    font-size: 14px;
+    line-height: 23px;
+  }
+  .Description_wrapper .Description_Content .Description_Right .About_Book .About-book-title h2 {
+    font-size: 1em;
+    line-height: 30px;
+  }
+  .Description_wrapper .Description_Content .Description_Left figure .TypeProduct_wrp li img {
+    max-width: 85%;
+  }
+  .Cart_Wrapper .Cart_Content .Grand_Total .button_wrp button {
+    height: 38px;
+    width: 100%;
+    font-size: 0.79em;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .About_Cart h2 {
+    font-size: 0.9em;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .Cart_img figure img {
+    max-width: 80%;
+  }
+  .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_Left .checkbox_Wrp input {
+    width: 21px;
+    height: 21px;
+  }
   .Cart_Wrapper .Cart_Content .Cart_Grid_Wrapper .Cart_right {
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
@@ -5103,6 +5402,46 @@ a {
 }
 
 @media only screen and (max-width: 375px) {
+  .Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li img {
+    max-width: 70%;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .billing-right_Content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 70px 1fr 100px;
+        grid-template-columns: 70px 1fr 100px;
+    grid-gap: 0.4rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-bottom: 1px solid #333333;
+    padding: 1rem 0;
+    margin: 0.5rem 0;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li h3 {
+    font-size: 14px;
+    padding: 0 0 0.3rem;
+  }
+  .Billing_Wrapper .Billing_Content .billing-right .billing-right_Content li h6 {
+    font-size: 19px;
+  }
+  .Description_wrapper .Description_Content .Description_Left figure .TypeProduct_wrp {
+    grid-gap: 0.4rem;
+    margin: 2rem 0 1rem;
+    width: 90%;
+    margin: 1.5rem auto 1rem 0.5rem;
+  }
+  .Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 #Submit {
+    height: 36px;
+    width: 100%;
+    font-size: 11px;
+  }
+  .Description_wrapper .Review_Wrapper .Review_form .Review_Form_Wrp form .Review1 label {
+    font-size: 14px;
+  }
+  .Description_wrapper .Description_Content .Coutner_Wrp {
+    width: 90%;
+  }
   .AuthorDescription_Wrapper .Description_Content .Review_Form_Wrp form .Review1 {
     -ms-grid-columns: 60px 1fr;
         grid-template-columns: 60px 1fr;

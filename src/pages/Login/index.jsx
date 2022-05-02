@@ -16,6 +16,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirection } from "../../actions";
+import Registeration from "../Registeration";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -42,6 +43,7 @@ export default function Login(props) {
   let navigate = useNavigate();
   const RedirectSamePage = useSelector(state => state.RedirectSamePage);
   const classes = useStyles();
+  const [loginModal, setLoginModal] = useState(false);
 
   const {
     handleSubmit,
@@ -119,7 +121,9 @@ export default function Login(props) {
       .catch(err => {});
   };
   const handleNewRegister = () => {
-    navigate("/Registeration");
+    // navigate("/Registeration");
+    setLoginModal(!loginModal);
+    props.Logout(false);
   };
   return (
     <div className={`${Classes.loginContainer} logContainter`}>
@@ -242,6 +246,12 @@ export default function Login(props) {
       >
         <Alert severity="error">{showError}</Alert>
       </Snackbar>
+      <div></div>
+      {loginModal ? (
+        <div className="Login_Wrapper">
+          <Registeration Logout={handleNewRegister} />
+        </div>
+      ) : null}
     </div>
   );
 }

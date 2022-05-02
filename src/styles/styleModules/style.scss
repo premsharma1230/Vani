@@ -271,5 +271,32 @@ video {
   left: 30%;
   top: 0%;
 }
+.Main_Home_Content header {
+  z-index: 1;
+}
+.other_logins img {
+  padding-right: 40px;
+  max-width: 20%;
+}
+.NavigationSection_Laptop {
+  ul {
+    li {
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        transition: all 0.3s ease-in-out;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+.Signuplink {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    opacity: 0.8;
+  }
+}
 
 @import "./_main";

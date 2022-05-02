@@ -20,6 +20,7 @@ import { Order } from "./pages/Account/Order";
 import { PersonalDetail } from "./pages/Account/PersonalDetail";
 import { PersonalEdit } from "./pages/Account/PersonalEdit";
 import { ChangePassword } from "./pages/Account/ChangePassword";
+import { Common } from "./components/Common/common";
 
 export default function RouteSeperater() {
   return (
@@ -28,7 +29,7 @@ export default function RouteSeperater() {
         <Routes>
           <Route path="/InstitutionalLogin" element={<InstitutionalLogin />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/Registeration" element={<Registeration />} />
+          {/* <Route path="/Registeration" element={<Registeration />} /> */}
           <Route element={<WebRoutes />}>
             <Route path="/" exact element={<HomePage />} />
             <Route path="/home" element={<HomePage />} />
@@ -56,6 +57,7 @@ export default function RouteSeperater() {
             <Route path="/PersonalDetail" element={<PersonalDetail />} />
             <Route path="/PersonalEdit" element={<PersonalEdit />} />
             <Route path="/ChangePassword" element={<ChangePassword />} />
+            <Route path="/Common" element={<Common />} />
             <Route
               path="*"
               element={

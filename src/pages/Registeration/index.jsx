@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-export default function Registeration() {
+export default function Registeration(props) {
   let navigate = useNavigate();
   const classes = useStyles();
 
@@ -50,14 +50,14 @@ export default function Registeration() {
       password: "",
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     const formData = new FormData();
     formData.append("email", data.email);
     formData.append("password", data.password);
     formData.append("provider", "");
     formData.append("first_name", data.firstName);
     formData.append("last_name", data.lastName);
-    RegisterApi(formData).then((ele) => {
+    RegisterApi(formData).then(ele => {
       navigate("/Login");
     });
   };
@@ -71,7 +71,12 @@ export default function Registeration() {
           <div className={Classes.loginHeader}>
             <div className={Classes.loginMainHeader + " loginheader"}>
               <img src={Logo} alt="logo image" className="logo_img" />
-              <img src={Close} alt="Close image" className="closeicon_img" />
+              <img
+                src={Close}
+                alt="Close image"
+                className="closeicon_img"
+                onClick={props.Logout}
+              />
             </div>
             <div className={Classes.loginSubheader + " login_heading"}>
               Sign up
