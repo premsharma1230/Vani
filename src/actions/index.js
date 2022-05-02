@@ -25,3 +25,10 @@ export const Redirection = item => {
     payload: item,
   };
 };
+
+export const UserIsLogin = item => {
+  return {
+    type: "USERISLOGIN",
+    payload: item,
+  };
+};

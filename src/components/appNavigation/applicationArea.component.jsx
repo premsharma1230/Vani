@@ -14,6 +14,7 @@ export default function ApplicationArea() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [loginModal, setLoginModal] = useState(false);
   const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
+  const UserLoginTrue = useSelector(state => state.UserLogin);
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -30,7 +31,10 @@ export default function ApplicationArea() {
   };
 
   const handLogout = () => {
-    setLoginModal(!loginModal);
+    sessionStorage.removeItem('LoginData');
+    sessionStorage.removeItem('cartIdWithToken');
+    // setLoginModal(!loginModal);
+    navigate("/");
   };
 
   return (
@@ -72,9 +76,11 @@ export default function ApplicationArea() {
               <MenuItem onClick={handleClose}>
                 <Link to={"/wishlist"}>Wishlist</Link>
               </MenuItem>
+              {UserLoginTrue ?
               <MenuItem onClick={handleClose}>
                 <div onClick={handLogout}>Logout</div>
               </MenuItem>
+              :null}
             </Menu>
           </li>
           <li className="CartMain_Wrapper cartTop">
@@ -88,11 +94,11 @@ export default function ApplicationArea() {
           </li>
         </ul>
       </div>
-      {loginModal ? (
+      {/* {loginModal ? (
         <div className="Login_Wrapper">
           <Login Logout={handLogout} />
         </div>
-      ) : null}
+      ) : null} */}
     </>
   );
 }

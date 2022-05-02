@@ -11,11 +11,11 @@ import Close from "../../assets/Close.png";
 import GooglePic from "../../assets/google_logo.png";
 import FacebookPic from "../../assets/facebook_logo.png";
 import { useHistory, useNavigate } from "react-router-dom";
-import { getCartList, LoginApi } from "../../api/api";
+import { getCartList,LoginApi } from "../../api/api";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirection } from "../../actions";
+import {Redirection, UserIsLogin } from "../../actions";
 import Registeration from "../Registeration";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -41,6 +41,7 @@ const useStyles = makeStyles({
 });
 export default function Login(props) {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const RedirectSamePage = useSelector(state => state.RedirectSamePage);
   const classes = useStyles();
   const [loginModal, setLoginModal] = useState(false);
@@ -97,6 +98,7 @@ export default function Login(props) {
             lastName: res?.last_name,
             phoneNumber: res?.phone_number,
           };
+          dispatch(UserIsLogin(true));
           sessionStorage.setItem(
             "LoginUserData",
             JSON.stringify(LoginUserData)

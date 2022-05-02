@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import Classes from "./_trendingAuthor.module.scss";
 import CustomeButton from "../customeButton/customeButton.component";
 import { TrendingAuthorAndBook } from "../../api/api";
+
 export default function TrendingAuthor() {
   const [otherData, setOtherData] = useState({});
   const [listData, setData] = useState({});

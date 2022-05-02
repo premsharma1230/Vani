@@ -114,7 +114,10 @@ export const Booklist = props => {
             const data = {
               id: e.id,
             };
+            const isAvaible = getWishListData.find(f => f.id === e.id)
+            if(!isAvaible){
             setGetWishListData(prev => [...prev, data]);
+            }
           }
         }
       } else if (r === "fisrtTime") {
@@ -124,7 +127,10 @@ export const Booklist = props => {
               const data = {
                 id: items.id,
               };
+              const isAvaible = getWishListData.find(f => f.id === items.id)
+              if(!isAvaible){
               setGetWishListData(prev => [...prev, data]);
+              }
             }
           });
         }
@@ -343,6 +349,7 @@ export const Booklist = props => {
                               <div className="Cart_shop_wrp">
                                 <div className="cart-content">
                                   {getWishListData &&
+                                  getWishListData.length > 0 ?
                                     getWishListData.map((lists, index) =>
                                       lists?.id === ele.id ? (
                                         <span
@@ -361,8 +368,17 @@ export const Booklist = props => {
                                         >
                                           <i className="far fa-heart short-item1"></i>
                                         </span>
+                                      ))
+                                      :
+                                       (
+                                        <span
+                                          key={index}
+                                          onClick={() => handleAddWishList(ele)}
+                                        >
+                                          <i className="far fa-heart short-item1"></i>
+                                        </span>
                                       )
-                                    )}
+                                    }
                                   <span onClick={() => handleShoppingCart(ele)}>
                                     <i className="fas fa-shopping-cart short-item1"></i>
                                   </span>
