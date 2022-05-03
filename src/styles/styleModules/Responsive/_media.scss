@@ -107,13 +107,11 @@
     grid-gap: 2rem !important;
   }
 
-  element.style {
-  }
   ._aboutSection_AboutMain__HL1U2 {
     padding: 5rem 0 10rem;
     width: 100%;
   }
-  ._appNavigation_navigationContainer__OOT6Y {
+  .navigationContainer {
     margin-top: 1rem;
     width: max-content !important;
     display: none !important;
@@ -780,7 +778,7 @@
   .NavigationSection_Laptop {
     display: none;
   }
-  ._appNavigation_navigationContainer__OOT6Y {
+  .navigationContainer {
     display: block !important;
     position: fixed;
     bottom: 51px;

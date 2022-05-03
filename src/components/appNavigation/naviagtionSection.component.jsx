@@ -41,7 +41,7 @@ export default function NavigationSection() {
   };
 
   return (
-    <div className={Classes.navigationContainer}>
+    <div className={`${Classes.navigationContainer} navigationContainer`}>
       <ul>
         {linkarr.map((ele, index) => {
           return (

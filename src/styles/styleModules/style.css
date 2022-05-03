@@ -268,7 +268,7 @@ a {
           justify-content: flex-end;
 }
 
-.NavigationSection_Laptop ._appNavigation_navigationContainer__OOT6Y {
+.NavigationSection_Laptop .navigationContainer {
   width: 70% !important;
 }
 
@@ -3393,7 +3393,7 @@ a {
     padding: 5rem 0 10rem;
     width: 100%;
   }
-  ._appNavigation_navigationContainer__OOT6Y {
+  .navigationContainer {
     margin-top: 1rem;
     width: -webkit-max-content !important;
     width: -moz-max-content !important;
@@ -3972,7 +3972,7 @@ a {
   .NavigationSection_Laptop {
     display: none;
   }
-  ._appNavigation_navigationContainer__OOT6Y {
+  .navigationContainer {
     display: block !important;
     position: fixed;
     bottom: 51px;
@@ -3983,7 +3983,7 @@ a {
     -webkit-box-shadow: -1px -1px 6px 0px #eeee;
             box-shadow: -1px -1px 6px 0px #eeee;
   }
-  ._appNavigation_navigationContainer__OOT6Y ul {
+  .navigationContainer ul {
     margin-left: 0 !important;
     display: -ms-grid !important;
     display: grid !important;
@@ -3991,10 +3991,10 @@ a {
     -ms-grid-columns: (1fr)[2] !important;
         grid-template-columns: repeat(2, 1fr) !important;
   }
-  ._appNavigation_navigationContainer__OOT6Y ul a {
+  .navigationContainer ul a {
     font-size: 0.79em;
   }
-  ._appNavigation_navigationContainer__OOT6Y ._appNavigation_bullet__1AhJh {
+  .navigationContainer ._appNavigation_bullet__1AhJh {
     display: none !important;
   }
   .CartMain_Wrapper .CartCounter {
