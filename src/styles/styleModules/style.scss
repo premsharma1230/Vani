@@ -262,14 +262,14 @@ video {
   cursor: pointer;
 }
 .login_loginContainer__ihhhz.logContainter {
-  position: absolute;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto !important;
-  left: 30%;
-  top: 0%;
+  // position: absolute;
+  // height: 100vh;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // margin: 0 auto !important;
+  // left: 30%;
+  // top: 0%;
 }
 .Main_Home_Content header {
   z-index: 1;
@@ -296,6 +296,28 @@ video {
   &:hover {
     transition: all 0.3s ease-in-out;
     opacity: 0.8;
+  }
+}
+.login_loginContainer__ihhhz.logContainter,
+.registeration_loginContainer__J659O {
+  outline: none !important;
+  border: none !important;
+}
+.Registration_Wrapper {
+  overflow-y: auto;
+  height: 100vh;
+  overflow-x: hidden !important;
+}
+
+.logContainter {
+  height: max-content;
+  margin-top: 0rem !important;
+  overflow-x: hidden !important;
+  margin: 2rem 0 !important;
+}
+.Social_wrp {
+  img {
+    max-width: 80% !important;
   }
 }
 

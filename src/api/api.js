@@ -449,9 +449,13 @@ const CreateCart = (body, token) => {
         method: "post",
         url: url,
         data: body,
-      }).then(response => {
-        return response.data;
-      });
+      })
+        .then(response => {
+          return response.data;
+        })
+        .catch(error => {
+          return error.response;
+        });
 
       return response;
     } catch (error) {

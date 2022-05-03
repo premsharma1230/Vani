@@ -10,8 +10,10 @@ import {
   getCartList,
   RemoveCart,
 } from "../../api/api";
-import { incNumber, Redirection } from "../../actions";
+import { incNumber, Redirection, OpenLoginForm } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
+import Registeration from "../Registeration";
+import Login from "../Login";
 
 export const Cart = () => {
   let navigate = useNavigate();
@@ -28,7 +30,8 @@ export const Cart = () => {
   const [idList, setIdList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [checkoutTrue, setCheckoutTrue] = useState(false);
-
+  const [loginFrom, setLoginFrom] = useState(false);
+  const [newRegister, setNewRegister] = useState(false);
   // const handelIncrement = (e, q, i) => {
   //   if (q != 1) {
   //     let realPrice = e / q;
@@ -48,7 +51,7 @@ export const Cart = () => {
   // };
   const handelIncrement = e => {
     let realPrice = Number(e?.amount) / Number(e?.quantity);
-    const isAvaible = idList.find(f => f === e.id)
+    const isAvaible = idList.find(f => f === e.id);
     let value = e?.quantity + 1;
     const body = {
       cart_id: e?.cart,
@@ -60,7 +63,7 @@ export const Cart = () => {
         if (isAvaible) {
           // const sendValue = elem?.data.find(f => f.id === e.id)
           const current = count + Number(realPrice);
-          handleCheckbox("Increment", current)
+          handleCheckbox("Increment", current);
         }
       }
       GetAllCartList();
@@ -68,7 +71,7 @@ export const Cart = () => {
   };
   const handelDecrement = e => {
     let realPrice = Number(e?.amount) / Number(e?.quantity);
-    const isAvaible = idList.find(f => f === e.id)
+    const isAvaible = idList.find(f => f === e.id);
     let value = e?.quantity - 1;
     const body = {
       cart_id: e?.cart,
@@ -80,7 +83,7 @@ export const Cart = () => {
         if (isAvaible) {
           // const sendValue = elem?.data.find(f => f.id === e.id)
           const current = count - Number(realPrice);
-          handleCheckbox("Decrement", current)
+          handleCheckbox("Decrement", current);
         }
       }
       GetAllCartList();
@@ -117,8 +120,10 @@ export const Cart = () => {
         GetAllCartList();
       });
     } else {
+      // dispatch(OpenLoginForm(true));
       dispatch(Redirection("/Cart"));
-      navigate("/Login");
+      // navigate("/Login");
+      setLoginFrom(true);
     }
   };
   const GetAllCartList = () => {
@@ -144,8 +149,10 @@ export const Cart = () => {
         GetAllCartList();
       });
     } else {
+      // dispatch(OpenLoginForm(true));
       dispatch(Redirection("/Cart"));
-      navigate("/Login");
+      // navigate("/Login");
+      setLoginFrom(true);
     }
   };
 
@@ -156,18 +163,20 @@ export const Cart = () => {
         cartCheckout(body, token).then(ele => {
           sessionStorage.setItem("Checkout1Data", JSON.stringify(ele));
           getCartList(token).then(ele => {
-            dispatch(incNumber(ele?.count))
-            navigate("/Address")
+            dispatch(incNumber(ele?.count));
+            navigate("/Address");
           });
-        })
+        });
       }
     } else {
+      // dispatch(OpenLoginForm(true));
       dispatch(Redirection("/Cart"));
-      navigate("/Login");
+      // navigate("/Login");
+      setLoginFrom(true);
     }
   };
   const handleCheckbox = (e, item) => {
-    setCheckoutTrue(true)
+    setCheckoutTrue(true);
     if (e === "Increment") {
       setCount(item);
     } else if (e === "Decrement") {
@@ -185,6 +194,19 @@ export const Cart = () => {
       setCount(price);
     }
   };
+
+  const CloseRegistorModal = () => {
+    setNewRegister(false);
+  };
+
+  const HandleLogin = () => {
+    setLoginFrom(true);
+  };
+
+  const closedPage = () => {
+    setLoginFrom(false);
+    setNewRegister(true);
+  };
   return (
     <>
       <section className=" Description_wrapper Wishlist_Wrapper Cart_Wrapper">
@@ -201,7 +223,9 @@ export const Cart = () => {
                     <div className="checkbox_Wrp">
                       <label>
                         <input
-                          onChange={e => handleCheckbox(e?.target?.checked, ele)}
+                          onChange={e =>
+                            handleCheckbox(e?.target?.checked, ele)
+                          }
                           type="checkbox"
                         />
                       </label>
@@ -214,7 +238,7 @@ export const Cart = () => {
                     <div className="About_Cart">
                       <h2>{ele?.book_details?.title}</h2>
                       {ele?.book_details?.authors &&
-                        ele?.book_details?.authors.length > 0 ? (
+                      ele?.book_details?.authors.length > 0 ? (
                         ele?.book_details?.authors.map((author, index) => (
                           <h4 key={index}>Author : {author}</h4>
                         ))
@@ -274,7 +298,7 @@ export const Cart = () => {
                 </div>
               ))}
             {/* total */}
-            {checkoutTrue ?
+            {checkoutTrue ? (
               <div className="Grand_Total">
                 <ul className="Total-content">
                   <li className="Total-text">Total</li>
@@ -285,12 +309,21 @@ export const Cart = () => {
                   <button onClick={handleCheckout}>Checkout</button>
                 </div>
               </div>
-              : null
-            }
+            ) : null}
           </div>
         </div>
         <Footer />
       </section>
+      {loginFrom ? (
+        <Login openPage={loginFrom} closedPage={closedPage} />
+      ) : null}
+      {newRegister ? (
+        <Registeration
+          openLogin={HandleLogin}
+          openRegistationPage={newRegister}
+          closeRegistration={CloseRegistorModal}
+        />
+      ) : null}
     </>
   );
 };

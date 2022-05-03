@@ -29,7 +29,7 @@ export default function RouteSeperater() {
         <Routes>
           <Route path="/InstitutionalLogin" element={<InstitutionalLogin />} />
           <Route path="/Login" element={<Login />} />
-          {/* <Route path="/Registeration" element={<Registeration />} /> */}
+          <Route path="/Registeration" element={<Registeration />} />
           <Route element={<WebRoutes />}>
             <Route path="/" exact element={<HomePage />} />
             <Route path="/home" element={<HomePage />} />

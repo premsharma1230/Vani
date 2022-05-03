@@ -12,10 +12,12 @@ import {
   GetGenrelist,
   getWishList,
 } from "../../api/api";
-import { incNumber, Redirection } from "../../actions";
+import { incNumber, OpenLoginForm, Redirection } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 import BottonShort from "./BottonShort";
 import axios from "axios";
+import Login from "../Login";
+import Registeration from "../Registeration";
 
 export const Booklist = props => {
   const dispatch = useDispatch();
@@ -37,7 +39,8 @@ export const Booklist = props => {
   const [filter, setFilter] = useState(false);
   const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
   const [cartIdWithToken, setCartIdWithToken] = React.useState("");
-
+  const [loginFrom, setLoginFrom] = useState(false);
+  const [newRegister, setNewRegister] = useState(false);
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
   const categories = [
@@ -114,9 +117,9 @@ export const Booklist = props => {
             const data = {
               id: e.id,
             };
-            const isAvaible = getWishListData.find(f => f.id === e.id)
-            if(!isAvaible){
-            setGetWishListData(prev => [...prev, data]);
+            const isAvaible = getWishListData.find(f => f.id === e.id);
+            if (!isAvaible) {
+              setGetWishListData(prev => [...prev, data]);
             }
           }
         }
@@ -127,9 +130,9 @@ export const Booklist = props => {
               const data = {
                 id: items.id,
               };
-              const isAvaible = getWishListData.find(f => f.id === items.id)
-              if(!isAvaible){
-              setGetWishListData(prev => [...prev, data]);
+              const isAvaible = getWishListData.find(f => f.id === items.id);
+              if (!isAvaible) {
+                setGetWishListData(prev => [...prev, data]);
               }
             }
           });
@@ -158,11 +161,12 @@ export const Booklist = props => {
           });
         } else {
           dispatch(Redirection("/BookList"));
-          navigate("/Login");
+          setLoginFrom(true);
         }
       }
     }
   };
+
   const handleShoppingCart = e => {
     for (let value of Object.values(e?.printed_book_details)) {
       if (value.name === "Paper Back") {
@@ -230,6 +234,19 @@ export const Booklist = props => {
   const handleFilter = e => {
     console.log(e, "++++++++++++++++++++++");
     setFilter(e);
+  };
+
+  const CloseRegistorModal = () => {
+    setNewRegister(false);
+  };
+
+  const HandleLogin = () => {
+    setLoginFrom(true);
+  };
+
+  const closedPage = () => {
+    setLoginFrom(false);
+    setNewRegister(true);
   };
 
   console.log(getWishListData, "getWishListData++++++++");
@@ -349,7 +366,7 @@ export const Booklist = props => {
                               <div className="Cart_shop_wrp">
                                 <div className="cart-content">
                                   {getWishListData &&
-                                  getWishListData.length > 0 ?
+                                  getWishListData.length > 0 ? (
                                     getWishListData.map((lists, index) =>
                                       lists?.id === ele.id ? (
                                         <span
@@ -368,17 +385,16 @@ export const Booklist = props => {
                                         >
                                           <i className="far fa-heart short-item1"></i>
                                         </span>
-                                      ))
-                                      :
-                                       (
-                                        <span
-                                          key={index}
-                                          onClick={() => handleAddWishList(ele)}
-                                        >
-                                          <i className="far fa-heart short-item1"></i>
-                                        </span>
                                       )
-                                    }
+                                    )
+                                  ) : (
+                                    <span
+                                      key={index}
+                                      onClick={() => handleAddWishList(ele)}
+                                    >
+                                      <i className="far fa-heart short-item1"></i>
+                                    </span>
+                                  )}
                                   <span onClick={() => handleShoppingCart(ele)}>
                                     <i className="fas fa-shopping-cart short-item1"></i>
                                   </span>
@@ -536,6 +552,16 @@ export const Booklist = props => {
       <BottonShort Filter={handleFilter} />
       {/* <<<<<----Sorting & Filter ----end---here--->>>>> */}
       <Footer />
+      {loginFrom ? (
+        <Login openPage={loginFrom} closedPage={closedPage} />
+      ) : null}
+      {newRegister ? (
+        <Registeration
+          openLogin={HandleLogin}
+          openRegistationPage={newRegister}
+          closeRegistration={CloseRegistorModal}
+        />
+      ) : null}
     </>
   );
 };

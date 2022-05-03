@@ -320,23 +320,6 @@ a {
   cursor: pointer;
 }
 
-.login_loginContainer__ihhhz.logContainter {
-  position: absolute;
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 0 auto !important;
-  left: 30%;
-  top: 0%;
-}
-
 .Main_Home_Content header {
   z-index: 1;
 }
@@ -368,6 +351,31 @@ a {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   opacity: 0.8;
+}
+
+.login_loginContainer__ihhhz.logContainter,
+.registeration_loginContainer__J659O {
+  outline: none !important;
+  border: none !important;
+}
+
+.Registration_Wrapper {
+  overflow-y: auto;
+  height: 100vh;
+  overflow-x: hidden !important;
+}
+
+.logContainter {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  margin-top: 0rem !important;
+  overflow-x: hidden !important;
+  margin: 2rem 0 !important;
+}
+
+.Social_wrp img {
+  max-width: 80% !important;
 }
 
 h1,
@@ -4426,10 +4434,6 @@ a {
   .makeStyles-root-1 {
     width: 80% !important;
   }
-}
-
-.logContainter {
-  margin-top: 8rem !important;
 }
 
 .loginheader {

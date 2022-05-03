@@ -10,14 +10,20 @@ import {
   getCartList,
 } from "../../api/api";
 import { Review } from "./Review";
-import {incNumber,globleSearchData} from "../../actions";
+import { incNumber, globleSearchData } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export const BookDescription = props => {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const book_slug  = location.pathname.split("/")
+  const book_slug = location.pathname.split("/");
   // const book_slug = JSON.parse(sessionStorage.getItem("bookDetail"))?.slug;
   const [bookDetailsData, setBookDetailsData] = useState([]);
   const [reletedBook, setReletedBook] = useState([]);
@@ -29,8 +35,8 @@ export const BookDescription = props => {
   const [discountPrice, setDiscountPrice] = useState("");
   const [cartData, setCartData] = useState("0");
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
-  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
-  const [cartIdWithToken, setCartIdWithToken] = React.useState('');
+  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
+  const [cartIdWithToken, setCartIdWithToken] = React.useState("");
 
   const discount = selectedBook?.discountable_price;
   const handelIncrement = () => {
@@ -50,17 +56,17 @@ export const BookDescription = props => {
     }
   };
   useEffect(() => {
-    if(!token && !cartId){
+    if (!token && !cartId) {
       getCartList().then(elem => {
         sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
-    });
-  }else{
-    getCartList(token).then(elem => {
-      setCartIdWithToken(elem?.cart_id)
-  });
-  }
-  dispatch(globleSearchData(''));
-  },[])
+      });
+    } else {
+      getCartList(token).then(elem => {
+        setCartIdWithToken(elem?.cart_id);
+      });
+    }
+    dispatch(globleSearchData(""));
+  }, []);
   useEffect(() => {
     GetBookDetails(book_slug[2]).then(e => {
       setBookDetailsData(e?.data);
@@ -125,26 +131,44 @@ export const BookDescription = props => {
       setReletedBook(e?.results);
     });
   }, []);
-
+  const [showError, setShowError] = React.useState("");
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+  const { vertical, horizontal, open } = state;
+  const handleClick = () => {
+    setState({
+      open: true,
+      vertical: "top",
+      horizontal: "right",
+    });
+  };
   const handleCart = (elem, redirect) => {
     let body;
-        if(!token){
-          body = {
-            cart_id: cartId,
-            book_id: elem,
-            quantity: count,
-          };
-        }else{
-          body = {
-            cart_id: cartIdWithToken,
-            book_id: elem,
-            quantity: count,
-          };
+    if (!token) {
+      body = {
+        cart_id: cartId,
+        book_id: elem,
+        quantity: count,
+      };
+    } else {
+      body = {
+        cart_id: cartIdWithToken,
+        book_id: elem,
+        quantity: count,
+      };
+    }
+    CreateCart(body, token).then(elem => {
+      if (elem?.status == true) {
+        dispatch(incNumber(elem?.count));
+        if (redirect === "buy") {
+          Navigate("/Cart");
         }
-    CreateCart(body,token).then(elem => {
-      dispatch(incNumber(elem?.count))
-      if (redirect === "buy") {
-        Navigate("/Cart");
+      } else {
+        setShowError("Internal Server Error");
+        handleClick();
       }
     });
   };
@@ -172,7 +196,13 @@ export const BookDescription = props => {
       }
     }
   };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
 
+    setState({ ...state, open: false });
+  };
   const CartState = {
     name: "1",
   };
@@ -438,6 +468,16 @@ export const BookDescription = props => {
           </div>
           {/* end-here--Other-Books */}
           {/* Review */}
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={open}
+            autoHideDuration={3000}
+            message={showError}
+            key={vertical + horizontal}
+            onClose={handleClose}
+          >
+            <Alert severity="error">{showError}</Alert>
+          </Snackbar>
           <div className="Review-Section">
             <Review getID={bookDetailsData.id} />
           </div>

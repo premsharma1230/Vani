@@ -11,11 +11,18 @@ import Close from "../../assets/Close.png";
 import GooglePic from "../../assets/google_logo.png";
 import FacebookPic from "../../assets/facebook_logo.png";
 import { useHistory, useNavigate } from "react-router-dom";
-import { getCartList,LoginApi } from "../../api/api";
+import { getCartList, LoginApi } from "../../api/api";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useSelector, useDispatch } from "react-redux";
-import {Redirection, UserIsLogin } from "../../actions";
+import {
+  incNumber,
+  OpenLoginForm,
+  // OpenRegisterationForm,
+  Redirection,
+  UserIsLogin,
+} from "../../actions";
+import Modal from "@mui/material/Modal";
 import Registeration from "../Registeration";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -40,11 +47,19 @@ const useStyles = makeStyles({
   },
 });
 export default function Login(props) {
+  console.log(props.closedPage, "+++LoginProps");
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const RedirectSamePage = useSelector(state => state.RedirectSamePage);
+  // const OpenRegisterationModel = useSelector(
+  //   state => state.OpenRegisterationPage
+  // );
   const classes = useStyles();
   const [loginModal, setLoginModal] = useState(false);
+  const [newRegister, setNewRegister] = useState(false);
+  const [openModel, setOpenModel] = useState(false);
+  const handleOpenModel = () => setOpenModel(true);
+  const handleCloseModel = () => setOpenModel(false);
 
   const {
     handleSubmit,
@@ -115,6 +130,10 @@ export default function Login(props) {
             );
             navigate(RedirectSamePage);
           });
+          props.closedPage();
+          getCartList(res?.token).then(ele => {
+            dispatch(incNumber(ele?.count));
+          });
         } else {
           setShowError(res?.data?.non_field_errors[0]);
           handleClick();
@@ -122,49 +141,64 @@ export default function Login(props) {
       })
       .catch(err => {});
   };
+
   const handleNewRegister = () => {
-    // navigate("/Registeration");
-    setLoginModal(!loginModal);
-    props.Logout(false);
+    // dispatch(OpenLoginForm(false));
+    // dispatch(OpenRegisterationForm(true));
+
+    props.closedPage();
+    // setNewRegister(true);
   };
+  const closeLogin = () => {
+    props.closedPage();
+    navigate("/");
+  };
+  // console.log(props, "props+++++++++++++++++");
   return (
-    <div className={`${Classes.loginContainer} logContainter`}>
-      <Card className={classes.root + " custom_loginroot"}>
-        <CardContent className="">
-          <div className={Classes.loginHeader}>
-            <div className={Classes.loginMainHeader + " loginheader"}>
-              <img src={Logo} alt="logo image" className="logo_img" />
-              <img
-                onClick={() => props.Logout()}
-                src={Close}
-                alt="Close image"
-                className="closeicon_img"
-              />
-            </div>
-            <div className={Classes.loginSubheader + " login_heading"}>
-              Login
-            </div>
-          </div>
-          <div className={Classes.formContainer}>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className={`${classes.root} ${Classes.formMain} login_form`}
-            >
-              <div>
-                <div>
-                  <TextField
-                    label="Username"
-                    variant="outlined"
-                    fullWidth
-                    className={classes.userField}
-                    name="username"
-                    {...register("username", {
-                      required: "username is required",
-                    })}
-                    error={Boolean(errors?.username)}
-                    helperText={errors.username?.message}
+    <>
+      <Modal
+        open={props.openPage}
+        onClose={handleCloseModel}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className={`${Classes.loginContainer} logContainter`}>
+          <Card className={classes.root + " custom_loginroot"}>
+            <CardContent className="">
+              <div className={Classes.loginHeader}>
+                <div className={Classes.loginMainHeader + " loginheader"}>
+                  <img src={Logo} alt="logo image" className="logo_img" />
+                  <img
+                    onClick={closeLogin}
+                    src={Close}
+                    alt="Close image"
+                    className="closeicon_img"
                   />
-                  {/* <Controller
+                </div>
+                <div className={Classes.loginSubheader + " login_heading"}>
+                  Login
+                </div>
+              </div>
+              <div className={Classes.formContainer}>
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className={`${classes.root} ${Classes.formMain} login_form`}
+                >
+                  <div>
+                    <div>
+                      <TextField
+                        label="Username"
+                        variant="outlined"
+                        fullWidth
+                        className={classes.userField}
+                        name="username"
+                        {...register("username", {
+                          required: "username is required",
+                        })}
+                        error={Boolean(errors?.username)}
+                        helperText={errors.username?.message}
+                      />
+                      {/* <Controller
                     name="username"
                     control={control}
                     rules={{ required: true }}
@@ -179,9 +213,9 @@ export default function Login(props) {
                       />
                     )}
                   /> */}
-                </div>
-                <div className={Classes.passwordFieldMargin}>
-                  {/* <Controller
+                    </div>
+                    <div className={Classes.passwordFieldMargin}>
+                      {/* <Controller
                     name="password"
                     control={control}
                     rules={{ required: true }}
@@ -195,49 +229,51 @@ export default function Login(props) {
                       />
                     )}
                   /> */}
-                  <TextField
-                    label="Password"
-                    variant="outlined"
-                    className={Classes.passwordField}
-                    {...register("password", {
-                      required: "password is required",
-                    })}
-                    error={Boolean(errors?.password)}
-                    helperText={errors.password?.message}
-                  />
+                      <TextField
+                        label="Password"
+                        variant="outlined"
+                        className={Classes.passwordField}
+                        {...register("password", {
+                          required: "password is required",
+                        })}
+                        error={Boolean(errors?.password)}
+                        helperText={errors.password?.message}
+                      />
+                    </div>
+                  </div>
+                  <div className={Classes.SignupButton}>
+                    <Button
+                      variant="contained"
+                      style={{
+                        background: "#0298BF",
+                        height: "30px",
+                        width: "130px",
+                        borderRadius: "8px",
+                      }}
+                      type="submit"
+                      color="primary"
+                    >
+                      Login
+                    </Button>
+                  </div>
+                </form>
+                <div className={Classes.forgotPassword + " forgot_link"}>
+                  Forgot Password
+                </div>
+                <div className={Classes.backForgotPassword}>
+                  <div className={Classes.back + " other_logins"}>
+                    <img src={FacebookPic} alt="logo image" />
+                    <img src={GooglePic} alt="Close image" />
+                    <div onClick={handleNewRegister} className="Signuplink">
+                      New User?
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className={Classes.SignupButton}>
-                <Button
-                  variant="contained"
-                  style={{
-                    background: "#0298BF",
-                    height: "30px",
-                    width: "130px",
-                    borderRadius: "8px",
-                  }}
-                  type="submit"
-                  color="primary"
-                >
-                  Login
-                </Button>
-              </div>
-            </form>
-            <div className={Classes.forgotPassword + " forgot_link"}>
-              Forgot Password
-            </div>
-            <div className={Classes.backForgotPassword}>
-              <div className={Classes.back + " other_logins"}>
-                <img src={FacebookPic} alt="logo image" />
-                <img src={GooglePic} alt="Close image" />
-                <div onClick={handleNewRegister} className="Signuplink">
-                  New User?
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
+        </div>
+      </Modal>
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
         open={open}
@@ -248,12 +284,7 @@ export default function Login(props) {
       >
         <Alert severity="error">{showError}</Alert>
       </Snackbar>
-      <div></div>
-      {loginModal ? (
-        <div className="Login_Wrapper">
-          <Registeration Logout={handleNewRegister} />
-        </div>
-      ) : null}
-    </div>
+      {newRegister ? <Registeration openRegistationPage={newRegister} /> : null}
+    </>
   );
 }

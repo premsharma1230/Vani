@@ -14,7 +14,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('Main_Wrapper')
+  document.getElementById("Main_Wrapper")
 );
 
 reportWebVitals();

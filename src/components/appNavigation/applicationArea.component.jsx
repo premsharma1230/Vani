@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { RiTranslate } from "react-icons/ri";
 import { BsPerson } from "react-icons/bs";
 import Classes from "./_appNavigation.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { globleSearchData } from "../../actions";
+import { globleSearchData, UserIsLogin } from "../../actions";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Login from "../../pages/Login";
+import { CreateCart } from "../../api/api";
 
 export default function ApplicationArea() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [loginModal, setLoginModal] = useState(false);
   const SearchGlobleBook = useSelector(state => state.SearchGlobleBook);
   const UserLoginTrue = useSelector(state => state.UserLogin);
+  const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -22,6 +22,7 @@ export default function ApplicationArea() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const changeTheNumber = useSelector(state => state.changeTheNumber);
@@ -31,12 +32,17 @@ export default function ApplicationArea() {
   };
 
   const handLogout = () => {
-    sessionStorage.removeItem('LoginData');
-    sessionStorage.removeItem('cartIdWithToken');
-    // setLoginModal(!loginModal);
+    sessionStorage.removeItem("LoginData");
+    sessionStorage.removeItem("cartIdWithToken");
+    dispatch(UserIsLogin(false));
     navigate("/");
   };
-
+  console.log(UserLoginTrue, "*****************************");
+  useEffect(() => {
+    if (token) {
+      dispatch(UserIsLogin(true));
+    }
+  }, []);
   return (
     <>
       <div className={Classes.iconArea}>
@@ -76,11 +82,11 @@ export default function ApplicationArea() {
               <MenuItem onClick={handleClose}>
                 <Link to={"/wishlist"}>Wishlist</Link>
               </MenuItem>
-              {UserLoginTrue ?
-              <MenuItem onClick={handleClose}>
-                <div onClick={handLogout}>Logout</div>
-              </MenuItem>
-              :null}
+              {UserLoginTrue ? (
+                <MenuItem onClick={handleClose}>
+                  <div onClick={handLogout}>Logout</div>
+                </MenuItem>
+              ) : null}
             </Menu>
           </li>
           <li className="CartMain_Wrapper cartTop">
@@ -94,11 +100,6 @@ export default function ApplicationArea() {
           </li>
         </ul>
       </div>
-      {/* {loginModal ? (
-        <div className="Login_Wrapper">
-          <Login Logout={handLogout} />
-        </div>
-      ) : null} */}
     </>
   );
 }

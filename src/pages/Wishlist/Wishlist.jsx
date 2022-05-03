@@ -2,29 +2,39 @@ import React, { useEffect, useState } from "react";
 import book from "../../assets/book3.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
-import { createAndRemoveWishList, CreateCart, getCartList, getWishList } from "../../api/api";
+import {
+  createAndRemoveWishList,
+  CreateCart,
+  getCartList,
+  getWishList,
+} from "../../api/api";
 import { useSelector, useDispatch } from "react-redux";
-import { incNumber, Redirection } from "../../actions";
+import { incNumber, OpenLoginForm, Redirection } from "../../actions";
+import Login from "../Login";
+import Registeration from "../Registeration";
 
 export const Wishlist = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [wishListItems, setWishListItems] = useState([]);
   const token = JSON.parse(sessionStorage?.getItem("LoginData"))?.token;
-  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"))
-  const [cartIdWithToken, setCartIdWithToken] = React.useState('');
+  const cartId = JSON.parse(sessionStorage?.getItem("cartIdLocal"));
+  const [cartIdWithToken, setCartIdWithToken] = React.useState("");
+  const [loginModal, setLoginModal] = useState(false);
+  const [loginFrom, setLoginFrom] = useState(false);
+  const [newRegister, setNewRegister] = useState(false);
 
   useEffect(() => {
-    if(!token && !cartId){
+    if (!token && !cartId) {
       getCartList().then(elem => {
         sessionStorage.setItem("cartIdLocal", JSON.stringify(elem?.cart_id));
-    });
-  }else{
-    getCartList(token).then(elem => {
-      setCartIdWithToken(elem?.cart_id)
-  });
-  }
-  },[])
+      });
+    } else {
+      getCartList(token).then(elem => {
+        setCartIdWithToken(elem?.cart_id);
+      });
+    }
+  }, []);
   useEffect(() => {
     getWishListFuncation();
   }, []);
@@ -35,7 +45,9 @@ export const Wishlist = () => {
       });
     } else {
       dispatch(Redirection("/Wishlist"));
-      navigate("/Login");
+      // navigate("/Login");
+      // dispatch(OpenLoginForm(true));
+      setLoginFrom(true);
     }
   };
   const handleRemove = e => {
@@ -45,29 +57,45 @@ export const Wishlist = () => {
       });
     } else {
       dispatch(Redirection("/Wishlist"));
-      navigate("/Login");
+      // dispatch(OpenLoginForm(true));
+      // navigate("/Login");
+      setLoginFrom(true);
     }
   };
   const handleCart = e => {
     let body;
-        if(!token){
-          body = {
-            cart_id: cartId,
-            book_id: e?.book,
-            quantity: 1,
-          };
-        }else{
-          body = {
-            cart_id: cartIdWithToken,
-            book_id: e?.book,
-            quantity: 1,
-          };
-        }
-    CreateCart(body,token).then(elem => {
-      dispatch(incNumber(elem?.count))
-        navigate("/Cart");
+    if (!token) {
+      body = {
+        cart_id: cartId,
+        book_id: e?.book,
+        quantity: 1,
+      };
+    } else {
+      body = {
+        cart_id: cartIdWithToken,
+        book_id: e?.book,
+        quantity: 1,
+      };
+    }
+    CreateCart(body, token).then(elem => {
+      dispatch(incNumber(elem?.count));
+      navigate("/Cart");
     });
-  }
+  };
+
+  const CloseRegistorModal = () => {
+    setNewRegister(false);
+  };
+
+  const HandleLogin = () => {
+    setLoginFrom(true);
+  };
+
+  const closedPage = () => {
+    setLoginFrom(false);
+    setNewRegister(true);
+  };
+
   return (
     <>
       <section className=" Description_wrapper   Wishlist_Wrapper">
@@ -107,8 +135,9 @@ export const Wishlist = () => {
                       <li>
                         <div className="AuthInfo_Cart_Btn">
                           <button
-                         onClick={() => handleCart(ele)} 
-                          className="read_btn cart-btn">
+                            onClick={() => handleCart(ele)}
+                            className="read_btn cart-btn"
+                          >
                             <Link to="#">
                               <span>Add to cart</span>
                             </Link>
@@ -129,6 +158,16 @@ export const Wishlist = () => {
         </div>
         <Footer />
       </section>
+      {loginFrom ? (
+        <Login openPage={loginFrom} closedPage={closedPage} />
+      ) : null}
+      {newRegister ? (
+        <Registeration
+          openLogin={HandleLogin}
+          openRegistationPage={newRegister}
+          closeRegistration={CloseRegistorModal}
+        />
+      ) : null}
     </>
   );
 };
