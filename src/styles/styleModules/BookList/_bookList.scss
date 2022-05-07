@@ -1,0 +1,178 @@
+.BookList_MainWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  grid-gap: 1rem;
+  padding: 5rem 0 0;
+  background: $white;
+  .Filter-Categories_Wrapper {
+    background: #f3f3f3;
+    // height: 100vh;
+    // position: fixed;
+    width: 262px;
+    padding: 5rem 0 0;
+    .Category_Item1 {
+      .category-heading {
+        margin: 0 auto;
+        width: 75%;
+        padding: 1rem 0;
+        h4 {
+          font-family: Lora;
+          font-size: 1.4em;
+          font-weight: 700;
+          line-height: 32px;
+          letter-spacing: 0.43981480598449707px;
+          text-transform: capitalize;
+          color: #333333;
+        }
+      }
+      .filter-catgry {
+        margin: 0 auto;
+        width: 75%;
+        li {
+          display: flex;
+          grid-gap: 0.5rem;
+          align-items: center;
+          padding: 0.2rem 0;
+          span {
+            input {
+              margin: 0.4rem 0 0px;
+            }
+          }
+          p {
+            font-family: Lora;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 32px;
+            letter-spacing: 0.43981480598449707px;
+            color: #4e4e4e;
+          }
+        }
+      }
+    }
+    .PriceSlider_Wrp {
+      width: 50%;
+      margin: 2rem 0 0 1.3rem;
+    }
+  }
+
+  .BookList_wrp {
+    width: 100%;
+    // margin: 0 0 0 16.5rem;
+    .Category_Grid_Wrp {
+      padding: 4rem 0 1rem;
+      .category_Grid_Content {
+        @include bookGrid;
+        grid-gap: 2rem;
+        figure {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            .Cart_shop_wrp {
+              display: block;
+              transition: all 0.3s ease-in-out;
+            }
+          }
+          img {
+            height: 100%;
+          }
+          .Cart_shop_wrp {
+            display: none;
+            transition: all 0.3s ease-in-out;
+            .cart-content {
+              width: 100%;
+              padding: 0.5rem;
+              background: #e5e5e5;
+              position: absolute;
+              bottom: 0;
+              display: flex;
+              justify-content: space-around;
+              animation: cartanime 0.5s linear;
+              @keyframes cartanime {
+                0% {
+                  transition: all 0.3s ease-in-out;
+                  bottom: -60px;
+                }
+                100% {
+                  transition: all 0.3s ease-in-out;
+                  bottom: 0px;
+                }
+              }
+              span {
+                .short-item1 {
+                  color: #4e4e4e;
+                  font-size: 1em;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  // bread-cumb---
+  .booklist_navigation {
+    @include booklist-Navigation;
+  }
+  // bread---cumb---end--here---
+
+  .NoData-Wrp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    .Nodata-Child {
+      display: block;
+      text-align: center;
+      width: max-content;
+      padding: 2rem;
+      background: #fff;
+      box-shadow: 0 0 17px 2px #eee;
+      border-radius: 5px;
+      b {
+        .file,
+        svg,
+        i {
+          color: rgba(136, 136, 136, 0.584);
+        }
+      }
+      span {
+        font-size: 0.89em;
+        color: #333333;
+      }
+    }
+  }
+
+  .Price_text {
+    display: flex;
+    justify-content: space-between;
+    grid-gap: 1rem;
+    margin: 0 0 1rem;
+    span {
+      color: #0298bf;
+      font-weight: 600;
+    }
+  }
+}
+
+// --pagination--
+.Pagination_wrp {
+  padding: 2rem 0 1rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .MuiPagination-ul .MuiPaginationItem-previousNext {
+    color: $star !important;
+  }
+}
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  height: 1rem !important;
+}
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: $skysolid !important;
+}
+
+// --end--here

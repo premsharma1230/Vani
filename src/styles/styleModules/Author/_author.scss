@@ -1,0 +1,114 @@
+.Author_Wrapper {
+  background: $white;
+  .AuthorBanner_Wrapper {
+    .Banner_img {
+      height: 500px;
+      border-radius: 0px 0px 16px 16px;
+      margin: 5rem 0 0;
+      z-index: 0;
+      img {
+        max-width: 100%;
+        object-fit: cover;
+      }
+    }
+    .AuthBanner-Content {
+      width: 45%;
+      margin: 0rem 0 0 4rem;
+      padding: 9rem 0;
+      position: absolute;
+      top: 30px;
+      h2 {
+        font-family: "Lora";
+        font-size: 60px;
+        font-weight: 700;
+        line-height: 77px;
+        letter-spacing: 0.20000000298023224px;
+        color: $skysolid;
+      }
+      p {
+        font-family: "Lora";
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 32px;
+        letter-spacing: 0.20000000298023224px;
+        color: $paraText;
+        padding: 1rem 0;
+      }
+    }
+  }
+  .Author_content {
+    padding: 3rem 0 0;
+    .Author_heading {
+      width: 100%;
+      text-align: center;
+      padding: 1.5rem 0;
+      h2 {
+        font-family: "Lora";
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 56px;
+        letter-spacing: 0.20000000298023224px;
+        color: #333333;
+        text-transform: capitalize;
+      }
+    }
+    .Author-Card_Wrap {
+      .category_Grid_Content {
+        @include bookGrid;
+        transition: $transition;
+        figure {
+          transition: $transition;
+          &:hover {
+            transition: $transition;
+            box-shadow: 4px 4px 11px 0px #0000006b;
+          }
+        }
+      }
+    }
+  }
+  .Pagination_wrp {
+    display: block !important;
+    padding: 2rem 0 5rem;
+    .Alphabetic-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0 2rem;
+      .activeBtn {
+        background: $skysolid;
+        color: $white;
+      }
+      li {
+        list-style-type: none;
+        height: 44px;
+        width: 44px;
+        border: 0.2px solid #000000;
+        font-family: "Lora";
+        font-size: 1.1em;
+        font-weight: 700;
+        line-height: 23px;
+        letter-spacing: 0.20000000298023224px;
+        margin: 1.5rem 0 2.5rem;
+        background: rgba(238, 238, 238, 0.468);
+        border-right: 0;
+        cursor: pointer;
+        @include flexwrp;
+        transition: $transition;
+        &:hover {
+          transition: $transition;
+          opacity: 0.78;
+        }
+        // &:nth-child(1) {
+        //   background: $skysolid;
+        //   color: $white;
+        // }
+        &:last-child {
+          border-right: 0.2px solid #000000;
+        }
+      }
+    }
+    .Pagination_Content {
+      @include flexwrp;
+    }
+  }
+}

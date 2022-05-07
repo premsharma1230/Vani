@@ -1,0 +1,99 @@
+.loginContainer {
+  margin-top: 10rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.formContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.formMain {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loginHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loginSubheader {
+  font-weight: 700;
+  font-size: 18px;
+  padding: 22px 44px;
+  width: 395px;
+  text-align: center;
+}
+
+.loginMainHeader {
+  font-weight: 700;
+  font-size: 36px;
+  color: #0298BF;
+}
+
+.userField, .passwordField {
+  width: 388px;
+}
+
+.passwordFieldMargin {
+  margin-top: 22px;
+}
+
+.SignupButton {
+  margin-top: 34px;
+}
+
+.backForgotPassword {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 27px;
+  height: 31px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.back {
+  border-right: 1px solid;
+  padding-right: 10px;
+  color: #0298BF;
+}
+
+.forgotPassword {
+  padding-left: 10px;
+}
+/*# sourceMappingURL=registeration.module.css.map */

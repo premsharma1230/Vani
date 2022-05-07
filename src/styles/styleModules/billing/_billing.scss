@@ -1,0 +1,151 @@
+.Billing_Wrapper {
+  .Billing_Content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    .billing-left {
+      position: relative;
+      .billing_head {
+        h2 {
+          font-family: "Lora";
+          margin: 1.4rem 0 1.6rem;
+          font-size: 1.8em;
+          font-weight: 500;
+          line-height: 31px;
+          color: $heading;
+          letter-spacing: 0.20000000298023224px;
+        }
+        p {
+          font-family: "Lora";
+          font-size: 1.1em;
+          font-weight: 400;
+          line-height: 23px;
+          letter-spacing: 0px;
+          color: $heading;
+        }
+      }
+      .PromoCode {
+        width: max-content;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        label {
+          input {
+            height: 52px;
+            width: 236px;
+            border: 1px solid #0298bf;
+            border-radius: 0px;
+            font-size: 1em;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0px;
+            padding: 0.5rem 0.6rem;
+          }
+        }
+        button {
+          height: 52px;
+          width: 167px;
+          background: #0298bf;
+          color: $white;
+          @include flexwrp;
+          font-family: Lora;
+          font-size: 1em;
+          font-weight: 500;
+          line-height: 20px;
+          letter-spacing: 0px;
+          outline: none;
+          border: none;
+          transition: $transition;
+          &:hover {
+            transition: $transition;
+            cursor: pointer;
+            opacity: 0.78;
+          }
+        }
+      }
+    }
+    .billing-right {
+      .billing_head {
+        h2 {
+          font-family: "Lora";
+          margin: 1.4rem 0 1.6rem;
+          font-size: 1.8em;
+          font-weight: 500;
+          line-height: 31px;
+          color: $heading;
+          letter-spacing: 0.20000000298023224px;
+        }
+      }
+      .billing-right_Content {
+        display: grid;
+        grid-template-columns: 100px 1fr 100px;
+        grid-gap: 2rem;
+        align-items: center;
+        border-bottom: 1px solid $heading;
+        padding: 1rem 0;
+        margin: 0.5rem 0;
+        li {
+          list-style-type: none;
+          img {
+            max-width: 100%;
+          }
+          h3 {
+            font-family: "Lora";
+            font-size: 1em;
+            font-weight: 700;
+            line-height: 20px;
+            letter-spacing: 0px;
+            padding: 0.4rem 0;
+          }
+          p {
+            font-family: "Lora";
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 15px;
+            letter-spacing: 0px;
+            padding: 0.3rem 0;
+          }
+          h6 {
+            font-family: "Lora";
+            font-size: 1.8em;
+            font-weight: 700;
+            line-height: 18px;
+            letter-spacing: 0px;
+            color: $skysolid;
+          }
+        }
+      }
+      .Grand_Total {
+        @include GrandTotal;
+        width: 100%;
+        .Total-content {
+          width: 70%;
+          .Total-text {
+            font-family: "Lora";
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 23px;
+            letter-spacing: 0px;
+          }
+        }
+        .Discount {
+          .Total-number {
+            color: $green;
+          }
+        }
+        .button_wrp {
+          width: 70%;
+          button {
+            background: $green;
+            font-family: "Lora";
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 18px;
+            letter-spacing: 0px;
+          }
+        }
+      }
+    }
+  }
+}

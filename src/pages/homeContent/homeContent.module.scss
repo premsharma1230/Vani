@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 .Encpsulater {
-  margin-left: 3rem;
+  // margin-left: 3rem;
 }
 .containerMain {
   margin-top: 5rem;
@@ -68,18 +68,18 @@
     top: 10%;
     z-index: 3;
 
-    h1{
-        font-size: 1.9rem;
-        width: 50%;
+    h1 {
+      font-size: 1.9rem;
+      width: 50%;
     }
-    p{
-        padding-right: 1rem;
-        line-height: normal;
-        font-size: 0.7rem;
-        text-align: justify;
+    p {
+      padding-right: 1rem;
+      line-height: normal;
+      font-size: 0.7rem;
+      text-align: justify;
     }
   }
-  .prefooter{
+  .prefooter {
     display: none;
   }
 }

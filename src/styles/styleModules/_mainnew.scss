@@ -1,0 +1,58 @@
+.logContainter {
+  margin-top: 8rem !important;
+}
+.loginheader {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+.closeicon_img {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+}
+.login_heading {
+  border-top: 1px solid $paraText;
+  width: 60% !important;
+  margin: auto;
+}
+.forgot_link {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid $paraText;
+  width: 60% !important;
+  margin: auto;
+}
+.other_logins {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: space-around;
+  border-right: none !important;
+
+  margin: 2rem auto;
+  img {
+    padding-right: 40px;
+    &::after {
+      content: "";
+      border: 1px solid #f30;
+    }
+  }
+}
+.Signuplink {
+  color: $paraText !important;
+  border-bottom: 1px solid $paraText;
+  padding-right: 0px !important;
+}
+
+.registeration_back__bE9M5 {
+  border-right: none !important;
+}
+
+.mob_Social_Content {
+  .registeration_back__bE9M5 {
+    display: none;
+    border-right: none !important;
+  }
+}

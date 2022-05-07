@@ -1,6 +1,349 @@
-@mixin flexDesign($flexDirection,$alignItems,$justifyContent) {
+@import "./_theme.scss";
+
+@mixin flexDesign($flexDirection, $alignItems, $justifyContent) {
+  display: flex;
+  flex-direction: $flexDirection;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+@mixin flexwrp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@mixin GrandTotal {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin: 0 3.2rem 0 auto;
+
+  .Total-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    border-bottom: 1px solid #4e4e4e;
+    margin: 0 0 1.5rem;
+    padding: 1rem 1rem 1.5rem;
+    li {
+      list-style-type: none;
+    }
+    .Total-text {
+      font-family: "Lora";
+      font-size: 1.1em;
+      font-weight: 700;
+      line-height: 23px;
+      letter-spacing: 0px;
+      color: $paraText;
+      position: relative;
+      &::after {
+        content: "";
+        width: 25px;
+        height: 1px;
+        background-color: $paraText;
+        position: absolute;
+        right: -12px;
+        top: 50%;
+      }
+    }
+    .Total-number {
+      font-family: "Lora";
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0px;
+      color: $skysolid;
+      text-align: right;
+    }
+  }
+  .button_wrp {
+    width: 100%;
+    button {
+      height: 50px;
+      width: 100%;
+      border-radius: 4px;
+      color: $white;
+      background: $skysolid;
+      outline: none;
+      border: none;
+      transition: $transition;
+      font-family: "Lora";
+      font-size: 1.1em;
+      font-weight: 700;
+      line-height: 23px;
+      cursor: pointer;
+      &:hover {
+        transition: $transition;
+        opacity: 0.78;
+      }
+    }
+  }
+}
+
+// <-----------Counter----->
+@mixin Count {
+  @include flexwrp;
+  button {
+    height: 29.33333396911621px;
+    width: 29.33333396911621px;
+    border: 0.117333px solid #00102c09;
+    cursor: pointer;
+    color: #fff;
+    transition: $transition;
+    &:hover {
+      transition: $transition;
+      opacity: 0.78;
+    }
+  }
+  .count_btn {
+    button {
+      background: #c4c4c4;
+    }
+  }
+  .count_Increment {
+    button {
+      background: $skysolid;
+    }
+  }
+
+  .Counter_print {
+    height: 29.33333396911621px;
+    width: 29.33333396911621px;
+    border: 0.117333px solid #00102c;
+    @include flexwrp;
+    color: $star;
+  }
+}
+// <-----------Counter--end---here--->
+
+@mixin socialApp {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  grid-gap: 1rem;
+  li {
+    list-style-type: none;
+    svg {
+      color: #fe4365;
+      font-size: 1.1em;
+      transition: $transition;
+      overflow: hidden;
+      &:hover {
+        transition: $transition;
+        transform: scale(1.099);
+      }
+    }
+  }
+}
+
+// Form--->
+@mixin FormStyle {
+  width: 100%;
+  margin: 0 auto;
+  form {
+    margin: 2rem 0 0;
+    .Review1 {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      grid-gap: 1rem;
+      padding: 0.5rem 0;
+      label {
+        font-family: Lora;
+        font-size: 1em;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-transform: capitalize;
+        color: $paraText;
+      }
+      .Star_wrp {
+        display: flex;
+        align-items: center;
+        grid-gap: 0.5rem;
+        .star-item {
+          color: $star;
+          font-size: 1.23em;
+        }
+      }
+      input,
+      textarea {
+        padding: 0.5rem 0.5rem;
+        border: 1px solid $paraText;
+        border-radius: 5px;
+        outline: none;
+        transition: $transition;
+        width: 100%;
+        &:hover {
+          transition: $transition;
+          border-color: #000;
+        }
+      }
+      .TextArea_wrp textarea {
+        height: 100px;
+      }
+      #Submit {
+        height: 40px;
+        width: 100%;
+        border-radius: 0px;
+        background: $skysolid;
+        color: $white;
+        text-transform: $cap;
+        font-family: "Lora";
+        font-size: 1em;
+        font-weight: 700;
+        line-height: 20px;
+        border: 1px solid $skysolid;
+        text-align: center;
+        outline: none;
+        transition: $transition;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        &:hover {
+          transition: $transition;
+          opacity: 0.78;
+          border-radius: 100px;
+        }
+      }
+    }
+  }
+}
+
+// Form---end--here-->
+
+@mixin bookGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3rem 1rem;
+  .Grid-item {
+    figure {
+      text-align: center;
+      height: 300px;
+      overflow: hidden;
+      img {
+        max-width: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+        &:hover {
+          transition: all 0.3s ease-in-out;
+          transform: scale(1.099);
+        }
+      }
+    }
+    figcaption {
+      text-align: left;
+      padding: 0.2rem 1rem;
+      h3 {
+        font-size: 1.4em;
+        text-transform: capitalize;
+        line-height: 1.3;
+        letter-spacing: 0.3;
+        word-spacing: 0.3;
+        padding: 0.66rem 0;
+        font-family: Lora;
+        font-weight: 700;
+        letter-spacing: 0px;
+        color: #333333;
+      }
+      h4 {
+        color: $star;
+        font-size: 0.9em;
+        text-transform: capitalize;
+        font-weight: bold;
+        line-height: 1.3;
+        letter-spacing: 0.3;
+        word-spacing: 0.3;
+        color: #4e4e4e;
+        font-style: normal;
+      }
+      span {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+        grid-gap: 0.5rem;
+        .star-item {
+          color: #fe4365;
+          font-size: 0.89em;
+        }
+      }
+      strong {
+        font-family: Lora;
+        font-size: 1.4;
+        font-weight: 700;
+        line-height: 26px;
+        letter-spacing: 0px;
+        color: #333333;
+      }
+    }
+  }
+}
+
+@mixin booklist-Navigation {
+  padding: 1rem 0 2rem;
+  @include flexwrp;
+  justify-content: space-between;
+  .BreadCumb {
     display: flex;
-    flex-direction: $flexDirection;
-    align-items: $alignItems;
-    justify-content: $justifyContent;    
+    align-items: center;
+    grid-gap: 0.5rem;
+    li {
+      list-style-type: none;
+      a {
+        text-decoration: underline;
+        text-transform: capitalize;
+        color: #333333;
+        font-family: Lora;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 18px;
+        transition: $transition;
+        letter-spacing: 0.20000000298023224px;
+        &:hover {
+          transition: $transition;
+          opacity: 0.78;
+        }
+      }
+    }
+  }
+  .pagination_view {
+    @extend .BreadCumb;
+    grid-gap: 1rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lora";
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+.Main_Home_Content {
+  background: #fff;
+}
+
+.Discount-price_wrp {
+  display: flex;
+  grid-gap: 1.5rem;
+  .Discount {
+    text-decoration: line-through;
+  }
 }

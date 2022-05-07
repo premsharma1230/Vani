@@ -1,0 +1,63 @@
+.Footer_Wrapper {
+  width: 100%;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  width: 100%;
+  box-shadow: 0px -1px 11px 5px #00000017;
+  background: $white;
+  font-family: "Lora";
+  .Footer_Content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 14rem;
+    padding: 1rem 0 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+    .foot_item {
+      .Heading_wrp {
+        h2 {
+          font-size: 1em;
+          text-transform: uppercase;
+          letter-spacing: 0.3;
+          word-spacing: 0.3;
+          color: $paraText;
+          padding: 1rem 0 1.1rem 0;
+          font-weight: 500;
+        }
+      }
+      ul {
+        li {
+          padding: 0.5rem 0;
+          list-style-type: none;
+
+          a {
+            text-decoration: none;
+            font-size: 0.89em;
+            letter-spacing: 0.3;
+            word-spacing: 0.3;
+            color: $paraText;
+            font-weight: bold;
+            text-transform: capitalize;
+            line-height: 1.4;
+            display: block;
+            transition: $transition;
+            &:hover {
+              opacity: 0.9;
+              transition: $transition;
+            }
+          }
+        }
+        .WhatsApp {
+          display: flex;
+          grid-gap: 1rem;
+          a > .fa-whatsapp {
+            color: $star;
+          }
+        }
+        .Social_Content {
+          @include socialApp;
+        }
+      }
+    }
+  }
+}
